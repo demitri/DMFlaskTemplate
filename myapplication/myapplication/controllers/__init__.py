@@ -3,7 +3,7 @@
 from flask import request #, make_response
 
 # List all of the views to be automatically imported here.
-__all__ = ["views", "views2"]
+__all__ = ["controller1", "controller2"]
 
 def valueFromRequest(key=None, request=None, default=None, lower=False, list=False, boolean=False):
 	''' Convenience function to retrieve values from HTTP requests (GET or POST).
