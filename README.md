@@ -4,10 +4,12 @@ A Flask Application Template
 Copying the template
 --------------------
 
-Make a copy of the directory and rename every instance of "myapplication"
-to the name of your application.
+Make a copy of this repository and run:
 
-TODO: write a Python script to prompt the user for a new name and do this automatically.
+bash rename_this_app.sh NEW_NAME
+
+to change filenames, paths, and statements inside from myapplication
+to a new name of your choice.
 
 Run the application in debug mode
 ---------------------------------
