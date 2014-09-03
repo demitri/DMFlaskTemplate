@@ -63,7 +63,11 @@ def setupSentry(app=None, dsn=None):
 
 def getConfigFile(configFile=None):
 	'''
-	Fetches the named local configuration file.
+	Returns the path of the named local configuration file.
 	'''
-	return os.path.join(os.path.dirname(os.path.abspath(__file__)), 'configuration_files', configFile)
+	conf_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'configuration_files', configFile)
+	if os.path.isfile(conf_filepath):
+		return conf_filepath
+	else:
+		raise Exception("Configuration file '{0}' not found.".format(conf_filepath))
 

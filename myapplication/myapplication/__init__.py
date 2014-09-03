@@ -10,6 +10,7 @@ from flask import Flask
 
 from . import jinja_filters
 import _app_setup_utils
+from utilities.color_print import print_warning, print_error, print_info, yellow_text, green_text, red_text
 
 # ================================================================================
 
@@ -41,7 +42,8 @@ def create_app(debug=False, conf=dict()):
 	app.register_blueprint(jinja_filters.blueprint)
 	
 	if app.debug:
-		print("{0}App '{1}' created.{2}".format('\033[92m', __name__, '\033[0m'))
+		#print("{0}App '{1}' created.{2}".format('\033[92m', __name__, '\033[0m'))
+		print_info("Appication '{0}' created.".format(__name__))
 	else:
 		if conf["usingSentry"]:
 			_app_setup_utils.setupSentry(app, dsn=sentryDSN)
@@ -72,7 +74,7 @@ def create_app(debug=False, conf=dict()):
 		if "your_host" in hostname:
 			server_config_file = _app_setup_utils.getConfigFile("your_host.cfg")
 		else:
-			_app_setup_utils.getConfigFile("localhost.cfg") # default
+			server_config_file = _app_setup_utils.getConfigFile("default.cfg") # default
 		
 	else:
 		if usingUWSGI:
@@ -89,7 +91,7 @@ def create_app(debug=False, conf=dict()):
 				sys.exit(1)
 	
 	if server_config_file:
-		print("Loading config file: {0}".format(server_config_file))
+		print(green_text("Loading config file: "), yellow_text(server_config_file))
 		app.config.from_pyfile(server_config_file)
 		
 	return app
