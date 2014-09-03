@@ -2,16 +2,18 @@
 
 import os
 
-from flask import request, render_template, send_from_directory
+import flask
+#from flask import request, render_template, send_from_directory
+from flask import current_app, render_template
 
-from .. import app
-from . import valueFromRequest
+#from . import valueFromRequest
 
-@app.route('/')
-def func_name():
-	''' Documentation here. '''
+index_page = flask.Blueprint("index_page", __name__)
+
+index_page.route("/", methods=['GET'])
+def index():
+	''' Index page. '''
 	templateDict = {}
-	
 	
 	return render_template("index.html", **templateDict)
 
@@ -19,7 +21,12 @@ def func_name():
 # a single page with something like this on the page:
 #    <link rel="shortcut icon" href="static/images/favicon.ico">
 #
-@app.route('/favicon.ico')
+@index_page.route('/favicon.ico')
 def favicon():
-    return send_from_directory(directory=os.path.join(app.root_path, 'static', 'images'),
-                               filename='favicon.ico')#, mimetype='image/vnd.microsoft.icon')
+	static_images_dir = directory=os.path.join(app.root_path, 'static', 'images')
+	return send_from_directory(static_images_dir, filename='favicon.ico')#, mimetype='image/vnd.microsoft.icon')
+
+@index_page.route('/robots.txt')
+def robots():
+	robots_path = os.path.join(current_app.root_path, 'static')
+	return send_from_directory(robots_path, "robots.txt")
