@@ -56,13 +56,14 @@ from myapplication import create_app
 
 app = create_app(debug=args.debug, conf=conf) # actually creates the Flask application instance
 
-# Can't create the database connection unless we've created the app
-#from myapplication.model.database import db
-
 # -----------------------------------------
 # If using SQLAlchemy, uncomment this block
 # -----------------------------------------
 if conf["usingSQLAlchemy"]:
+
+	# Can't create the database connection unless we've created the app
+	from myapplication.model.database import db
+
 	@app.teardown_appcontext
 	def shutdown_session(exception=None):
 	   ''' Enable Flask to automatically remove database sessions at the

@@ -31,34 +31,7 @@ def create_app(debug=False, conf=dict()):
 	
 	app = Flask(__name__) # creates the app instance using the name of the module
 	app.debug = debug
-	
-	# -----------------------------------
-	# Perform early app setup below here.
-	# -----------------------------------
 
-	register_blueprints(app=app)
-
-	# Register all Jinja filters in the file
-	app.register_blueprint(jinja_filters.blueprint)
-	
-	if app.debug:
-		#print("{0}App '{1}' created.{2}".format('\033[92m', __name__, '\033[0m'))
-		print_info("Appication '{0}' created.".format(__name__))
-	else:
-		if conf["usingSentry"]:
-			_app_setup_utils.setupSentry(app, dsn=sentryDSN)
-
-	# Change the implementation of "decimal" to a C-based version (much! faster)
-	try:
-		import cdecimal
-		sys.modules["decimal"] = cdecimal
-	except ImportError:
-		pass # not available
-
-	if conf["usingSQLAlchemy"]:
-		if conf["usingPostgreSQL"]:
-			_app_setup_utils.setupJSONandDecimal()
-	
 	# --------------------------------------------------
 	# Read configuration files.
 	# -------------------------
@@ -93,7 +66,42 @@ def create_app(debug=False, conf=dict()):
 	if server_config_file:
 		print(green_text("Loading config file: "), yellow_text(server_config_file))
 		app.config.from_pyfile(server_config_file)
+	
+	# -----------------------------
+	# Perform app setup below here.
+	# -----------------------------
+	
+	if app.debug:
+		#print("{0}App '{1}' created.{2}".format('\033[92m', __name__, '\033[0m'))
+		print_info("Application '{0}' created.".format(__name__))
+	else:
+		if conf["usingSentry"]:
+			_app_setup_utils.setupSentry(app, dsn=sentryDSN)
+
+	# Change the implementation of "decimal" to a C-based version (much! faster)
+	try:
+		import cdecimal
+		sys.modules["decimal"] = cdecimal
+	except ImportError:
+		pass # not available
+
+	if conf["usingSQLAlchemy"]:
+		if conf["usingPostgreSQL"]:
+			_app_setup_utils.setupJSONandDecimal()
+	
+	    # This "with" is necessary to prevent exceptions of the form:
+	    #    RuntimeError: working outside of application context
+	    #    (i.e. the app object doesn't exist yet - being created here)
 		
+		with app.app_context():
+			from .model.databasePostgreSQL import db
+
+	# Register all paths (URLs) available.
+	register_blueprints(app=app)
+
+	# Register all Jinja filters in the file.
+	app.register_blueprint(jinja_filters.blueprint)
+
 	return app
 	
 

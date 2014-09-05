@@ -14,7 +14,7 @@ blueprint = flask.Blueprint('jinja_filters', __name__)
 # place these decorators above every filter
 @jinja2.contextfilter
 @blueprint.app_template_filter()
-def j2split(value, delimiter=None):
+def j2split(context, value, delimiter=None):
 	if delimiter == None:
 		return value.split()
 	else:
@@ -22,6 +22,6 @@ def j2split(value, delimiter=None):
 
 @jinja2.contextfilter
 @blueprint.app_template_filter()
-def j2join(value, delimiter=","):
+def j2join(context, value, delimiter=","):
     return delimiter.join(value)
 
