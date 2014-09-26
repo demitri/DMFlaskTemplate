@@ -6,9 +6,9 @@ Copying the template
 
 Make a copy of this repository and run:
 
-bash rename_this_app.sh NEW_NAME
+    % /bin/bash rename_this_app.sh NEW_NAME
 
-to change filenames, paths, and statements inside from myapplication
+to change filenames, paths, and statements inside from "myapplication"
 to a new name of your choice.
 
 Run the application in debug mode
@@ -16,11 +16,11 @@ Run the application in debug mode
 
 Make sure that Flask is installed:
 
-% sudo easy_install Flask
+    % sudo easy_install Flask
 
 From inside the top level directory, start the app from the command line:
 
-% ./run_myapplication.py
+    % ./run_myapplication.py
 
 Add new pages
 -------------
@@ -36,7 +36,7 @@ at `http://your.domain.com/somePage`, the decorator would be
     
 The decorated function immediately below that will typically have the same
 name as the page, but it doesn't have to. The decorator just binds the function
-to the name that it's given.
+to the name that it’s given.
 
 Controllers or views?
 ---------------------
@@ -50,6 +50,22 @@ code is called `controllers`. Just so you know.
 
 Typically, there will be one controller file per web page, but this is not required.
 
+Python Dependendies
+-------------------
+
+DMFlaskTemplate has these Python dependencies:
+
+ * [Flask](https://pypi.python.org/pypi/Flask/) (obviously)
+ * [uWSGI](https://pypi.python.org/pypi/uWSGI) (if planning to deploy under Nginx)
+ * SQLAlchemy
+ * [psycopg2](https://pypi.python.org/pypi/psycopg2) (if using PostgreSQL)
+ * [termcolor](https://pypi.python.org/pypi/termcolor) (for color printing while debugging)
+ 
+If you plan to incoporate Sentry for production logging, add these:
+
+ * [raven](https://pypi.python.org/pypi/raven)
+ * [blinker](https://pypi.python.org/pypi/blinker)
+
 Configuration Files
 -------------------
 There are two levels of configuration files that I use:
@@ -57,21 +73,22 @@ There are two levels of configuration files that I use:
  * site-specific configuration files
  * app-level configuration files
  
-I recommend creating a configuration file for each server that the app will be run on. It's handy to keep all such files in the app module so they can be tracked under version control. You will then need to know which configuration file to choose at run time.
+I recommend creating a configuration file for each server that the app will be run on. It’s handy to keep all such files in the app module so they can be tracked under version control. You will then need to know which configuration file to choose at run time.
 
-I'm assuming the application will be served under uWSGI. At the top level of the app I've made a `uwsgi_configuration_files` directory which will contain the uWSGI startup configuration for each server. This is an example:
+I'm assuming the application will be served under uWSGI. At the top level of the app I’ve made a `uwsgi_configuration_files` directory which will contain the uWSGI startup configuration for each server. This is an example:
 
 	[uwsgi]
+	base = /var/www/myapp
 	socket = /tmp/uwsgi_myappi.sock
 	chmod-socket = 666
 	master = true
 	sharedarea = 4
 	memory-report = true
-	daemonize = /var/www/skeleton/uwsgi_skeleton.log
-	pidfile = /var/www/skeleton/uwsgi_skeleton.pid
-	file = /var/www/skeleton/run_skeleton.py
+	daemonize = %(base)/uwsgi_myapp.log
+	pidfile = %(base)/uwsgi_myapp.pid
+	file = %(base)/run_myapp.py
 	callable = app
-	module = sdssapi
+	module = myapp
 	
 	# This key/value will be read in the Flask application
 	# to indicate which server the application is running on.
@@ -98,7 +115,7 @@ Calling `import uwsgi` is a way to tell if the app is being served from uWSGI.
 
 References:
 
-<https://uwsgi-docs.readthedocs.org/en/latest/Configuration.html#placeholders>
+<https://uwsgi-docs.readthedocs.org/en/latest/Configuration.html#placeholders>  
 <http://uwsgi-docs.readthedocs.org/en/latest/PythonModule.html#uwsgi.opt>
 
 
