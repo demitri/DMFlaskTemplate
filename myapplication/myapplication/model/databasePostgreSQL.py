@@ -33,11 +33,11 @@ try:
 except AssertionError:
 	# only need to define this once
 	db = DatabaseConnection(database_connection_string=database_connection_string)
-    engine = db.engine
-    metadata = db.metadata
-    Session = db.Session
-    Base = db.Base
+	engine = db.engine
+	metadata = db.metadata
+	Session = db.Session
+	Base = db.Base
 except KeyError as e:
-    print("Necessary database configuration value not defined.")
-    raise e
+	print("Necessary database configuration value not defined.")
+	raise e
 

@@ -93,8 +93,8 @@ def create_app(debug=False, conf=dict()):
 	    #    RuntimeError: working outside of application context
 	    #    (i.e. the app object doesn't exist yet - being created here)
 		
-		with app.app_context():
-			from .model.databasePostgreSQL import db
+			with app.app_context():
+				from .model.databasePostgreSQL import db
 
 	# Register all paths (URLs) available.
 	register_blueprints(app=app)

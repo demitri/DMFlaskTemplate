@@ -73,7 +73,7 @@ class DatabaseConnection(object):
 			me.metadata = MetaData()
 			me.metadata.bind = me.engine
 			me.Base = declarative_base(bind=me.engine)
-			me.Session = scoped_session(sessionmaker(bind=me.engine, autocommit=True, autoflush=False))
+			me.Session = scoped_session(sessionmaker(bind=me.engine, autocommit=True))
 			# ------------------------------------------------
 		
 		return cls._singletons[cls]
@@ -83,7 +83,6 @@ class DatabaseConnection(object):
 Reference: http://www.sqlalchemy.org/docs/05/reference/orm/sessions.html#sqlalchemy.orm.sessionmaker
 
 autocommit = True : this prevents postgres from deadlocking on long-lived session processes (e.g. a background daemon), that produces 'idle in transaction' processes in PostgreSQL.
-autoflush = False: prevents flushing (i.e. commiting) objects when only performing a SELECT statement, i.e. when not modifying the db
 
 Sample code to account for different cases (if things change for whatever reason):
 

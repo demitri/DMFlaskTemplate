@@ -11,16 +11,35 @@ Make a copy of this repository and run:
 to change filenames, paths, and statements inside from "myapplication"
 to a new name of your choice.
 
+Python Dependendies
+-------------------
+
+Make sure that [Flask](https://pypi.python.org/pypi/Flask/) is installed:
+
+    % sudo pip install Flask
+    
+If you are using the [Anaconda Python distribution](http://www.continuum.io), Flask is already installed; you can make sure you are running the current version with:
+
+    % conda update flask
+
+DMFlaskTemplate has these Python dependencies:
+
+ * [uWSGI](https://pypi.python.org/pypi/uWSGI) (if planning to deploy under Nginx)
+ * [SQLAlchemy](http://www.sqlalchemy.org)
+ * [psycopg2](https://pypi.python.org/pypi/psycopg2) (if using PostgreSQL)
+ * [termcolor](https://pypi.python.org/pypi/termcolor) (for color printing while debugging)
+ 
+If you plan to incoporate Sentry for production logging, add these:
+
+ * [raven](https://pypi.python.org/pypi/raven)
+ * [blinker](https://pypi.python.org/pypi/blinker)
+
 Run the application in debug mode
 ---------------------------------
 
-Make sure that Flask is installed:
-
-    % sudo easy_install Flask
-
 From inside the top level directory, start the app from the command line:
 
-    % ./run_myapplication.py
+    % ./run_myapplication.py -d
 
 Add new pages
 -------------
@@ -49,22 +68,6 @@ terribly confusing. That is why the folder that contains the Python
 code is called `controllers`. Just so you know.
 
 Typically, there will be one controller file per web page, but this is not required.
-
-Python Dependendies
--------------------
-
-DMFlaskTemplate has these Python dependencies:
-
- * [Flask](https://pypi.python.org/pypi/Flask/) (obviously)
- * [uWSGI](https://pypi.python.org/pypi/uWSGI) (if planning to deploy under Nginx)
- * SQLAlchemy
- * [psycopg2](https://pypi.python.org/pypi/psycopg2) (if using PostgreSQL)
- * [termcolor](https://pypi.python.org/pypi/termcolor) (for color printing while debugging)
- 
-If you plan to incoporate Sentry for production logging, add these:
-
- * [raven](https://pypi.python.org/pypi/raven)
- * [blinker](https://pypi.python.org/pypi/blinker)
 
 Configuration Files
 -------------------

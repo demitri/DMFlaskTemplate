@@ -7,7 +7,8 @@
 
 import psycopg2
 
-from config import AppConfig
+from ..config import AppConfig
+from ..designpatterns import singleton
 
 config = AppConfig()
 
@@ -30,8 +31,8 @@ class MyApplicationDatabase(object):
 		if self.pool is None:
 			
 			db_info = {}
-			for key in self.config.options("")
-				db_info[key] = config.
+			#for key in self.config.options(""):
+			#	db_info[key] = config.
 		
 		return self.pool
 		
