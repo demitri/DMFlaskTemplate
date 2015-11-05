@@ -9,8 +9,8 @@ import socket
 from flask import Flask
 
 from . import jinja_filters
-import _app_setup_utils
-from utilities.color_print import print_warning, print_error, print_info, yellow_text, green_text, red_text
+from . import _app_setup_utils
+from .utilities.color_print import print_warning, print_error, print_info, yellow_text, green_text, red_text
 
 # ================================================================================
 

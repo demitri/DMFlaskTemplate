@@ -19,8 +19,8 @@ from flask import Flask
 # =====================================
 conf = dict()
 
-conf["usingSQLAlchemy"] = True
-conf["usingPostgreSQL"] = True
+conf["usingSQLAlchemy"] = False
+conf["usingPostgreSQL"] = False
 
 # These options only apply when the app is served in a production mode.
 conf["usingSentry"]		= False	# only for use in production mode
