@@ -50,7 +50,7 @@ def create_app(debug=False, conf=dict()):
 			server_config_file = _app_setup_utils.getConfigFile("default.cfg") # default
 		
 	else:
-		if usingUWSGI:
+		if conf["usingUWSGI"]:
 			try:
 				import uwsgi
 				# The uWSGI configuration file defines a key value pair to point

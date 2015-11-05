@@ -10,7 +10,7 @@ from flask import current_app, render_template
 
 index_page = flask.Blueprint("index_page", __name__)
 
-index_page.route("/", methods=['GET'])
+@index_page.route("/", methods=['GET'])
 def index():
 	''' Index page. '''
 	templateDict = {}
