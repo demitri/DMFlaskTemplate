@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+from __future__ import print_function, division, absolute_import, unicode_literals
+
 '''
 This class manages the runtime configuration of the application,
 e.g. server information, debug mode, etc. Anything that might be
@@ -15,16 +17,19 @@ abstracts the information).
 '''
 
 import json
-import ConfigParser
+try:
+	import configparser					# renamed in Python 3 to this
+except ImportError:
+	import ConfigParser as configparser	# Python 2 compatibility
 
-from designpatterns import singleton, memoize
+from .designpatterns import singleton, memoize
 
 @singleton
 class AppConfig(object):
 	''' An object that contains the runtime configuration for this application. '''
 	
 	def __init__(self):
-		self.config = ConfigParser.ConfigParser()
+		self.config = configparser.ConfigParser()
 		self.config.read("api.config")
 		self.dr2instr = None
 
