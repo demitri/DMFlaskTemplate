@@ -34,3 +34,10 @@ def valueFromRequest(key=None, request=None, default=None, lower=False, list=Fal
 			if list:
 				value = value.split(",")
 		return value
+
+def make_json_response(object):
+	''' Takes an object to return as JSON and returns a Flask response, properly handling the headers. '''
+	response = make_response(json.dumps(object))
+	response.headers['Access-Control-Allow-Origin'] = "*" # needed for JSON
+	response.mimetype = "application/json"
+	return response
