@@ -3,6 +3,7 @@
 # from flask import request #, make_response
 
 from flask import request, render_template
+#import simplejson # Flask will use this if imported - faster, and handles Decimal objects
 
 from myapplication import app
 from . import valueFromRequest
