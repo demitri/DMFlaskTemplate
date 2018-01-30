@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Page Title{% endblock %}
+{% block content %}
+
+        <div class=" pt90 pb60">
+            <div class="container">
+                <div class="title-heading1 mb40">
+                    <h3>Latest News</h3>
+                </div>
+                
+                <div class="row">
+            	{% for post in news_posts %}
+                    <div class="col-lg-4 mb30 wow fadeInUp" data-wow-delay=".2s">
+                        <div class="entry-card">
+                            <a href="#" class="entry-thumb">
+                                <img src="{{post["_featured_media_url"]}}" alt="" class="img-fluid">
+                                <!--span class="thumb-hover ti-back-right"></span-->
+                            </a><!--/entry thumb-->
+                            <div class="entry-content">
+                                <div class="entry-meta mb5">
+                                    <span>
+                                        {{post["date"]}}
+                                    </span>
+                                </div>
+                                <h4 class="entry-title text-capitalize">
+                                    <a href="#">
+                                        {{post["title"]["rendered"] | safe}}
+                                    </a>
+                                </h4>
+                                <p style="more-link:display=">
+                                    {{post["excerpt"]["rendered"] | safe}}
+                                </p>
+                                <div class="text-right">
+                                    <a href="#" class="btn-link btn">Read More</a>
+                                </div>
+                            </div><!--/entry content-->
+                        </div>
+                    </div><!--/.col-->
+				{% endfor %}
+                </div> <!-- end row -->
+            </div>
+        </div><!--news-->
+
+{% endblock %}

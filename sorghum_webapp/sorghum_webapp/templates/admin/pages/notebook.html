@@ -1,0 +1,75 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% set page_title="Custom Page Title" %}{% endblock %}
+
+{% block content %}
+
+<div class="page-title pt30 pb30">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="mb10">Sequence Notebook</h4>
+            <p class="mb10">Text</p>
+            
+            {% if cells|length > 0 %}
+            {% for cell in cells %}
+            
+            <div class="row">
+            	<div class="col-md-6 mb30">
+                    <div class="card">
+                        <div class="card-top">
+                            <h4 class="card-title">Buttons Card</h4>
+                            <div class="card-options">
+                                <!--a href="javascript:void(0)"><i class="icon-refresh"></i></a-->
+                                <a href="javascript:void(0)"><i class="icon-cross"></i></a>
+                                 
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+            {% else %}
+            
+            {% endif %}
+        </div>
+    </div> <!-- end row -->
+    
+    <div class="row">
+		<div class="col-sm-12">
+			<a class="add-circle" href="notebook?add_cell">Add New Cell</a>
+		</div><!-- end col -->
+		
+		<div id="add_me"/>
+		
+		<hr>
+		
+    </div><!-- end row -->
+</div><!--page title-->
+
+{% endblock %}
+
+{% block before_close_body %}
+<script type="text/javascript" src="static/js/react_components/components.js"></script>
+<script type="text/javascript">
+	
+	window.onload = function() {
+		//console.log("page load");
+		
+		// get page data from API
+		var fake_cells = [{"title":"Cell Title",
+						   "content":"cell content here"},
+						  {"title":"Cell Title 2",
+						   "content":"more cell content here"}
+						   ];
+		console.log("here");
+		console.log(document.getElementById("add_me"));
+		showAddNewButton(document.getElementById("add_me"), "notebook?add_cell");
+	}
+	
+	var cells = [];
+</script>
+{% endblock %}

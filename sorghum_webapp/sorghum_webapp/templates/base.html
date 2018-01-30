@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+	</head>
+
+	<body class="layout-vertical">
+		<div class="page-wrapper">
+			<nav id="sidebar" class="sidebar-nav">
+			<div class="sidebar-inner content-scroll">
+				
+			 <div class="logo-header">
+                <a href="index.html"><img src="images/logo-white.png" alt=""></a>
+            </div><!--logo-->
+            
+            {% include "admin/side_menu.html" %}
+			
+	</body>
+
+ <!- ============================================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <title>{% block title %}{%endblock %}</title>    
+        
+        <!-- Plugins CSS -->
+        <link href="static/assan/css/plugins/plugins.css" rel="stylesheet">
+        <link href="static/assan/css/style-landing-pages.css" rel="stylesheet">
+        <link href="static/assan/css/style.css" rel="stylesheet">
+        
+        <!-- custom CSS for this page -->
+        <style type="text/css">
+			.more-link {
+			    display: none;
+			}
+		</style>
+        
+    </head>
+
+    <body data-spy="scroll" data-offset="58" data-target="#navbarlanding">
+        <div id="preloader">
+            <div id="preloader-inner"></div>
+        </div><!--/preloader-->
+        
+		{% include "navbar.html" %}
+        
+        {% block content %}{% endblock %}
+        
+		{% include "footer.html" %}
+
+        <!--back to top  -->
+        <a href="#" class="back-to-top" id="back-to-top"><i class="ti-angle-up"></i></a>
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script src="static/assan/js/plugins/plugins.js"></script> 
+        <script src="static/assan/js/landing.custom.js"></script>
+    </body>
+</html>
