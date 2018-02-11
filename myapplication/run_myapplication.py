@@ -95,6 +95,11 @@ if __name__ == "__main__":
         # If running on a remote host via a tunnel, not that
         # Safari blocks some high ports (e.g.port 6000)
         # Ref: http://support.apple.com/kb/TS4639
+        #
+        # By default, app is only available from localhost.
+        # To make available from any host (caution!!),
+        # pass "host=0.0.0.0" as a parameter below.
+        #
         app.run(debug=args.debug, port=args.port)
     else:
         app.run()
