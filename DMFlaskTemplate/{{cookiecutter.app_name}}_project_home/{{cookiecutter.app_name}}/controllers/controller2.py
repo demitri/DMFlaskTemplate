@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from myapplication import app
+from {{cookiecutter.app_name}} import app
 
 @app.route('/page3.html')
 def page3():

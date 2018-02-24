@@ -13,7 +13,7 @@ from ..designpatterns import singleton
 config = AppConfig()
 
 @singleton
-class MyApplicationDatabase(object):
+class {{cookiecutter.app_name}}Database(object):
 	
 	def __init__(self):
 		self.pool = None

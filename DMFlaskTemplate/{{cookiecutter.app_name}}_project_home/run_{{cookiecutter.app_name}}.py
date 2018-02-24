@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''
-This script is used to launch myapplication.
+This script is used to launch {{cookiecutter.app_name}}.
 
 Application initialization should go here.
 
@@ -52,7 +52,7 @@ args = parser.parse_args()
 # -------------------
 # Create app instance
 # -------------------
-from myapplication import create_app
+from {{cookiecutter.app_name}} import create_app
 
 app = create_app(debug=args.debug, conf=conf) # actually creates the Flask application instance
 
@@ -62,7 +62,7 @@ app = create_app(debug=args.debug, conf=conf) # actually creates the Flask appli
 if conf["usingSQLAlchemy"]:
 
 	# Can't create the database connection unless we've created the app
-	from myapplication.model.database import db
+	from {{cookiecutter.app_name}}.model.database import db
 
 	@app.teardown_appcontext
 	def shutdown_session(exception=None):
