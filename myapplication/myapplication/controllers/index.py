@@ -4,7 +4,7 @@ import os
 
 import flask
 #from flask import request, render_template, send_from_directory
-from flask import current_app, render_template
+from flask import current_app, render_template, send_from_directory
 
 #from . import valueFromRequest
 
