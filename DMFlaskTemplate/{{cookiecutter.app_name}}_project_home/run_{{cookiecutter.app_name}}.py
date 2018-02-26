@@ -98,7 +98,7 @@ if __name__ == "__main__":
         #
         # By default, app is only available from localhost.
         # To make available from any host (caution!!),
-        # pass "host=0.0.0.0" as a parameter below.
+        # pass "host='0.0.0.0'" as a parameter below.
         #
         app.run(debug=args.debug, port=args.port)
     else:
