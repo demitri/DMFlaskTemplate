@@ -6,6 +6,8 @@ This is a Jinja 2 filter that converts an ISO-9001 date string to a string for d
 "2017-10-28T02:20:32" -> "28 October 2017"
 '''
 
+import datetime import datetime
+
 import flask
 import jinja2
 from jinja2 import Markup
@@ -16,6 +18,18 @@ from jinja2 import Markup
 blueprint = flask.Blueprint('jinja_filters', __name__)
 
 # Ref: http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask
+
+@jinja2.contextfilter
+@blueprint.app_template_filter()
+def str2datetime(context, value):
+	'''
+	Format date : "2017-10-28T02:20:32" -> "28 October 2017"
+	'''
+	if isinstance(value, str):
+		if "T" in value:
+			dt = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
+			return dt # type: datetime.datetime
+			#.strftime('%Y-%m-%d')
 
 # place these two decorators above every filter
 @jinja2.contextfilter

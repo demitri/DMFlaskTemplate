@@ -1,60 +1,116 @@
 #!/usr/bin/python
 
+# This is the home page of the site.
+
 import os
+import json
 
 import flask
 import requests
 from flask import send_from_directory
 #from flask import request, render_template, send_from_directory
-from flask import current_app, render_template, request
-from . import valueFromRequest
+#from flask import current_app
+from flask import render_template, request
+import wordpress_orm as wp
+from wordpress_orm import wp_session, exc
 
-#from . import valueFromRequest
+from . import valueFromRequest
+from .. import app
+
+#
+# Note on WordPress queries. Not all information needed is returned by
+# API calls. It's convenient to perform additional requests as needed
+# here in the controller, but to append the data directly to records.
+# To avoid stepping on any reserved words, prepend a "+" to any
+# custom values added to a record.
+#
+
+WP_BASE_URL = app.config["WP_BASE_URL"]
 
 index_page = flask.Blueprint("index_page", __name__)
 
 @index_page.route("/", methods=['GET'])
 def index():
-	''' Index page. '''
+	'''
+	Home page
+	'''
+
 	templateDict = {}
-#	templateDict["msg"] = "hello"
-#	templateDict["numbers"] = "1 2 3 4 5s"
 
-	# get ID of 'News' category
-	with requests.Session() as session:
-		url = "http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/categories?slug=news"
-		response = session.get(url=url)
-		news_category = response.json()[0]
+	api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
+	
+	# perform all WordPress requests in a single session
+	with wp_session(api):
+	
+		# get the "News" category
+		try:
+			news_category = api.category(slug="news")
+		except wp.exc.NoEntityFound:
+			logger.debug("category 'news' not found!!")
+		
+		post_request = api.PostRequest()
+		post_request.categories = [news_category]
+		post_request.orderby = "date"
+		post_request.order = "desc"
+		
 
-		url = "http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/posts?categories={}".format(news_category["id"])
-		response = session.get(url=url)
+		posts = post_request.get()
+	
+	for post in posts:
+		print(post.featured_media.s.link, post.featured_media.s.source_url)
+		
+	templateDict["posts"] = posts
+		
+	return render_template("index.html", **templateDict)
+		
 
+#@index_page.route("/", methods=['GET'])
+def index2():
+	'''
+	Home page
+	'''
+	
+	templateDict = {}
+
+	# retrieve top news/blog entries from WordPress
+	#
+	with requests.Session() as http_session:
+		
+		# Get posts in the "
+		
+		params = {
+			"orderby":"date",
+			"order":"desc",
+			"filter[category_name]":"blog"
+		}
+		# "categories":"??" # 'categories' takes the category ID
+		
+		# get list of blog posts
+		#url = os.path.join(WP_BASE_URL, "posts?categories={}".format(blog_posts["id"]))
+		# Ref: WordPress 'posts' API: https://developer.wordpress.org/rest-api/reference/posts/
+		url = os.path.join(WP_BASE_URL, "posts") #?".format(blog_posts["id"]))
+		response = http_session.get(url=url, params=params)
 		posts = response.json()
-
+		
+		app.logger.debug("WP posts URL: {}".format(url))
+		app.logger.debug(json.dumps(posts, indent=4, sort_keys=True))
+		
 		# get featured media URL
 		for post in posts:
-			url = "http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/media/{}".format(post["featured_media"])
-			response = session.get(url=url)
-			post["_featured_media_url"] = response.json()["source_url"]
-		
-	#print(post0["slug"])
+			featured_media_id = post["featured_media"]
+
+			# Ref: WordPress 'media' API: https://developer.wordpress.org/rest-api/reference/media/
+			url = os.path.join(WP_BASE_URL, "media/{}".format(featured_media_id))
+			response = http_session.get(url=url, params={"context":"embed"}) #  "embed" param retrieves fewer records
+			media = response.json()
+			
+			app.logger.debug("WP media URL: {}".format(url))
+			app.logger.debug(json.dumps(media, indent=4, sort_keys=True))
+			
+			# append URL tp WP 'post' record
+			post["+featured_media_url"] = media["source_url"] # '/wp-content' + media["source_url"].split('wp-content')[1]
 	
-	#templateDict["msg"] = valueFromRequest(key="msg", request=request)
-
-	templateDict["news_posts"] = posts
-
+	templateDict["blog_posts"] = posts
+		
 	return render_template("index.html", **templateDict)
 
-# This will provide the favicon for the whole site. Can be overridden for
-# a single page with something like this on the page:
-#    <link rel="shortcut icon" href="static/images/favicon.ico">
-#
-@index_page.route('/favicon.ico')
-def favicon():
-	static_images_dir = directory=os.path.join(current_app.root_path, 'static', 'images')
-	return send_from_directory(static_images_dir, filename='favicon.ico')#, mimetype='image/vnd.microsoft.icon')
-
-@index_page.route('/robots.txt')
-def robots():
-	robots_path = os.path.join(current_app.root_path, 'static')
-	return send_from_directory(robots_path, "robots.txt")

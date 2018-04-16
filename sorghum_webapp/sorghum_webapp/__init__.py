@@ -20,14 +20,20 @@ def register_blueprints(app=None):
 	controller file you create here.
 	'''
 	from .controllers.index import index_page
+	from .controllers.miscellanea import miscellanea_page
 	from .controllers.assan_blank import assan_blank_page
 	from .controllers.admin_template import assan_admin_template
 	from .controllers.notebook import notebook_page
+	from .controllers.wp_demo import wp_demo_page
+	from .controllers.post import post_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
+	app.register_blueprint(miscellanea_page)
 	app.register_blueprint(assan_blank_page)
 	app.register_blueprint(assan_admin_template)
+	app.register_blueprint(wp_demo_page)
+	app.register_blueprint(post_page)
 	#app.register_blueprint(notebook_page)
 	#app.register_blueprint(xxx)
 
