@@ -10,6 +10,7 @@ from wordpress_orm import wp_session, exc
 
 from .. import app
 from . import valueFromRequest
+from .footer import populate_footer_template
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 
@@ -31,7 +32,30 @@ def posts(slug):
 		except exc.NoEntityFound:
 			# TODO return top level posts page
 			raise Exception("Return top level posts page, maybe with an alert of 'post not found'.")
+		
+		
+		
+		populate_footer_template(wp_api=api, template_dictionary=templateDict)
 	
 	templateDict["post"] = post
+	templateDict["display_comments"] = True
+	templateDict["allow_new_comments"] = True
+	templateDict["author_gravatar_url"] = post.author.gravatar_url(size=140)
+
+	#for c in post.comments:
+	#	print(c)
 	
 	return render_template("post.html", **templateDict)
+
+@app.route('/posts/category/<slug>')
+def post_category(category_slug):
+	'''
+	This page displays a grid of post thumbnails from a given category.
+	'''
+	templateDict = {}
+	
+	
+	
+	
+	return render_template("post_category.html", **templateDict)
+	

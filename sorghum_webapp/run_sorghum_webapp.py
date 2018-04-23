@@ -7,6 +7,7 @@ Application initialization should go here.
 
 '''
 import argparse
+import coloredlogs
 
 from flask import Flask
 
@@ -42,6 +43,11 @@ parser.add_argument('-r','--rules',
                     action="store_true",
                     default=False,
                     required=False)
+parser.add_argument('-l','--log-level',
+					help="debug log level (one of debug, info, warning, critical)",
+					type=str.upper, # force value to be uppercase
+					default=None,
+					required=False)
 
 args = parser.parse_args()
 
@@ -50,7 +56,26 @@ args = parser.parse_args()
 # -------------------
 from sorghum_webapp import create_app
 
-app = create_app(debug=args.debug, conf=conf) # actually creates the Flask application instance
+# Turn on debugging by default IF 'debug' was unset AND this is the main program (i.e. not called by uWSGI),
+# otherwise use what is set on command line.
+debug = (__name__ == "__main__") or args.debug
+
+app = create_app(debug=debug, conf=conf) # actually creates the Flask application instance
+
+# --------------
+# Set up logging
+# --------------
+if args.log_level:
+	import logging
+	logger = logging.getLogger("wordpress_orm") # package name
+	#logger.setLevel(logging.DEBUG)
+	coloredlogs.install(level=logging.DEBUG, logger=logger)
+		
+	# Where should logging output go?
+	#
+	ch = logging.StreamHandler()  # output to console
+	ch.setLevel(getattr(logging, args.log_level))   # set log level for output
+	logger.addHandler(ch)         # add to logger
 
 # -----------------------------------------
 # If using SQLAlchemy, uncomment this block
@@ -87,14 +112,14 @@ if __name__ == "__main__":
     This is called when this script is directly run.
     uWSGI gets the "app" object (the "callable") and runs it itself.
     '''
-    if args.debug:
+    if True:
     	
     	# compile React to static JS
     
         # If running on a remote host via a tunnel, not that
         # Safari blocks some high ports (e.g.port 6000)
         # Ref: http://support.apple.com/kb/TS4639
-        app.run(debug=args.debug, port=args.port)
+        app.run(debug=debug, port=args.port)
     else:
         app.run()
 

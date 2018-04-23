@@ -41,32 +41,25 @@
                                     Privacy & policy
                                 </a>
                             </li>
+                            <li>
+                                <a href="#">
+                                    Photo Credits
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb40">
                         <h3>Latest News</h3>
                         <ul class="list-unstyled latest-news">
+	                        {% for post in footer_latest_news %}
                             <li class="media">
-                                <a href="#"> <img class="d-flex mr-3 img-fluid" width="64" src="images/img1.jpg" alt="Generic placeholder image"></a>
+                                <a href="#"> <img class="d-flex mr-3 img-fluid" width="64" src="images/img1.jpg" alt="{{ post.title }}"></a>
                                 <div class="media-body">
-                                    <h5 class="mt-0 mb-1"><a href="#">Beautiful Sofa lamp at low price</a></h5>
-                                    April 05, 2017
+                                    <h5 class="mt-0 mb-1"><a href="#">{{ post.s.title }}</a></h5>
+                                    {{(post.s.date|str2datetime).strftime('%d %B %Y')}}
                                 </div>
                             </li>
-                            <li class="media my-3">
-                                <a href="#"> <img class="d-flex mr-3 img-fluid" width="64" src="images/img2.jpg" alt="Generic placeholder image"></a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1"><a href="#">Lorem ipsum dolor sit amet</a></h5>
-                                    Jan 05, 2017
-                                </div>
-                            </li>
-                            <li class="media">
-                                <a href="#"> <img class="d-flex mr-3 img-fluid" width="64" src="images/img5.jpg" alt="Generic placeholder image"></a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1"><a href="#">New awesome features of bootstrap 4</a></h5>
-                                    March 15, 2017
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="col-lg-3 col-md-6 mb40">

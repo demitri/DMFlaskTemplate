@@ -4,6 +4,7 @@
 
 import os
 import json
+import logging
 
 import flask
 import requests
@@ -16,6 +17,7 @@ from wordpress_orm import wp_session, exc
 
 from . import valueFromRequest
 from .. import app
+from .footer import populate_footer_template
 
 #
 # Note on WordPress queries. Not all information needed is returned by
@@ -26,6 +28,7 @@ from .. import app
 #
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
+logger = logging.getLogger("wordpress_orm")
 
 index_page = flask.Blueprint("index_page", __name__)
 
@@ -42,22 +45,31 @@ def index():
 	# perform all WordPress requests in a single session
 	with wp_session(api):
 	
-		# get the "News" category
-		try:
-			news_category = api.category(slug="news")
-		except wp.exc.NoEntityFound:
-			logger.debug("category 'news' not found!!")
-		
 		post_request = api.PostRequest()
-		post_request.categories = [news_category]
+		post_request.categories = ["news"]	# search by slug
 		post_request.orderby = "date"
 		post_request.order = "desc"
-		
+		post_request.per_page = 3			# only get three newest
 
 		posts = post_request.get()
+
+		populate_footer_template(template_dictionary=templateDict, wp_api=api)
+
+		if len(posts) == 0:
+			# Try to do some troubleshooting.
+			
+			# Is the 'news' category defined?
+			news_category = None
+			try:
+				news_category = api.category(slug="news")
+			except wp.exc.NoEntityFound:
+				logger.debug("Expected to find the 'News' category (identified by the slug 'news') but not found!")
+
+			if news_category is not None:
+				logger.debug("The 'news' category was found, but (maybe?) no posts are flagged with that category.")
 	
-	for post in posts:
-		print(post.featured_media.s.link, post.featured_media.s.source_url)
+	#for post in posts:
+	#	print(post.featured_media.s.link, post.featured_media.s.source_url)
 		
 	templateDict["posts"] = posts
 		
