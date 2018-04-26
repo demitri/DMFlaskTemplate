@@ -9,12 +9,14 @@ import wordpress_orm as wp
 from wordpress_orm import wp_session, exc
 
 from .. import app
+from .. import wordpress_api as api
 from . import valueFromRequest
 from .footer import populate_footer_template
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 
 post_page = flask.Blueprint("post_page", __name__)
+post_category_page = flask.Blueprint("post_category_page", __name__)
 
 @app.route('/posts/<slug>')
 def posts(slug):
@@ -23,7 +25,7 @@ def posts(slug):
 	'''
 	templateDict = {}
 	
-	api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
+	#api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
 
 	with wp_session(api):
 		# get the post based on the slug

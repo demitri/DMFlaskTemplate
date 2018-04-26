@@ -17,6 +17,7 @@ from wordpress_orm import wp_session, exc
 
 from . import valueFromRequest
 from .. import app
+from .. import wordpress_api as api
 from .footer import populate_footer_template
 
 #
@@ -40,7 +41,7 @@ def index():
 
 	templateDict = {}
 
-	api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
+	#api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
 	
 	# perform all WordPress requests in a single session
 	with wp_session(api):

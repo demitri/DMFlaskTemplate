@@ -6,6 +6,7 @@ from __future__ import print_function
 import sys
 import socket
 
+import wordpress_orm
 from flask import Flask
 
 from . import jinja_filters
@@ -26,6 +27,7 @@ def register_blueprints(app=None):
 	from .controllers.notebook import notebook_page
 	from .controllers.wp_demo import wp_demo_page
 	from .controllers.post import post_page
+	from .controllers.mission_statement import mission_statement_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
@@ -34,6 +36,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(assan_admin_template)
 	app.register_blueprint(wp_demo_page)
 	app.register_blueprint(post_page)
+	app.register_blueprint(mission_statement_page)
 	#app.register_blueprint(notebook_page)
 	#app.register_blueprint(xxx)
 
@@ -43,6 +46,9 @@ try:
 	app
 except NameError:
 	app = Flask(__name__)
+
+# defined here so that other files can import this object
+wordpress_api = None # define below after configuration is read -> app.config["WP_BASE_URL"]
 
 def create_app(debug=False, conf=dict()):
 	
@@ -114,6 +120,10 @@ def create_app(debug=False, conf=dict()):
 		
 			with app.app_context():
 				from .model.databasePostgreSQL import db
+
+	# config is defined by now
+	global wordpress_api
+	wordpress_api = wordpress_orm.API(url=app.config["WP_BASE_URL"])
 
 	# Register all paths (URLs) available.
 	register_blueprints(app=app)
