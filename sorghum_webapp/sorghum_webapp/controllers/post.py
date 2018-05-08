@@ -35,13 +35,24 @@ def posts(slug):
 			# TODO return top level posts page
 			raise Exception("Return top level posts page, maybe with an alert of 'post not found'.")
 		
-		
-		
-		populate_footer_template(wp_api=api, template_dictionary=templateDict)
+		# Get the three latest "News" posts from WordPress.
+		# -------------------------------------------------
+		pr = api.PostRequest()
+		pr.categories = ['news']	# accepts category slug values, not display name
+		pr.order = "desc"			# descending order
+		pr.per_page = 3				# only get three newest
+		latest_posts = pr.get()
+
+		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
+				
+		populate_footer_template(wp_api=api, template_dictionary=templateDict, photos_to_credit=[])
+
 	
 	templateDict["post"] = post
-	templateDict["display_comments"] = True
-	templateDict["allow_new_comments"] = True
+	templateDict["latest_posts"] = latest_posts
+	templateDict["sorghum_grains_image"] = sorghum_grains_image
+	templateDict["display_comments"] = False
+	templateDict["allow_new_comments"] = False
 	templateDict["author_gravatar_url"] = post.author.gravatar_url(size=140)
 
 	#for c in post.comments:

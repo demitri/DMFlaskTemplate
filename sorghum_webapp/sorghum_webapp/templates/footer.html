@@ -1,10 +1,11 @@
         <footer class="footer footer-standard pt50 pb20">
             <div class="container">
+	            
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb40">
                         <h3>About Us</h3>
                         <p>
-                            In eu libero ligula. Fusce eget metus lorem, ac viverra leo. Nullam convallis, arcu vel pellentesque sodales, nisi est varius diam, ac ultrices sem ante quis sem. Proin ultricies volutpat sapien, nec scelerisque ligula mollis lobortis.
+                            [This is copy that needs to be written about who we are, see <a href="https://github.com/warelab/sorghumbase-pm/issues/11" target="_blank">issue</a>].
                         </p>
                         <a href="#" class="btn btn-white-outline btn-sm">Learn More</a>
                     </div>
@@ -53,27 +54,44 @@
                             </li>
                         </ul>
                     </div>
+                    
                     <div class="col-lg-3 col-md-6 mb40">
                         <h3>Latest News</h3>
                         <ul class="list-unstyled latest-news">
 	                        {% for post in footer_latest_news %}
                             <li class="media">
-                                <a href="#"> <img class="d-flex mr-3 img-fluid" width="64" src="images/img1.jpg" alt="{{ post.title }}"></a>
+                                <a href="#"> <img class="d-flex mr-3 img-fluid" width="64" src="{{post.featured_media.s.source_url}}" alt="{{ post.title }}"></a>
                                 <div class="media-body">
-                                    <h5 class="mt-0 mb-1"><a href="#">{{ post.s.title }}</a></h5>
+                                    <h5 class="mt-0 mb-1"><a href="#">{{ post.s.title | safe }}</a></h5>
                                     {{(post.s.date|str2datetime).strftime('%d %B %Y')}}
                                 </div>
                             </li>
                             {% endfor %}
                         </ul>
                     </div>
+                    
                     <div class="col-lg-3 col-md-6 mb40">
                         <h3>Headquarters</h3>
                         <img src="images/map-img.png" alt="" class="img-fluid">
                     </div>
-                </div>
-            </div>
+                </div> <!-- end row -->
+                
+                {% if photos_to_credit | length %}
+                <div class="row">
+	                <div class="col-lg-8">
+		                <h3>Photo Credits</h3>
+		                <ul>
+		                {% for media in photos_to_credit %}
+			                <li><p class="text-muted">{{ media.s.caption | safe}}</p></li>
+			            {% endfor %}
+		                </ul>
+	                </div>
+                </div><!-- end row -->
+                {% endif %}
+                
+            </div> <!-- end container -->
         </footer><!--/footer-->
+
         <div class="footer-bottomAlt">
             <div class="container">
                 <div class="row">
@@ -83,26 +101,26 @@
                                 <i class="fa fa-facebook"></i>
                                 <i class="fa fa-facebook"></i>
                             </a>
-                            <a href="#" class="social-icon-sm si-dark si-twitter si-dark-round">
+                            <a href="https://twitter.com/sorghumbase" class="social-icon-sm si-dark si-twitter si-dark-round">
                                 <i class="fa fa-twitter"></i>
                                 <i class="fa fa-twitter"></i>
                             </a>
-                            <a href="#" class="social-icon-sm si-dark si-g-plus si-dark-round">
+                            <!--a href="#" class="social-icon-sm si-dark si-g-plus si-dark-round">
                                 <i class="fa fa-google-plus"></i>
                                 <i class="fa fa-google-plus"></i>
-                            </a>
-                            <a href="#" class="social-icon-sm si-dark si-skype si-dark-round">
+                            </a-->
+                            <!--a href="#" class="social-icon-sm si-dark si-skype si-dark-round">
                                 <i class="fa fa-skype"></i>
                                 <i class="fa fa-skype"></i>
-                            </a>
-                            <a href="#" class="social-icon-sm si-dark si-linkedin si-dark-round">
+                            </a-->
+                            <!--a href="#" class="social-icon-sm si-dark si-linkedin si-dark-round">
                                 <i class="fa fa-linkedin"></i>
                                 <i class="fa fa-linkedin"></i>
-                            </a>  
+                            </a-->  
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <span>&copy; Copyright 2017. All Right Reserved</span>
+                        <span>&copy; Copyright 2018. All Right Reserved</span>
                     </div>
                 </div>
             </div>

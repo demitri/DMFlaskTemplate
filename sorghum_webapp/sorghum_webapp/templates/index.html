@@ -304,7 +304,7 @@
         {% for post in posts[0:3] %}
             <div class="col-lg-4 mb30 wow fadeInUp" data-wow-delay=".2s">
                 <div class="entry-card">
-                    <a href="#" class="entry-thumb">
+                    <a href="/posts/{{post.s.slug}}" class="entry-thumb">
                         <img src="{{post.featured_media.s.source_url}}" alt="" class="img-fluid">
                         <span class="thumb-hover ti-back-right"></span>
                     </a><!--/entry thumb-->

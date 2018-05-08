@@ -14,11 +14,11 @@
     <div id="preloader-inner"></div>
 </div--><!--/preloader-->
 
-<div class="page-titles-img title-space-lg bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}' style='background-image: url("images/bg14.jpg")'>
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}' style='background-image: url("{{sorghum_grains_image.s.source_url}}")'>
     <div class="container">
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
-                <h1 class='text-uppercase'>Blog post - image</h1>
+                <h1 class='text-uppercase'>Sorghumbase Articles</h1>
 
             </div>
         </div>
@@ -164,29 +164,17 @@
                 </ul>
             </div><!--/col-->
             <div>
-                <h4 class="sidebar-title">Latest News</h4> 
+                <h4 class="sidebar-title">Latest News</h4>
                 <ul class="list-unstyled">
+	                {% for post in latest_posts %}
                     <li class="media">
-                        <img class="d-flex mr-3 img-fluid" width="64" src="images/img1.jpg" alt="Generic placeholder image">
+                        <img class="d-flex mr-3 img-fluid" width="64" src="{{post.featured_media.s.media_details['sizes']['thumbnail']['source_url'] | safe}}" alt="Generic placeholder image">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1"><a href="#">Lorem ipsum dolor sit amet</a></h5>
-                            April 05, 2017
+                            <h5 class="mt-0 mb-1"><a href="#">{{post.s.title | safe}}</a></h5>
+                            {{(post.s.date|str2datetime).strftime('%d %B %Y')}}
                         </div>
                     </li>
-                    <li class="media my-4">
-                        <img class="d-flex mr-3 img-fluid" width="64" src="images/img2.jpg" alt="Generic placeholder image">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1"><a href="#">Lorem ipsum dolor sit amet</a></h5>
-                            Jan 05, 2017
-                        </div>
-                    </li>
-                    <li class="media">
-                        <img class="d-flex mr-3 img-fluid" width="64" src="images/img3.jpg" alt="Generic placeholder image">
-                        <div class="media-body">
-                            <h5 class="mt-0 mb-1"><a href="#">Lorem ipsum dolor sit amet</a></h5>
-                            March 15, 2017
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

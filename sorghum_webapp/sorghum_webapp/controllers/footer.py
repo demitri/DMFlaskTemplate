@@ -2,7 +2,7 @@
 import wordpress_orm as wp
 from wordpress_orm import wp_session, exc
 
-def populate_footer_template(template_dictionary=None, wp_api=None):
+def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_credit=None):
 	'''
 	This function takes a template dictionary and populates the information needed for the footer.
 	
@@ -24,4 +24,12 @@ def populate_footer_template(template_dictionary=None, wp_api=None):
 	pr.per_page = 3				# only get three newest
 	posts = pr.get()
 	
+	# expect "photos_to_credit" to be a list of Media objects.
+	#
+	if photos_to_credit is not None:
+		for media in photos_to_credit:
+			pass
+		
+		template_dictionary["photos_to_credit"] = photos_to_credit
+		
 	template_dictionary["footer_latest_news"] = posts

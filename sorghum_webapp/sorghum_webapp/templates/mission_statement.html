@@ -3,7 +3,7 @@
 {% block body_property %}class="sticky-footer-page"{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{request.script_root}}/static/assan/classic-template/images/bg8.jpg")'>
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{ banner_media.s.source_url}}")'>
     <div class="container">
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
@@ -14,16 +14,15 @@
     </div>
 </div><!--page title end-->
         
-<div class='container-fluid no-padding mb40'>
-    <div class='row no-margin'>
-        <div class='col-lg-8  mr-auto ml-auto'>
+<div class='container-fluid'>
+    <div class='row'>
+        <div class='col-lg-8  mr-auto ml-auto my-5'>
             <!--div class="title-heading1 mb30">
                 <h3>header here</h3>                       
             </div-->
-             <p class='lead mb50 text-center'>
-	             	<br/>
-                    We must all efficiently operationalize our strategies, invest in world-class technology, and leverage our core competencies in order to holistically administrate exceptional synergy. We'll set a brand trajectory using management's philosophy, advance our market share vis-à-vis our proven methodology with strong commitment to quality effectively enhancing corporate synergy transitioning our company by awareness of functionality promoting viability and providing our supply chain with diversity. We will distill our identity through client-centric solutions and synergy (oooooh oooh oooh).
-                </p>
+             <h5 class='lead text-center'>
+	             	{{ mission_statement_post.s.content | safe }}
+                </h>
         </div>
     </div>
 </div>
