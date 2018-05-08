@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Page Title{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{ banner_media.s.source_url}}")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1 class='text-uppercase'>Resources</h1>
+
+             </div>
+        </div>
+    </div>
+</div><!--page title end-->
+
+<div class="container pt70 pb30">
+    <div class="fancy-title">
+        <h4>resources group</h4>
+        <div class="fancy-title-sep gray-sep"></div>
+    </div>
+    <div class="row">
+        {% for resource in resources_list %}
+        <div class="col-lg-4 mb40">
+            <div class="image-text-card1">
+                <a href="{{resource.resource_url}}" class="card-link"></a>
+                <img src="{{resource.resource_image}}" alt="" class="img-fluid mb20">
+                <h4>{{resource.resource_name}}</h4>
+                <p>{{resource.resource_blurb}}</p>
+            </div>
+        </div><!--/col-->
+        {% endfor %}
+    </div><!--/row-->
+</div>
+        
+{% endblock %}

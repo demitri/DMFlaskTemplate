@@ -28,6 +28,7 @@ def register_blueprints(app=None):
 	from .controllers.wp_demo import wp_demo_page
 	from .controllers.post import post_page
 	from .controllers.mission_statement import mission_statement_page
+	from .controllers.resources import resources_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
@@ -37,6 +38,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(wp_demo_page)
 	app.register_blueprint(post_page)
 	app.register_blueprint(mission_statement_page)
+	app.register_blueprint(resources_page)
 	#app.register_blueprint(notebook_page)
 	#app.register_blueprint(xxx)
 
