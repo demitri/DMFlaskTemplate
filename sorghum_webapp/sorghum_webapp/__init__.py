@@ -44,6 +44,10 @@ def register_blueprints(app=None):
 	#app.register_blueprint(notebook_page)
 	#app.register_blueprint(xxx)
 
+	if (app.debug):
+		from .controllers.sandbox import sandbox_page
+		app.register_blueprint(sandbox_page)
+
 # ================================================================================
 
 try:
