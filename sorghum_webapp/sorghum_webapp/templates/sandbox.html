@@ -2,6 +2,11 @@
 {% block title %}Page Title{% endblock %}
 {% block content %}
 
+	<ul>
+	{% for link in links %}
+	<li>{{ link }}</li>
+	{% endfor %}
+	</ul>
         <!-- place BODY content here -->
         
 {% endblock %}

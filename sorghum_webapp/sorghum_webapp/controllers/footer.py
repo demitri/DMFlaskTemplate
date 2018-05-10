@@ -26,10 +26,5 @@ def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_cr
 	
 	# expect "photos_to_credit" to be a list of Media objects.
 	#
-	if photos_to_credit is not None:
-		for media in photos_to_credit:
-			pass
-		
-		template_dictionary["photos_to_credit"] = photos_to_credit
-		
+	template_dictionary["footer_photos_to_credit"] = photos_to_credit
 	template_dictionary["footer_latest_news"] = posts

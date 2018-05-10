@@ -19,10 +19,12 @@ class ResourceLink(WPEntity):
 		super().__init__(api=api)
 		
 		# related objects that need to be cached
+		self._author = None
 		self._category = None
+		self._featured_media = None
 	
 	def __repr__(self):
-		if len(self.resource_url) < 11:
+		if len(self.s.resource_url) < 11:
 			truncated_url = self.s.resource_url
 		else:
 			truncated_url = self.s.resource_url[0:10] + "..."
@@ -55,7 +57,37 @@ class ResourceLink(WPEntity):
 	def category_names(self):
 		return [x.s.name for x in self.categories]
 
-
+	@property
+	def resource_image(self):
+		'''
+		Returns a WordPress 'Media' object.
+		'''
+		if self._resource_image is None:
+			mr = self.api.MediaRequest()
+			mr.id = self.s._resource_image
+			media_list = mr.get()
+			if len(media_list) == 1:
+				self._resource_image = media_list[0]
+			else:
+				self._resource_image = None
+		return self._resource_image
+	
+	@property
+	def author(self):
+		'''
+		Returns the author of this post, class: 'User'.
+		'''
+		if self._author is None:
+			ur = self.api.UserRequest()
+			ur.id = self.s.author # ID for the author of the object
+			user_list = ur.get()
+			if len(user_list) == 1:
+				self._author = user_list[0]
+			else:
+				raise exc.UserNotFound("User ID '{0}' not found.".format(self.author))
+		return self._author
+		
+		
 class ResourceLinkRequest(WPRequest):
 	'''
 	A class that encapsulates requests for WordPress resource links.
@@ -63,13 +95,16 @@ class ResourceLinkRequest(WPRequest):
 	def __init__(self, api=None):		
 		super().__init__(api=api)
 		self.id = None # WordPress ID
+		self._before = None
+		self._after = None
 		
+		self._status = list()
 		self._category_ids = list()
 		self._slugs = list()
 	
 	@property
 	def parameter_names(self):
-		return ["slug"]
+		return ["slug", "before", "after", "status", "categories", "resource_image"]
 	
 	def get(self):
 		'''
@@ -85,6 +120,13 @@ class ResourceLinkRequest(WPRequest):
 		# -------------------
 		if self.slug:
 			self.parameters["slug"] = self.slug
+			
+		if self.before:
+			self.parameters["before"] = self._before.isoformat()
+
+		if self.after:
+			self.parameters["after"] = self._after.isoformat()
+
 		# -------------------
 
 		try:
@@ -155,6 +197,52 @@ class ResourceLinkRequest(WPRequest):
 				self._slugs.append(s)
 			else:
 				raise ValueError("Unexpected type for property list 'slugs'; expected str, got '{0}'".format(type(s)))
+
+	@property
+	def after(self):
+		'''
+		WordPress parameter to return posts after this date.
+		'''
+		return self._after
+	
+	@after.setter
+	def after(self, value):
+		'''
+		Set the WordPress parameter to return posts after this date.
+		'''
+		# The stored format is a datetime object, even though WordPress requires
+		# it to be ISO-8601.
+		#
+		if value is None:
+			self.parameters.pop("after", None)
+			self._after = None
+		elif isinstance(value, datetime):
+			self._after = value
+		else:
+			raise ValueError("The 'after' property only accepts `datetime` objects.")
+
+	@property
+	def before(self):
+		'''
+		WordPress parameter to return posts before this date.
+		'''
+		return self._after
+	
+	@after.setter
+	def before(self, value):
+		'''
+		Set the WordPress parameter to return posts before this date.
+		'''
+		# The stored format is a datetime object, even though WordPress requires
+		# it to be ISO-8601.
+		#
+		if value is None:
+			self.parameters.pop("before", None)
+			self._before = None
+		elif isinstance(value, datetime):
+			self._before = value
+		else:
+			raise ValueError("The 'before' property only accepts `datetime` objects.")
 
 	@property
 	def categories(self):

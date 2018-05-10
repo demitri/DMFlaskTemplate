@@ -63,7 +63,7 @@
                                 <a href="#"> <img class="d-flex mr-3 img-fluid" width="64" src="{{post.featured_media.s.source_url}}" alt="{{ post.title }}"></a>
                                 <div class="media-body">
                                     <h5 class="mt-0 mb-1"><a href="#">{{ post.s.title | safe }}</a></h5>
-                                    {{(post.s.date|str2datetime).strftime('%d %B %Y')}}
+                                    {{(post.s.date|str2datetime).strftime('%-d %B %Y')}}
                                 </div>
                             </li>
                             {% endfor %}

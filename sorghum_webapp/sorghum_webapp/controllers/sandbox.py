@@ -29,6 +29,8 @@ def sandbox():
 		rl_pr.slugs.append("gramene")
 		links = rl_pr.get()
 	
+	templateDict["links"] = links
+	
 	logger.debug(links)
 	
 	return render_template("sandbox.html", **templateDict)
