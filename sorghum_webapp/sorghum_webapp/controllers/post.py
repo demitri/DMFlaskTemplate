@@ -19,7 +19,7 @@ post_page = flask.Blueprint("post_page", __name__)
 post_category_page = flask.Blueprint("post_category_page", __name__)
 
 @app.route('/posts/<slug>')
-def posts(slug):
+def post(slug):
 	''' 
 	This page displays a single blog post retrieved from WordPress.
 	'''

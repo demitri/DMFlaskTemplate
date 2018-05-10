@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Page Title{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{ banner_media.s.source_url}}")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1 class='text-uppercase'>Posts</h1>
+
+             </div>
+        </div>
+    </div>
+</div><!--page title end-->
+
+<div class="container mb30">
+    <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
+        {% for post in posts %}
+        <article class="col-md-4 post-masonry mb40" style="position: absolute; left: 0px; top: 0px;">                      
+            {% if post.featured_media.s %}
+            <a href="/posts/{{post.s.slug}}"> <img src="{{post.featured_media.s.source_url}}" alt="" class="img-fluid mb20"></a>                       
+            {% endif %}
+            <a href="/posts/{{post.s.slug}}"><h4 class="masonry-title mb0">{{post.s.title | safe}}</h4></a>
+            <ul class="post-meta list-inline">
+                    <li class="list-inline-item">
+                        <i class="fa fa-user-circle-o"></i> <a href="#">{{ post.author.s.name }}</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="fa fa-tags"></i>
+                        {% for category in post.categories %}
+                            <a href="category/{{category.s.slug}}">{{ category.s.name }}</a>
+                        {% endfor %}
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="fa fa-calendar-o"></i> <a href="#">{{(post.s.date|str2datetime).strftime('%d %B %Y')}}</a>
+                    </li>
+                </ul>
+            <p>
+                {{post.s.excerpt | safe}}
+            </p>
+            <a href="/posts/{{post.s.slug}}" class="btn btn-outline-secondary">Read More</a>
+        </article><!--article post-->
+        {% endfor %}
+    </div>
+    <nav aria-label="Page navigation example" class="mb70">
+        <ul class="pagination pagination justify-content-end">
+            <li class="page-item "><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div>        
+{% endblock %}
