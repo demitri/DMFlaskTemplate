@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("static/images/sorghum_stalks.jpg");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">People</h1>
+
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+<div class="container pt90 ">
+  <div class="title-heading1 mb60">
+    <h3>Sorghumbase Team</h3>
+  </div>
+  <div class="row pb60">
+    <div class="col-lg-3 col-md-6  mb30">
+        <div class="team-card-default">
+            <img src="images/team3.jpg" alt="" class="img-fluid rounded-circle">
+            <div class="team-default-content text-center pt30">
+                    <h4 class="mb0 text-uppercase">Johnny Sorghumseed</h4>
+                    <span>Sorghum wisperer extraordinair</span>
+            </div>
+        </div>
+    </div><!--/col-->
+    <div class="col-lg-9 col-md-6 mb90">
+      <p>Description of this person.</p>
+    </div>
+  </div>
+  <div class="row pb60">
+    <div class="col-lg-3 col-md-6  mb30">
+        <div class="team-card-default">
+            <img src="images/team4.jpg" alt="" class="img-fluid rounded-circle">
+            <div class="team-default-content text-center pt30">
+                    <h4 class="mb0 text-uppercase">Sorghum Johnnyseed</h4>
+                    <span>Sorghum Yeller Averageair</span>
+            </div>
+        </div>
+    </div><!--/col-->
+    <div class="col-lg-9 col-md-6 mb90">
+      <p>Description of this person.</p>
+    </div>
+  </div>
+  <!-- {% for author in team %}
+  <div class="row pb60">
+    <div class="col-lg-3 col-md-6  mb30">
+        <div class="team-card-default">
+            <img src="{{ team.author.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle">
+            <div class="team-default-content text-center pt30">
+                    <h4 class="mb0 text-uppercase">{{ team.author.s.name }}</h4>
+                    <span>{{ team.author.s.title }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-6 mb90">
+      <p>{{ team.author.s.description | safe }}</p>
+    </div>
+  </div>
+  {% endfor %} -->
+</div>
+{% endblock %}

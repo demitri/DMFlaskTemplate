@@ -30,6 +30,8 @@ def register_blueprints(app=None):
 	from .controllers.posts import post_grid
 	from .controllers.mission_statement import mission_statement_page
 	from .controllers.resources import resources_page
+	from .controllers.contact import contact_page
+	from .controllers.people import people_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
@@ -41,6 +43,8 @@ def register_blueprints(app=None):
 	app.register_blueprint(post_grid)
 	app.register_blueprint(mission_statement_page)
 	app.register_blueprint(resources_page)
+	app.register_blueprint(contact_page)
+	app.register_blueprint(people_page)
 	#app.register_blueprint(notebook_page)
 	#app.register_blueprint(xxx)
 
@@ -59,7 +63,7 @@ except NameError:
 wordpress_api = None # define below after configuration is read -> app.config["WP_BASE_URL"]
 
 def create_app(debug=False, conf=dict()):
-	
+
 	#app = Flask(__name__) # creates the app instance using the name of the module
 	app.debug = debug
 
@@ -72,14 +76,14 @@ def create_app(debug=False, conf=dict()):
 	# Configuration files are located in the "configuration_files" directory.
 	# -----------------------------------------------------------------------
 	server_config_file = None
-	
+
 	if app.debug:
-		hostname = socket.gethostname()		
+		hostname = socket.gethostname()
 		if "your_host" in hostname:
 			server_config_file = _app_setup_utils.getConfigFile("your_host.cfg")
 		else:
 			server_config_file = _app_setup_utils.getConfigFile("default.cfg") # default
-		
+
 	else:
 		if conf["usingUWSGI"]:
 			try:
@@ -95,15 +99,15 @@ def create_app(debug=False, conf=dict()):
 				print("Trying to run in production mode, but not running under uWSGI.\n"
 					  "You might try running again with the '--debug' (or '-d') flag.")
 				sys.exit(1)
-	
+
 	if server_config_file:
 		print(green_text("Loading config file: "), yellow_text(server_config_file))
 		app.config.from_pyfile(server_config_file)
-	
+
 	# -----------------------------
 	# Perform app setup below here.
 	# -----------------------------
-	
+
 	if app.debug:
 		#print("{0}App '{1}' created.{2}".format('\033[92m', __name__, '\033[0m'))
 		print_info("Application '{0}' created.".format(__name__))
@@ -121,11 +125,11 @@ def create_app(debug=False, conf=dict()):
 	if conf["usingSQLAlchemy"]:
 		if conf["usingPostgreSQL"]:
 			_app_setup_utils.setupJSONandDecimal()
-	
+
 	    # This "with" is necessary to prevent exceptions of the form:
 	    #    RuntimeError: working outside of application context
 	    #    (i.e. the app object doesn't exist yet - being created here)
-		
+
 			with app.app_context():
 				from .model.databasePostgreSQL import db
 
@@ -140,7 +144,3 @@ def create_app(debug=False, conf=dict()):
 	app.register_blueprint(jinja_filters.blueprint)
 
 	return app
-	
-
-	
-	
