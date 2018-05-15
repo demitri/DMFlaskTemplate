@@ -22,17 +22,19 @@ def people():
 	''' People page. '''
 	templateDict = {}
 
-	# with wp_session(api):
-	#
-	# 	ms_post = api.post(slug='contact')
-	#
-	# 	ms_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
-	# 	templateDict["banner_media"] = ms_banner_media
-	#
-	# 	logger.debug(ms_banner_media.json)
-	# 	populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[ms_banner_media])
-	#
-	# templateDict['contact'] = ms_post
+	with wp_session(api):
+
+		user_request = api.UserRequest()
+		user_request.roles = "Administrator"
+		team = user_request.get()
+
+		people_banner_media = api.media(slug="sorghum_combine")
+		templateDict["banner_media"] = people_banner_media
+
+		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[people_banner_media])
+
+	print(team)
+	templateDict['team'] = team
 
 
 	return render_template("people.html", **templateDict)
