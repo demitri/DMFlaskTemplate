@@ -5,6 +5,7 @@ from __future__ import print_function
 
 import sys
 import socket
+import logging
 
 import wordpress_orm
 from flask import Flask
@@ -57,6 +58,9 @@ except NameError:
 
 # defined here so that other files can import this object
 wordpress_api = None # define below after configuration is read -> app.config["WP_BASE_URL"]
+
+# set up wordpress-orm logger
+wordpress_orm_logger = logging.getLogger("wordpress_orm")
 
 def create_app(debug=False, conf=dict()):
 	

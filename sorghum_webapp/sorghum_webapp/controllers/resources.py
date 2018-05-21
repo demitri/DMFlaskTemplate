@@ -10,10 +10,9 @@ from ..wordpress_orm.resource_link import ResourceLinkRequest
 
 from .. import app
 from .. import wordpress_api as api
+from .. import wordpress_orm_logger as wp_logger
 from . import valueFromRequest
 from .footer import populate_footer_template
-
-logger = logging.getLogger("wordpress_orm")
 
 resources_page = flask.Blueprint("resources_page", __name__)
 
@@ -29,8 +28,11 @@ def resources():
 		resources_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		templateDict["banner_media"] = resources_banner_media
 		
-		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[resources_banner_media])
+		populate_footer_template(template_dictionary=templateDict,
+								 wp_api=api,
+								 photos_to_credit=[resources_banner_media])
 	
 	templateDict['resources_list'] = resources
 	
+	wp_logger.debug(" ============= controller finished ============= ")
 	return render_template("resources.html", **templateDict)
