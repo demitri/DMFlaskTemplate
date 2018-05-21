@@ -30,6 +30,9 @@ from .footer import populate_footer_template
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 logger = logging.getLogger("wordpress_orm")
+console_handler = logging.StreamHandler()
+logger.addHandler(console_handler)
+#logger.propagate = False
 
 index_page = flask.Blueprint("index_page", __name__)
 
@@ -68,12 +71,16 @@ def index():
 
 			if news_category is not None:
 				logger.debug("The 'news' category was found, but (maybe?) no posts are flagged with that category.")
+				
+		# fetch linked objects we know we'll need while we have this open connection
+		for post in posts:
+			post.featured_media
 	
 	#for post in posts:
 	#	print(post.featured_media.s.link, post.featured_media.s.source_url)
 		
 	templateDict["posts"] = posts
-		
+	logger.debug(" ============= controller finished ============= ")
 	return render_template("index.html", **templateDict)
 		
 
@@ -101,7 +108,7 @@ def index2():
 		# get list of blog posts
 		#url = os.path.join(WP_BASE_URL, "posts?categories={}".format(blog_posts["id"]))
 		# Ref: WordPress 'posts' API: https://developer.wordpress.org/rest-api/reference/posts/
-		url = os.path.join(WP_BASE_URL, "posts") #?".format(blog_posts["id"]))
+		url = os.path.join(WP_BASE_URL, "post") #?".format(blog_posts["id"]))
 		response = http_session.get(url=url, params=params)
 		posts = response.json()
 		

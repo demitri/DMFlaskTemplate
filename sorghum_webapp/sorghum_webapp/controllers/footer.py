@@ -24,7 +24,12 @@ def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_cr
 	pr.per_page = 3				# only get three newest
 	posts = pr.get()
 	
+	# while we're here, fetch the featured media
+	for post in posts:
+		post.featured_media
+	
 	# expect "photos_to_credit" to be a list of Media objects.
 	#
-	template_dictionary["footer_photos_to_credit"] = photos_to_credit
+	if photos_to_credit:
+		template_dictionary["footer_photos_to_credit"] = photos_to_credit
 	template_dictionary["footer_latest_news"] = posts

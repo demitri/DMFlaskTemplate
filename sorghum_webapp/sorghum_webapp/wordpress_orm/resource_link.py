@@ -21,7 +21,7 @@ class ResourceLink(WPEntity):
 		# related objects that need to be cached
 		self._author = None
 		self._category = None
-		self._featured_media = None
+		self._resource_image = None
 	
 	def __repr__(self):
 		if len(self.s.resource_url) < 11:
@@ -64,7 +64,7 @@ class ResourceLink(WPEntity):
 		'''
 		if self._resource_image is None:
 			mr = self.api.MediaRequest()
-			mr.id = self.s._resource_image
+			mr.id = self.s.resource_image
 			media_list = mr.get()
 			if len(media_list) == 1:
 				self._resource_image = media_list[0]

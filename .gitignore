@@ -1,3 +1,9 @@
+
+
+# temp files
+._*
+
+
 # Mac OS X Finder
 # ---------------
 .DS_Store

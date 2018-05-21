@@ -6,6 +6,7 @@ import flask
 import logging
 from flask import request, render_template
 from wordpress_orm import wp_session
+from ..wordpress_orm.resource_link import ResourceLinkRequest
 
 from .. import app
 from .. import wordpress_api as api
@@ -22,23 +23,14 @@ def resources():
 	templateDict = {}
 
 	with wp_session(api):
-		
-		gramene = {}
-		gramene['resource_url'] = 'http://www.gramene.org'
-		gramene['resource_blurb'] = 'This is the blurb about gramene'
-		gramene['resource_name'] = 'Gramene'
-		gramene['resource_image'] = 'http://brie6.cshl.edu/wordpress/wp-content/uploads/2018/05/Screen-Shot-2018-05-08-at-3.24.03-PM.png'
-		gramene['categories'] = ['Uncategorized']
-		resources = [gramene]
-		
+		rl_pr = ResourceLinkRequest(api=api)
+		resources = rl_pr.get()
+				
 		resources_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		templateDict["banner_media"] = resources_banner_media
 		
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[resources_banner_media])
 	
 	templateDict['resources_list'] = resources
-	
-	
-	
 	
 	return render_template("resources.html", **templateDict)
