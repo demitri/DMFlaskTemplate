@@ -108,7 +108,7 @@ def index2():
 		# get list of blog posts
 		#url = os.path.join(WP_BASE_URL, "posts?categories={}".format(blog_posts["id"]))
 		# Ref: WordPress 'posts' API: https://developer.wordpress.org/rest-api/reference/posts/
-		url = os.path.join(WP_BASE_URL, "posts") #?".format(blog_posts["id"]))
+		url = os.path.join(WP_BASE_URL, "post") #?".format(blog_posts["id"]))
 		response = http_session.get(url=url, params=params)
 		posts = response.json()
 		

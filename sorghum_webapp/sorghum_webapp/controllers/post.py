@@ -18,7 +18,7 @@ WP_BASE_URL = app.config["WP_BASE_URL"]
 post_page = flask.Blueprint("post_page", __name__)
 post_category_page = flask.Blueprint("post_category_page", __name__)
 
-@app.route('/posts/<slug>')
+@app.route('/post/<slug>')
 def post(slug):
 	''' 
 	This page displays a single blog post retrieved from WordPress.
@@ -46,6 +46,10 @@ def post(slug):
 		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
 				
 		populate_footer_template(wp_api=api, template_dictionary=templateDict, photos_to_credit=[])
+		
+		# pre-fetch relationships (premature optimization!)
+		for p in latest_posts:
+			p.categories
 
 	
 	templateDict["post"] = post
@@ -57,7 +61,7 @@ def post(slug):
 
 	#for c in post.comments:
 	#	print(c)
-	
+	#logger.debug(" ============= controller finished ============= ")
 	return render_template("post.html", **templateDict)
 
 @app.route('/posts/category/<slug>')
