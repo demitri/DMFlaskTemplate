@@ -32,6 +32,7 @@ def register_blueprints(app=None):
 	from .controllers.resources import resources_page
 	from .controllers.contact import contact_page
 	from .controllers.people import people_page
+	from .controllers.faq import faq_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
@@ -45,6 +46,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(resources_page)
 	app.register_blueprint(contact_page)
 	app.register_blueprint(people_page)
+	app.register_blueprint(faq_page)
 	#app.register_blueprint(notebook_page)
 	#app.register_blueprint(xxx)
 

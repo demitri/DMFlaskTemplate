@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("static/images/sorghum_combine.jpg");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">Frequently Asked Questions</h1>
+
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+<div class="container pt90 ">
+  <!-- <div class="title-heading1 mb60">
+    <h3>Frequently Asked Questions</h3>
+  </div> -->
+<div class="container mb40">
+   <div class="row">
+        <div class="col-md-9 mb40">
+        <div id="accordion" class="mb70" role="tablist" aria-multiselectable="true">
+          <div class="card mb10">
+              <div class="card-header accordion-header" role="tab" id="headingOne">
+                  <h5 class="mb-0">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          {{questionSet[0].s.title | safe}}
+                      </a>
+                  </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="card-body">
+                      {{ questionSet[0].s.content | safe }}
+                  </div>
+              </div>
+          </div>
+          {% for question in questionSet[1:] %}
+          <div class="card mb10">
+              <div class="card-header accordion-header" role="tab" id="headingTwo">
+                  <h5 class="mb-0">
+                      <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          {{question.s.title | safe}}
+                      </a>
+                  </h5>
+              </div>
+
+              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="card-body">
+                      {{ question.s.content | safe }}
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+     </div>
+    </div>
+   </div>
+</div>
+
+</div>
+{% endblock %}
