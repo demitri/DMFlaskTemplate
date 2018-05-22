@@ -9,7 +9,8 @@ Ref: https://wordpress.org/plugins/pods/
 import logging
 import requests
 
-from wordpress_orm import WPEntity, WPRequest
+from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
+
 
 logger = logging.getLogger("wordpress_orm")
 
@@ -148,6 +149,16 @@ class ResourceLinkRequest(WPRequest):
 		
 		links = list()
 		for d in links_data:
+
+			# Before we continue, do we have this ResourceLink in the cache already?
+			try:
+				link = self.api.wordpress_object_cache.get(class_name=ResourceLink.__name__, key=d["id"])
+				links.append(link)
+				continue
+			except WPORMCacheObjectNotFoundError:
+				# nope, carry on
+				pass
+
 			link = ResourceLink(api=self.api)
 			link.json = d
 			
@@ -171,6 +182,10 @@ class ResourceLinkRequest(WPRequest):
 			link.s.resource_author = d["resource_author"]
 			link.s.resource_image = d["resource_image"]
 		
+			# add to cache
+			self.api.wordpress_object_cache.set(class_name=ResourceLink.__name__, key=link.s.id, value = link)
+			self.api.wordpress_object_cache.set(class_name=ResourceLink.__name__, key=link.s.slug, value = link)
+
 			links.append(link)
 			
 		return links
