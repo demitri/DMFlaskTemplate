@@ -1306,8 +1306,13 @@ Dropdown menu styles
   font-size: 14px;
   display: inline;
   margin-left: 7px;
-  top: 5px;
+  top: 10px;
   position: relative; }
+  .dropdown-toggle.no {
+    visibility: hidden; }
+
+.dropdown-toggle-no::after {
+  visibility: hidden; }
 
 .dropdown-menu {
   box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
@@ -3118,7 +3123,7 @@ Top bar style
   background: #222; }
 
 /*
-Career 
+Career
 */
 .career-card {
   padding: 40px 20px;

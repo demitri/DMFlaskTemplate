@@ -1,6 +1,6 @@
         <footer class="footer footer-standard pt50 pb20">
             <div class="container">
-	            
+
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb40">
                         <h3>About Us</h3>
@@ -13,23 +13,8 @@
                         <h3>Quick links</h3>
                         <ul class="list-unstyled footer-list-item">
                             <li>
-                                <a href="#">
-                                    About
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    News
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    FAQS
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Contact
+                                <a href="/people">
+                                    People
                                 </a>
                             </li>
                             <li>
@@ -38,23 +23,23 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Term & conditions
+                                <a href="/faq">
+                                    FAQS
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/contact">
+                                    Contact Us
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
-                                    Privacy & policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Photo Credits
+                                    News
                                 </a>
                             </li>
                         </ul>
                     </div>
-                    
+
                     <div class="col-lg-3 col-md-6 mb40">
                         <h3>Latest News</h3>
                         <ul class="list-unstyled latest-news">
@@ -69,13 +54,11 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    
+
                     <div class="col-lg-3 col-md-6 mb40">
-                        <h3>Headquarters</h3>
-                        <img src="images/map-img.png" alt="" class="img-fluid">
-                    </div>
-                </div> <!-- end row -->
-                
+                        <h3>Twitter</h3>
+                          <a class="twitter-timeline" href="https://twitter.com/hashtag/sorghum" data-widget-id="999762329989500928">#sorghum Tweets</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                          
                 {% if footer_photos_to_credit and footer_photos_to_credit | length %}
                 <div class="row">
 	                <div class="col-lg-8">
@@ -88,7 +71,7 @@
 	                </div>
                 </div><!-- end row -->
                 {% endif %}
-                
+
             </div> <!-- end container -->
         </footer><!--/footer-->
 
@@ -116,7 +99,7 @@
                             <!--a href="#" class="social-icon-sm si-dark si-linkedin si-dark-round">
                                 <i class="fa fa-linkedin"></i>
                                 <i class="fa fa-linkedin"></i>
-                            </a-->  
+                            </a-->
                         </div>
                     </div>
                     <div class="col-lg-5">

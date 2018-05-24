@@ -4,7 +4,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>{% block page_title %}{% endblock %}</title>    
+        <title>{% block page_title %}{% endblock %}</title>
         <!-- Plugins CSS -->
         <link href="{{request.script_root}}/static/assan/classic-template/css/plugins/plugins.css" rel="stylesheet">
         <!-- REVOLUTION STYLE SHEETS -->
@@ -14,7 +14,7 @@
         <!-- REVOLUTION NAVIGATION STYLES -->
         <link rel="stylesheet" type="text/css" href="{{request.script_root}}/static/assan/classic-template/revolution/css/navigation.css">
         <!-- load css for cubeportfolio -->
-        <link rel="stylesheet" type="text/css" href="{{request.script_root}}/static/assan/classic-template/cubeportfolio/css/cubeportfolio.min.css">     
+        <link rel="stylesheet" type="text/css" href="{{request.script_root}}/static/assan/classic-template/cubeportfolio/css/cubeportfolio.min.css">
         <link href="{{request.script_root}}/static/assan/classic-template/css/style.css" rel="stylesheet">
         <link href="{{request.script_root}}/static/css/sorghumbase.css" rel="stylesheet">
         {% block additional_header %}{% endblock %}
@@ -31,21 +31,21 @@
         <!-- Site Overlay -->
         <div class="site-overlay"></div>
 
-		{% include "navbar.html" %}
+		{% include "navbar_sorghum.html" %}
 
 		{% block content %}{% endblock %}
 
 		{% include "footer.html" %}
 
         <!-- jQuery first, then Tether, then Bootstrap JS. -->
-        <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/js/plugins/plugins.js"></script> 
-        <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/js/assan.custom.js"></script> 
+        <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/js/plugins/plugins.js"></script>
+        <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/js/assan.custom.js"></script>
         <!-- load cubeportfolio -->
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
         <!-- REVOLUTION JS FILES -->
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/jquery.themepunch.tools.min.js"></script>
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/jquery.themepunch.revolution.min.js"></script>
-        <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->	
+        <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/extensions/revolution.extension.actions.min.js"></script>
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
@@ -57,6 +57,6 @@
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/extensions/revolution.extension.video.min.js"></script>
         <script>
 	        {% block script_below_content %}{% endblock %}
-       </script> 
+       </script>
     </body>
 </html>
