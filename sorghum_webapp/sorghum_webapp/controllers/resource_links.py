@@ -14,10 +14,10 @@ from .. import wordpress_orm_logger as wp_logger
 from . import valueFromRequest
 from .footer import populate_footer_template
 
-resources_page = flask.Blueprint("resources_page", __name__)
+resource_links_page = flask.Blueprint("resource_links_page", __name__)
 
-@app.route('/resources')
-def resources():
+@app.route('/resource_links')
+def resource_links():
 	''' List of sorghum resources '''
 	templateDict = {}
 
@@ -35,4 +35,4 @@ def resources():
 	templateDict['resources_list'] = resources
 	
 	wp_logger.debug(" ============= controller finished ============= ")
-	return render_template("resources.html", **templateDict)
+	return render_template("resource_links.html", **templateDict)

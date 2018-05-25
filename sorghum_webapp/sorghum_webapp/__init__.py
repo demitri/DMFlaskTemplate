@@ -30,7 +30,7 @@ def register_blueprints(app=None):
 	from .controllers.post import post_page
 	from .controllers.posts import post_grid
 	from .controllers.mission_statement import mission_statement_page
-	from .controllers.resources import resources_page
+	from .controllers.resource_links import resource_links_page
 	from .controllers.contact import contact_page
 	from .controllers.people import people_page
 	from .controllers.faq import faq_page
@@ -44,7 +44,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(post_page)
 	app.register_blueprint(post_grid)
 	app.register_blueprint(mission_statement_page)
-	app.register_blueprint(resources_page)
+	app.register_blueprint(resource_links_page)
 	app.register_blueprint(contact_page)
 	app.register_blueprint(people_page)
 	app.register_blueprint(faq_page)
