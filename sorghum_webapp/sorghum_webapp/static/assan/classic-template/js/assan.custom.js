@@ -23,6 +23,7 @@ $(function () {
     $('.search-open').on('click', function () {
         {
             $('.search-inline').addClass('search-visible');
+            $('#sorghumbase-search-input').focus();
         }
     });
     $('.search-close').on('click', function () {

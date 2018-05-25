@@ -44,9 +44,16 @@ def posts():
 		posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		templateDict["banner_media"] = posts_banner_media
 		
+		# pre-cache these items so new HTTP connections aren't made from the template
+		for p in posts:
+			p.categories
+			p.author
+		
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
 	
 	templateDict['posts'] = posts
 	templateDict['post_tally'] = post_tally
+	
+	logger.debug(" ============= controller finished ============= ")
 	
 	return render_template("posts.html", **templateDict)

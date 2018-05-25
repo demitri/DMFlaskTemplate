@@ -17,7 +17,7 @@
     <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
         {% for post in posts %}
         <article class="col-md-4 post-masonry mb40" style="position: absolute; left: 0px; top: 0px;">                      
-            {% if post.featured_media.s %}
+            {% if post.s.featured_media %}
             <a href="/posts/{{post.s.slug}}"> <img src="{{post.featured_media.s.source_url}}" alt="" class="img-fluid mb20"></a>                       
             {% endif %}
             <a href="/posts/{{post.s.slug}}"><h4 class="masonry-title mb0">{{post.s.title | safe}}</h4></a>
