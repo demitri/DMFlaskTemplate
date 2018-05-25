@@ -14,6 +14,7 @@ from flask import send_from_directory
 from flask import render_template, request
 import wordpress_orm as wp
 from wordpress_orm import wp_session, exc
+from random import randint
 
 from . import valueFromRequest
 from .. import app
@@ -45,10 +46,10 @@ def index():
 	templateDict = {}
 
 	#api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
-	
+
 	# perform all WordPress requests in a single session
 	with wp_session(api):
-	
+
 		post_request = api.PostRequest()
 		post_request.categories = ["news"]	# search by slug
 		post_request.orderby = "date"
@@ -57,11 +58,20 @@ def index():
 
 		posts = post_request.get()
 
+		user_request = api.UserRequest()
+		users = user_request.get()
+
+		threeUsers = []
+
+		for x in range(3):
+			index = randint(0, len(users))
+			threeUsers.append(users.pop(index))
+
 		populate_footer_template(template_dictionary=templateDict, wp_api=api)
 
 		if len(posts) == 0:
 			# Try to do some troubleshooting.
-			
+
 			# Is the 'news' category defined?
 			news_category = None
 			try:
@@ -71,50 +81,50 @@ def index():
 
 			if news_category is not None:
 				logger.debug("The 'news' category was found, but (maybe?) no posts are flagged with that category.")
-				
+
 		# fetch linked objects we know we'll need while we have this open connection
 		for post in posts:
 			post.featured_media
-	
+
 	#for post in posts:
 	#	print(post.featured_media.s.link, post.featured_media.s.source_url)
-		
+	templateDict["team"] = threeUsers
 	templateDict["posts"] = posts
 	logger.debug(" ============= controller finished ============= ")
 	return render_template("index.html", **templateDict)
-		
+
 
 #@index_page.route("/", methods=['GET'])
 def index2():
 	'''
 	Home page
 	'''
-	
+
 	templateDict = {}
 
 	# retrieve top news/blog entries from WordPress
 	#
 	with requests.Session() as http_session:
-		
+
 		# Get posts in the "
-		
+
 		params = {
 			"orderby":"date",
 			"order":"desc",
 			"filter[category_name]":"blog"
 		}
 		# "categories":"??" # 'categories' takes the category ID
-		
+
 		# get list of blog posts
 		#url = os.path.join(WP_BASE_URL, "posts?categories={}".format(blog_posts["id"]))
 		# Ref: WordPress 'posts' API: https://developer.wordpress.org/rest-api/reference/posts/
 		url = os.path.join(WP_BASE_URL, "post") #?".format(blog_posts["id"]))
 		response = http_session.get(url=url, params=params)
 		posts = response.json()
-		
+
 		app.logger.debug("WP posts URL: {}".format(url))
 		app.logger.debug(json.dumps(posts, indent=4, sort_keys=True))
-		
+
 		# get featured media URL
 		for post in posts:
 			featured_media_id = post["featured_media"]
@@ -123,14 +133,13 @@ def index2():
 			url = os.path.join(WP_BASE_URL, "media/{}".format(featured_media_id))
 			response = http_session.get(url=url, params={"context":"embed"}) #  "embed" param retrieves fewer records
 			media = response.json()
-			
+
 			app.logger.debug("WP media URL: {}".format(url))
 			app.logger.debug(json.dumps(media, indent=4, sort_keys=True))
-			
+
 			# append URL tp WP 'post' record
 			post["+featured_media_url"] = media["source_url"] # '/wp-content' + media["source_url"].split('wp-content')[1]
-	
-	templateDict["blog_posts"] = posts
-		
-	return render_template("index.html", **templateDict)
 
+	templateDict["blog_posts"] = posts
+
+	return render_template("index.html", **templateDict)

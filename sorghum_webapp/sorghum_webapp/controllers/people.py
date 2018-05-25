@@ -33,7 +33,7 @@ def people():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[people_banner_media])
 
-	print(team)
+	# print(team[2].s.avatar_urls['24'])
 	templateDict['team'] = team
 
 

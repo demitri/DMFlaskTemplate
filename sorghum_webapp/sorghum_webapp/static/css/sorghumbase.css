@@ -2,11 +2,11 @@
 /* $add_circle_color = rgb(222, 222, 220); */
 
 .add-circle::before {
-	
+
 	/* Ref: http://aroc.github.io/side-comments-demo/ */
-	
+
 	content: "+";
-	
+
 	/* circle border */
 	border: 20px solid #DEDEDC;
 	border-top-width: 2px;
@@ -36,7 +36,7 @@
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
     border-bottom-left-radius: 100px;
-    
+
 	width: 23px;
 	height: 23px;
 	color: #DEDEDC; /* color of "content" */
@@ -91,7 +91,7 @@
 /* --------------------------- */
 
 /* Crop rectangular image to a circle
-	
+
     Ref: https://stackoverflow.com/questions/26421274/css-circular-cropping-of-rectangle-image
 */
 
@@ -114,3 +114,7 @@ img {
    // margin-left: -25%;
 }
 
+.centered {
+	display: block;
+	margin: 0 auto;
+}

@@ -1378,7 +1378,7 @@ select.form-control.rounded, .form-control.rounded {
     left: auto;
     right: 0; } }
 
-/* 
+/*
 Sidebar style
 */
 .metismenu .has-arrow:after {
@@ -1960,7 +1960,8 @@ Accordions also called collapse style
     color: #555;
     display: block;
     position: relative;
-    padding-right: 30px; }
+    padding-right: 30px;
+    margin-right: 30px; }
     .card-header h5 a:before {
       font-family: 'Linearicons';
       content: "\e937";
@@ -1972,7 +1973,7 @@ Accordions also called collapse style
       content: "\e936"; }
 
 /*
-Toastr 
+Toastr
 */
 .toast-bottom-full-width, .toast-bottom-right, .toast-bottom-center, .toast-bottom-left, .toast-top-full-width, .toast-top-right, .toast-top-center, .toast-top-left {
   position: fixed;

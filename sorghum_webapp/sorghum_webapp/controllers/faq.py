@@ -34,7 +34,6 @@ def faq():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[faq_banner_media])
 
-	print(questionSet)
 	templateDict['questionSet'] = questionSet
 
 
