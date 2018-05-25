@@ -64,7 +64,7 @@ def index():
 		threeUsers = []
 
 		for x in range(3):
-			index = randint(0, len(users))
+			index = randint(0, len(users)-1)
 			threeUsers.append(users.pop(index))
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api)
