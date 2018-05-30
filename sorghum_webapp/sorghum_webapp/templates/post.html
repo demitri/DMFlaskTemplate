@@ -30,7 +30,7 @@
         <div class="col-md-9 mb40">
             <article>
 <img src='{{ post.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
-              
+
                 <div class="post-content">
 
                     <h3>{{ post.s.title }}</h3>
@@ -45,7 +45,7 @@
                         <li class="list-inline-item">
                             <i class="fa fa-tags"></i>
                             {% for category in post.categories %}
-                            	<a href="category/{{category.s.slug}}">{{ category.s.name }}  </a>
+                            	<a href="/category/{{category.s.slug}}">{{ category.s.name }}  </a>
                             {% endfor %}
                         </li>
                     </ul>
@@ -72,13 +72,14 @@
                             </a>
                         </li>
                     </ul>
-                    
+
                     <hr class="mb40">
-                    
+
                     <h4 class="mb40 text-uppercase font500">About the Author</h4>
                     <div class="media mb40">
-	                    <div class="image-cropper" style="height:70px; width:70px;">
-						    <img src="{{ author_gravatar_url }}" srcset="{{ author_gravatar_url }} 2x"/>
+	                    <div class="image-cropper" style="height:200px; width:200px;">
+						    <!-- #<img src="{{ author_gravatar_url }}" srcset="{{ author_gravatar_url }} 2x"/> -->
+                <img src="{{ post.author.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
 						</div>
                         <!--i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i-->
                         <div class="media-body">
@@ -86,7 +87,7 @@
                             {{ post.author.s.description | safe}}
                         </div>
                     </div>
-                    
+
 					{% if display_comments %}
                     <hr class="mb40">
                     <h4 class="mb40 text-uppercase font500">Comments</h4>
@@ -109,7 +110,7 @@
                     </div>
                     {% endfor %}
                     {% endif %}
-                    
+
                     {% if allow_new_comments %}
                     <hr class="mb40">
                     <h4 class="mb40 text-uppercase font500">Post a comment</h4>
@@ -131,7 +132,7 @@
                         </div>
                     </form>
                     {% endif %}
-                    
+
                 </div>
             </article><!-- post article-->
 

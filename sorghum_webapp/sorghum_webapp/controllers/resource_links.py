@@ -24,15 +24,16 @@ def resource_links():
 	with wp_session(api):
 		rl_pr = ResourceLinkRequest(api=api)
 		resources = rl_pr.get()
-				
+
 		resources_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		templateDict["banner_media"] = resources_banner_media
-		
+
 		populate_footer_template(template_dictionary=templateDict,
 								 wp_api=api,
 								 photos_to_credit=[resources_banner_media])
-	
+
+	print(resources)
 	templateDict['resources_list'] = resources
-	
+
 	wp_logger.debug(" ============= controller finished ============= ")
 	return render_template("resource_links.html", **templateDict)

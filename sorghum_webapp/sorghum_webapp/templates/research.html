@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("static/images/sorghum_combine.jpg");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">Research</h1>
+
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+<div class="container pt90 ">
+  <div class="title-heading1 mb60">
+    <h3>Selected Publications</h3>
+  </div>
+  {% for paper in papers %}
+  <div class="row">
+
+    <div class="col-lg-9 col-md-6 mb90">
+      <h4 class="mb0 text-uppercase">{{ paper.s.paper_title }}</h4>
+      <p><em>{{ paper.s.paper_authors | safe }}</em></p>
+      <p>{{ paper.s.abstract | safe }}</p>
+      <a href="{{paper.s.source_url}}"><h6 class="masonry-title mb0">View full paper at source</h6></a>
+    </div>
+  </div>
+  <div class="title-heading1 mb60">
+    <h3></h3>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -11,7 +11,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="{{request.script_root}}">
+                <a class="navbar-brand" href="/">
                     <img class='logo logo-dark' src="{{request.script_root}}/static/images/logo.png" alt="">
                     <img class='logo logo-light hidden-md-down' src="{{request.script_root}}/static/images/logo-light.png" alt="">
                 </a>
@@ -20,26 +20,31 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">About</a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="mission-statement" class="dropdown-item">Mission Statement</a></li>
-                                <li><a href="faq" class="dropdown-item">FAQ</a></li>
-                                <li><a href="contact" class="dropdown-item">Contact Us</a></li>
+                                <li><a href="/mission-statement" class="dropdown-item">Mission Statement</a></li>
+                                <li><a href="/faq" class="dropdown-item">FAQ</a></li>
+                                <li><a href="/contact" class="dropdown-item">Contact Us</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle dropdown-toggle-no" href="news">News</a>
+                          <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">News</a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                              <li><a href="/research" class="dropdown-item">Research</a></li>
+                              <li><a href="/events" class="dropdown-item">Events</a></li>
+                              <li><a href="/jobs" class="dropdown-item">Jobs</a></li>
+                          </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Community</a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="posts" class="dropdown-item">Blog</a></li>
-                                <li><a href="people" class="dropdown-item">People</a></li>
-                                <li><a href="#" class="dropdown-item">Mailing List</a></li>
+                                <li><a href="/posts" class="dropdown-item">Blog</a></li>
+                                <li><a href="/people" class="dropdown-item">People</a></li>
+                                <li><a href="/mailing_list" class="dropdown-item">Mailing List</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Resources</a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="resource_links" class="dropdown-item">Links</a></li>
+                                <li><a href="/resource_links" class="dropdown-item">Links</a></li>
                                 <li><a href="#" class="dropdown-item">Tools</a></li>
                                 <li><a href="#" class="dropdown-item">Tutorials</a></li>
                                 <li><a href="#" class="dropdown-item">Projects</a></li>
