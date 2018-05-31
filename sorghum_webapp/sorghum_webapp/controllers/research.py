@@ -7,7 +7,6 @@ import logging
 from flask import request, render_template
 from wordpress_orm import wp_session
 from ..wordpress_orm.scientific_paper import ScientificPaperRequest
-from ..wordpress_orm.resource_link import ResourceLinkRequest
 
 from .. import app
 from .. import wordpress_api as api
@@ -26,8 +25,6 @@ def research():
 	templateDict = {}
 
 	with wp_session(api):
-
-		# paper_request = ResourceLinkRequest(api=api)
 		paper_request = ScientificPaperRequest(api=api)
 
 		papers = paper_request.get()
@@ -35,14 +32,8 @@ def research():
 		posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		templateDict["banner_media"] = posts_banner_media
 
-		# pre-cache these items so new HTTP connections aren't made from the template
-		# for p in papers:
-		# 	p.categories
-		# 	p.author
-
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
 
-	print("Papers please:", papers)
 	templateDict['papers'] = papers
 
 	logger.debug(" ============= controller finished ============= ")

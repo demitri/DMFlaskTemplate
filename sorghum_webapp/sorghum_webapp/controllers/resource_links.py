@@ -32,7 +32,7 @@ def resource_links():
 								 wp_api=api,
 								 photos_to_credit=[resources_banner_media])
 
-	print(resources)
+	print(resources[0].s.resource_image)
 	templateDict['resources_list'] = resources
 
 	wp_logger.debug(" ============= controller finished ============= ")

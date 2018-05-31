@@ -20,59 +20,38 @@
 <!-- </div>
 <div class="container mb90"> -->
     <div class="page-timeline">
+      {% for event in events %}
         <div class="vtimeline-point">
             <div class="vtimeline-icon">
                 <i class="fa fa-calendar"></i>
             </div>
             <div class="vtimeline-block">
-                <span class="vtimeline-date">June 25, 2017</span><div class="vtimeline-content">
-                    <a href='#'><img src='images/entry1.jpg' alt='' class='img-fluid mb20'></a>
-                    <a href='#'><h3>Standard post title</h3></a>
+                <span class="vtimeline-date">{{event.s.start_date}}</span><div class="vtimeline-content">
+                  {% if event.s.featured_image %}
+                    <a href='#'><img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'></a>
+                  {% endif %}
+                    <h3>{{event.s.title.rendered}}</h3>
                     <ul class="post-meta list-inline">
                         <li class="list-inline-item">
-                            <i class="fa fa-user-circle-o"></i> <a href="#">John Doe</a>
+                            <i class="fa fa-user-circle-o"></i> <a href="#">{{event.s.organizer}}</a>
                         </li>
                         <li class="list-inline-item">
-                            <i class="fa fa-calendar-o"></i> <a href="#">29 June 2017</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <i class="fa fa-tags"></i> <a href="#">Bootstrap4</a>
+                            <i class="fa fa-calendar-o"></i> <a href="#">
+                              {{event.s.start_date}}
+                              {% if event.s.end_date %}
+                              - {{event.s.end_date}}
+                              {% endif %}
+                            </a>
                         </li>
                     </ul>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
+                      {{event.s.event_description | safe }}
                     </p><br>
-                    <a href='#' class='btn btn-outline-secondary btn-sm'>Read More</a>
+                    <a href='#' class='btn btn-outline-secondary btn-sm'>Event Site</a>
                 </div>
             </div>
         </div>
-
-        <div class="vtimeline-point">
-            <div class="vtimeline-icon">
-                <i class="fa fa-calendar"></i>
-            </div>
-            <div class="vtimeline-block">
-                <span class="vtimeline-date">June 25, 2017</span><div class="vtimeline-content">
-                    <a href='#'><img src='images/entry3.jpg' alt='' class='img-fluid mb20'></a>
-                    <a href='#'><h3>Standard post title</h3></a>
-                    <ul class="post-meta list-inline">
-                        <li class="list-inline-item">
-                            <i class="fa fa-user-circle-o"></i> <a href="#">John Doe</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <i class="fa fa-calendar-o"></i> <a href="#">29 June 2017</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <i class="fa fa-tags"></i> <a href="#">Bootstrap4</a>
-                        </li>
-                    </ul>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in iaculis ex. Etiam volutpat laoreet urna. Morbi ut tortor nec nulla commodo malesuada sit amet vel lacus. Fusce eget efficitur libero. Morbi dapibus porta quam laoreet placerat.
-                    </p><br>
-                    <a href='#' class='btn btn-outline-secondary btn-sm'>Read More</a>
-                </div>
-            </div>
-        </div>
+      {% endfor %}
     </div>
 </div>
 {% endblock %}

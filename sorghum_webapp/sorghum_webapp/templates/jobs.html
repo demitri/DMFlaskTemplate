@@ -19,66 +19,24 @@
   </div>
     <div class="row">
         <div class="col-md-9">
+          {% for job in jobs %}
             <div class="career-card clearfix">
                 <div class="clearfix pb20">
-                    <h2 class="mb0">Sorgum Designer <small>3+ years experience</small>
-                    </h2>
-                    <span class="label label-default">Html, Css, Photoshop, Jquery, Bootstrap</span>
+                    <h2 class="mb0">{{job.s.job_title}}</h2>
+                    <span class="label label-default">{{job.s.company}}</span>
                 </div>
                 <br>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, natus voluptatibus adipisci porro magni dolore eos eius ducimus corporis quos perspiciatis quis iste, vitae autem libero ullam omnis cupiditate quam.
+                  {{job.s.job_description | safe }}
                 </p>
-                <p>
-                    Repudiandae quasi perspiciatis ea placeat nobis asperiores quod fuga ipsa facere enim ipsum expedita debitis, sit quia adipisci deserunt vitae hic obcaecati voluptates rerum nihil.
-                </p>
-                <a href="#" class="btn float-right btn-sm btn-primary">Apply Now</a>
-            </div><!--/career-->
-            <div class="career-card clearfix">
-                <div class="clearfix pb20">
-                    <h2 class="mb0">SorghumJs Developer <small>2+ years experience</small>
-                    </h2>
-                    <span class="label label-default">Html, Css, Angular 4, Javascript, Bootstrap</span>
-                </div>
                 <br>
+                <h6>Job Requirements</h6>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, natus voluptatibus adipisci porro magni dolore eos eius ducimus corporis quos perspiciatis quis iste, vitae autem libero ullam omnis cupiditate quam.
+                  {{job.s.job_requirements | safe}}
                 </p>
-                <p>
-                    Repudiandae quasi perspiciatis ea placeat nobis asperiores quod fuga ipsa facere enim ipsum expedita debitis, sit quia adipisci deserunt vitae hic obcaecati voluptates rerum nihil.
-                </p>
-                <a href="#" class="btn float-right btn-sm btn-primary">Apply Now</a>
+                <a href="{{job.s.job_url}}" class="btn float-right btn-sm btn-primary">Learn More</a>
             </div><!--/career-->
-            <div class="career-card clearfix">
-                <div class="clearfix pb20">
-                    <h2 class="mb0">Wordpress/Sorghum Developer <small>3+ years experience</small>
-                    </h2>
-                    <span class="label label-default">Wordpress, php, Core Php, Laravel</span>
-                </div>
-                <br>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, natus voluptatibus adipisci porro magni dolore eos eius ducimus corporis quos perspiciatis quis iste, vitae autem libero ullam omnis cupiditate quam.
-                </p>
-                <p>
-                    Repudiandae quasi perspiciatis ea placeat nobis asperiores quod fuga ipsa facere enim ipsum expedita debitis, sit quia adipisci deserunt vitae hic obcaecati voluptates rerum nihil.
-                </p>
-                <a href="#" class="btn float-right btn-sm btn-primary">Apply Now</a>
-            </div><!--/career-->
-            <div class="career-card clearfix">
-                <div class="clearfix pb20">
-                    <h2 class="mb0">Business Sorghum <small>5+ years experience</small>
-                    </h2>
-                    <span class="label label-default">English, French, Arabic, SEO</span>
-                </div>
-                <br>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, natus voluptatibus adipisci porro magni dolore eos eius ducimus corporis quos perspiciatis quis iste, vitae autem libero ullam omnis cupiditate quam.
-                </p>
-                <p>
-                    Repudiandae quasi perspiciatis ea placeat nobis asperiores quod fuga ipsa facere enim ipsum expedita debitis, sit quia adipisci deserunt vitae hic obcaecati voluptates rerum nihil.
-                </p>
-                <a href="#" class="btn float-right btn-sm btn-primary">Apply Now</a>
-            </div><!--/career-->
+          {% endfor %}
         </div>
     </div>
 </div>
