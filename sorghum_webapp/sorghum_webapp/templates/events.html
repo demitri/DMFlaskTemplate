@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class=" col-md-12">
-        <h1 class="text-uppercase">Jobs</h1>
+        <h1 class="text-uppercase">Events</h1>
 
       </div>
     </div>
@@ -19,6 +19,7 @@
   </div>
 <!-- </div>
 <div class="container mb90"> -->
+  <div class="row justify-content-md-center">
     <div class="page-timeline">
       {% for event in events %}
         <div class="vtimeline-point">
@@ -26,7 +27,8 @@
                 <i class="fa fa-calendar"></i>
             </div>
             <div class="vtimeline-block">
-                <span class="vtimeline-date">{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</span><div class="vtimeline-content">
+                <!-- <div class="vtimeline-date">#{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</div> -->
+                <div class="vtimeline-content">
                   {% if event.s.featured_image %}
                     <a href='#'><img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'></a>
                   {% endif %}
@@ -53,5 +55,6 @@
         </div>
       {% endfor %}
     </div>
+  </div>
 </div>
 {% endblock %}

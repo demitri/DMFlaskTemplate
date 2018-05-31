@@ -53,6 +53,7 @@ def posts():
 
 	templateDict['posts'] = posts
 	templateDict['post_tally'] = post_tally
+	templateDict['categories'] = categories[0]
 
 	logger.debug(" ============= controller finished ============= ")
 
