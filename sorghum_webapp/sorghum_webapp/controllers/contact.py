@@ -22,17 +22,12 @@ def contact():
 	''' Contact page. '''
 	templateDict = {}
 
-	# with wp_session(api):
-	#
-	# 	ms_post = api.post(slug='contact')
-	#
-	# 	ms_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
-	# 	templateDict["banner_media"] = ms_banner_media
-	#
-	# 	logger.debug(ms_banner_media.json)
-	# 	populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[ms_banner_media])
-	#
-	# templateDict['contact'] = ms_post
+	with wp_session(api):
 
+		ms_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+		templateDict["banner_media"] = ms_banner_media
+
+		logger.debug(ms_banner_media.json)
+		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[ms_banner_media])
 
 	return render_template("contact.html", **templateDict)

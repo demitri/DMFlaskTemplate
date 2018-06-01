@@ -11,6 +11,7 @@ from datetime import datetime
 import flask
 import jinja2
 from jinja2 import Markup
+from math import ceil
 
 # If the filter is to return HTML code and you don't want it autmatically
 # escaped, return the value as "return Markup(value)".
@@ -50,3 +51,9 @@ def j2split(context, value, delimiter=None):
 @blueprint.app_template_filter()
 def j2join(context, value, delimiter=","):
     return delimiter.join(value)
+
+
+@jinja2.contextfilter
+@blueprint.app_template_filter()
+def ceil(context, value):
+	return ceil(value)
