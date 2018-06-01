@@ -5,6 +5,7 @@
 import flask
 import logging
 from flask import request, render_template
+from ..wordpress_orm.job import JobRequest
 
 from wordpress_orm import wp_session
 
@@ -22,17 +23,17 @@ def jobs():
 	''' Jobs page. '''
 	templateDict = {}
 
-	# with wp_session(api):
-	#
-	# 	ms_post = api.post(slug='contact')
-	#
-	# 	ms_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
-	# 	templateDict["banner_media"] = ms_banner_media
-	#
-	# 	logger.debug(ms_banner_media.json)
-	# 	populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[ms_banner_media])
-	#
-	# templateDict['contact'] = ms_post
+	with wp_session(api):
+		job_request = JobRequest(api=api)
+
+		jobs = job_request.get()
+
+		posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+		templateDict["banner_media"] = posts_banner_media
+
+		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
+
+	templateDict['jobs'] = jobs
 
 
 	return render_template("jobs.html", **templateDict)

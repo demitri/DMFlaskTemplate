@@ -30,6 +30,9 @@ def str2datetime(context, value):
 			dt = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S")
 			return dt # type: datetime.datetime
 			#.strftime('%Y-%m-%d')
+		else:
+			dt = datetime.strptime(value, "%Y-%m-%d")
+			return dt
 
 # place these two decorators above every filter
 @jinja2.contextfilter
@@ -44,4 +47,3 @@ def j2split(context, value, delimiter=None):
 @blueprint.app_template_filter()
 def j2join(context, value, delimiter=","):
     return delimiter.join(value)
-

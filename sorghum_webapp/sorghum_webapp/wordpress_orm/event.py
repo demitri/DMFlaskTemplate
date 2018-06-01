@@ -14,7 +14,7 @@ from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
 
 logger = logging.getLogger("wordpress_orm")
 
-class ScientificPaper(WPEntity):
+class Event(WPEntity):
 
 	def __init__(self, id=None, api=None):
 		super().__init__(api=api)
@@ -22,6 +22,7 @@ class ScientificPaper(WPEntity):
 		# related objects that need to be cached
 		self._author = None
 		self._category = None
+		self._featured_image = None
 
 	def __repr__(self):
 		if len(self.s.title) < 11:
@@ -36,7 +37,8 @@ class ScientificPaper(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"paper_title", "abstract","source_url", "paper_authors", "publication_date"]
+				"start_date", "end_date", "organizer", "event_description", "event_url",
+				"featured_image"]
 
 	@property
 	def categories(self):
@@ -57,6 +59,21 @@ class ScientificPaper(WPEntity):
 		return [x.s.name for x in self.categories]
 
 	@property
+	def featured_image(self):
+		'''
+		Returns a WordPress 'Media' object.
+		'''
+		if self._featured_image is None:
+			mr = self.api.MediaRequest()
+			mr.id = self.s.featured_image
+			media_list = mr.get()
+			if len(media_list) == 1:
+				self._featured_image = media_list[0]
+			else:
+				self._featured_image = None
+		return self._featured_image
+
+	@property
 	def author(self):
 		'''
 		Returns the author of this post, class: 'User'.
@@ -72,9 +89,9 @@ class ScientificPaper(WPEntity):
 		return self._author
 
 
-class ScientificPaperRequest(WPRequest):
+class EventRequest(WPRequest):
 	'''
-	A class that encapsulates requests for WordPress scientific papers.
+	A class that encapsulates requests for WordPress Events.
 	'''
 	def __init__(self, api=None):
 		super().__init__(api=api)
@@ -88,13 +105,13 @@ class ScientificPaperRequest(WPRequest):
 
 	@property
 	def parameter_names(self):
-		return ["slug", "before", "after", "status", "categories", "paper_title"]
+		return ["slug", "before", "after", "status", "categories", "featured_image"]
 
 	def get(self):
 		'''
-		Returns a list of 'Scientific Paper' objects that match the parameters set in this object.
+		Returns a list of 'Event' objects that match the parameters set in this object.
 		'''
-		self.url = self.api.base_url + "scientific_paper"
+		self.url = self.api.base_url + "event"
 
 		if self.id:
 			self.url += "/{}".format(self.id)
@@ -124,53 +141,54 @@ class ScientificPaperRequest(WPRequest):
 			elif self.response.status_code == 404: # not found
 				return None
 
-		papers_data = self.response.json()
+		events_data = self.response.json()
 
-		if isinstance(papers_data, dict):
+		if isinstance(events_data, dict):
 			# only one object was returned; make it a list
-			papers_data = [papers_data]
+			events_data = [events_data]
 
-		papers = list()
-		for d in papers_data:
+		events = list()
+		for d in events_data:
 
-			# Before we continue, do we have this ScientificPaper in the cache already?
+			# Before we continue, do we have this Event in the cache already?
 			try:
-				paper = self.api.wordpress_object_cache.get(class_name=ScientificPaper.__name__, key=d["id"])
-				papers.append(paper)
+				event = self.api.wordpress_object_cache.get(class_name=Event.__name__, key=d["id"])
+				events.append(event)
 				continue
 			except WPORMCacheObjectNotFoundError:
 				# nope, carry on
 				pass
 
-			paper = ScientificPaper(api=self.api)
-			paper.json = d
+			event = Event(api=self.api)
+			event.json = d
 
-			paper.s.id = d["id"]
-			paper.s.date = d["date"]
-			paper.s.date_gmt = d["date_gmt"]
-			paper.s.guid = d["guid"]
-			paper.s.modified = d["modified"]
-			paper.s.modified_gmt = d["modified_gmt"]
-			paper.s.slug = d["slug"]
-			paper.s.status = d["status"]
-			paper.s.type = d["type"]
-			paper.s.link = d["link"]
-			paper.s.title = d["title"]
-			paper.s.content = d["content"]
-			paper.s.template = d["template"]
-			paper.s.paper_title = d["paper_title"]
-			paper.s.abstract = d["abstract"]
-			paper.s.paper_authors = d["paper_authors"]
-			paper.s.source_url = d["source_url"]
-			paper.s.publication_date = d["publication_date"]
+			event.s.id = d["id"]
+			event.s.date = d["date"]
+			event.s.date_gmt = d["date_gmt"]
+			event.s.guid = d["guid"]
+			event.s.modified = d["modified"]
+			event.s.modified_gmt = d["modified_gmt"]
+			event.s.slug = d["slug"]
+			event.s.status = d["status"]
+			event.s.type = d["type"]
+			event.s.link = d["link"]
+			event.s.title = d["title"]
+			event.s.content = d["content"]
+			event.s.template = d["template"]
+			event.s.start_date = d["start_date"]
+			event.s.end_date = d["end_date"]
+			event.s.organizer = d["organizer"]
+			event.s.event_description = d["event_description"]
+			event.s.event_url = d["event_url"]
+			event.s.featured_image = d["featured_image"]
 
 			# add to cache
-			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.id, value = paper)
-			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.slug, value = paper)
+			self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.id, value = event)
+			self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.slug, value = event)
 
-			papers.append(paper)
+			events.append(event)
 
-		return papers
+		return events
 
 
 	@property
@@ -225,7 +243,7 @@ class ScientificPaperRequest(WPRequest):
 		'''
 		return self._after
 
-	@before.setter
+	@after.setter
 	def before(self, value):
 		'''
 		Set the WordPress parameter to return posts before this date.

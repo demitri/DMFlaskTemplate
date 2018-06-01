@@ -14,7 +14,7 @@ from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
 
 logger = logging.getLogger("wordpress_orm")
 
-class ScientificPaper(WPEntity):
+class Job(WPEntity):
 
 	def __init__(self, id=None, api=None):
 		super().__init__(api=api)
@@ -22,12 +22,13 @@ class ScientificPaper(WPEntity):
 		# related objects that need to be cached
 		self._author = None
 		self._category = None
+		self._resource_image = None
 
 	def __repr__(self):
-		if len(self.s.title) < 11:
-			truncated_title = self.s.title
+		if len(self.s.job_title) < 11:
+			truncated_title = self.s.job_title
 		else:
-			truncated_title = self.s.title[0:10] + "..."
+			truncated_title = self.s.job_title[0:10] + "..."
 		return "<WP {0} object at {1}, url='{2}'>".format(self.__class__.__name__, hex(id(self)),
 																			self.s.id,
 																			truncated_title)
@@ -36,7 +37,7 @@ class ScientificPaper(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"paper_title", "abstract","source_url", "paper_authors", "publication_date"]
+				"job_title", "company", "job_description", "job_requirements", "job_url"]
 
 	@property
 	def categories(self):
@@ -72,9 +73,9 @@ class ScientificPaper(WPEntity):
 		return self._author
 
 
-class ScientificPaperRequest(WPRequest):
+class JobRequest(WPRequest):
 	'''
-	A class that encapsulates requests for WordPress scientific papers.
+	A class that encapsulates requests for WordPress Jobs.
 	'''
 	def __init__(self, api=None):
 		super().__init__(api=api)
@@ -88,13 +89,13 @@ class ScientificPaperRequest(WPRequest):
 
 	@property
 	def parameter_names(self):
-		return ["slug", "before", "after", "status", "categories", "paper_title"]
+		return ["slug", "before", "after", "status", "categories", "job_title"]
 
 	def get(self):
 		'''
-		Returns a list of 'Scientific Paper' objects that match the parameters set in this object.
+		Returns a list of 'Job' objects that match the parameters set in this object.
 		'''
-		self.url = self.api.base_url + "scientific_paper"
+		self.url = self.api.base_url + "job"
 
 		if self.id:
 			self.url += "/{}".format(self.id)
@@ -124,53 +125,53 @@ class ScientificPaperRequest(WPRequest):
 			elif self.response.status_code == 404: # not found
 				return None
 
-		papers_data = self.response.json()
+		jobs_data = self.response.json()
 
-		if isinstance(papers_data, dict):
+		if isinstance(jobs_data, dict):
 			# only one object was returned; make it a list
-			papers_data = [papers_data]
+			jobs_data = [jobs_data]
 
-		papers = list()
-		for d in papers_data:
+		jobs = list()
+		for d in jobs_data:
 
-			# Before we continue, do we have this ScientificPaper in the cache already?
+			# Before we continue, do we have this Job in the cache already?
 			try:
-				paper = self.api.wordpress_object_cache.get(class_name=ScientificPaper.__name__, key=d["id"])
-				papers.append(paper)
+				job = self.api.wordpress_object_cache.get(class_name=Job.__name__, key=d["id"])
+				jobs.append(job)
 				continue
 			except WPORMCacheObjectNotFoundError:
 				# nope, carry on
 				pass
 
-			paper = ScientificPaper(api=self.api)
-			paper.json = d
+			job = Job(api=self.api)
+			job.json = d
 
-			paper.s.id = d["id"]
-			paper.s.date = d["date"]
-			paper.s.date_gmt = d["date_gmt"]
-			paper.s.guid = d["guid"]
-			paper.s.modified = d["modified"]
-			paper.s.modified_gmt = d["modified_gmt"]
-			paper.s.slug = d["slug"]
-			paper.s.status = d["status"]
-			paper.s.type = d["type"]
-			paper.s.link = d["link"]
-			paper.s.title = d["title"]
-			paper.s.content = d["content"]
-			paper.s.template = d["template"]
-			paper.s.paper_title = d["paper_title"]
-			paper.s.abstract = d["abstract"]
-			paper.s.paper_authors = d["paper_authors"]
-			paper.s.source_url = d["source_url"]
-			paper.s.publication_date = d["publication_date"]
+			job.s.id = d["id"]
+			job.s.date = d["date"]
+			job.s.date_gmt = d["date_gmt"]
+			job.s.guid = d["guid"]
+			job.s.modified = d["modified"]
+			job.s.modified_gmt = d["modified_gmt"]
+			job.s.slug = d["slug"]
+			job.s.status = d["status"]
+			job.s.type = d["type"]
+			job.s.link = d["link"]
+			job.s.title = d["title"]
+			job.s.content = d["content"]
+			job.s.template = d["template"]
+			job.s.job_title = d["job_title"]
+			job.s.company = d["company"]
+			job.s.job_description = d["job_description"]
+			job.s.job_requirements = d["job_requirements"]
+			job.s.job_url = d["job_url"]
 
 			# add to cache
-			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.id, value = paper)
-			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.slug, value = paper)
+			self.api.wordpress_object_cache.set(class_name=Job.__name__, key=job.s.id, value = job)
+			self.api.wordpress_object_cache.set(class_name=Job.__name__, key=job.s.slug, value = job)
 
-			papers.append(paper)
+			jobs.append(job)
 
-		return papers
+		return jobs
 
 
 	@property
@@ -225,7 +226,7 @@ class ScientificPaperRequest(WPRequest):
 		'''
 		return self._after
 
-	@before.setter
+	@after.setter
 	def before(self, value):
 		'''
 		Set the WordPress parameter to return posts before this date.

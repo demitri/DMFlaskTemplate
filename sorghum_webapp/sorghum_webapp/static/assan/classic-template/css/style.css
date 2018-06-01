@@ -3150,7 +3150,7 @@ Timeline
   content: '';
   top: 0;
   bottom: 0;
-  left: 303px;
+  left: 100px;
   right: auto;
   height: 100%;
   width: 3px;
@@ -3166,10 +3166,10 @@ Timeline
   background: -webkit-linear-gradient(top, #4782d3, rgba(52, 152, 219, 0));
   background: linear-gradient(to bottom, #4782d3, rgba(52, 152, 219, 0));
   top: 100%;
-  left: 303px; }
+  left: 100px; }
 
 .vtimeline-content {
-  margin-left: 350px;
+  margin-left: 150px;
   background: #fff;
   border: 1px solid #e6e6e6;
   padding: 35px 20px;
@@ -3179,12 +3179,12 @@ Timeline
 .vtimeline-content h3 {
   font-size: 1.5em;
   font-weight: 600;
-  display: inline-block;
-  margin: 0; }
+  display: inline-block; }
 
 .vtimeline-content p {
   font-size: 0.9em;
-  margin: 0; }
+  margin: 0;
+  left: 100px}
 
 .vtimeline-point {
   position: relative;
@@ -3203,7 +3203,7 @@ Timeline
   text-align: center;
   line-height: 50px;
   z-index: 99;
-  margin-left: 280px; }
+  margin-left: 75px; }
 
 .vtimeline-icon i {
   display: block;
@@ -3212,7 +3212,7 @@ Timeline
 
 .vtimeline-date {
   width: 260px;
-  text-align: right;
+  text-align: left;
   position: absolute;
   left: 0;
   top: 10px;
