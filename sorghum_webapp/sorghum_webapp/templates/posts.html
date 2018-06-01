@@ -45,15 +45,15 @@
     {% if post_tally > n_per_page %}
     <nav aria-label="Page navigation example" class="mb70">
         <ul class="pagination pagination justify-content-end">
-            <li class="page-item "><a class="page-link" href="{{request.path}}?page={{previous_page}}">Previous</a></li>
+            <li class="page-item "><a class="page-link" href="{{request.path}}?{%if (categories != 'posts') %}categories={{categories}}&{%endif%}page={{previous_page}}">Previous</a></li>
             {% for i in range((post_tally/n_per_page)|round(method='ceil')|int) %}
             {% if i == (current_page - 1) %}
             <li class="page-item active"><a class="page-link" href="">{{i + 1}}</a></li>
             {% else %}
-            <li class="page-item"><a class="page-link" href="{{request.path}}?page={{i+1}}">{{i + 1}}</a></li>
+            <li class="page-item"><a class="page-link" href="{{request.path}}?{%if (categories != 'posts') %}categories={{categories}}&{%endif%}page={{i+1}}">{{i + 1}}</a></li>
             {% endif %}
             {% endfor %}
-            <li class="page-item"><a class="page-link" href="{{request.path}}?page={{next_page}}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="{{request.path}}?{%if (categories != 'posts') %}categories={{categories}}&{%endif%}page={{next_page}}">Next</a></li>
         </ul>
     </nav>
     {% endif %}

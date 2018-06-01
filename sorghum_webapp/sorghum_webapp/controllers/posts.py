@@ -22,7 +22,9 @@ WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
 def posts():
 	''' List of posts '''
 	templateDict = {}
-	current_page = int(valueFromRequest(key="page", request=request)) or 1
+	current_page = valueFromRequest(key="page", request=request) or 1
+	if type(current_page) is str:
+		current_page = int(current_page)
 	n_per_page = valueFromRequest(key="show", request=request) or 3
 	categories = valueFromRequest(key="categories", request=request, aslist=True)
 
