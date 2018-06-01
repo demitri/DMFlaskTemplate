@@ -1,6 +1,21 @@
 {% extends "base.html" %}
 {% block page_title %}Search{% endblock %}
-{% block additional_header %}{% endblock %}
+{% block additional_header %}
+<script type="text/javascript" src="{{request.script_root}}/static/js/search.js"></script>
+{% endblock %}
+{% block script_below_content %}
+function initSearch() {
+    var categories = [];
+    var query = '{{q}}';
+    {% for cat in categories %}
+    categories.push('{{cat}}');
+    {% endfor %}
+    categories.forEach(function(cat) {
+       searchCategory(cat,query,document.getElementById(cat + '-react-cmp'));
+    });
+}
+{% endblock %}
+{% block body_property %}onLoad=initSearch(){% endblock %}
 {% block content %}
 
 <div class="page-titles-img pb10 pt60 bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}'
@@ -50,7 +65,6 @@
                     <div class="col">
                         <h2 class="mb30">{{category}}</h2>
                         <div id="{{category}}-react-cmp">
-                            this is where the search results will appear
                         </div>
                     </div>
                 </div>

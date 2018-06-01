@@ -10,7 +10,7 @@ from . import valueFromRequest
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 
-WP_CATS = ['posts', 'pages', 'users', 'resources']
+WP_CATS = ['posts', 'pages', 'users', 'resource-link']
 
 
 @app.route('/search_api/<cat>')
