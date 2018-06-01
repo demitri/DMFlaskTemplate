@@ -11,72 +11,39 @@
       <div class=" col-md-12">
         <h1 class="text-uppercase">News</h1>
         <br>
-        <h3 class="text-white">Research, Jobs & Events</h3>
+        <h3 class="text-white">Research, Events & Jobs</h3>
 
       </div>
     </div>
   </div>
 </div><!--page title end-->
 
-
-
-  <div class="pt90 pb50 container">
-    <div class="row">
-      <div class="mb50">
-        <a href="/research">
+<div class="pt90 pb50 container">
+  <div class="row">
+    <div class="mb50">
+      <a href="/research">
         <h3>Research</h3>
-        </a>
-      </div>
-      {% for paper in papers[0:2] %}
-      <div class="row">
-
-        <div class="col-lg-9 col-md-6 mb90">
-          <h4 class="mb0 text-uppercase">{{ paper.s.paper_title }}</h4>
-          <br>
-          <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
-          <p><em>{{ paper.s.paper_authors | safe }}</em></p>
-          <p>{{ paper.s.abstract | safe }}</p>
-          <a href="{{paper.s.source_url}}"><h6 class="masonry-title mb0">View full paper at source</h6></a>
-          <span class="border-bottom-1"></span>
-        </div>
-      </div>
-      {% endfor %}
+      </a>
     </div>
-  </div>
+    {% for paper in papers[0:2] %}
+    <div class="row">
 
-  <div class="bg-faded pt90 pb50">
-    <div class="container">
-      <div class="row">
-        <div class="mb50">
-          <a href="/jobs">
-            <h3>Jobs</h3>
-          </a>
-        </div>
-        <div class="row">
-          <div class="col-lg-9 col-md-6 mb90">
-            {% for job in jobs[0:2] %}
-            <div class="career-card clearfix">
-              <div class="clearfix pb20">
-                <h2 class="mb0">{{job.s.job_title}}</h2>
-                <span class="label label-default">{{job.s.company}}</span>
-              </div>
-              <br>
-              <p>
-                {{job.s.job_description | safe }}
-              </p>
-              <br>
-              <a href="{{job.s.job_url}}" class="btn float-right btn-sm btn-primary">Learn More</a>
-            </div>
-            {% endfor %}
-          </div>
-        </div>
+      <div class="col-lg-9 col-md-6 mb90">
+        <h4 class="mb0 text-uppercase">{{ paper.s.paper_title }}</h4>
+        <br>
+        <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
+        <p><em>{{ paper.s.paper_authors | safe }}</em></p>
+        <p>{{ paper.s.abstract | safe }}</p>
+        <a href="{{paper.s.source_url}}"><h6 class="masonry-title mb0">View full paper at source</h6></a>
+        <span class="border-bottom-1"></span>
       </div>
     </div>
+    {% endfor %}
   </div>
+</div>
 
-
-  <div class="pt90 pb50 container">
-
+<div class="bg-faded pt90 pb50">
+  <div class="container">
     <div class="row">
       <div class="mb50">
         <a href="/events">
@@ -121,8 +88,38 @@
           {% endfor %}
         </div>
       </div>
-
     </div>
   </div>
+</div>
+
+
+<div class="pt90 pb50 container">
+  <div class="row">
+    <div class="mb50">
+      <a href="/jobs">
+        <h3>Jobs</h3>
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-lg-9 col-md-6 mb90">
+        {% for job in jobs[0:2] %}
+        <div class="career-card clearfix">
+          <div class="clearfix pb20">
+            <h2 class="mb0">{{job.s.job_title}}</h2>
+            <span class="label label-default">{{job.s.company}}</span>
+          </div>
+          <br>
+          <p>
+            {{job.s.job_description | safe }}
+          </p>
+          <br>
+          <a href="{{job.s.job_url}}" class="btn float-right btn-sm btn-primary">Learn More</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
 
 {% endblock %}
