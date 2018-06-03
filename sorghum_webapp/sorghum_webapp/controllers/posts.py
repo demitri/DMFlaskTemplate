@@ -18,6 +18,7 @@ logger = logging.getLogger("wordpress_orm")
 post_grid = flask.Blueprint("post_grid", __name__)
 
 WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
+spacer = " & "
 @app.route('/posts')
 def posts():
 	''' List of posts '''
@@ -58,10 +59,11 @@ def posts():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
 
+	print(categories)
 	templateDict['posts'] = posts
 	templateDict['post_tally'] = post_tally
 	if categories:
-		templateDict['categories'] = categories[0]
+		templateDict['categories'] = spacer.join(categories)
 	else:
 		templateDict['categories'] = 'posts'
 	templateDict['current_page'] = current_page

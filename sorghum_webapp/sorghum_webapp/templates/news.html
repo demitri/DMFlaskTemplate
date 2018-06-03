@@ -27,7 +27,6 @@
     </div>
     {% for paper in papers[0:2] %}
     <div class="row">
-
       <div class="col-lg-9 col-md-6 mb90">
         <h4 class="mb0 text-uppercase">{{ paper.s.paper_title }}</h4>
         <br>
@@ -39,6 +38,7 @@
       </div>
     </div>
     {% endfor %}
+    <a href="/research" class="btn float-left btn-outline-primary btn-sm">More Research</a>
   </div>
 </div>
 
@@ -81,13 +81,14 @@
                   {{event.s.event_description | safe }}
                 </p>
                 <br>
-                <a href='#' class='btn btn-outline-secondary btn-sm'>Event Site</a>
+                <a href='{{event.s.event_url}}' class='btn btn-outline-secondary btn-sm'>Event Site</a>
               </div>
             </div>
           </div>
           {% endfor %}
         </div>
       </div>
+      <a href="/events" class="btn float-left btn-outline-primary btn-sm">More Events</a>
     </div>
   </div>
 </div>
@@ -116,6 +117,7 @@
           <a href="{{job.s.job_url}}" class="btn float-right btn-sm btn-primary">Learn More</a>
         </div>
         {% endfor %}
+        <a href="/jobs" class="btn float-left btn-outline-primary btn-sm">More Jobs</a>
       </div>
     </div>
   </div>

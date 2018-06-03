@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<!-- place page content here -->
+
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("static/images/sorghum_combine.jpg");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">Community</h1>
+        <br>
+        <h3 class="text-white">Blog, Team & Mailing List</h3>
+
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+
+<div class="pt90 pb50 container">
+  <div class="row">
+    <div class="mb50">
+      <a href="/mission_statement">
+        <h3>Latest Blog Posts</h3>
+      </a>
+    </div>
+    <div class='row'>
+      {% for post in blog %}
+          <div class="col-lg-4 mb30 wow fadeInUp" data-wow-delay=".2s">
+              <div class="entry-card">
+                  <a href="/post/{{post.s.slug}}" class="entry-thumb">
+                      <img src="{{post.featured_media.s.source_url}}" alt="" class="img-fluid">
+                      <span class="thumb-hover ti-back-right"></span>
+                  </a><!--/entry thumb-->
+                  <div class="entry-content">
+                      <div class="entry-meta mb5">
+                          <span>
+                              {{(post.s.date|str2datetime).strftime('%-d %B %Y')}}
+                          </span>
+                      </div>
+                      <h4 class="entry-title text-capitalize">
+                          <a href="/post/{{post.s.slug}}">
+                              {{post.s.title | safe}}
+                          </a>
+                      </h4>
+                      <p>
+                          {{post.s.excerpt | safe}}
+                      </p>
+                      <div class="text-right">
+                          <a href="/post/{{post.s.slug}}" class="btn-link btn">Read More</a>
+                      </div>
+                  </div><!--/entry content-->
+              </div>
+          </div><!--/.col-->
+      {% endfor %}
+    </div>
+    <a href="/blog" class="btn float-left btn-outline-primary btn-sm ">All Posts</a>
+  </div>
+</div>
+
+<div class="bg-faded pt90 pb50">
+  <div class="container">
+    <div class="row">
+      <div class="mb50">
+        <a href="/faq">
+          <h2>Team Members</h2>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9 col-md-6 my-5">
+        {% for user in team %}
+        <div class="row pb60">
+          <div class="col-lg-3 col-md-6  mb30">
+              <div class="team-card-default">
+                  <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
+                  <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
+                  <div class="team-default-content text-center pt30">
+                          <h4 class="mb0 text-uppercase">{{ user.s.name }}</h4>
+                          <span>{{user.s.roles}}</span>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-9 col-md-6 mb30">
+            <p>{{ user.s.description | safe }}</p>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+
+      </div>
+      <div class="mb90">
+        <a href="/people" class="btn float-left btn-outline-primary btn-sm ">People Page</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="pt90 pb50 container">
+  <div class="row">
+    <div class="mb50">
+      <a href="/contact">
+        <h3>Subscribe to our mailing list</h3>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-lg-6 mr-auto ml-auto mb90">
+          <form id="widget-subscribe-form" action="index.html" role="form" method="post" class="mb0">
+              <div class="input-group input-group-lg">
+
+                  <input type="email" name="widget-subscribe-form-email" class="form-control required" placeholder="Enter your Email">
+                  <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">Subscribe</button>
+                  </span>
+              </div>
+          </form>
+      </div>
+  </div>
+  <div class="mb90">
+    <a href="/mailing_list" class="btn float-left btn-outline-primary btn-sm ">More Info</a>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<!-- place page content here -->
+
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("static/images/sorghum_combine.jpg");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">About</h1>
+        <br>
+        <h3 class="text-white">Mission Statement, FAQs & Contact</h3>
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+
+<div class="pt90 pb50 container">
+  <div class="row">
+    <div class="mb50">
+      <a href="/mission_statement">
+        <h3>Mission Statement</h3>
+      </a>
+    </div>
+    <div class='row'>
+      <div class='col-lg-8  mr-auto ml-auto'>
+        <h5 class='lead text-center'>
+          {{ ms_post.s.content | safe }}
+        </h>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-faded pt90 pb50">
+  <div class="container">
+    <div class="row">
+      <div class="mb50">
+        <a href="/faq">
+          <h2>FAQs</h2>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9 col-md-6 my-5">
+        <div id="accordion" class="mb70" role="tablist" aria-multiselectable="true">
+          {% for question in questionSet %}
+          <div class="card mb10">
+            <div class="card-header accordion-header" role="tab" id="heading{{question.s.id}}">
+              <h5 class="mb-0">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{question.s.id}}" aria-expanded="false" aria-controls="collapse{{question.s.id}}">
+                  {{question.s.title | safe }}
+                </a>
+              </h5>
+            </div>
+            <div id="collapse{{question.s.id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{question.s.id}}">
+              <div class="card-body">
+                {{ question.s.content | safe }}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="mb90">
+      <a href="/faq" class="btn float-left btn-outline-primary btn-sm ">More FAQs</a>
+    </div>
+  </div>
+</div>
+
+
+<div class="pt90 pb50 container">
+  <div class="row">
+    <div class="mb50">
+      <a href="/contact">
+        <h3>Contact Us</h3>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-9 col-md-6 mb90">
+      <h4 class="text-uppercase">Address</h4>
+      <p>
+        Cold Spring Harbor Laboratory, <br>
+        Williams Building, <br>
+        1 Bungtown Road, <br>
+        Cold Spring Harbor, NY, 11724
+      </p>
+      <br>
+      <h4 class="text-uppercase">Email</h4>
+      <p>
+        <a href="#">warelab@cshl.edu</a>
+      </p>
+      <br>
+      <h4 class="text-uppercase">Phone</h4>
+      <p>
+        <a href="#">+1 (516) 367-8800</a>
+      </p>
+      <br>
+      <a href="/contact" class="btn float-left btn-outline-primary btn-sm">Contact Page</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -41,6 +41,9 @@ def register_blueprints(app=None):
 	from .controllers.mailing_list import mailing_list_page
 	from .controllers.events import events_page
 	from .controllers.news import news_page
+	from .controllers.about import about_page
+	from .controllers.community import community_page
+	from .controllers.resources import resources_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
@@ -61,6 +64,9 @@ def register_blueprints(app=None):
 	app.register_blueprint(mailing_list_page)
 	app.register_blueprint(events_page)
 	app.register_blueprint(news_page)
+	app.register_blueprint(about_page)
+	app.register_blueprint(community_page)
+	app.register_blueprint(resources_page)
 	#app.register_blueprint(notebook_page)
 	#app.register_blueprint(xxx)
 
