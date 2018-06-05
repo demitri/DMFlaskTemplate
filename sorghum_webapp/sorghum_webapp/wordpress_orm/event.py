@@ -188,7 +188,9 @@ class EventRequest(WPRequest):
 
 			events.append(event)
 
-		return events
+		sortedByEventDate = sorted(events, key=lambda k: k.s.start_date)
+
+		return sortedByEventDate
 
 
 	@property

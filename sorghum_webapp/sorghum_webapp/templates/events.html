@@ -40,7 +40,7 @@
                         <li class="list-inline-item">
                             <i class="fa fa-calendar-o"></i> <a href="#">
                               {{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
-                              {% if event.s.end_date %}
+                              {% if (event.s.end_date != "0000-00-00") %}
                               - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
                               {% endif %}
                             </a>
