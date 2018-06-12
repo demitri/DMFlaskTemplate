@@ -14,11 +14,21 @@
   </div>
 </div><!--page title end-->
 <div class="container pt90">
-  <div class="title-heading1 mb60">
-    <h3 class="mb30">Work in Sorghum</h3>
-  </div>
     <div class="row">
-        <div class="col-md-9">
+      <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
+      style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+      <!--/col-->
+      <div class="theiaStickySidebar"
+      style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+      <div class="pt50 title">Jobs in sorghum</div>
+      <div class="mb40">
+        {% for job in jobs %}
+        <a data-scroll="" href="#{{job.s.job_title}}" class="nav-link active">{{job.s.job_title}}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+        <div class="col-lg-10">
           {% for job in jobs %}
             <div class="career-card clearfix">
                 <div class="clearfix pb20">

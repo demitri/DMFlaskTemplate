@@ -8,6 +8,8 @@ Ref: https://wordpress.org/plugins/pods/
 
 import logging
 import requests
+from datetime import datetime
+today = datetime.now()
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
 
@@ -98,6 +100,7 @@ class EventRequest(WPRequest):
 		self.id = None # WordPress ID
 		self._before = None
 		self._after = None
+		self._past = False
 
 		self._status = list()
 		self._category_ids = list()
@@ -105,7 +108,7 @@ class EventRequest(WPRequest):
 
 	@property
 	def parameter_names(self):
-		return ["slug", "before", "after", "status", "categories", "featured_image"]
+		return ["slug", "before", "after", "status", "categories", "featured_image", "past"]
 
 	def get(self):
 		'''
@@ -127,6 +130,9 @@ class EventRequest(WPRequest):
 
 		if self.after:
 			self.parameters["after"] = self._after.isoformat()
+
+		if self.past:
+			self.parameters['past'] = self.past
 
 		# -------------------
 
@@ -150,43 +156,47 @@ class EventRequest(WPRequest):
 		events = list()
 		for d in events_data:
 
-			# Before we continue, do we have this Event in the cache already?
-			try:
-				event = self.api.wordpress_object_cache.get(class_name=Event.__name__, key=d["id"])
+			isPastEvent = datetime.strptime(d["start_date"], '%Y-%m-%d') < today
+
+			if (self.past and isPastEvent) or ((not self.past) and (not isPastEvent)):
+				# Before we continue, do we have this Event in the cache already?
+				try:
+					event = self.api.wordpress_object_cache.get(class_name=Event.__name__, key=d["id"])
+					events.append(event)
+					continue
+				except WPORMCacheObjectNotFoundError:
+					# nope, carry on
+					pass
+
+				event = Event(api=self.api)
+				event.json = d
+
+				event.s.id = d["id"]
+				event.s.date = d["date"]
+				event.s.date_gmt = d["date_gmt"]
+				event.s.guid = d["guid"]
+				event.s.modified = d["modified"]
+				event.s.modified_gmt = d["modified_gmt"]
+				event.s.slug = d["slug"]
+				event.s.status = d["status"]
+				event.s.type = d["type"]
+				event.s.link = d["link"]
+				event.s.title = d["title"]
+				event.s.content = d["content"]
+				event.s.template = d["template"]
+				event.s.start_date = d["start_date"]
+				event.s.end_date = d["end_date"]
+				event.s.organizer = d["organizer"]
+				event.s.event_description = d["event_description"]
+				event.s.event_url = d["event_url"]
+				event.s.featured_image = d["featured_image"]
+
+				# add to cache
+				self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.id, value = event)
+				self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.slug, value = event)
+
 				events.append(event)
-				continue
-			except WPORMCacheObjectNotFoundError:
-				# nope, carry on
-				pass
 
-			event = Event(api=self.api)
-			event.json = d
-
-			event.s.id = d["id"]
-			event.s.date = d["date"]
-			event.s.date_gmt = d["date_gmt"]
-			event.s.guid = d["guid"]
-			event.s.modified = d["modified"]
-			event.s.modified_gmt = d["modified_gmt"]
-			event.s.slug = d["slug"]
-			event.s.status = d["status"]
-			event.s.type = d["type"]
-			event.s.link = d["link"]
-			event.s.title = d["title"]
-			event.s.content = d["content"]
-			event.s.template = d["template"]
-			event.s.start_date = d["start_date"]
-			event.s.end_date = d["end_date"]
-			event.s.organizer = d["organizer"]
-			event.s.event_description = d["event_description"]
-			event.s.event_url = d["event_url"]
-			event.s.featured_image = d["featured_image"]
-
-			# add to cache
-			self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.id, value = event)
-			self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.slug, value = event)
-
-			events.append(event)
 
 		sortedByEventDate = sorted(events, key=lambda k: k.s.start_date)
 
