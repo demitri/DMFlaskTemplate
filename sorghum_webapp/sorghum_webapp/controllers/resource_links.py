@@ -26,7 +26,9 @@ def resource_links():
 		resources = rl_pr.get()
 
 		resources_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+		resources_default_image = api.media(slug="sorghum-grains_1920x1000")
 		templateDict["banner_media"] = resources_banner_media
+		templateDict["default_image"] = resources_default_image
 
 		populate_footer_template(template_dictionary=templateDict,
 								 wp_api=api,
