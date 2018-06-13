@@ -60,7 +60,6 @@ from sorghum_webapp import create_app
 # Turn on debugging by default IF 'debug' was unset AND this is the main program (i.e. not called by uWSGI),
 # otherwise use what is set on command line.
 debug = (__name__ == "__main__") or args.debug
-print("Debug = ", debug)
 app = create_app(debug=debug, conf=conf) # actually creates the Flask application instance
 
 # --------------

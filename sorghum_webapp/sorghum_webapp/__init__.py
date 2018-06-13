@@ -14,9 +14,6 @@ from . import jinja_filters
 from . import _app_setup_utils
 from .utilities.color_print import print_warning, print_error, print_info, yellow_text, green_text, red_text
 
-
-print("__init__")
-
 # ================================================================================
 
 def register_blueprints(app=None):
@@ -94,7 +91,7 @@ wordpress_orm_logger = logging.getLogger("wordpress_orm")
 
 def create_app(debug=False, conf=dict()):
 
-	print(" = = = = = = = = = = = creating app ...")
+	#print(" = = = = = = = = = = = creating app ...")
 
 	global app
 	app = Flask(__name__) # creates the app instance using the name of the module
