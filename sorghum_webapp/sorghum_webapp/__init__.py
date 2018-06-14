@@ -139,7 +139,8 @@ def create_app(debug=False, conf=dict()):
 			if config_filename:
 				server_config_file = _app_setup_utils.getConfigFile(config_filename)
 				print(green_text("Loading config file: "), yellow_text(server_config_file))
-				app.config.from_pyfile(server_config_file)
+				
+	app.config.from_pyfile(server_config_file)
 
 	# -----------------------------
 	# Perform app setup below here.
