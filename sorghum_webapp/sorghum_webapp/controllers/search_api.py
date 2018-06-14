@@ -10,8 +10,7 @@ from . import valueFromRequest
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 
-WP_CATS = ['posts', 'pages', 'users', 'resource-link']
-
+WP_CATS = ['posts', 'pages', 'users', 'resource-link', 'job', 'event', 'scientific_paper']
 
 @app.route('/search_api/<cat>')
 def search_api(cat):
@@ -22,10 +21,24 @@ def search_api(cat):
             response = session.get(url=url)
             dict = {}
             dict['docs'] = response.json()
-            dict['count'] = response.headers['X-WP-TOTAL']
-            return jsonify(dict)
-    elif cat == 'genes':
+            dict['numFound'] = int(response.headers['X-WP-TOTAL'])
+            results = jsonify(dict)
+    elif cat == 'Sorghumbase':
+        with requests.Session() as session:
+            dict = {}
+            dict['docs'] = []
+            dict['numFound'] = 0
+            for cat in WP_CATS:
+                url = WP_BASE_URL + cat + '?context=embed&search=' + q
+                response = session.get(url=url)
+                dict['numFound'] += int(response.headers['X-WP-TOTAL'])
+                for doc in response.json():
+                    dict['docs'].append(doc)
+            results = jsonify(dict)
+    elif cat == 'Gramene':
         with requests.Session() as session:
             url = 'http://data.gramene.org/search?q=' + q
             response = session.get(url=url)
-            return jsonify(response.json())
+            results = jsonify(response.json()['response'])
+    results.headers.add('Access-Control-Allow-Origin','*')
+    return results
