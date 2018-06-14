@@ -3,7 +3,7 @@
 {% block additional_header %}{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("static/images/millet_1920x1000.jpg");background-position:top center;'>
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{ banner_media.s.source_url}}");background-position:top center;'>
   <div class="container">
     <div class="row">
       <div class=" col-md-12">
@@ -14,7 +14,7 @@
   </div>
 </div><!--page title end-->
 
-<div id="markermap" style="width: 100%;height: 350px;"></div>
+<!-- <div id="markermap" style="width: 100%;height: 350px;"></div> -->
 <div class="container pt90 pb50">
   <div class="row">
     <div class="col-md-6 mb40">
@@ -66,7 +66,7 @@
           <div class="smart-wrap">
             <div class="smart-forms smart-container wrap-2">
 
-              <form method="post" action="smart-form/contact-recaptcha/php/smartprocess.php" id="smart-form">
+              <form method="post" action="static/assan/classic-template/smart-form/contact-recaptcha/php/smartprocess.php" id="smart-form">
                 <div class="form-body">
                   <div class="section">
                     <label class="field prepend-icon">
@@ -137,10 +137,10 @@
     });
     </script>
     <!--sky form plugin js-->
-    <script type="text/javascript" src="smart-form/contact-recaptcha/js/jquery.form.min.js"></script>
-    <script type="text/javascript" src="smart-form/contact-recaptcha/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
-    <script type="text/javascript" src="smart-form/contact-recaptcha/js/smart-form.js"></script>
+    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/jquery.form.min.js"></script>
+    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/smart-form.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
 
 {% endblock %}

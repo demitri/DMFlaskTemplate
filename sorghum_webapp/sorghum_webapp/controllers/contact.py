@@ -24,7 +24,7 @@ def contact():
 
 	with wp_session(api):
 
-		ms_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+		ms_banner_media = api.media(slug="dcim100mediadji_0208-jpg")
 		templateDict["banner_media"] = ms_banner_media
 
 		logger.debug(ms_banner_media.json)
