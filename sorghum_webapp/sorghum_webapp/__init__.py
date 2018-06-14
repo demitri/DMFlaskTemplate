@@ -138,9 +138,13 @@ def create_app(debug=False, conf=dict()):
 				print("No Flask configuration file was found (this is ok, it's optional.)")
 			if config_filename:
 				server_config_file = _app_setup_utils.getConfigFile(config_filename)
-				print(green_text("Loading config file: "), yellow_text(server_config_file))
 				
-	app.config.from_pyfile(server_config_file)
+	# load file if found, which there almost always should be (at least the default)
+	if server_config_file:
+		app.config.from_pyfile(server_config_file)
+		print(green_text("Loading config file: "), yellow_text(server_config_file))
+	else:
+		print(yellow_text("Warning: No server configuration file found (not even a default one."))
 
 	# -----------------------------
 	# Perform app setup below here.
