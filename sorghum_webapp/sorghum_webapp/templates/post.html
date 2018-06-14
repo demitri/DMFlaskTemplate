@@ -45,7 +45,7 @@
                         <li class="list-inline-item">
                             <i class="fa fa-tags"></i>
                             {% for category in post.categories %}
-                            	<a href="/category/{{category.s.slug}}">{{ category.s.name }}  </a>
+                            	<a href="/posts?categories={{category.s.slug}}">{{ category.s.name }}  </a>
                             {% endfor %}
                         </li>
                     </ul>
