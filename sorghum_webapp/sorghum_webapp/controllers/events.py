@@ -18,14 +18,18 @@ logger = logging.getLogger("wordpress_orm")
 
 events_page = flask.Blueprint("events_page", __name__)
 
+spacer = " & "
 @app.route('/events')
 def events():
 	''' Events page. '''
 	templateDict = {}
+	past = valueFromRequest(key="past", request=request) or False
+	if type(past) is str:
+		past = True
 
 	with wp_session(api):
 		event_request = EventRequest(api=api)
-		event_request.orderby = "start_date"
+		event_request.past = past
 
 		events = event_request.get()
 
@@ -34,8 +38,9 @@ def events():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
 
-	print(events[0].s.featured_image)
+	print(events)
 	templateDict['events'] = events
+	templateDict['past'] = past
 
 
 	return render_template("events.html", **templateDict)

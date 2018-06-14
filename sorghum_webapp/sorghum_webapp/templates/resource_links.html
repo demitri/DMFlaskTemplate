@@ -23,7 +23,11 @@
         <div class="col-lg-4 mb40">
             <div class="image-text-card1">
                 <a href="{{resource.s.resource_url}}" class="card-link"></a>
+                {% if resource.resource_image %}
                 <img src="{{resource.resource_image.s.source_url}}" alt="" class="img-fluid mb20">
+                {% else %}
+                <img src="{{default_image.s.source_url}}" alt="" class="img-fluid mb20">
+                {% endif %}
                 <h4>{{resource.s.resource_name}}</h4>
                 <p>{{resource.s.resource_blurb}}</p>
             </div>
@@ -31,5 +35,5 @@
         {% endfor %}
     </div><!--/row-->
 </div>
-        
+
 {% endblock %}

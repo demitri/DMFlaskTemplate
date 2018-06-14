@@ -14,47 +14,61 @@
   </div>
 </div><!--page title end-->
 <div class="container pt90 pb50">
-  <div class="title-heading1 mb60">
-    <h3 class="mb30">Upcoming events</h3>
+<div class="row">
+  <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
+  style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+  <!--/col-->
+  <div class="theiaStickySidebar"
+  style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+  <div class="pt50 title">Events</div>
+  <div class="mb40">
+    {% for event in events %}
+    <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+    {% endfor %}
+    {% if past %}
+    <a data-scroll="" href="/events" class="nav-link">Current events</a>
+    {% else %}
+    <a data-scroll="" href="/events?past=true" class="nav-link">Past events</a>
+    {% endif %}
   </div>
-<!-- </div>
-<div class="container mb90"> -->
-  <div class="row justify-content-md-center">
-    <div class="page-timeline">
-      {% for event in events %}
-        <div class="vtimeline-point">
-            <div class="vtimeline-icon">
-                <i class="fa fa-calendar"></i>
-            </div>
-            <div class="vtimeline-block">
-                <!-- <div class="vtimeline-date">#{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</div> -->
-                <div class="vtimeline-content">
-                  {% if event.s.featured_image %}
-                    <a href='#'><img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'></a>
-                  {% endif %}
-                    <h3>{{event.s.title.rendered}}</h3>
-                    <ul class="post-meta list-inline">
-                        <li class="list-inline-item">
-                            <i class="fa fa-user-circle-o"></i> <a href="#">{{event.s.organizer}}</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <i class="fa fa-calendar-o"></i> <a href="#">
-                              {{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
-                              {% if (event.s.end_date != "0000-00-00") %}
-                              - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
-                              {% endif %}
-                            </a>
-                        </li>
-                    </ul>
-                    <p>
-                      {{event.s.event_description | safe }}
-                    </p><br>
-                    <a href='{{event.s.event_url}}' class='btn btn-outline-secondary btn-sm'>Event Site</a>
-                </div>
-            </div>
+</div>
+</div>
+<div class="col-lg-10">
+  <div class="page-timeline">
+    {% for event in events %}
+    <div id='{{event.s.title.rendered}}' class="vtimeline-point">
+      <div class="vtimeline-icon">
+        <i class="fa fa-calendar"></i>
+      </div>
+      <div class="vtimeline-block">
+        <!-- <div class="vtimeline-date">{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</div> -->
+        <div class="vtimeline-content">
+          {% if event.s.featured_image %}
+          <a href='#'><img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'></a>
+          {% endif %}
+          <h2>{{event.s.title.rendered}}</h2>
+          <h3>{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
+          {% if (event.s.end_date != "0000-00-00") %}
+          - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
+          {% endif %}</h3>
+          <ul class="post-meta list-inline">
+            <li class="list-inline-item">
+              <i class="fa fa-bank"></i> <a href="#">{{event.s.organizer}}</a>
+            </li>
+          </ul>
+          <p>
+            {{event.s.event_description | safe }}
+          </p><br>
+          <a href='{{event.s.event_url}}' class='btn btn-outline-secondary btn-sm'>Event Site</a>
         </div>
-      {% endfor %}
+      </div>
     </div>
+    {% endfor %}
   </div>
+</div>
+</div>
+
+
+
 </div>
 {% endblock %}
