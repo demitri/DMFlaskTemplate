@@ -23,7 +23,7 @@ def search():
     templateDict = {}
     categories = valueFromRequest(key="categories", request=request, aslist=True)
     if categories == None:
-        categories = ['posts', 'pages', 'resource-link', 'users', 'genes']
+        categories = ['Sorghumbase','Gramene']
     templateDict['q'] = valueFromRequest(key="q", request=request)
     with wp_session(api):
         populate_footer_template(template_dictionary=templateDict, wp_api=api)

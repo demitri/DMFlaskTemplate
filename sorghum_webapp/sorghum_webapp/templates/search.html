@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block page_title %}Search{% endblock %}
-{% block additional_header %}
-<script type="text/javascript" src="{{request.script_root}}/static/js/search.js"></script>
-{% endblock %}
+{% block additional_header %}{% endblock %}
 {% block script_below_content %}
 function initSearch() {
     var categories = [];
@@ -37,11 +35,8 @@ function initSearch() {
             <!--/col-->
             <div class="theiaStickySidebar"
                  style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
-                <div class="pt50 title">Results</div>
-                <div class="mb40">
-                    {% for category in categories %}
-                    <a data-scroll="" href="#{{category}}" class="nav-link active">{{category}}</a>
-                    {% endfor %}
+                <div class="pt50 title">Resource</div>
+                <div class="mb40" id="search-summary">
                 </div>
                 <div class="resize-sensor"
                      style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
@@ -60,15 +55,7 @@ function initSearch() {
              style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
             <div class="theiaStickySidebar"
                  style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
-                {% for category in categories %}
-                <div id="{{category}}" class="pt50 row">
-                    <div class="col">
-                        <h2 class="mb30">{{category}}</h2>
-                        <div id="{{category}}-react-cmp">
-                        </div>
-                    </div>
-                </div>
-                {% endfor %}
+                <div id="search-results"></div>
                 <div class="resize-sensor"
                      style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
                     <div class="resize-sensor-expand"
@@ -84,4 +71,5 @@ function initSearch() {
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{{request.script_root}}/static/js/search.js"></script>
 {% endblock %}
