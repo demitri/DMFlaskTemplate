@@ -76,10 +76,12 @@ def register_blueprints(app=None):
 
 # ================================================================================
 
-try:
-	app
-except NameError:
-	app = Flask(__name__)
+#try:
+#	app
+#except NameError:
+#	app = Flask(__name__)
+
+app = None
 
 # defined here so that other files can import this object
 wordpress_api = None # define below after configuration is read -> app.config["WP_BASE_URL"]
@@ -89,7 +91,10 @@ wordpress_orm_logger = logging.getLogger("wordpress_orm")
 
 def create_app(debug=False, conf=dict()):
 
-	#app = Flask(__name__) # creates the app instance using the name of the module
+	#print(" = = = = = = = = = = = creating app ...")
+
+	global app
+	app = Flask(__name__) # creates the app instance using the name of the module
 	app.debug = debug
 
 	# --------------------------------------------------
@@ -102,6 +107,7 @@ def create_app(debug=False, conf=dict()):
 	# -----------------------------------------------------------------------
 	server_config_file = None
 
+	# configuration files by host name in debug mode
 	if app.debug:
 		hostname = socket.gethostname()
 		if "your_host" in hostname:
@@ -119,15 +125,21 @@ def create_app(debug=False, conf=dict()):
 				# file.
 				# NOTE: For Python 3, the value from the uwsgi.opt dict below must be decoded, e.g.
 				# config_file = uwsgi.opt['flask-config-file'].decode("utf-8")
-				server_config_file = _app_setup_utils.getConfigFile(uwsgi.opt['flask-config-file'])
 			except ImportError:
 				print("Trying to run in production mode, but not running under uWSGI.\n"
 					  "You might try running again with the '--debug' (or '-d') flag.")
 				sys.exit(1)
 
-	if server_config_file:
-		print(green_text("Loading config file: "), yellow_text(server_config_file))
-		app.config.from_pyfile(server_config_file)
+			# read configuration file specified in uWSGI parameters
+			config_filename = None
+			try:
+				config_filename = uwsgi.opt['flask-config-file'].decode("utf-8")
+			except KeyError:
+				print("No Flask configuration file was found (this is ok, it's optional.)")
+			if config_filename:
+				server_config_file = _app_setup_utils.getConfigFile(config_filename)
+				print(green_text("Loading config file: "), yellow_text(server_config_file))
+				app.config.from_pyfile(server_config_file)
 
 	# -----------------------------
 	# Perform app setup below here.

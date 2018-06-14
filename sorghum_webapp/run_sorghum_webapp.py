@@ -6,6 +6,7 @@ This script is used to launch myapplication.
 Application initialization should go here.
 
 '''
+import sys
 import argparse
 import coloredlogs
 
@@ -59,7 +60,6 @@ from sorghum_webapp import create_app
 # Turn on debugging by default IF 'debug' was unset AND this is the main program (i.e. not called by uWSGI),
 # otherwise use what is set on command line.
 debug = (__name__ == "__main__") or args.debug
-
 app = create_app(debug=debug, conf=conf) # actually creates the Flask application instance
 
 # --------------
@@ -80,18 +80,18 @@ if args.log_level:
 # -----------------------------------------
 # If using SQLAlchemy, uncomment this block
 # -----------------------------------------
-if conf["usingSQLAlchemy"]:
-
-	# Can't create the database connection unless we've created the app
-	from myapplication.model.database import db
-
-	@app.teardown_appcontext
-	def shutdown_session(exception=None):
-	   ''' Enable Flask to automatically remove database sessions at the
-	   	end of the request or when the application shuts down.
-	   	Ref: http://flask.pocoo.org/docs/patterns/sqlalchemy/
-	   '''
-	   db.Session.remove()
+# if conf["usingSQLAlchemy"]:
+# 
+# 	# Can't create the database connection unless we've created the app
+# 	from myapplication.model.database import db
+# 
+# 	@app.teardown_appcontext
+# 	def shutdown_session(exception=None):
+# 	   ''' Enable Flask to automatically remove database sessions at the
+# 	   	end of the request or when the application shuts down.
+# 	   	Ref: http://flask.pocoo.org/docs/patterns/sqlalchemy/
+# 	   '''
+# 	   db.Session.remove()
 
 # ------------------------------------
 # Register Flask modules (if any) here
@@ -112,7 +112,9 @@ if __name__ == "__main__":
     This is called when this script is directly run.
     uWSGI gets the "app" object (the "callable") and runs it itself.
     '''
-    if True:
+    print("- - - - - - - - - - - - - - ")
+
+    if args.debug:
     	
     	# compile React to static JS
     

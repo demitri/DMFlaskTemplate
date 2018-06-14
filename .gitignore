@@ -1,4 +1,6 @@
 
+*.logfile
+*.sock
 
 # temp files
 ._*
