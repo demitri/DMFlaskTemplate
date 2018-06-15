@@ -24,7 +24,7 @@ def contact():
 
 	with wp_session(api):
 
-		ms_banner_media = api.media(slug="dcim100mediadji_0208-jpg")
+		ms_banner_media = api.media(slug="aerial_combines")
 		templateDict["banner_media"] = ms_banner_media
 
 		logger.debug(ms_banner_media.json)

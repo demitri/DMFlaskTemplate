@@ -36,7 +36,7 @@ def about():
 			index = randint(0, len(questionSet)-1)
 			threeQuestions.append(questionSet.pop(index))
 
-		posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+		posts_banner_media = api.media(slug="aerial_combines")
 		templateDict["banner_media"] = posts_banner_media
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])

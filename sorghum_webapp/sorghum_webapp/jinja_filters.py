@@ -24,7 +24,7 @@ blueprint = flask.Blueprint('jinja_filters', __name__)
 @blueprint.app_template_filter()
 def str2datetime(context, value):
 	'''
-	Format date : "2017-10-28T02:20:32" -> "28 October 2017"
+	Format date : "2017-10-28T02:20:32" or "2017-10-28" -> "28 October 2017" 
 	'''
 	#
 	# This is useful: http://strftime.org

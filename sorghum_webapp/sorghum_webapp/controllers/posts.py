@@ -48,8 +48,11 @@ def posts():
 		post_request.page = current_page
 
 		posts = post_request.get(count=False)
+		if 'blog' in categories:
+			posts_banner_media = api.media(slug="sorghum_combine")
+		else:
+			posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 
-		posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		templateDict["banner_media"] = posts_banner_media
 
 		# pre-cache these items so new HTTP connections aren't made from the template

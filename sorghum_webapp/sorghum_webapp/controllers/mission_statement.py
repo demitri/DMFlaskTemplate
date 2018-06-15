@@ -21,18 +21,18 @@ mission_statement_page = flask.Blueprint("mission_statment_page", __name__)
 def mission():
 	''' Mission Statement page. '''
 	templateDict = {}
-	
+
 	with wp_session(api):
-		
+
 		ms_post = api.post(slug='mission-statement')
-		
-		ms_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+
+		ms_banner_media = api.media(slug="aerial_combines")
 		templateDict["banner_media"] = ms_banner_media
-		
+
 		logger.debug(ms_banner_media.json)
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[ms_banner_media])
-	
+
 	templateDict['mission_statement_post'] = ms_post
-	
-	
+
+
 	return render_template("mission_statement.html", **templateDict)

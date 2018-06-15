@@ -3,7 +3,7 @@
 {% block body_property %}class="sticky-footer-page"{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{ banner_media.s.source_url}}")'>
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{banner_media.s.source_url}}")'>
     <div class="container">
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
@@ -13,12 +13,12 @@
         </div>
     </div>
 </div><!--page title end-->
-        
+
 <div class='container-fluid'>
     <div class='row'>
         <div class='col-lg-8  mr-auto ml-auto my-5'>
             <!--div class="title-heading1 mb30">
-                <h3>header here</h3>                       
+                <h3>header here</h3>
             </div-->
              <h5 class='lead text-center'>
 	             	{{ mission_statement_post.s.content | safe }}
@@ -26,6 +26,6 @@
         </div>
     </div>
 </div>
-        
-        
+
+
 {% endblock %}

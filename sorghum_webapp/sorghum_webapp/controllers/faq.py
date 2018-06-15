@@ -29,7 +29,7 @@ def faq():
 		post_request.order = "asc"
 		questionSet = post_request.get()
 
-		faq_banner_media = api.media(slug="sorghum_combine")
+		faq_banner_media = api.media(slug="aerial_combines")
 		templateDict["banner_media"] = faq_banner_media
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[faq_banner_media])
