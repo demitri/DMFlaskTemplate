@@ -17,22 +17,21 @@
   <div class="title-heading1 mb60">
     <h3 class="mb30">Sorghumbase Team</h3>
   </div>
-  {% for user in team %}
   <div class="row pb60">
-    <div class="col-lg-3 col-md-6  mb30">
+  {% for user in team %}
+    <div class="col-lg-4 col-md-6  mb30">
         <div class="team-card-default">
             <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
-            <img src="{{ user.s.avatar_urls['96'].replace("96", "256") }}" alt="" class="img-fluid rounded-circle centered">
-            <div class="team-default-content text-center pt30">
+            <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
+            <div class="team-default-content text-center pt30 pb20">
                     <h4 class="mb0 text-uppercase">{{ user.s.name }}</h4>
-                    <span>{{user.s.roles}}</span>
+            </div>
+            <div class="text-center">
+              <p>{{ user.s.description | safe }}</p>
             </div>
         </div>
     </div>
-    <div class="col-lg-9 col-md-6 mb90">
-      <p>{{ user.s.description | safe }}</p>
-    </div>
-  </div>
   {% endfor %}
+    </div>
 </div>
 {% endblock %}
