@@ -1,4 +1,4 @@
-<svg class="lds-dna" width="200px"  height="200px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;"><circle cx="5.882352941176471" cy="60.0701" r="3.2">
+<svg class="lds-dna" width="50px"  height="20px"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 30 100 100" preserveAspectRatio="xMidYMin slice" style="background: none;"><circle cx="5.882352941176471" cy="60.0701" r="3.2">
   <animate attributeName="r" times="0;0.5;1" values="2.4000000000000004;3.5999999999999996;2.4000000000000004" dur="1.8s" repeatCount="indefinite" begin="-0.45s"></animate>
   <animate attributeName="cy" keyTimes="0;0.5;1" values="39;61;39" dur="1.8s" repeatCount="indefinite" begin="0s" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" calcMode="spline"></animate>
   <animate attributeName="fill" keyTimes="0;0.5;1" values="#fd0302;#0660f6;#fd0302" dur="1.8s" repeatCount="indefinite" begin="-0.45s"></animate>
