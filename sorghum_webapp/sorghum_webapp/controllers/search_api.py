@@ -26,14 +26,15 @@ def search_api(cat):
     elif cat == 'Sorghumbase':
         with requests.Session() as session:
             dict = {}
-            dict['docs'] = []
             dict['numFound'] = 0
+            dict['categories'] = {}
             for cat in WP_CATS:
-                url = WP_BASE_URL + cat + '?context=embed&search=' + q
+                url = WP_BASE_URL + cat + '?context=embed&_embed=true&search=' + q
                 response = session.get(url=url)
                 dict['numFound'] += int(response.headers['X-WP-TOTAL'])
-                for doc in response.json():
-                    dict['docs'].append(doc)
+                dict['categories'][cat] = {}
+                dict['categories'][cat]['numFound'] = int(response.headers['X-WP-TOTAL'])
+                dict['categories'][cat]['docs'] = response.json();
             results = jsonify(dict)
     elif cat == 'Gramene':
         with requests.Session() as session:
