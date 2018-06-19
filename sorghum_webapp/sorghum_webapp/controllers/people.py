@@ -25,7 +25,7 @@ def people():
 	with wp_session(api):
 
 		user_request = api.UserRequest()
-		user_request.roles = "Administrator"
+
 		team = user_request.get()
 
 		people_banner_media = api.media(slug="sorghum_combine")
@@ -33,7 +33,6 @@ def people():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[people_banner_media])
 
-	# print(team[2].s.avatar_urls['24'])
 	templateDict['team'] = team
 
 

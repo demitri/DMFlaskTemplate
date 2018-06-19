@@ -26,7 +26,7 @@ def posts():
 	current_page = valueFromRequest(key="page", request=request) or 1
 	if type(current_page) is str:
 		current_page = int(current_page)
-	n_per_page = valueFromRequest(key="show", request=request) or 3
+	n_per_page = valueFromRequest(key="show", request=request) or 9
 	categories = valueFromRequest(key="categories", request=request, aslist=True)
 
 	with wp_session(api):
@@ -48,7 +48,7 @@ def posts():
 		post_request.page = current_page
 
 		posts = post_request.get(count=False)
-		if 'blog' in categories:
+		if isinstance(categories, list) and 'blog' in categories:
 			posts_banner_media = api.media(slug="sorghum_combine")
 		else:
 			posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
