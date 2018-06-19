@@ -1,6 +1,8 @@
 
 *.logfile
 *.sock
+.cache
+.pytest_cache
 
 # temp files
 ._*

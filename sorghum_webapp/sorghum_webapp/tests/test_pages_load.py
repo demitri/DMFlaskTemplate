@@ -1,15 +1,16 @@
 
-#import pytest
-
 # "conftest.py" is automatically called by pytest.
 # Define any fixtures (i.e. resources needed for testing) there.
 #
-# An instance of the Flask application for testing is defined as a fixture.
+# An instance of the Flask application for testing is defined as a fixture ("client")
+# either in conftest.py or automatically via the pytest-flask extension.
 #
 
 # =======================================
 # Helper functions to work with JSON data
 # =======================================
+
+# TODO: move to a common file (conftest.py? works as fixtures? - test with search.py)
 
 def post_json(client, url, json_dict):
 	return client.post(url, data=json.dumps(json_dict), content_type='application/json')	
