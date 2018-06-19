@@ -6,7 +6,7 @@ import flask
 import logging
 from flask import request, render_template
 from wordpress_orm import wp_session
-from ..wordpress_orm.scientific_paper import ScientificPaperRequest
+from ..wordpress_orm_extensions.scientific_paper import ScientificPaperRequest
 
 from .. import app
 from .. import wordpress_api as api

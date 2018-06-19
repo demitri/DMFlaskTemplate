@@ -11,8 +11,7 @@ from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
 
-from ..wordpress_orm.resource_link import ResourceLink
-from ..wordpress_orm.resource_link import ResourceLinkRequest
+from ..wordpress_orm_extensions.resource_link import ResourceLink, ResourceLinkRequest
 
 logger = logging.getLogger("wordpress_orm")
 

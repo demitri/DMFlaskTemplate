@@ -5,7 +5,7 @@
 import flask
 import logging
 from flask import request, render_template
-from ..wordpress_orm.job import JobRequest
+from ..wordpress_orm_extensions.job import JobRequest
 
 from wordpress_orm import wp_session
 

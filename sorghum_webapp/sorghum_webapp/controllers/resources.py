@@ -7,7 +7,7 @@ import logging
 from flask import request, render_template
 
 from wordpress_orm import wp_session
-from ..wordpress_orm.resource_link import ResourceLinkRequest
+from ..wordpress_orm_extensions.resource_link import ResourceLinkRequest
 
 from .. import app
 from .. import wordpress_api as api

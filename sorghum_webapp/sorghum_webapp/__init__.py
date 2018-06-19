@@ -123,32 +123,41 @@ def create_app(debug=False):#, conf=dict()):
 		else:
 			server_config_file = _app_setup_utils.getConfigFile("default.cfg") # default
 
-	else:
+	elif app.testing:
 		#
-		# Look for deployment configuration file.
+		# Get config file when testing. Can add extra logic here to test multiple configurations.
 		#
-		if app.config["USING_UWSGI"]:
-			try:
-				import uwsgi
-				# The uWSGI configuration file defines a key value pair to point
-				# to a particular configuration file in this module under "configuration_files".
-				# The key is 'flask_config_file', and the value is the name of the configuration
-				# file.
-				# NOTE: For Python 3, the value from the uwsgi.opt dict below must be decoded, e.g.
-				# config_file = uwsgi.opt['flask-config-file'].decode("utf-8")
-			except ImportError:
-				print("Trying to run in production mode, but not running under uWSGI.\n"
-					  "You might try running again with the '--debug' (or '-d') flag.")
-				sys.exit(1)
+		server_config_file = _app_setup_utils.getConfigFile("default.cfg") # default
 
-			# read configuration file specified in uWSGI parameters
-			config_filename = None
-			try:
-				config_filename = uwsgi.opt['flask-config-file'].decode("utf-8")
-			except KeyError:
-				print("No Flask configuration file was found (this is ok, it's optional.)")
-			if config_filename:
-				server_config_file = _app_setup_utils.getConfigFile(config_filename)
+	elif app.config["USING_UWSGI"]:
+
+		#
+		# Must be in production. Look for deployment configuration file.
+		#
+		try:
+			import uwsgi
+			# The uWSGI configuration file defines a key value pair to point
+			# to a particular configuration file in this module under "configuration_files".
+			# The key is 'flask_config_file', and the value is the name of the configuration
+			# file.
+			# NOTE: For Python 3, the value from the uwsgi.opt dict below must be decoded, e.g.
+			# config_file = uwsgi.opt['flask-config-file'].decode("utf-8")
+		except ImportError:
+			print("Trying to run in production mode, but not running under uWSGI.\n"
+				  "You might try running again with the '--debug' (or '-d') flag.")
+			sys.exit(1)
+
+		# read configuration file specified in uWSGI parameters
+		config_filename = None
+		try:
+			config_filename = uwsgi.opt['flask-config-file'].decode("utf-8")
+		except KeyError:
+			print("No Flask configuration file was found (this is ok, it's optional.)")
+		if config_filename:
+			server_config_file = _app_setup_utils.getConfigFile(config_filename)
+	
+	else:
+		raise Exception("Not sure what mode we are running in here...")
 				
 	# Load file if found, which there almost always should be (at least in production mode).
 	if server_config_file:
@@ -181,7 +190,7 @@ def create_app(debug=False):#, conf=dict()):
 
 	    # This "with" is necessary to prevent exceptions of the form:
 	    #    RuntimeError: working outside of application context
-	    #    (i.e. the app object doesn't exist yet - being created here)
+	    #    (i.e. the app object doesn't exist yet - being created here) (?)
 
 			with app.app_context():
 				from .model.databasePostgreSQL import db

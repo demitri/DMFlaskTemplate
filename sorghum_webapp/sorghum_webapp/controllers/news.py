@@ -5,9 +5,9 @@
 import flask
 import logging
 from flask import request, render_template
-from ..wordpress_orm.scientific_paper import ScientificPaperRequest
-from ..wordpress_orm.job import JobRequest
-from ..wordpress_orm.event import EventRequest
+from ..wordpress_orm_extensions.scientific_paper import ScientificPaperRequest
+from ..wordpress_orm_extensions.job import JobRequest
+from ..wordpress_orm_extensions.event import EventRequest
 
 from wordpress_orm import wp_session
 

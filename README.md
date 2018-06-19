@@ -28,6 +28,7 @@ DMFlaskTemplate has these Python dependencies:
  * [SQLAlchemy](http://www.sqlalchemy.org)
  * [psycopg2](https://pypi.python.org/pypi/psycopg2) (if using PostgreSQL)
  * [termcolor](https://pypi.python.org/pypi/termcolor) (for color printing while debugging)
+ * [pytest-flask](http://pytest-flask.readthedocs.io)
  
 If you plan to incoporate Sentry for production logging, add these:
 
