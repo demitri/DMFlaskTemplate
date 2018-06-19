@@ -6,7 +6,6 @@ This script is used to launch myapplication.
 Application initialization should go here.
 
 '''
-import sys
 import argparse
 import coloredlogs
 
@@ -15,15 +14,15 @@ from flask import Flask
 # =====================================
 # Set these values for your application
 # =====================================
-conf = dict()
-
-conf["usingSQLAlchemy"] = False
-conf["usingPostgreSQL"] = False
-
-# These options only apply when the app is served in a production mode.
-conf["usingSentry"]		= False	# only for use in production mode
-conf["sentryDSN"]		= "insert your Sentry DSN here, e.g. 'https://...'"
-conf["usingUWSGI"]		= True # only applies to serving the app in a production mode
+# conf = dict()
+# 
+# conf["USING_SQLALCHEMY"] = False
+# conf["USING_POSTGRESQL"] = False
+# 
+# # These options only apply when the app is served in a production mode.
+# conf["USING_SENTRY"]		= False	# only for use in production mode
+# conf["SENTRY_DSN"]		= "insert your Sentry DSN here, e.g. 'https://...'"
+# conf["USING_UWSGI"]		= True # only applies to serving the app in a production mode
 
 
 # --------------------------
@@ -60,7 +59,8 @@ from sorghum_webapp import create_app
 # Turn on debugging by default IF 'debug' was unset AND this is the main program (i.e. not called by uWSGI),
 # otherwise use what is set on command line.
 debug = (__name__ == "__main__") or args.debug
-app = create_app(debug=debug, conf=conf) # actually creates the Flask application instance
+
+app = create_app(debug=debug) #, conf=conf) # actually creates the Flask application instance
 
 # --------------
 # Set up logging
@@ -68,30 +68,36 @@ app = create_app(debug=debug, conf=conf) # actually creates the Flask applicatio
 if args.log_level:
 	import logging
 	logger = logging.getLogger("wordpress_orm") # package name
-	#logger.setLevel(logging.DEBUG)
-	coloredlogs.install(level=logging.DEBUG, logger=logger)
-		
-	# Where should logging output go?
-	#
-	ch = logging.StreamHandler()  # output to console
-	ch.setLevel(getattr(logging, args.log_level))   # set log level for output
-	logger.addHandler(ch)         # add to logger
+
+	color_logs = app.config.get("ENABLE_COLOR_LOGS", False)
+
+	if color_logs:
+		# This adds a handler to the logger.
+		#logger.setLevel(logging.DEBUG)
+		coloredlogs.install(level=logging.DEBUG, logger=logger)
+	else:
+		# The code below should be used *INSTEAD* if colorless logs are prefer	
+		# Where should logging output go?
+		#
+		ch = logging.StreamHandler()  # output to console
+		ch.setLevel(getattr(logging, args.log_level))   # set log level for output
+		logger.addHandler(ch)         # add to logger
 
 # -----------------------------------------
 # If using SQLAlchemy, uncomment this block
 # -----------------------------------------
-# if conf["usingSQLAlchemy"]:
-# 
-# 	# Can't create the database connection unless we've created the app
-# 	from myapplication.model.database import db
-# 
-# 	@app.teardown_appcontext
-# 	def shutdown_session(exception=None):
-# 	   ''' Enable Flask to automatically remove database sessions at the
-# 	   	end of the request or when the application shuts down.
-# 	   	Ref: http://flask.pocoo.org/docs/patterns/sqlalchemy/
-# 	   '''
-# 	   db.Session.remove()
+if app.config["USING_SQLALCHEMY"]:
+
+	# Can't create the database connection unless we've created the app
+	from myapplication.model.database import db
+
+	@app.teardown_appcontext
+	def shutdown_session(exception=None):
+	   ''' Enable Flask to automatically remove database sessions at the
+	   	end of the request or when the application shuts down.
+	   	Ref: http://flask.pocoo.org/docs/patterns/sqlalchemy/
+	   '''
+	   db.Session.remove()
 
 # ------------------------------------
 # Register Flask modules (if any) here
@@ -112,9 +118,7 @@ if __name__ == "__main__":
     This is called when this script is directly run.
     uWSGI gets the "app" object (the "callable") and runs it itself.
     '''
-    print("- - - - - - - - - - - - - - ")
-
-    if args.debug:
+    if True:
     	
     	# compile React to static JS
     

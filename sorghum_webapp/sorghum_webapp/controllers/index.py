@@ -29,7 +29,7 @@ from .footer import populate_footer_template
 # custom values added to a record.
 #
 
-WP_BASE_URL = app.config["WP_BASE_URL"]
+#WP_BASE_URL = app.config["WP_BASE_URL"]
 logger = logging.getLogger("wordpress_orm")
 console_handler = logging.StreamHandler()
 logger.addHandler(console_handler)
@@ -116,9 +116,9 @@ def index2():
 		# "categories":"??" # 'categories' takes the category ID
 
 		# get list of blog posts
-		#url = os.path.join(WP_BASE_URL, "posts?categories={}".format(blog_posts["id"]))
+		#url = os.path.join(app.config["WP_BASE_URL"], "posts?categories={}".format(blog_posts["id"]))
 		# Ref: WordPress 'posts' API: https://developer.wordpress.org/rest-api/reference/posts/
-		url = os.path.join(WP_BASE_URL, "post") #?".format(blog_posts["id"]))
+		url = os.path.join(app.config["WP_BASE_URL"], "post") #?".format(blog_posts["id"]))
 		response = http_session.get(url=url, params=params)
 		posts = response.json()
 
@@ -130,7 +130,7 @@ def index2():
 			featured_media_id = post["featured_media"]
 
 			# Ref: WordPress 'media' API: https://developer.wordpress.org/rest-api/reference/media/
-			url = os.path.join(WP_BASE_URL, "media/{}".format(featured_media_id))
+			url = os.path.join(app.config["WP_BASE_URL"], "media/{}".format(featured_media_id))
 			response = http_session.get(url=url, params={"context":"embed"}) #  "embed" param retrieves fewer records
 			media = response.json()
 

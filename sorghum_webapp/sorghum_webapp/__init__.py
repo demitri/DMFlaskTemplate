@@ -87,9 +87,10 @@ app = None
 wordpress_api = None # define below after configuration is read -> app.config["WP_BASE_URL"]
 
 # set up wordpress-orm logger
+# can be called multiple times as it's a singleton
 wordpress_orm_logger = logging.getLogger("wordpress_orm")
 
-def create_app(debug=False, conf=dict()):
+def create_app(debug=False):#, conf=dict()):
 
 	#print(" = = = = = = = = = = = creating app ...")
 
@@ -107,8 +108,15 @@ def create_app(debug=False, conf=dict()):
 	# -----------------------------------------------------------------------
 	server_config_file = None
 
-	# configuration files by host name in debug mode
+	# Always load the default configuration - values that need to be overridden
+	# should be contained in other configuration files (see logic below).
+	default_config_file = _app_setup_utils.getConfigFile("default.cfg") # returns the file path
+	app.config.from_pyfile(default_config_file) # reads values into app.config dictionary
+
 	if app.debug:
+		#
+		# Look for configuration file by host name.
+		#
 		hostname = socket.gethostname()
 		if "your_host" in hostname:
 			server_config_file = _app_setup_utils.getConfigFile("your_host.cfg")
@@ -116,7 +124,10 @@ def create_app(debug=False, conf=dict()):
 			server_config_file = _app_setup_utils.getConfigFile("default.cfg") # default
 
 	else:
-		if conf["usingUWSGI"]:
+		#
+		# Look for deployment configuration file.
+		#
+		if app.config["USING_UWSGI"]:
 			try:
 				import uwsgi
 				# The uWSGI configuration file defines a key value pair to point
@@ -138,13 +149,13 @@ def create_app(debug=False, conf=dict()):
 				print("No Flask configuration file was found (this is ok, it's optional.)")
 			if config_filename:
 				server_config_file = _app_setup_utils.getConfigFile(config_filename)
-
-	# load file if found, which there almost always should be (at least the default)
+				
+	# Load file if found, which there almost always should be (at least in production mode).
 	if server_config_file:
-		app.config.from_pyfile(server_config_file)
 		print(green_text("Loading config file: "), yellow_text(server_config_file))
+		app.config.from_pyfile(server_config_file)
 	else:
-		print(yellow_text("Warning: No server configuration file found (not even a default one."))
+		print(yellow_text("Warning: No server configuration file found."))
 
 	# -----------------------------
 	# Perform app setup below here.
@@ -154,18 +165,18 @@ def create_app(debug=False, conf=dict()):
 		#print("{0}App '{1}' created.{2}".format('\033[92m', __name__, '\033[0m'))
 		print_info("Application '{0}' created.".format(__name__))
 	else:
-		if conf["usingSentry"]:
+		if app.config["USING_SENTRY"]:
 			_app_setup_utils.setupSentry(app, dsn=sentryDSN)
 
-	# Change the implementation of "decimal" to a C-based version (much! faster)
+	# Change the implementation of "decimal" to a C-based version (much! faster).
 	try:
 		import cdecimal
 		sys.modules["decimal"] = cdecimal
 	except ImportError:
 		pass # not available
 
-	if conf["usingSQLAlchemy"]:
-		if conf["usingPostgreSQL"]:
+	if app.config["USING_SQLALCHEMY"]:
+		if app.config["USING_POSTGRESQL"]:
 			_app_setup_utils.setupJSONandDecimal()
 
 	    # This "with" is necessary to prevent exceptions of the form:
