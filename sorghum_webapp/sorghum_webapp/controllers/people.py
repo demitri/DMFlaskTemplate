@@ -29,9 +29,6 @@ def people():
 		user_request = wpapi.UserRequest()
 
 		team = user_request.get(classobject=SBUser)
-		
-		for user in team:
-			print(user.job_title)
 
 		people_banner_media = wpapi.media(slug="sorghum_combine")
 		templateDict["banner_media"] = people_banner_media
