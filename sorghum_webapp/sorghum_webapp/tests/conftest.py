@@ -28,23 +28,23 @@ def app():
 # tandem with pytest-flask as long as it's not called "client".
 
 # 
-# @pytest.fixture
-# def client(request):
-# 	'''
-#	Creates an instance of our Flask application to be used for testing.
-# 	'''
-# 	
-# 	print("creating client")
-# 	# Create a test client for this application.
-# 	# Ref: http://flask.pocoo.org/docs/0.12/api/#flask.Flask.test_client
-# 	#
-# 	app = create_app(debug=True)
-# 	app.testing = True
-# 	test_client = app.test_client()
-# 	
-# 	def teardown():
-# 		# placeholder to free any resources created/allocated
-# 		pass
-# 	
-# 	request.addfinalizer(teardown)
-# 	return test_client
+@pytest.fixture
+def client(request):
+	'''
+	Creates an instance of our Flask application to be used for testing.
+	'''
+	
+	#print("creating client")
+	# Create a test client for this application.
+	# Ref: http://flask.pocoo.org/docs/0.12/api/#flask.Flask.test_client
+	#
+	app = create_app(debug=True)
+	app.testing = True
+	test_client = app.test_client()
+	
+	def teardown():
+		# placeholder to free any resources created/allocated
+		pass
+	
+	request.addfinalizer(teardown)
+	return test_client

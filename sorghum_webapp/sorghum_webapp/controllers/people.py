@@ -5,12 +5,13 @@
 import flask
 import logging
 from flask import request, render_template
+#from wordpress_orm.entities.user import UserRequest
 
 from wordpress_orm import wp_session
-from ..wordpress_orm_extensions.user import UserRequest
+from ..wordpress_orm_extensions.user import SBUser
 
 from .. import app
-from .. import wordpress_api as api
+from .. import wordpress_api as wpapi
 from . import valueFromRequest
 from .footer import populate_footer_template
 
@@ -23,16 +24,19 @@ def people():
 	''' People page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with wp_session(wpapi):
 
-		user_request = UserRequest(api=api)
+		user_request = wpapi.UserRequest()
 
-		team = user_request.get()
+		team = user_request.get(classobject=SBUser)
+		
+		for user in team:
+			print(user.job_title)
 
-		people_banner_media = api.media(slug="sorghum_combine")
+		people_banner_media = wpapi.media(slug="sorghum_combine")
 		templateDict["banner_media"] = people_banner_media
 
-		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[people_banner_media])
+		populate_footer_template(template_dictionary=templateDict, wp_api=wpapi, photos_to_credit=[people_banner_media])
 
 	templateDict['team'] = team
 

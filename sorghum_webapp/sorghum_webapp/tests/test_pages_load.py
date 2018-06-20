@@ -6,18 +6,7 @@
 # either in conftest.py or automatically via the pytest-flask extension.
 #
 
-# =======================================
-# Helper functions to work with JSON data
-# =======================================
-
-# TODO: move to a common file (conftest.py? works as fixtures? - test with search.py)
-
-def post_json(client, url, json_dict):
-	return client.post(url, data=json.dumps(json_dict), content_type='application/json')	
-
-def json_response(response):
-	''' Decode JSON data from response. '''
-	return json.loads(response.data.decode('utf-8'))
+from .helper_functions import post_json, json_response
 
 # ==========
 # Page tests
@@ -28,7 +17,7 @@ def test_homepage_loads(client):
 	assert response.status_code == 200
 
 def test_faq_page_loads(client):
-	response = client.get('/faq')
-	print(response)
+	response = client.get('/mission-statement')
 	assert response.status_code == 200
 
+	

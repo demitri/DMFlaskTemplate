@@ -8,7 +8,7 @@ this will make them autodiscoverable by `pytest`.
 
 #### Links
 
-* [Testing json responses in Flask](https://serge-m.github.io/testing-json-responses-in-Flask-REST-apps-with-pytest.html)
+* [Testing JSON responses in Flask](https://serge-m.github.io/testing-json-responses-in-Flask-REST-apps-with-pytest.html)
 * [Testing a Flask Application using pytest](http://www.patricksoftwareblog.com/testing-a-flask-application-using-pytest/)
 * [Delightful testing with pytest and Flask-SQLAlchemy](http://alexmic.net/flask-sqlalchemy-pytest/) (We're not using the SQLAlchemy extension.)
 
