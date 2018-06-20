@@ -39,5 +39,3 @@ def test_events_page_loads(client):
 def test_jobs_page_loads(client):
 	response = client.get('/jobs')
 	assert response.status_code == 200
-
-
