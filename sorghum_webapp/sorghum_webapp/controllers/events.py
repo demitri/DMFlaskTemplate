@@ -38,7 +38,6 @@ def events():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[news_banner_media])
 
-	print(events)
 	templateDict['events'] = events
 	templateDict['past'] = past
 

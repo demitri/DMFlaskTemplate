@@ -70,7 +70,7 @@ def index():
 			index = randint(0, len(users)-1)
 			threeUsers.append(users.pop(index))
 
-		populate_footer_template(template_dictionary=templateDict, wp_api=api)
+		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[small_banner])
 
 		if len(posts) == 0:
 			# Try to do some troubleshooting.

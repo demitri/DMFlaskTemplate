@@ -62,7 +62,6 @@ def posts():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
 
-	print(categories)
 	templateDict['posts'] = posts
 	templateDict['post_tally'] = post_tally
 	if categories:
