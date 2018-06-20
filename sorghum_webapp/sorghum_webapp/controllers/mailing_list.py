@@ -17,7 +17,7 @@ logger = logging.getLogger("wordpress_orm")
 
 mailing_list_page = flask.Blueprint("mailing_list_page", __name__)
 
-@app.route('/mailing_list')
+@mailing_list_page.route('/mailing_list')
 def mailing_list():
 	''' Mailing list page. '''
 	templateDict = {}

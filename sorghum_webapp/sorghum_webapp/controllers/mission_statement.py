@@ -17,7 +17,7 @@ logger = logging.getLogger("wordpress_orm")
 
 mission_statement_page = flask.Blueprint("mission_statment_page", __name__)
 
-@app.route('/mission-statement')
+@mission_statement_page.route('/mission-statement')
 def mission():
 	''' Mission Statement page. '''
 	templateDict = {}

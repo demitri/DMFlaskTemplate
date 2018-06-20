@@ -18,7 +18,7 @@ logger = logging.getLogger("wordpress_orm")
 sandbox_page = flask.Blueprint("sandbox_page", __name__)
 
 # Note: add to __all__ in __init__.py file
-@app.route('/sandbox') #, methods=['GET'])
+@sandbox_page.route('/sandbox') #, methods=['GET'])
 def sandbox():
 	''' A web page for experimentation and testing that will not appear in deployment. '''
 	templateDict = {}

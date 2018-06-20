@@ -18,7 +18,7 @@ logger = logging.getLogger("wordpress_orm")
 
 jobs_page = flask.Blueprint("jobs_page", __name__)
 
-@app.route('/jobs')
+@jobs_page.route('/jobs')
 def jobs():
 	''' Jobs page. '''
 	templateDict = {}

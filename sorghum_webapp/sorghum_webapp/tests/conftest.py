@@ -16,8 +16,8 @@ from .. import create_app
 # A "client" fixture is defined by the pytest-flask extension.
 #
 
-@pytest.fixture
-def app():
+@pytest.fixture(scope="session")
+def app(request):
 	app = create_app(debug=True)
 	app.testing = True
 	app.debug = True
@@ -28,8 +28,8 @@ def app():
 # tandem with pytest-flask as long as it's not called "client".
 
 # 
-@pytest.fixture
-def client(request):
+@pytest.fixture(scope="session")
+def client(request, app):
 	'''
 	Creates an instance of our Flask application to be used for testing.
 	'''

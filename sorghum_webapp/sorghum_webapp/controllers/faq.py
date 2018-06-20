@@ -17,7 +17,7 @@ logger = logging.getLogger("wordpress_orm")
 
 faq_page = flask.Blueprint("faq_page", __name__)
 
-@app.route('/faq')
+@faq_page.route('/faq')
 def faq():
 	''' FAQ page. '''
 	templateDict = {}

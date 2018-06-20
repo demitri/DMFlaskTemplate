@@ -25,7 +25,7 @@ class Sequence():
 cells = list()
 
 # Note: add to __all__ in __init__.py file
-@app.route('/notebook')
+@notebook_page.route('/notebook')
 def notebook():
 	''' Documentation here. '''
 	templateDict = {}

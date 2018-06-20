@@ -10,7 +10,7 @@ from . import valueFromRequest
 assan_admin_template = Blueprint("assan_admin_template", __name__)
 
 # Note: add to __all__ in __init__.py file
-@app.route('/admin_template')
+@assan_admin_template.route('/admin_template')
 def admin_template():
 	''' Documentation here. '''
 	templateDict = {}

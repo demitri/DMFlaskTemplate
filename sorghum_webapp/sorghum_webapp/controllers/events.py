@@ -19,7 +19,7 @@ logger = logging.getLogger("wordpress_orm")
 events_page = flask.Blueprint("events_page", __name__)
 
 spacer = " & "
-@app.route('/events')
+@events_page.route('/events')
 def events():
 	''' Events page. '''
 	templateDict = {}

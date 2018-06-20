@@ -20,7 +20,7 @@ logger = logging.getLogger("wordpress_orm")
 
 news_page = flask.Blueprint("news_page", __name__)
 
-@app.route('/news')
+@news_page.route('/news')
 def news():
 	''' News page. '''
 	templateDict = {}

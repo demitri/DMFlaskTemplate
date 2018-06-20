@@ -17,7 +17,7 @@ logger = logging.getLogger("wordpress_orm")
 
 contact_page = flask.Blueprint("contact_page", __name__)
 
-@app.route('/contact')
+@contact_page.route('/contact')
 def contact():
 	''' Contact page. '''
 	templateDict = {}

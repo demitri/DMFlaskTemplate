@@ -16,7 +16,7 @@ from .footer import populate_footer_template
 
 resource_links_page = flask.Blueprint("resource_links_page", __name__)
 
-@app.route('/resource_links')
+@resource_links_page.route('/resource_links')
 def resource_links():
 	''' List of sorghum resources '''
 	templateDict = {}

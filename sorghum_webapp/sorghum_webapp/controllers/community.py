@@ -18,7 +18,7 @@ logger = logging.getLogger("wordpress_orm")
 
 community_page = flask.Blueprint("community_page", __name__)
 
-@app.route('/community')
+@community_page.route('/community')
 def community():
 	''' Community page. '''
 	templateDict = {}

@@ -18,7 +18,7 @@ WP_BASE_URL = app.config["WP_BASE_URL"]
 post_page = flask.Blueprint("post_page", __name__)
 post_category_page = flask.Blueprint("post_category_page", __name__)
 
-@app.route('/post/<slug>')
+@post_page.route('/post/<slug>')
 def post(slug):
 	''' 
 	This page displays a single blog post retrieved from WordPress.
@@ -64,7 +64,7 @@ def post(slug):
 	#logger.debug(" ============= controller finished ============= ")
 	return render_template("post.html", **templateDict)
 
-@app.route('/posts/category/<slug>')
+@post_category_page.route('/posts/category/<slug>')
 def post_category(category_slug):
 	'''
 	This page displays a grid of post thumbnails from a given category.

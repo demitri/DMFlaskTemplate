@@ -19,7 +19,7 @@ logger = logging.getLogger("wordpress_orm")
 
 people_page = flask.Blueprint("people_page", __name__)
 
-@app.route('/people')
+@people_page.route('/people')
 def people():
 	''' People page. '''
 	templateDict = {}

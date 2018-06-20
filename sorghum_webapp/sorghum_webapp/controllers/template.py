@@ -12,7 +12,7 @@ from . import valueFromRequest
 new_page = flask.Blueprint("new_page", __name__)
 
 # Note: add to __all__ in __init__.py file
-@app.route('/path') #, methods=['GET'])
+@new_page.route('/path') #, methods=['GET'])
 def func_name():
 	''' Documentation here. '''
 	templateDict = {}

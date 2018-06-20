@@ -17,7 +17,7 @@ logger = logging.getLogger("wordpress_orm")
 search_page = flask.Blueprint("search_page", __name__)
 
 
-@app.route('/search')
+@search_page.route('/search')
 def search():
     ''' search template - actual searches call /search_api '''
     templateDict = {}

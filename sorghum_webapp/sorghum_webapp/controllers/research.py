@@ -19,7 +19,7 @@ logger = logging.getLogger("wordpress_orm")
 research_page = flask.Blueprint("research_page", __name__)
 
 WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
-@app.route('/research')
+@research_page.route('/research')
 def research():
 	''' List of research papers '''
 	templateDict = {}

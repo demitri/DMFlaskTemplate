@@ -19,7 +19,7 @@ post_grid = flask.Blueprint("post_grid", __name__)
 
 WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
 spacer = " & "
-@app.route('/posts')
+@post_grid.route('/posts')
 def posts():
 	''' List of posts '''
 	templateDict = {}
