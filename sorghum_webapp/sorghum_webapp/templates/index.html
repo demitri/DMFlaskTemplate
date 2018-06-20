@@ -287,7 +287,7 @@
 
 {# Parallax section #}
 
-<div class="bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("static/images/popcorn_1920x1000.jpg")'>
+<div class="bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{small_banner.s.source_url}}")'>
     <div class="container pt60 pb60">
         <div class="row">
             <div class="col-lg-8">
@@ -414,7 +414,7 @@
                   <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
                   <div class="team-default-content text-center pt30">
                           <h4 class="mb0 text-uppercase">{{ user.s.name }}</h4>
-                          <span>{{user.s.roles}}</span>
+                          <span>{{user.s.job_title}}</span>
                   </div>
               </div>
             </div><!--/.col-->

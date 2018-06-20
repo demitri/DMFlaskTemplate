@@ -7,6 +7,7 @@ import logging
 from flask import request, render_template
 
 from wordpress_orm import wp_session
+from ..wordpress_orm_extensions.user import UserRequest
 
 from .. import app
 from .. import wordpress_api as api
@@ -24,7 +25,7 @@ def people():
 
 	with wp_session(api):
 
-		user_request = api.UserRequest()
+		user_request = UserRequest(api=api)
 
 		team = user_request.get()
 
@@ -34,6 +35,5 @@ def people():
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[people_banner_media])
 
 	templateDict['team'] = team
-
 
 	return render_template("people.html", **templateDict)

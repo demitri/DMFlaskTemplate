@@ -14,7 +14,6 @@
   </div>
 </div><!--page title end-->
 
-<!-- <div id="markermap" style="width: 100%;height: 350px;"></div> -->
 <div class="container pt90 pb50">
   <div class="row">
     <div class="col-md-6 mb40">
@@ -28,7 +27,9 @@
       <br>
       <h4 class="text-uppercase">Email</h4>
       <p>
-        <a href="mailto:warelab@cshl.edu">warelab@cshl.edu</a></p>
+        contact [at] sorghumbase [dot] org
+        <!-- <a href="mailto:warelab@cshl.edu">warelab@cshl.edu</a> -->
+      </p>
           <br>
            <h4 class="text-uppercase">Social</h4>
           <div class="clearfix pt10">
@@ -54,89 +55,9 @@
             </a>-->
           </div>
         </div>
-        <div class="col-md-6 pb50">
-          <h2>Sorghum would you like to tell us?</h2>
-          <p>
-            Suspendisse ut interdum lectus. Integer ac neque faucibus, venenatis nisl quis, pellentesque lacus. Integer et ipsum sit amet dui ultrices hendrerit. Pellentesque leo massa, suscipit a felis non, posuere convallis velit. Sed tincidunt lacinia velit et aliquam.
-          </p>
-          <div class="smart-wrap">
-            <div class="smart-forms smart-container wrap-2">
-
-              <form method="post" action="static/assan/classic-template/smart-form/contact-recaptcha/php/smartprocess.php" id="smart-form">
-                <div class="form-body">
-                  <div class="section">
-                    <label class="field prepend-icon">
-                      <input type="text" name="sendername" id="sendername" class="gui-input" placeholder="Enter name">
-                      <span class="field-icon"><i class="fa fa-user"></i></span>
-                    </label>
-                  </div><!-- end section -->
-                  <div class="section">
-                    <label class="field prepend-icon">
-                      <input type="email" name="emailaddress" id="emailaddress" class="gui-input" placeholder="Email address">
-                      <span class="field-icon"><i class="fa fa-envelope"></i></span>
-                    </label>
-                  </div><!-- end section -->
-                  <div class="section">
-                    <label class="field prepend-icon">
-                      <input type="text" name="sendersubject" id="sendersubject" class="gui-input" placeholder="Enter subjec">
-                      <span class="field-icon"><i class="fa fa-lightbulb-o"></i></span>
-                    </label>
-                  </div><!-- end section -->
-                  <div class="section">
-                    <label class="field prepend-icon">
-                      <textarea class="gui-textarea" id="sendermessage" name="sendermessage" placeholder="Enter message"></textarea>
-                      <span class="field-icon"><i class="fa fa-comments"></i></span>
-                      <span class="input-hint"> <strong>Hint:</strong> Please enter between 80 - 300 characters.</span>
-                    </label>
-                  </div><!-- end section -->
-                  <div class="section">
-                    <label class="field">
-                      <input type="text" id="g-recaptcha-response" name="g-recaptcha-response" class="smart-hidden-elem">
-                      <div id="g-recaptcha" class="g-recaptcha"
-                      data-sitekey="6Le-oQgTAAAAAAodZ8Gxrb2A8EnZ4ngc774U8tgd"
-                      data-expired-callback="recaptchaResetCallback"
-                      data-theme="light"></div>
-                    </label>
-                  </div><!-- end section -->
-                  <div class="result"></div><!-- end .result  section -->
-                </div><!-- end .form-body section -->
-                <div class="form-footer">
-                  <button type="submit" data-btntext-sending="Sending..." class="button btn-primary">Submit</button>
-                  <button type="reset" class="button"> Cancel </button>
-                </div><!-- end .form-footer section -->
-              </form>
-            </div><!-- end .smart-forms section -->
-          </div><!-- end .smart-wrap section -->
-
-
-        </div>
       </div>
     </div>
     <!--back to top-->
     <a href="#" class="back-to-top hidden-xs-down" id="back-to-top"><i class="ti-angle-up"></i></a>
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="static/assan/classic-template/js/plugins.js"></script>
-    <script src="static/assan/classic-template/js/assan.custom.js"></script>
-    <!--google map-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMwVpUj3-oHHW8N21819BhKttOga2Rj2s"></script>
-    <script src="static/assan/classic-template/js/jquery.gmap.min.js"></script>
-    <script>
-    // Marker Map
-    $(document).ready(function () {
-      map = new GMaps({
-        scrollwheel: false,
-        el: '#markermap',
-        lat: 40.859825,
-        lng: -73.468041
-
-      });
-    });
-    </script>
-    <!--sky form plugin js-->
-    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/jquery.form.min.js"></script>
-    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/additional-methods.min.js"></script>
-    <script type="text/javascript" src=""static/assan/classic-template/smart-form/contact-recaptcha/js/smart-form.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 {% endblock %}

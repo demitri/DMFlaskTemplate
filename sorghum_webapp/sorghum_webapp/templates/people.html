@@ -25,6 +25,7 @@
             <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
             <div class="team-default-content text-center pt30 pb20">
                     <h4 class="mb0 text-uppercase">{{ user.s.name }}</h4>
+                    <span>{{user.s.job_title}}</span>
             </div>
             <div class="text-center">
               <p>{{ user.s.description | safe }}</p>

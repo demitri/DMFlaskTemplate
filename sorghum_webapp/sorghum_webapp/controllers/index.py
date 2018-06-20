@@ -58,6 +58,9 @@ def index():
 
 		posts = post_request.get()
 
+		small_banner = api.media(slug="sorghum-grains_1920x1000")
+		templateDict["small_banner"] = small_banner
+
 		user_request = api.UserRequest()
 		users = user_request.get()
 
@@ -139,6 +142,9 @@ def index2():
 
 			# append URL tp WP 'post' record
 			post["+featured_media_url"] = media["source_url"] # '/wp-content' + media["source_url"].split('wp-content')[1]
+
+		small_banner = api.media(slug="sorghum-grains_1920x1000")
+		templateDict["small_banner"] = small_banner
 
 	templateDict["blog_posts"] = posts
 

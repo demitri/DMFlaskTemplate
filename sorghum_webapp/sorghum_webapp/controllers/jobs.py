@@ -28,10 +28,10 @@ def jobs():
 
 		jobs = job_request.get()
 
-		posts_banner_media = api.media(slug="sorghum_panicle")
-		templateDict["banner_media"] = posts_banner_media
+		news_banner_media = api.media(slug="sorghum_panicle")
+		templateDict["banner_media"] = news_banner_media
 
-		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
+		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[news_banner_media])
 
 	templateDict['jobs'] = jobs
 

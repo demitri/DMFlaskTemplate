@@ -63,8 +63,9 @@
 	                <div class="col-lg-8">
 		                <h3>Photo Credits</h3>
 		                <ul>
-		                {% for media in photos_to_credit %}
-			                <li><p class="text-muted">{{ media.s.caption | safe}}</p></li>
+		                {% for media in footer_photos_to_credit %}
+			                <!-- <li> <p class="text-muted"><a href="{{media.s.media_source_url}}">{{ media.s.author_name | safe}}</a>, <a href="{{media.s.license_url}}">{{media.s.license_name}}</a></p></li> -->
+                      <li> <p class="text-muted">{{media.s.caption | safe}}</p> </li>
 			            {% endfor %}
 		                </ul>
 	                </div>
