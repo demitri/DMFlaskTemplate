@@ -67,7 +67,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(about_page)
 	app.register_blueprint(community_page)
 	app.register_blueprint(resources_page)
-	#app.register_blueprint(notebook_page)
+	app.register_blueprint(search_api)
 	#app.register_blueprint(xxx)
 
 	if (app.debug):

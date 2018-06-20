@@ -12,8 +12,10 @@ WP_BASE_URL = app.config["WP_BASE_URL"]
 
 WP_CATS = ['posts', 'pages', 'users', 'resource-link', 'job', 'event', 'scientific_paper']
 
-@app.route('/search_api/<cat>')
-def search_api(cat):
+search_api = flask.Blueprint("search_api", __name__)
+
+@search_api.route('/search_api/<cat>')
+def searchapi(cat):
     q = valueFromRequest(key="q", request=request)
     if cat in WP_CATS:
         with requests.Session() as session:
