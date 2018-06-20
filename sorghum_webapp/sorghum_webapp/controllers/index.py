@@ -20,6 +20,7 @@ from . import valueFromRequest
 from .. import app
 from .. import wordpress_api as api
 from .footer import populate_footer_template
+from ..wordpress_orm_extensions.user import SBUser
 
 #
 # Note on WordPress queries. Not all information needed is returned by
@@ -62,7 +63,7 @@ def index():
 		templateDict["small_banner"] = small_banner
 
 		user_request = api.UserRequest()
-		users = user_request.get()
+		users = user_request.get(classobject=SBUser)
 
 		threeUsers = []
 
