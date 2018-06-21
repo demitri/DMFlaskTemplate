@@ -26,10 +26,10 @@ def search():
         categories = ['Sorghumbase','Gramene']
     templateDict['q'] = valueFromRequest(key="q", request=request)
     with wp_session(api):
-        populate_footer_template(template_dictionary=templateDict, wp_api=api)
+        posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+        populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
 
     templateDict['categories'] = categories
 
-    posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
     templateDict["banner_media"] = posts_banner_media
     return render_template("search.html", **templateDict)
