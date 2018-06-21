@@ -4,15 +4,20 @@
 All test files in this directory should have the prefix `test_`;
 this will make them autodiscoverable by `pytest`.
 
-## Useful References
+### Useful Flags
 
-#### Links
+Add these flags to `py.test` on the command line.
+
+* `-s` : allow print statements to appear inline (STDOUT not captured and placed at end)
+* `-v` : verbose output of tests
+
+### Links
 
 * [Testing JSON responses in Flask](https://serge-m.github.io/testing-json-responses-in-Flask-REST-apps-with-pytest.html)
 * [Testing a Flask Application using pytest](http://www.patricksoftwareblog.com/testing-a-flask-application-using-pytest/)
 * [Delightful testing with pytest and Flask-SQLAlchemy](http://alexmic.net/flask-sqlalchemy-pytest/) (We're not using the SQLAlchemy extension.)
 
-#### pytest-flask
+### pytest-flask
 
 It's possible that we can omit this extension as a dependency if we
 define `config` in `conftest.py` (code in file, but commented out).

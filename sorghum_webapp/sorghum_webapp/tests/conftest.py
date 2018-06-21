@@ -7,6 +7,7 @@
 #
 
 import pytest
+import wordpress_orm
 
 from .. import create_app
 
@@ -48,3 +49,15 @@ def client(request, app):
 	
 	request.addfinalizer(teardown)
 	return test_client
+
+@pytest.fixture(scope="session")
+def wp_api(request, app):
+	'''
+	Creates a reusable wordpress_orm.API object for testing.
+	'''
+	return wordpress_orm.API(url=app.config["WP_BASE_URL"])
+
+
+
+
+
