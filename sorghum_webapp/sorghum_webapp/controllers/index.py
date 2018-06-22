@@ -61,17 +61,32 @@ def index():
 
 		small_banner = api.media(slug="sorghum-grains_1920x1000")
 		templateDict["small_banner"] = small_banner
+		big_banner_1 = api.media(slug="sorghum_field")
+		templateDict["big_banner_1"] = big_banner_1
+		big_banner_2 = api.media(slug="sorghum_close_darker")
+		templateDict["big_banner_2"] = big_banner_2
+		big_banner_3 = api.media(slug="sorghum_sky")
+		templateDict["big_banner_3"] = big_banner_3
 
 		user_request = api.UserRequest()
 		users = user_request.get(classobject=SBUser)
 
-		threeUsers = []
+		tool_request = api.PostRequest()
+		tool_request.categories = ["tools"]	# search by slug
+		tools = tool_request.get()
+
+		someUsers = []
+		someTools = []
 
 		for x in range(3):
 			index = randint(0, len(users)-1)
-			threeUsers.append(users.pop(index))
+			someUsers.append(users.pop(index))
 
-		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[small_banner])
+		for x in range(min(3, len(tools))):
+			index = randint(0, len(tools)-1)
+			someTools.append(tools.pop(index))
+
+		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[small_banner, big_banner_1, big_banner_2, big_banner_3])
 
 		if len(posts) == 0:
 			# Try to do some troubleshooting.
@@ -92,61 +107,9 @@ def index():
 
 	#for post in posts:
 	#	print(post.featured_media.s.link, post.featured_media.s.source_url)
-	templateDict["team"] = threeUsers
+	templateDict["team"] = someUsers
+	templateDict["tools"] = someTools
+	templateDict["toolicons"] = ["icon-layers", "icon-telescope", "icon-globe"]
 	templateDict["posts"] = posts
 	logger.debug(" ============= controller finished ============= ")
-	return render_template("index.html", **templateDict)
-
-
-#@index_page.route("/", methods=['GET'])
-def index2():
-	'''
-	Home page
-	'''
-
-	templateDict = {}
-
-	# retrieve top news/blog entries from WordPress
-	#
-	with requests.Session() as http_session:
-
-		# Get posts in the "
-
-		params = {
-			"orderby":"date",
-			"order":"desc",
-			"filter[category_name]":"blog"
-		}
-		# "categories":"??" # 'categories' takes the category ID
-
-		# get list of blog posts
-		#url = os.path.join(app.config["WP_BASE_URL"], "posts?categories={}".format(blog_posts["id"]))
-		# Ref: WordPress 'posts' API: https://developer.wordpress.org/rest-api/reference/posts/
-		url = os.path.join(app.config["WP_BASE_URL"], "post") #?".format(blog_posts["id"]))
-		response = http_session.get(url=url, params=params)
-		posts = response.json()
-
-		app.logger.debug("WP posts URL: {}".format(url))
-		app.logger.debug(json.dumps(posts, indent=4, sort_keys=True))
-
-		# get featured media URL
-		for post in posts:
-			featured_media_id = post["featured_media"]
-
-			# Ref: WordPress 'media' API: https://developer.wordpress.org/rest-api/reference/media/
-			url = os.path.join(app.config["WP_BASE_URL"], "media/{}".format(featured_media_id))
-			response = http_session.get(url=url, params={"context":"embed"}) #  "embed" param retrieves fewer records
-			media = response.json()
-
-			app.logger.debug("WP media URL: {}".format(url))
-			app.logger.debug(json.dumps(media, indent=4, sort_keys=True))
-
-			# append URL tp WP 'post' record
-			post["+featured_media_url"] = media["source_url"] # '/wp-content' + media["source_url"].split('wp-content')[1]
-
-		small_banner = api.media(slug="sorghum-grains_1920x1000")
-		templateDict["small_banner"] = small_banner
-
-	templateDict["blog_posts"] = posts
-
-	return render_template("index.html", **templateDict)
+	return render_template("index.html", **templateDict, zip=zip)

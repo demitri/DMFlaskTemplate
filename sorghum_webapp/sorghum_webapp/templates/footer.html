@@ -54,7 +54,7 @@
     </ul>
   </div>
 
-  <div class="col-lg-3 col-md-6 mb40">
+  <div class="col-lg-3 col-md-6">
     <div class="mb20">
       <h3>Twitter</h3>
       <a class="twitter-timeline" href="https://twitter.com/hashtag/sorghum" data-widget-id="999762329989500928">#sorghum Tweets</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
@@ -69,12 +69,11 @@
       {% for media in footer_photos_to_credit %}
       {% if media.s.caption %}
       <!-- <li> <p class="text-muted"><a href="{{media.s.media_source_url}}">{{ media.s.author_name | safe}}</a>, <a href="{{media.s.license_url}}">{{media.s.license_name}}</a></p></li> -->
-      <li class="list-inline-item">/ {{media.s.caption | safe}} </li>
+       <li class="list-inline-item">{{media.s.caption.replace('\n', '') | safe}}</li>
+       <li class="list-inline-item">|</li>
       {% endif %}
       {% endfor %}
     </ul>
-
-
     {% endif %}
   </div>
 </footer><!--/footer-->
@@ -84,11 +83,11 @@
     <div class="row">
       <div class="col-lg-7">
         <div class="clearfix">
-          <a href="https://www.facebook.com/sorghumbase/" class="social-icon-sm si-dark si-facebook si-dark-round">
+          <a href="https://www.facebook.com/sorghumbase/" target="_blank" class="social-icon-sm si-dark si-facebook si-dark-round">
             <i class="fa fa-facebook"></i>
             <i class="fa fa-facebook"></i>
           </a>
-          <a href="https://twitter.com/sorghumbase" class="social-icon-sm si-dark si-twitter si-dark-round">
+          <a href="https://twitter.com/sorghumbase" target="_blank" class="social-icon-sm si-dark si-twitter si-dark-round">
             <i class="fa fa-twitter"></i>
             <i class="fa fa-twitter"></i>
           </a>
