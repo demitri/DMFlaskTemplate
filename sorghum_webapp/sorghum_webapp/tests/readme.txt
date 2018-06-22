@@ -10,6 +10,7 @@ Add these flags to `py.test` on the command line.
 
 * `-s` : allow print statements to appear inline (STDOUT not captured and placed at end)
 * `-v` : verbose output of tests
+* `--fixtures` : list all available fixtures
 
 ### Links
 
