@@ -28,7 +28,8 @@ def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_cr
 	for post in posts:
 		photos_to_credit.append(post.featured_media)
 
-	# expect "photos_to_credit" to be a list of Media objects.
+	#remove duplicates
+	photos_to_credit = list(set(photos_to_credit))
 
 	if photos_to_credit:
 		template_dictionary["footer_photos_to_credit"] = photos_to_credit

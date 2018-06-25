@@ -68,6 +68,8 @@ def index():
 		big_banner_3 = api.media(slug="sorghum_sky")
 		templateDict["big_banner_3"] = big_banner_3
 
+		photos_to_credit = [big_banner_1, big_banner_2, big_banner_3, small_banner]
+
 		user_request = api.UserRequest()
 		users = user_request.get(classobject=SBUser)
 
@@ -86,24 +88,24 @@ def index():
 			index = randint(0, len(tools)-1)
 			someTools.append(tools.pop(index))
 
-		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[small_banner, big_banner_1, big_banner_2, big_banner_3])
-
 		if len(posts) == 0:
 			# Try to do some troubleshooting.
 
-			# Is the 'news' category defined?
-			news_category = None
+			# Is the 'blog' category defined?
+			blog_category = None
 			try:
-				news_category = api.category(slug="news")
+				blog_category = api.category(slug="blog")
 			except wp.exc.NoEntityFound:
-				logger.debug("Expected to find the 'News' category (identified by the slug 'news') but not found!")
+				logger.debug("Expected to find the 'Blog' category (identified by the slug 'blog') but not found!")
 
-			if news_category is not None:
-				logger.debug("The 'news' category was found, but (maybe?) no posts are flagged with that category.")
+			if blog_category is not None:
+				logger.debug("The 'blog' category was found, but (maybe?) no posts are flagged with that category.")
 
 		# fetch linked objects we know we'll need while we have this open connection
 		for post in posts:
-			post.featured_media
+			photos_to_credit.append(post.featured_media)
+
+		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=photos_to_credit)
 
 	#for post in posts:
 	#	print(post.featured_media.s.link, post.featured_media.s.source_url)
