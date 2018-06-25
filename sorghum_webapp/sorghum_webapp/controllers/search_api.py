@@ -20,6 +20,8 @@ def searchapi(cat):
     if cat in WP_CATS:
         with requests.Session() as session:
             url = WP_BASE_URL + cat + '?context=embed&_embed=true&search=' + q
+            if cat == 'posts':
+                url = url + '&categories_exclude=17'
             response = session.get(url=url)
             dict = {}
             dict['docs'] = response.json()
