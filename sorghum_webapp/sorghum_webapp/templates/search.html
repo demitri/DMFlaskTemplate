@@ -21,7 +21,7 @@
             <!--/col-->
             <div class="theiaStickySidebar"
                  style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
-                <div class="pt40 title">Search Results</div>
+                <div class="pt40" id="search-box"></div>
                 <div class="mb40" id="search-summary">
                 </div>
                 <div class="resize-sensor"
@@ -57,5 +57,7 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block script_below_content %}
 <script type="text/javascript" src="{{request.script_root}}/static/js/search.js"></script>
 {% endblock %}
