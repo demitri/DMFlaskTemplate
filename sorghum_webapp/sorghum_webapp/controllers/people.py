@@ -27,6 +27,7 @@ def people():
 	with wp_session(wpapi):
 
 		user_request = wpapi.UserRequest()
+		user_request.per_page = 100
 
 		team = user_request.get(classobject=SBUser)
 

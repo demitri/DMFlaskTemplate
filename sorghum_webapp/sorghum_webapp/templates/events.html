@@ -26,9 +26,9 @@
     <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
     {% endfor %}
     {% if past %}
-    <a data-scroll="" href="/events" class="nav-link">Current events</a>
+    <div class="pt50 title"><a href="/events">Current events</a></div>
     {% else %}
-    <a data-scroll="" href="/events?past=true" class="nav-link">Past events</a>
+    <div class="pt50 title"><a data-scroll="" href="/events?past=true">Past events</a></div>
     {% endif %}
   </div>
 </div>
