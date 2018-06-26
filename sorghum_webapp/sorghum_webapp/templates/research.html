@@ -14,57 +14,20 @@
   </div>
 </div><!--page title end-->
 <div class="container pt90 ">
-  <!-- <div class="title-heading1 mb60">
-    <h3>Selected Publications</h3>
-  </div> -->
-
   <div class="row">
-    <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
-    style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-    <!--/col-->
-    <div class="theiaStickySidebar"
-    style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
-    <div class="pt50 title">Selected Publications</div>
-    <div class="mb40">
-      {% for paper in papers %}
-      <a data-scroll="" href="#{{paper.s.paper_title}}" class="nav-link active">{{paper.s.paper_title}}</a>
-      {% endfor %}
-    </div>
-  </div>
-</div>
-<div class="col-lg-10 col-md-6 mb90">
   {% for paper in papers %}
-  <!-- <div class="col-lg-1">
-    <div class="vtimeline-icon">
-      <i class="fa fa-graduation-cap"></i>
-    </div>
-  </div> -->
-    <div id="{{paper.s.paper_title}}" class="col-lg-9 col-md-6 mb90">
+    <div id="{{paper.s.paper_title}}" class="col-lg-12 col-md-6 mb50">
       <h4 class="mb0 text-uppercase">{{ paper.s.paper_title }}</h4>
       <br>
       <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
+      {% if paper.pubmed_id %}
+      <p>Pubmed ID: {{paper.pubmed_id}}</p>
+      {% endif %}
       <p><em>{{ paper.s.paper_authors | safe }}</em></p>
-      <div class="card mb10">
-          <div class="card-header accordion-header" role="tab" id="heading{{paper.s.id}}">
-              <h5 class="mb-0">
-                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{paper.s.id}}" aria-expanded="true" aria-controls="collapse{{paper.s.id}}">
-                      ABSTRACT
-                  </a>
-              </h5>
-          </div>
-          <div id="collapse{{paper.s.id}}" class="collapse show" role="tabpanel" aria-labelledby="heading{{paper.s.id}}">
-              <div class="card-body">
-                  {{ paper.s.abstract | safe }}
-              </div>
-          </div>
-      </div>
-      <!-- <p>{{ paper.s.abstract | safe }}</p> -->
+      <p>{{ paper.s.abstract | safe }}</p>
       <a href="{{paper.s.source_url}}"><h6 class="masonry-title mb0">View full paper at source</h6></a>
     </div>
-
   {% endfor %}
-</div>
-
-</div>
+  </div>
 </div>
 {% endblock %}

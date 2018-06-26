@@ -36,7 +36,8 @@ class ScientificPaper(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"paper_title", "abstract","source_url", "paper_authors", "publication_date"]
+				"paper_title", "abstract","source_url", "paper_authors", "publication_date",
+				"pubmed_id", "pubmed_url"]
 
 	@property
 	def categories(self):
@@ -163,6 +164,10 @@ class ScientificPaperRequest(WPRequest):
 			paper.s.paper_authors = d["paper_authors"]
 			paper.s.source_url = d["source_url"]
 			paper.s.publication_date = d["publication_date"]
+			if d["pubmed_id"]:
+				paper.pubmed_id = d["pubmed_id"]
+			if d["pubmed_url"]:
+				paper.pubmed_url = d["pubmed_url"]
 
 			# add to cache
 			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.id, value = paper)

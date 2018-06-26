@@ -61,7 +61,7 @@ def index():
 
 		small_banner = api.media(slug="sorghum-grains_1920x1000")
 		templateDict["small_banner"] = small_banner
-		big_banner_1 = api.media(slug="sorghum_field")
+		big_banner_1 = api.media(slug="sorghum_sky_darker")
 		templateDict["big_banner_1"] = big_banner_1
 		big_banner_2 = api.media(slug="sorghum_close_darker")
 		templateDict["big_banner_2"] = big_banner_2
