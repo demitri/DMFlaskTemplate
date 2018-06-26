@@ -3,71 +3,75 @@
 {% block additional_header %}{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
-  <div class="container">
-    <div class="row">
-      <div class=" col-md-12">
-        <h1 class="text-uppercase">Events</h1>
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}'
+     style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-12">
+                <h1 class="text-uppercase">Events</h1>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div><!--page title end-->
 <div class="container pt90 pb50">
-<div class="row">
-  <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
-  style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-  <!--/col-->
-  <div class="theiaStickySidebar"
-  style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
-  <div class="pt50 title">Events</div>
-  <div class="mb40">
-    {% for event in events %}
-    <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
-    {% endfor %}
-    {% if past %}
-    <div class="pt50 title"><a href="/events">Current events</a></div>
-    {% else %}
-    <div class="pt50 title"><a data-scroll="" href="/events?past=true">Past events</a></div>
-    {% endif %}
-  </div>
-</div>
-</div>
-<div class="col-lg-10">
-  <div class="page-timeline">
-    {% for event in events %}
-    <div id='{{event.s.title.rendered}}' class="vtimeline-point">
-      <div class="vtimeline-icon">
-        <i class="fa fa-calendar"></i>
-      </div>
-      <div class="vtimeline-block">
-        <!-- <div class="vtimeline-date">{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</div> -->
-        <div class="vtimeline-content">
-          {% if event.s.featured_image %}
-          <a href='#'><img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'></a>
-          {% endif %}
-          <h2>{{event.s.title.rendered}}</h2>
-          <h3>{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
-          {% if (event.s.end_date != "0000-00-00") %}
-          - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
-          {% endif %}</h3>
-          <ul class="post-meta list-inline">
-            <li class="list-inline-item">
-              <i class="fa fa-bank"></i> <a href="#">{{event.s.organizer}}</a>
-            </li>
-          </ul>
-          <p>
-            {{event.s.event_description | safe }}
-          </p><br>
-          <a href='{{event.s.event_url}}' class='btn btn-outline-secondary btn-sm'>Event Site</a>
+    <div class="row">
+        <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
+             style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+            <!--/col-->
+            <div class="theiaStickySidebar"
+                 style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+                {% if past %}
+                <div class="pt50 title"><a href="/events">Upcoming events</a></div>
+                <div class="pt50 title">Past Events</div>
+                {% else %}
+                <div class="pt50 title">Upcoming Events</div>
+                {% endif %}
+                <div class="mb40">
+                    {% for event in events %}
+                    <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                    {% endfor %}
+                    {% if past %}
+                    {% else %}
+                    <div class="pt50 title"><a data-scroll="" href="/events?past=true">Past events</a></div>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="col-lg-10">
+            <div class="page-timeline">
+                {% for event in events %}
+                <div id='{{event.s.title.rendered}}' class="vtimeline-point">
+                    <div class="vtimeline-icon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <div class="vtimeline-block">
+                        <!-- <div class="vtimeline-date">{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</div> -->
+                        <div class="vtimeline-content">
+                            {% if event.s.featured_image %}
+                            <a href='#'><img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'></a>
+                            {% endif %}
+                            <h2>{{event.s.title.rendered}}</h2>
+                            <h3>{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
+                                {% if (event.s.end_date != "0000-00-00") %}
+                                - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
+                                {% endif %}</h3>
+                            <ul class="post-meta list-inline">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-bank"></i> <a href="#">{{event.s.organizer}}</a>
+                                </li>
+                            </ul>
+                            <p>
+                                {{event.s.event_description | safe }}
+                            </p><br>
+                            <a href='{{event.s.event_url}}' class='btn btn-outline-secondary btn-sm'>Event Site</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-    {% endfor %}
-  </div>
-</div>
-</div>
-
 
 
 </div>
