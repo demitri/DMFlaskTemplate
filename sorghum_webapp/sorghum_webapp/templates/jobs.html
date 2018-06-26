@@ -32,12 +32,12 @@
           {% for job in jobs %}
             <div class="career-card clearfix">
                 <div class="clearfix pb20">
-                    <h2 class="mb0">{{job.s.job_title}}</h2>
+                    <h2 class="mb0">{{job.s.title.rendered}}</h2>
                     <span class="label label-default">{{job.s.company}}</span>
                 </div>
                 <br>
                 <p>
-                  {{job.s.job_description | safe }}
+                  {{job.s.content.rendered | safe }}
                 </p>
                 <br>
                 <h6>Job Requirements</h6>
