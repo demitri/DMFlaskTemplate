@@ -39,7 +39,7 @@ class Event(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"start_date", "end_date", "organizer", "event_description", "event_url",
+				"start_date", "end_date", "organizer", "event_url",
 				"featured_image"]
 
 	@property
@@ -187,7 +187,6 @@ class EventRequest(WPRequest):
 				event.s.start_date = d["start_date"]
 				event.s.end_date = d["end_date"]
 				event.s.organizer = d["organizer"]
-				event.s.event_description = d["event_description"]
 				event.s.event_url = d["event_url"]
 				event.s.featured_image = d["featured_image"]
 

@@ -22,7 +22,7 @@
             <div class="theiaStickySidebar"
                  style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
                 {% if past %}
-                <div class="pt50 title"><a href="/events">Upcoming events</a></div>
+
                 <div class="pt50 title">Past Events</div>
                 {% else %}
                 <div class="pt50 title">Upcoming Events</div>
@@ -32,8 +32,9 @@
                     <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
                     {% endfor %}
                     {% if past %}
+                    <div class="pt50 title"><a href="/events">Upcoming events</a></div>
                     {% else %}
-                    <div class="pt50 title"><a data-scroll="" href="/events?past=true">Past events</a></div>
+                    <div class="pt50 title"><a href="/events?past=true">Past events</a></div>
                     {% endif %}
                 </div>
             </div>
@@ -62,7 +63,7 @@
                                 </li>
                             </ul>
                             <p>
-                                {{event.s.event_description | safe }}
+                                {{event.s.content.rendered | safe }}
                             </p><br>
                             <a href='{{event.s.event_url}}' class='btn btn-outline-secondary btn-sm'>Event Site</a>
                         </div>
