@@ -62,11 +62,11 @@
 
   </div> <!-- end container -->
   <div class ="col-lg-12 col-md-6 mb5">
-    {% if footer_photos_to_credit and footer_photos_to_credit | length %}
+    {% if photos_to_credit and photos_to_credit | length %}
 
     <h4>Photo Credits</h4>
     <ul class="list-inline">
-      {% for media in footer_photos_to_credit %}
+      {% for media in photos_to_credit %}
       {% if media.s.caption %}
       <!-- <li> <p class="text-muted"><a href="{{media.s.media_source_url}}">{{ media.s.author_name | safe}}</a>, <a href="{{media.s.license_url}}">{{media.s.license_name}}</a></p></li> -->
        <li class="list-inline-item">{{media.s.caption.replace('\n', '') | safe}}</li>

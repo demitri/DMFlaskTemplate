@@ -31,6 +31,13 @@ def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_cr
 	#remove duplicates
 	photos_to_credit = list(set(photos_to_credit))
 
+	photographers = []
+	filtered_photographs = []
+	for photo in photos_to_credit:
+		if photo.s.alt_text not in photographers:
+			photographers.append(photo.s.alt_text)
+			filtered_photographs.append(photo)
+
 	if photos_to_credit:
-		template_dictionary["footer_photos_to_credit"] = photos_to_credit
+		template_dictionary["photos_to_credit"] = filtered_photographs
 	template_dictionary["footer_latest_news"] = posts

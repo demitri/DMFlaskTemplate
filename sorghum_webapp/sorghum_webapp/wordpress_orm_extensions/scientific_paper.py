@@ -159,15 +159,13 @@ class ScientificPaperRequest(WPRequest):
 			paper.s.title = d["title"]
 			paper.s.content = d["content"]
 			paper.s.template = d["template"]
-			paper.s.paper_title = d["paper_title"]
+
 			paper.s.abstract = d["abstract"]
 			paper.s.paper_authors = d["paper_authors"]
 			paper.s.source_url = d["source_url"]
 			paper.s.publication_date = d["publication_date"]
-			if d["pubmed_id"]:
-				paper.pubmed_id = d["pubmed_id"]
-			if d["pubmed_url"]:
-				paper.pubmed_url = d["pubmed_url"]
+			paper.pubmed_id = d["pubmed_id"]
+			paper.pubmed_url = d["pubmed_url"]
 
 			# add to cache
 			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.id, value = paper)
