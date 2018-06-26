@@ -14,10 +14,10 @@
 </div><!--page title end-->
 
 <div class="container pt70 pb30">
-    <div class="fancy-title">
+    <!-- <div class="fancy-title">
         <h4>resources group</h4>
         <div class="fancy-title-sep gray-sep"></div>
-    </div>
+    </div> -->
     <div class="row">
         {% for resource in resources_list %}
         <div class="col-lg-4 mb40">
@@ -28,8 +28,8 @@
                 {% else %}
                 <img src="{{default_image.s.source_url}}" alt="" class="img-fluid mb20">
                 {% endif %}
-                <h4>{{resource.s.resource_name}}</h4>
-                <p>{{resource.s.resource_blurb}}</p>
+                <h4>{{resource.s.title.rendered}}</h4>
+                {{resource.s.content.rendered | safe}}
             </div>
         </div><!--/col-->
         {% endfor %}

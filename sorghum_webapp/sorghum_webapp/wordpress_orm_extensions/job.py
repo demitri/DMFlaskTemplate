@@ -37,7 +37,7 @@ class Job(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"job_title", "company", "job_description", "job_requirements", "job_url"]
+				"company", "job_requirements", "job_url"]
 
 	@property
 	def categories(self):
@@ -89,7 +89,7 @@ class JobRequest(WPRequest):
 
 	@property
 	def parameter_names(self):
-		return ["slug", "before", "after", "status", "categories", "job_title"]
+		return ["slug", "before", "after", "status", "categories"]
 
 	def get(self):
 		'''
@@ -159,9 +159,7 @@ class JobRequest(WPRequest):
 			job.s.title = d["title"]
 			job.s.content = d["content"]
 			job.s.template = d["template"]
-			job.s.job_title = d["job_title"]
 			job.s.company = d["company"]
-			job.s.job_description = d["job_description"]
 			job.s.job_requirements = d["job_requirements"]
 			job.s.job_url = d["job_url"]
 
