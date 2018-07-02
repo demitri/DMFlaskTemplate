@@ -8,6 +8,8 @@ Ref: https://wordpress.org/plugins/pods/
 
 import logging
 import requests
+from datetime import datetime
+today = datetime.now()
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
 
@@ -37,7 +39,7 @@ class Job(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"company", "job_requirements", "job_url"]
+				"company", "job_requirements", "job_url", "expiration_date"]
 
 	@property
 	def categories(self):
@@ -134,6 +136,9 @@ class JobRequest(WPRequest):
 		jobs = list()
 		for d in jobs_data:
 
+			if d["expiration_date"] != "" and datetime.strptime(d["expiration_date"], '%Y-%m-%d') < today:
+				continue
+
 			# Before we continue, do we have this Job in the cache already?
 			try:
 				job = self.api.wordpress_object_cache.get(class_name=Job.__name__, key=d["id"])
@@ -162,6 +167,7 @@ class JobRequest(WPRequest):
 			job.s.company = d["company"]
 			job.s.job_requirements = d["job_requirements"]
 			job.s.job_url = d["job_url"]
+			job.s.expiration_date = d["expiration_date"]
 
 			# add to cache
 			self.api.wordpress_object_cache.set(class_name=Job.__name__, key=job.s.id, value = job)
