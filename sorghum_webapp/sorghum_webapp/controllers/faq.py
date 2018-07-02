@@ -37,4 +37,4 @@ def faq():
 	templateDict['questionSet'] = questionSet
 
 
-	return render_template("faq.html", **templateDict)
+	return render_template("faq.html", **templateDict, len=len)
