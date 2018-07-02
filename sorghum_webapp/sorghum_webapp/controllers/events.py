@@ -34,6 +34,7 @@ def events():
 
 		event_request = EventRequest(api=api)
 		event_request.past = True
+		event_request.per_page = 10
 		pastEvents = event_request.get()
 
 		news_banner_media = api.media(slug="sorghum_panicle")
@@ -41,9 +42,10 @@ def events():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[news_banner_media])
 
-	templateDict['pastEvents'] = pastEvents
-	templateDict['futureEvents'] = futureEvents
-	templateDict['events'] = pastEvents if past else futureEvents
+
+	templateDict["eventsDisplayed"] = pastEvents if past else futureEvents
+	templateDict["eventsNotDisplayed"] = futureEvents if past else pastEvents
+
 	templateDict['past'] = past
 
 
