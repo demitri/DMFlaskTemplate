@@ -1,4 +1,6 @@
 
+import json
+
 from wordpress_orm.entities import User
 
 class SBUser(User):
@@ -50,5 +52,7 @@ class SBUser(User):
 		Process response after superclass handles it.
 		'''
 		#print(self.json)
-		self.job_title = self.json['job_title']
-		self.organization = self.json['organization']
+		data = json.loads(self.json)
+		self.job_title = data['job_title']
+		self.organization = data['organization']
+

@@ -39,3 +39,4 @@ def research():
 	logger.debug(" ============= controller finished ============= ")
 
 	return render_template("research.html", **templateDict)
+
