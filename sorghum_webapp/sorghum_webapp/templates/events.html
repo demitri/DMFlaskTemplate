@@ -22,26 +22,36 @@
             <div class="theiaStickySidebar"
                  style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
                 {% if past %}
-
                 <div class="pt50 title">Past Events</div>
-                {% else %}
-                <div class="pt50 title">Upcoming Events</div>
-                {% endif %}
                 <div class="mb40">
-                    {% for event in events %}
-                    <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
-                    {% endfor %}
-                    {% if past %}
-                    <div class="pt50 title"><a href="/events">Upcoming events</a></div>
-                    {% else %}
-                    <div class="pt50 title"><a href="/events?past=true">Past events</a></div>
-                    {% endif %}
+                  {% for event in pastEvents %}
+                      <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                  {% endfor %}
                 </div>
+                {% endif %}
+                <div class="pt50 title"><a href="/events">Upcoming Events</a></div>
+                <div class="mb40">
+                    {% for event in futureEvents %}
+                      {% if past %}
+                        <a data-scroll="" class="nav-link">{{event.s.title.rendered}}</a>
+                      {% else %}
+                      <a data-scroll="" href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                      {% endif %}
+                    {% endfor %}
+                </div>
+                {% if not past %}
+                <div class="pt50 title"><a href="/events?past=true">Past events</a></div>
+                <div class="mb40">
+                    {% for event in pastEvents %}
+                    <a data-scroll="" class="nav-link">{{event.s.title.rendered}}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-lg-10">
             <div class="page-timeline">
-                {% for event in events %}
+              {% for event in events %}
                 <div id='{{event.s.title.rendered}}' class="vtimeline-point">
                     <div class="vtimeline-icon">
                         <i class="fa fa-calendar"></i>
