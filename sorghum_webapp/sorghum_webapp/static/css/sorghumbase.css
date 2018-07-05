@@ -120,6 +120,62 @@ img {
 }
 
 .logo {
-	width: auto;
 	height: auto;
+	width: auto;
+}
+
+
+.category li {
+  vertical-align: middle;
+}
+
+.category li > ul {
+  padding-left: 15px;
+}
+
+.category li > ul > li > a {
+  font-weight: 300;
+}
+
+.category li a {
+  color: #999;
+  position: relative;
+  display: block;
+  padding: 5px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.category li a:hover {
+  color: #444;
+  background-color: #f5f5f5;
+}
+
+.category > li.active > a {
+	font-weight: 600;
+	color: #444;
+}
+
+
+.category-expanded a:before {
+	content: "\f0dd";
+	font-family: 'FontAwesome';
+	margin-right: 5px;
+}
+.category-collapsed a:before {
+	content: "\f0da";
+	font-family: 'FontAwesome';
+	margin-right: 5px;
+}
+
+.category-checked a:before {
+	content: "\f046";
+	font-family: 'FontAwesome';
+	margin-right: 5px;
+}
+.category-not-checked a:before {
+	content: "\f096";
+	font-family: 'FontAwesome';
+	margin-right: 5px;
+
+.category-item a {
 }
