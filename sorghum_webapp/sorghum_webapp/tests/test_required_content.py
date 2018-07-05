@@ -36,5 +36,5 @@ def test_news_entries(wp_api):
 		post_request.categories = ["blog"]
 		post_request.per_page = 3			# only get three newest
 		posts = post_request.get()
-		
+
 		assert len(posts) >= 1, "No news posts found, i.e. posts with a category (slug) of 'blog'"

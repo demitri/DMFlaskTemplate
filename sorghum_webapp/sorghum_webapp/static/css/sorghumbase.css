@@ -118,3 +118,8 @@ img {
 	display: block;
 	margin: 0 auto;
 }
+
+.logo {
+	width: auto;
+	height: auto;
+}
