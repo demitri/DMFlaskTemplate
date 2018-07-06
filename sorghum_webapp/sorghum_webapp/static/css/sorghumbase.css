@@ -119,11 +119,15 @@ img {
 	margin: 0 auto;
 }
 
-.logo {
+.logo-footer {
 	height: auto;
-	width: auto;
+	width: 96px;
 }
 
+.logo-sb {
+	height: 150px;
+	width: auto;
+}
 
 .category li {
   vertical-align: middle;

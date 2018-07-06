@@ -2427,6 +2427,10 @@ Page title styles
   padding-top: 14em;
   padding-bottom: 7em; }
 
+.title-space-search {
+  padding-top: 9em;
+  padding-bottom: 3em; }
+
 .page-title-sm-gray {
   padding: 30px 0;
   padding-bottom: 20px;

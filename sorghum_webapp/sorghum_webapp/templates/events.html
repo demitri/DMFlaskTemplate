@@ -42,7 +42,11 @@
 
                 <div class="mb40">
                   {% for event in eventsNotDisplayed %}
-                      <a class="nav-link">{{event.s.title.rendered}}</a>
+                      {% if past %}
+                      <a href="/events#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                      {% else %}
+                      <a href="/events?past=true#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                      {% endif %}
                   {% endfor %}
                 </div>
             </div>
