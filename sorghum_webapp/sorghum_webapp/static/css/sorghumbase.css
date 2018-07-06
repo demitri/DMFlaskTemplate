@@ -140,7 +140,8 @@ img {
 .category li a {
   color: #999;
   position: relative;
-  display: block;
+  display: inline-block;
+	width: 90%;
   padding: 5px 10px;
   border-bottom: 1px solid #eee;
 }
@@ -176,6 +177,9 @@ img {
 	content: "\f096";
 	font-family: 'FontAwesome';
 	margin-right: 5px;
-
-.category-item a {
+}
+.category-leaf a:before {
+	content: "";
+	font-family: 'FontAwesome';
+	margin-right: 0px;
 }
