@@ -14,7 +14,8 @@
     <div id="preloader-inner"></div>
 </div--><!--/preloader-->
 
-<div class="page-titles-img title-space-lg bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}' style='background-image: url("{{sorghum_grains_image.s.source_url}}")'>
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}'
+     style='background-image: url("{{sorghum_grains_image.s.source_url}}")'>
     <div class="container">
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
@@ -29,7 +30,10 @@
     <div class="row justify-content-md-center">
         <div class="col-md-9 mb40">
             <article>
-<img src='{{ post.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
+
+                {% if post.s.featured_media %}
+                <img src='{{ post.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
+                {% endif %}
 
                 <div class="post-content">
 
@@ -40,12 +44,13 @@
                             <i class="fa fa-user-circle-o"></i> <a href="#">{{ post.author.s.name }}</a>
                         </li>
                         <li class="list-inline-item">
-                            <i class="fa fa-calendar-o"></i> <a href="#">{{(post.s.date|str2datetime).strftime('%-d %B %Y')}}</a>
+                            <i class="fa fa-calendar-o"></i> <a href="#">{{(post.s.date|str2datetime).strftime('%-d %B
+                            %Y')}}</a>
                         </li>
                         <li class="list-inline-item">
                             <i class="fa fa-tags"></i>
                             {% for category in post.categories %}
-                            	<a href="/posts?categories={{category.s.slug}}">{{ category.s.name }}  </a>
+                            <a href="/posts?categories={{category.s.slug}}">{{ category.s.name }} </a>
                             {% endfor %}
                         </li>
                     </ul>
@@ -77,10 +82,11 @@
 
                     <h4 class="mb40 text-uppercase font500">About the Author</h4>
                     <div class="media mb40">
-	                    <div class="image-cropper" style="height:200px; width:200px;">
-						    <!-- #<img src="{{ author_gravatar_url }}" srcset="{{ author_gravatar_url }} 2x"/> -->
-                <img src="{{ post.author.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
-						</div>
+                        <div class="image-cropper" style="height:200px; width:200px;">
+                            <!-- #<img src="{{ author_gravatar_url }}" srcset="{{ author_gravatar_url }} 2x"/> -->
+                            <img src="{{ post.author.s.avatar_urls['96'].replace(" 96", "128") }}" alt=""
+                            class="img-fluid rounded-circle centered">
+                        </div>
                         <!--i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i-->
                         <div class="media-body">
                             <h5 class="mt-0 font700">{{ post.author.s.name }}</h5>
@@ -88,11 +94,11 @@
                         </div>
                     </div>
 
-					{% if display_comments %}
+                    {% if display_comments %}
                     <hr class="mb40">
                     <h4 class="mb40 text-uppercase font500">Comments</h4>
 
-					{% for comment in post.comments %}
+                    {% for comment in post.comments %}
                     <div class="media mb40">
                         <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>
                         <div class="media-body">
@@ -119,11 +125,11 @@
                             <label>Name</label>
                             <input type="text" class="form-control" placeholder="John Doe">
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control" placeholder="john@doe.com">
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label>Comment</label>
                             <textarea class="form-control" rows="5" placeholder="Comment"></textarea>
                         </div>
