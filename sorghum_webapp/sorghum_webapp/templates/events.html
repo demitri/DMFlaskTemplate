@@ -14,7 +14,7 @@
         </div>
     </div>
 </div><!--page title end-->
-<div class="container pt90 pb50">
+<div class="container pt60 pb50">
     <div class="row">
         <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
              style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
@@ -35,9 +35,9 @@
                 </div>
 
                 {% if past %}
-                <div class="pt50 title"><a href="/events">Upcoming Events</a></div>
+                <div class="pt10 title"><a href="/events">Upcoming Events</a></div>
                 {% else %}
-                <div class="pt50 title"><a href="/events?past=true">Past events</a></div>
+                <div class="pt10 title"><a href="/events?past=true">Past events</a></div>
                 {% endif %}
 
                 <div class="mb40">
@@ -52,9 +52,10 @@
             </div>
         </div>
         <div class="col-lg-10">
-            <div class="page-timeline">
+            <div id='eventList' class="page-timeline">
               {% for event in eventsDisplayed %}
-                <div id='{{event.s.title.rendered}}' class="vtimeline-point">
+                <div class="vtimeline-point">
+                  <div id='{{event.s.title.rendered}}' style="position:absolute; top:-90px;"></div>
                     <div class="vtimeline-icon">
                         <i class="fa fa-calendar"></i>
                     </div>
@@ -62,7 +63,7 @@
                         <!-- <div class="vtimeline-date">{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</div> -->
                         <div class="vtimeline-content">
                             {% if event.s.featured_image %}
-                            <a href='#'><img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'></a>
+                            <img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'>
                             {% endif %}
                             <h2>{{event.s.title.rendered}}</h2>
                             <h3>{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
@@ -85,7 +86,5 @@
             </div>
         </div>
     </div>
-
-
 </div>
 {% endblock %}

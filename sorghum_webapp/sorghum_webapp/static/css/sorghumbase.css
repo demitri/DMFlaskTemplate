@@ -160,7 +160,6 @@ img {
 	color: #444;
 }
 
-
 .category-expanded a:before {
 	content: "\f0dd";
 	font-family: 'FontAwesome';
@@ -186,4 +185,8 @@ img {
 	content: "";
 	font-family: 'FontAwesome';
 	margin-right: 0px;
+}
+.anchor {
+	padding-top: 90px;
+	margin-top: -90px;
 }
