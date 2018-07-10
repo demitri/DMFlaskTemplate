@@ -3,6 +3,7 @@
 from __future__ import division
 from __future__ import print_function
 
+import os
 import sys
 import socket
 import logging
@@ -204,5 +205,37 @@ def create_app(debug=False):#, conf=dict()):
 
 	# Register all Jinja filters in the file.
 	app.register_blueprint(jinja_filters.blueprint)
+
+	# -------------------------------
+	# Authenticate with WordPress API
+	# -------------------------------
+
+	# basic authentication
+	# --------------------
+	from requests.auth import HTTPBasicAuth
+	
+	# does the configuration file request basic authentication?
+	if all([key in app.config for key in ['SB_WP_USERNAME', 'SB_WP_PASSWORD']]):
+		# check username, password defined in local environment
+		if 'SB_WP_USERNAME' not in os.environ:
+			raise Exception("'SB_WP_USERNAME' (WordPress username for basic authentication) set in configuration, but not defined in local environment.")
+		if 'SB_WP_PASSWORD' not in os.environ:
+			raise Exception("'SB_WP_PASSWORD' (WordPress password for basic authentication) set in configuration, but not defined in local environment.")
+		wordpress_api.authenticator = HTTPBasicAuth(os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
+	else:
+		print(red_text("Basic authentication failed."))
+
+	# OAuth authentication
+	# --------------------
+#	from flask_oauth import OAuth
+#	oauth = OAuth()
+#	wordpress = oauth.remote_app('wordpress',
+#								 base_url="base_url",
+#								 request_token_url="",
+#								 access_token_url="",
+#								 authorize_url="",
+#								 consumer_key="",
+#								 consumer_secret="")
+
 
 	return app
