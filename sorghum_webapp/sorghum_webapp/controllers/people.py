@@ -27,7 +27,9 @@ def people():
 	with wp_session(wpapi):
 
 		user_request = wpapi.UserRequest()
-		user_request.per_page = 100
+		user_request.context = "edit"
+		user_request.per_page = 50
+		user_request.roles = ['team_member']
 
 		team = user_request.get(classobject=SBUser)
 
@@ -38,4 +40,4 @@ def people():
 
 	templateDict['team'] = team
 
-	return render_template("people.html", **templateDict)
+	return render_template("people-beta.html", **templateDict)

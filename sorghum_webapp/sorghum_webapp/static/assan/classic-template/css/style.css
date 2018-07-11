@@ -1290,6 +1290,7 @@ Assan Header Style
     left: 0;
     top: 0;
     width: 100%;
+    padding-top:90px;
     z-index: 99; }
   .navbar-seconday ul li a.nav-link.active {
     color: #4782d3; }

@@ -6,17 +6,17 @@ $(function () {
     $(window).preloader({
         delay: 500
     });
-    // $(".nav-sticky-top").sticky({topSpacing: 0});
-//shrink header
-    // $(document).on("scroll", function () {
-    //     if
-    //             ($(document).scrollTop() > 150) {
-    //         $(".nav-sticky").addClass("nav-stick-top");
-    //     } else
-    //     {
-    //         $(".nav-sticky").removeClass("nav-stick-top");
-    //     }
-    // });
+//     $(".nav-sticky-top").sticky({topSpacing: 0});
+// shrink header
+//     $(document).on("scroll", function () {
+//         if
+//                 ($(document).scrollTop() > 150) {
+//             $(".nav-sticky").addClass("nav-stick-top");
+//         } else
+//         {
+//             $(".nav-sticky").removeClass("nav-stick-top");
+//         }
+//     });
     /****************
      search inline
      */

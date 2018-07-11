@@ -20,12 +20,12 @@ post_category_page = flask.Blueprint("post_category_page", __name__)
 
 @post_page.route('/post/<slug>')
 def post(slug):
-	''' 
+	'''
 	This page displays a single blog post retrieved from WordPress.
 	'''
 	templateDict = {}
-	
-	#api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
+
+	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 
 	with wp_session(api):
 		# get the post based on the slug
@@ -34,7 +34,7 @@ def post(slug):
 		except exc.NoEntityFound:
 			# TODO return top level posts page
 			raise Exception("Return top level posts page, maybe with an alert of 'post not found'.")
-		
+
 		# Get the three latest "News" posts from WordPress.
 		# -------------------------------------------------
 		pr = api.PostRequest()
@@ -44,14 +44,14 @@ def post(slug):
 		latest_posts = pr.get()
 
 		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
-				
+
 		populate_footer_template(wp_api=api, template_dictionary=templateDict, photos_to_credit=[])
-		
+
 		# pre-fetch relationships (premature optimization!)
 		for p in latest_posts:
 			p.categories
 
-	
+
 	templateDict["post"] = post
 	templateDict["latest_posts"] = latest_posts
 	templateDict["sorghum_grains_image"] = sorghum_grains_image
@@ -70,9 +70,8 @@ def post_category(category_slug):
 	This page displays a grid of post thumbnails from a given category.
 	'''
 	templateDict = {}
-	
-	
-	
-	
+
+
+
+
 	return render_template("post_category.html", **templateDict)
-	

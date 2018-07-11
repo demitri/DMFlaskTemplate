@@ -46,7 +46,7 @@ def index():
 
 	templateDict = {}
 
-	#api = wp.API(url="http://brie6.cshl.edu/wordpress/index.php/wp-json/wp/v2/")
+	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 
 	# perform all WordPress requests in a single session
 	with wp_session(api):
@@ -71,12 +71,15 @@ def index():
 		photos_to_credit = [big_banner_1, big_banner_2, big_banner_3, small_banner]
 
 		user_request = api.UserRequest()
+		user_request.context = "edit"
+		user_request.per_page = 50
+		user_request.roles = ["team_member"]
 		users = user_request.get(classobject=SBUser)
 
 		# Way to check if WP access is authenticated - all users would be returned in that case,
 		# not just the ones who have posted.
-		#for u in users:
-		#	logger.debug("User: {0}".format(u.s.name))
+		for u in users:
+			logger.debug("User: {0}".format(u.s.name))
 
 		tool_request = api.PostRequest()
 		tool_request.categories = ["tools"]	# search by slug
