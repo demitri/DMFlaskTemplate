@@ -1,13 +1,16 @@
 import { h } from 'preact'
 import { Provider } from 'redux-bundler-preact'
-import { resultSummary as Sorghum } from 'sorghum-search'
-import { resultSummary as Gramene } from 'gramene-search'
+import sorghum from 'sorghum-search'
+import gramene from 'gramene-search'
+
+const SorghumSummary = sorghum.resultSummary;
+const GrameneSummary = gramene.resultSummary;
 
 export default (store) => (
   <Provider store={store}>
     <ul class="list-unstyled category">
-      <Sorghum />
-      <Gramene />
+      <SorghumSummary />
+      <GrameneSummary />
     </ul>
   </Provider>
 )

@@ -12,18 +12,17 @@
   "dependencies": {
     "internal-nav-helper": "1.0.2",
     "money-clip": "2.0.0",
-    "npm": "^6.1.0",
     "preact": "8.2.7",
     "querystringify": "^2.0.0",
     "redux-bundler": "21.0.0",
-    "redux-bundler-preact": "1.0.0"
+    "redux-bundler-preact": "1.0.0",
+    "gramene-search": "^1.0.17",
+    "sorghum-search": "^1.0.17"
   },
   "devDependencies": {
     "babel-preset-env": "1.6.1",
     "babel-preset-preact": "1.1.0",
-    "parcel-bundler": "1.6.2",
-    "gramene-search": "git://github.com/warelab/gramene-search.git",
-    "sorghum-search": "git://github.com/warelab/sorghum-search.git"
+    "parcel-bundler": "1.6.2"
   },
   "prettier": {
     "singleQuote": true,
