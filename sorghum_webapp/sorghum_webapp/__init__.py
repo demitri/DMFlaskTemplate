@@ -27,7 +27,6 @@ def register_blueprints(app=None):
 	from .controllers.assan_blank import assan_blank_page
 	from .controllers.admin_template import assan_admin_template
 	from .controllers.notebook import notebook_page
-	from .controllers.wp_demo import wp_demo_page
 	from .controllers.post import post_page
 	from .controllers.posts import post_grid
 	from .controllers.mission_statement import mission_statement_page
@@ -51,7 +50,6 @@ def register_blueprints(app=None):
 	app.register_blueprint(miscellanea_page)
 	app.register_blueprint(assan_blank_page)
 	app.register_blueprint(assan_admin_template)
-	app.register_blueprint(wp_demo_page)
 	app.register_blueprint(post_page)
 	app.register_blueprint(post_grid)
 	app.register_blueprint(mission_statement_page)
@@ -156,10 +154,10 @@ def create_app(debug=False):#, conf=dict()):
 			print("No Flask configuration file was found (this is ok, it's optional.)")
 		if config_filename:
 			server_config_file = _app_setup_utils.getConfigFile(config_filename)
-	
+
 	else:
 		raise Exception("Not sure what mode we are running in here...")
-				
+
 	# Load file if found, which there almost always should be (at least in production mode).
 	if server_config_file:
 		print(green_text("Loading config file: "), yellow_text(server_config_file))
@@ -213,7 +211,7 @@ def create_app(debug=False):#, conf=dict()):
 	# basic authentication
 	# --------------------
 	from requests.auth import HTTPBasicAuth
-	
+
 	# does the configuration file request basic authentication?
 	if all([key in app.config for key in ['SB_WP_USERNAME', 'SB_WP_PASSWORD']]):
 		# check username, password defined in local environment
