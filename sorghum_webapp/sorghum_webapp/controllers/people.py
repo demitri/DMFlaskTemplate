@@ -40,4 +40,4 @@ def people():
 
 	templateDict['team'] = team
 
-	return render_template("people-beta.html", **templateDict)
+	return render_template("people.html", **templateDict)
