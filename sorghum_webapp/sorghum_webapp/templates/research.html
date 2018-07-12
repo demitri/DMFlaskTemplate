@@ -17,7 +17,7 @@
   <div class="row">
   {% for paper in papers %}
     <div id="{{paper.s.paper_title}}" class="col-lg-12 col-md-6 mb50">
-      <h4 class="mb0 text-uppercase">{{ paper.s.title.rendered }}</h4>
+      <h4 class="mb0 text-uppercase">{{ paper.s.title.rendered | safe}}</h4>
       <br>
       <h6>First published on {{(paper.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
       {% if paper.pubmed_id %}
