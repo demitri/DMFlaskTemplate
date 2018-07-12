@@ -6,6 +6,7 @@
 # % py.test --fixtures
 #
 
+import os
 import pytest
 import wordpress_orm
 
@@ -61,10 +62,12 @@ def client(request, app):
 	return test_client
 
 @pytest.fixture(scope="session") # , params=["wp_server_dev", "wp_server_prod"]) # repeat tests for each server
-def wp_api(app):
+def wp_api(request, app):
 	'''
 	A reusable wordpress_orm.API object for testing.
 	'''
+	from requests.auth import HTTPBasicAuth
+	
 	# Read parameters from "request.param". If more than one
 	# parameter is provided, more than one fixture is created
 	# and the tests repeated with it.
@@ -76,7 +79,10 @@ def wp_api(app):
 	# elif request.param == "wp.server_prod":
 	#	return wordpress_orm.API(url= <WP prod URL>)
 	
-	return wordpress_orm.API(url=app.config["WP_BASE_URL"])
+	wordpress_api = wordpress_orm.API(url=app.config["WP_BASE_URL"])
+	wordpress_api.authenticator = HTTPBasicAuth(os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
+	return wordpress_api
+	
 
 
 
