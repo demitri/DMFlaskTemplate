@@ -37,9 +37,6 @@ const UIbundle = {
   doToggleCategory: cat => ({dispatch}) => {
     dispatch({type: 'CATEGORY_TOGGLED', payload: cat})
   },
-  doToggleShowGramene: x=> ({dispatch}) => {
-    dispatch({type: 'SHOW_GRAMENE_TOGGLED'})
-  },
   persistActions: ['CATEGORY_TOGGLED'],
   doUpdateTheQueries: query => ({dispatch, getState}) => {
     const url = new URL(getState().url.url);
