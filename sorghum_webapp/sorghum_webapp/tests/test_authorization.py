@@ -15,7 +15,7 @@ def test_authorization(wp_api):
 	Test that we have authenticated with WordPress (i.e. not just public access).
 	'''
 	from ..wordpress_orm_extensions.user import SBUser
-	
+
 	# Filtering users by "role" requires authentication.
 	#
 	user_request = wp_api.UserRequest()
@@ -24,6 +24,6 @@ def test_authorization(wp_api):
 	user_request.roles = ["team_member"]
 	users = user_request.get(classobject=SBUser)
 
-	json_response = self.response.json()
-	
-	assert user_request.status_code == 403, "Authentication failed. Server message: {0}".format(json_response["message"])
+	json_response = user_request.response.json()
+
+	assert user_request.response.status_code == 200, "Authentication failed. Server message: {0}".format(json_response["message"])
