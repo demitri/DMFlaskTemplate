@@ -23,12 +23,12 @@ const UIbundle = {
       Pathways: false,
       Species: false,
       rows: {
-        Posts: 2,
-        Events: 2,
-        Jobs: 2,
-        People: 2,
-        Links: 2,
-        Papers: 2,
+        Posts: 3,
+        Events: 3,
+        Jobs: 3,
+        People: 3,
+        Links: 3,
+        Papers: 3,
         Genes: 20
       }
     };
@@ -41,12 +41,11 @@ const UIbundle = {
         return Object.assign(state, update)
       }
       if (type === 'CATEGORY_QUANTITY_CHANGED') {
-        let update = {
-          updates: state.updates + 1,
-          rows: {}
-        };
-        update.rows[payload.cat] = state.rows[payload.cat] + payload.delta;
-        return Object.assign(state, update)
+        let newState = Object.assign(state, {
+          updates: state.updates + 1
+        });
+        newState.rows[payload.cat] += payload.delta;
+        return newState;
       }
       return state
     }
