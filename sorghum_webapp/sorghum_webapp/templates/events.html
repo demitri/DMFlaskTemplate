@@ -30,7 +30,7 @@
 
                 <div class="mb40">
                   {% for event in eventsDisplayed %}
-                      <a href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                      <a href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered | safe}}</a>
                   {% endfor %}
                 </div>
 
@@ -43,9 +43,9 @@
                 <div class="mb40">
                   {% for event in eventsNotDisplayed %}
                       {% if past %}
-                      <a href="/events#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                      <a href="/events#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered | safe}}</a>
                       {% else %}
-                      <a href="/events?past=true#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered}}</a>
+                      <a href="/events?past=true#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered | safe}}</a>
                       {% endif %}
                   {% endfor %}
                 </div>
@@ -65,14 +65,14 @@
                             {% if event.s.featured_image %}
                             <img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'>
                             {% endif %}
-                            <h2>{{event.s.title.rendered}}</h2>
+                            <h2>{{event.s.title.rendered | safe}}</h2>
                             <h3>{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
                                 {% if (event.s.end_date != "0000-00-00") %}
                                 - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
                                 {% endif %}</h3>
                             <ul class="post-meta list-inline">
                                 <li class="list-inline-item">
-                                    <i class="fa fa-bank"></i> <a href="#">{{event.s.organizer}}</a>
+                                    <i class="fa fa-bank"></i> <a href="#">{{event.s.organizer | safe}}</a>
                                 </li>
                             </ul>
                             <p>

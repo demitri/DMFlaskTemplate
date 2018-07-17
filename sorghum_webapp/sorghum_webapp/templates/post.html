@@ -37,11 +37,11 @@
 
                 <div class="post-content">
 
-                    <h3>{{ post.s.title }}</h3>
+                    <h3>{{ post.s.title | safe}}</h3>
 
                     <ul class="post-meta list-inline">
                         <li class="list-inline-item">
-                            <i class="fa fa-user-circle-o"></i> <a href="#">{{ post.author.s.name }}</a>
+                            <i class="fa fa-user-circle-o"></i> <a href="#">{{ post.author.s.name | safe}}</a>
                         </li>
                         <li class="list-inline-item">
                             <i class="fa fa-calendar-o"></i> <a href="#">{{(post.s.date|str2datetime).strftime('%-d %B
@@ -50,7 +50,7 @@
                         <li class="list-inline-item">
                             <i class="fa fa-tags"></i>
                             {% for category in post.categories %}
-                            <a href="/posts?categories={{category.s.slug}}">{{ category.s.name }} </a>
+                            <a href="/posts?categories={{category.s.slug}}">{{ category.s.name | safe}} </a>
                             {% endfor %}
                         </li>
                     </ul>
@@ -89,7 +89,7 @@
                         </div>
                         <!--i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i-->
                         <div class="media-body">
-                            <h5 class="mt-0 font700">{{ post.author.s.name }}</h5>
+                            <h5 class="mt-0 font700">{{ post.author.s.name | safe}}</h5>
                             {{ post.author.s.description | safe}}
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="media-body">
                             <h5 class="mt-0 font400 clearfix">
                                 <a href="#" class="float-right">Reply</a>
-                                {{ comment.s.author_name }} </h5>
+                                {{ comment.s.author_name | safe}} </h5>
                             <!--ul class="post-meta list-inline">
 		                        <li class="list-inline-item">
 		                            <i class="fa fa-calendar-o"></i> <a href="#">{{(comment.s.date|str2datetime).strftime('%d %B %Y')}}</a>

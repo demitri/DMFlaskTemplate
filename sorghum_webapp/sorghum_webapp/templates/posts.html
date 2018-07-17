@@ -23,12 +23,12 @@
             <a href="/post/{{post.s.slug}}"><h4 class="masonry-title mb0">{{post.s.title | safe}}</h4></a>
             <ul class="post-meta list-inline">
                     <li class="list-inline-item">
-                        <i class="fa fa-user-circle-o"></i> <a href="#">{{ post.author.s.name }}</a>
+                        <i class="fa fa-user-circle-o"></i> <a href="#">{{ post.author.s.name | safe }}</a>
                     </li>
                     <li class="list-inline-item">
                         <i class="fa fa-tags"></i>
                         {% for category in post.categories %}
-                            <a href="/posts?categories={{category.s.slug}}">{{ category.s.name }}</a>
+                            <a href="/posts?categories={{category.s.slug}}">{{ category.s.name | safe}}</a>
                         {% endfor %}
                     </li>
                     <li class="list-inline-item">
