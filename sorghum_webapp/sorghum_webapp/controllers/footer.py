@@ -26,7 +26,8 @@ def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_cr
 
 	# while we're here, fetch the featured media
 	for post in posts:
-		photos_to_credit.append(post.featured_media)
+		if post.featured_media:
+			photos_to_credit.append(post.featured_media)
 
 	#remove duplicates
 	photos_to_credit = list(set(photos_to_credit))
