@@ -53,7 +53,7 @@ const UIbundle = {
   doToggleCategory: cat => ({dispatch}) => {
     dispatch({type: 'CATEGORY_TOGGLED', payload: cat})
   },
-  persistActions: ['CATEGORY_TOGGLED'],
+  persistActions: ['CATEGORY_TOGGLED','CATEGORY_QUANTITY_CHANGED'],
   doChangeQuantity: (cat, delta) => ({dispatch}) => {
     dispatch({type: 'CATEGORY_QUANTITY_CHANGED', payload: {cat:cat, delta:delta}});
     if (cat === 'Genes') dispatch({type: 'GRAMENE_GENES_CLEARED'});
