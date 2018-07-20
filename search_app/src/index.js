@@ -9,7 +9,7 @@ cache.getAll().then(initialData => {
   if (initialData) {
     console.log('starting with locally cached data:', initialData)
   }
-  const store = getStore();//initialData);
+  const store = getStore(initialData);
   render(Summary(store), document.getElementById('search-summary'));
   render(Results(store), document.getElementById('search-results'));
   render(SearchBox(store), document.getElementById('search-box'));

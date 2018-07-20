@@ -24,12 +24,12 @@ const UIbundle = {
             Pathways: false,
             Species: false,
             rows: {
-                Posts: 3,
-                Events: 3,
-                Jobs: 3,
-                People: 3,
-                Links: 3,
-                Papers: 3,
+                Posts: 6,
+                Events: 6,
+                Jobs: 6,
+                People: 6,
+                Links: 6,
+                Papers: 6,
                 Genes: 20
             }
         };
@@ -54,7 +54,7 @@ const UIbundle = {
     doToggleCategory: cat => ({dispatch}) => {
         dispatch({type: 'CATEGORY_TOGGLED', payload: cat})
     },
-    persistActions: ['CATEGORY_TOGGLED'],
+    persistActions: ['CATEGORY_TOGGLED', 'CATEGORY_QUANTITY_CHANGED'],
     doChangeQuantity: (cat, delta) => ({dispatch, getState}) => {
         const state = getState();
         console.log('doChangeQuantity', state);
