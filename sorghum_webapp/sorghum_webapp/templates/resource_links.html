@@ -13,27 +13,20 @@
     </div>
 </div><!--page title end-->
 
-<div class="container pt70 pb30">
-    <!-- <div class="fancy-title">
-        <h4>resources group</h4>
-        <div class="fancy-title-sep gray-sep"></div>
-    </div> -->
-    <div class="row">
+<div class="container pt90 mb30">
+    <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
         {% for resource in resources_list %}
-        <div class="col-lg-4 mb40">
-            <div class="image-text-card1">
-                <a href="{{resource.s.resource_url}}" class="card-link"></a>
-                {% if resource.resource_image %}
-                <img src="{{resource.resource_image.s.source_url}}" alt="" class="img-fluid mb20 centered">
-                {% else %}
-                <img src="{{default_image.s.source_url}}" alt="" class="img-fluid mb20">
-                {% endif %}
-                <h4>{{resource.s.title.rendered | safe}}</h4>
-                {{resource.s.content.rendered | safe}}
-            </div>
-        </div><!--/col-->
+        <a href="{{resource.s.resource_url}}">
+        <article class="col-md-4 post-masonry mb40" style="position: absolute; left: 0px; top: 0px;">
+            {% if resource.resource_image %}
+            <img src="{{resource.resource_image.s.source_url}}" alt="" class="img-fluid mt20 mb20 centered">
+            {% else %}
+            <img src="{{default_image.s.source_url}}" alt="" class="img-fluid mt20 mb20">
+            {% endif %}
+              <h4 class="masonry-title mb0">{{resource.s.title.rendered | safe}}</h4></a>
+              <p class="card-text">{{resource.s.content.rendered | safe}}</p>
+        </article><!--article post-->
         {% endfor %}
-    </div><!--/row-->
+    </div>
 </div>
-
 {% endblock %}

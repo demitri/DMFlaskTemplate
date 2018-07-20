@@ -351,6 +351,17 @@ strong, b {
 .mt5 {
   margin-top: 5px !important; }
 
+.mt20 {
+  margin-top: 20px !important; }
+
+.mx5 {
+  margin-left: 5px !important;
+  margin-right: 5px !important; }
+
+.mx10 {
+  margin-left: 10px !important;
+  margin-right: 10px !important; }
+
 .bg-default {
   background-color: rgba(71, 130, 211, 0.1) !important; }
 
