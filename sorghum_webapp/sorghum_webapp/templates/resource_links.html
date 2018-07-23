@@ -17,7 +17,7 @@
     <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
         {% for resource in resources_list %}
         <div class="">
-        <article class="col-md-4 post-masonry  card" style="position: absolute; left: 0px; top: 0px;">
+        <article class="col-md-4 post-masonry" style="position: absolute; left: 0px; top: 0px;">
           <a href="{{resource.s.resource_url}}">
             {% if resource.resource_image %}
             <img src="{{resource.resource_image.s.source_url}}" alt="" class="img-fluid mt20 mb20 centered">

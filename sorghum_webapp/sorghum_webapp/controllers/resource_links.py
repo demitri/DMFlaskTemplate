@@ -23,6 +23,7 @@ def resource_links():
 
 	with wp_session(api):
 		rl_pr = ResourceLinkRequest(api=api)
+		rl_pr.per_page = 100
 		resources = rl_pr.get()
 
 		resources_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
