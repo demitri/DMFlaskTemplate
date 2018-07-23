@@ -63,13 +63,8 @@ class ResourceLink(WPEntity):
 		Returns a WordPress 'Media' object.
 		'''
 		if self._resource_image is None:
-			mr = self.api.MediaRequest()
-			mr.id = self.s.resource_image
-			media_list = mr.get()
-			if len(media_list) == 1:
-				self._resource_image = media_list[0]
-			else:
-				self._resource_image = None
+			self._resource_image = self.s.resource_image
+
 		return self._resource_image
 
 	@property

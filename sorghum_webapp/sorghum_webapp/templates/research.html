@@ -25,7 +25,7 @@
       {% endif %}
       <p><em>{{ paper.paper_authors | safe }}</em></p>
       <p>{{ paper.abstract | safe }}</p>
-      <a href="{{paper.s.source_url}}"><h6 class="masonry-title mb0">View full paper at source</h6></a>
+      <a href="{{paper.source_url}}"><h6 class="masonry-title mb0">View full paper at source</h6></a>
     </div>
   {% endfor %}
   </div>
