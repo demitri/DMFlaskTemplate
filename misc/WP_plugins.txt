@@ -11,3 +11,6 @@ https://wordpress.org/plugins/adminimize/
 
 REST API Log: Used to log requests and responses for the REST API.
 https://wordpress.org/plugins/wp-rest-api-log/
+
+JSON Basic Authentication: Enables basic HTTP authentication - URL not installable
+https://github.com/WP-API/Basic-Auth
