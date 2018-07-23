@@ -66,13 +66,14 @@ class Event(WPEntity):
 		Returns a WordPress 'Media' object.
 		'''
 		if self._featured_image is None:
-			mr = self.api.MediaRequest()
-			mr.id = self.s.featured_image
-			media_list = mr.get()
-			if len(media_list) == 1:
-				self._featured_image = media_list[0]
-			else:
-				self._featured_image = None
+			# mr = self.api.MediaRequest()
+			# mr.id = self.s.featured_image
+			# media_list = mr.get()
+			# if len(media_list) == 1:
+			# 	self._featured_image = media_list[0]
+			# else:
+			# 	self._featured_image = None
+			self._featured_image = self.s.featured_image
 		return self._featured_image
 
 	@property

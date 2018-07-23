@@ -63,7 +63,7 @@
                         <!-- <div class="vtimeline-date">{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}</div> -->
                         <div class="vtimeline-content">
                             {% if event.s.featured_image %}
-                            <img src='{{event.featured_image.s.source_url}}' alt='' class='img-fluid mb20'>
+                            <img src='{{event.featured_image[0]['guid']}}' alt='' class='img-fluid mb20'>
                             {% endif %}
                             <h2>{{event.s.title.rendered | safe}}</h2>
                             <h3>{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
