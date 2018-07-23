@@ -129,6 +129,10 @@ img {
 	width: auto;
 }
 
+.resource-link-image {
+	max-height: 150px;
+}
+
 .category li {
   vertical-align: middle;
 }
