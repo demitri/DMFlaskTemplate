@@ -1,0 +1,13 @@
+Sorghumbase WP plugins
+
+Pods: Used to create custom content types.
+https://wordpress.org/plugins/pods/
+
+Members: Used to create custom user roles.
+https://wordpress.org/plugins/members/
+
+Adminimize: Used to hide some options on the new post page from contributors to avoid confusion.
+https://wordpress.org/plugins/adminimize/
+
+REST API Log: Used to log requests and responses for the REST API.
+https://wordpress.org/plugins/wp-rest-api-log/
