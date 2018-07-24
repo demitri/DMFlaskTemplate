@@ -78,8 +78,8 @@ def index():
 
 		# Way to check if WP access is authenticated - all users would be returned in that case,
 		# not just the ones who have posted.
-		for u in users:
-			logger.debug("User: {0}".format(u.s.name))
+		#for u in users:
+		#	logger.debug("User: {0}".format(u.s.name))
 
 		tool_request = api.PostRequest()
 		tool_request.categories = ["tools"]	# search by slug

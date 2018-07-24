@@ -6,6 +6,7 @@ Custom WordPress object defined using the plugin WordPress Pods.
 Ref: https://wordpress.org/plugins/pods/
 '''
 
+import json
 import logging
 import requests
 
@@ -144,31 +145,35 @@ class ScientificPaperRequest(WPRequest):
 				pass
 
 			paper = ScientificPaper(api=self.api)
-			paper.json = d
+			paper.json = json.dumps(d)
 
-			paper.s.id = d["id"]
-			paper.s.date = d["date"]
-			paper.s.date_gmt = d["date_gmt"]
-			paper.s.guid = d["guid"]
-			paper.s.modified = d["modified"]
-			paper.s.modified_gmt = d["modified_gmt"]
-			paper.s.slug = d["slug"]
-			paper.s.status = d["status"]
-			paper.s.type = d["type"]
-			paper.s.link = d["link"]
-			paper.s.title = d["title"]
-			paper.s.content = d["content"]
-			paper.s.template = d["template"]
+			paper.update_schema_from_dictionary(d)
+			
+# 			paper.s.id = d["id"]
+# 			paper.s.date = d["date"]
+# 			paper.s.date_gmt = d["date_gmt"]
+# 			paper.s.guid = d["guid"]
+# 			paper.s.modified = d["modified"]
+# 			paper.s.modified_gmt = d["modified_gmt"]
+# 			paper.s.slug = d["slug"]
+# 			paper.s.status = d["status"]
+# 			paper.s.type = d["type"]
+# 			paper.s.link = d["link"]
+# 			paper.s.title = d["title"]
+# 			paper.s.content = d["content"]
+# 			paper.s.template = d["template"]
+# 
+# 			paper.abstract = d["abstract"]
+# 			paper.paper_authors = d["paper_authors"]
+# 			paper.source_url = d["source_url"]
+# 			paper.publication_date = d["publication_date"]
+# 			paper.pubmed_id = d["pubmed_id"]
 
-			paper.abstract = d["abstract"]
-			paper.paper_authors = d["paper_authors"]
-			paper.source_url = d["source_url"]
-			paper.publication_date = d["publication_date"]
-			paper.pubmed_id = d["pubmed_id"]
+			if "_embedded" in d:
+				logger.debug("TODO: implement _embedded content for ScientificPaper object")
 
 			# add to cache
-			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.id, value = paper)
-			self.api.wordpress_object_cache.set(class_name=ScientificPaper.__name__, key=paper.s.slug, value = paper)
+			self.api.wordpress_object_cache.set(value=paper, keys=(paper.s.id, paper.s.slug))
 
 			papers.append(paper)
 

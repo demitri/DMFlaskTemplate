@@ -170,30 +170,34 @@ class EventRequest(WPRequest):
 					pass
 
 				event = Event(api=self.api)
-				event.json = d
+				event.json = json.dumps(d)
 
-				event.s.id = d["id"]
-				event.s.date = d["date"]
-				event.s.date_gmt = d["date_gmt"]
-				event.s.guid = d["guid"]
-				event.s.modified = d["modified"]
-				event.s.modified_gmt = d["modified_gmt"]
-				event.s.slug = d["slug"]
-				event.s.status = d["status"]
-				event.s.type = d["type"]
-				event.s.link = d["link"]
-				event.s.title = d["title"]
-				event.s.content = d["content"]
-				event.s.template = d["template"]
-				event.s.start_date = d["start_date"]
-				event.s.end_date = d["end_date"]
-				event.s.organizer = d["organizer"]
-				event.s.event_url = d["event_url"]
-				event.s.featured_image = d["featured_image"]
+				event.update_schema_from_dictionary(d)
+
+# 				event.s.id = d["id"]
+# 				event.s.date = d["date"]
+# 				event.s.date_gmt = d["date_gmt"]
+# 				event.s.guid = d["guid"]
+# 				event.s.modified = d["modified"]
+# 				event.s.modified_gmt = d["modified_gmt"]
+# 				event.s.slug = d["slug"]
+# 				event.s.status = d["status"]
+# 				event.s.type = d["type"]
+# 				event.s.link = d["link"]
+# 				event.s.title = d["title"]
+# 				event.s.content = d["content"]
+# 				event.s.template = d["template"]
+# 				event.s.start_date = d["start_date"]
+# 				event.s.end_date = d["end_date"]
+# 				event.s.organizer = d["organizer"]
+# 				event.s.event_url = d["event_url"]
+# 				event.s.featured_image = d["featured_image"]
+
+				if "_embedded" in d:
+					logger.debug("TODO: implement _embedded content for Event object")
 
 				# add to cache
-				self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.id, value = event)
-				self.api.wordpress_object_cache.set(class_name=Event.__name__, key=event.s.slug, value = event)
+				self.api.wordpress_object_cache.set(value=event, keys=(event.s.id, event.s.slug))
 
 				events.append(event)
 

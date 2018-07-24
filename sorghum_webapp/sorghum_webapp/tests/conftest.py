@@ -6,6 +6,8 @@
 # % py.test --fixtures
 #
 
+# To prevent STDOUT from being captured, add "--capture=no"
+
 import os
 import pytest
 import wordpress_orm

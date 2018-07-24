@@ -6,6 +6,7 @@ This script is used to launch myapplication.
 Application initialization should go here.
 
 '''
+import os
 import argparse
 import coloredlogs
 
@@ -67,6 +68,18 @@ app = create_app(debug=debug) #, conf=conf) # actually creates the Flask applica
 # --------------
 if args.log_level:
 	import logging
+		
+	# set up logging output format
+	# ref: https://stackoverflow.com/questions/533048/how-to-log-source-file-name-and-line-number-in-python
+	#
+#	logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+#						datefmt='%Y-%m-%d:%H:%M:%S',
+#						level=logging.DEBUG)
+
+	# coloredlogs is configured with environment variables... weird
+	os.environ["COLOREDLOGS_LOG_FORMAT"] = "%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s"
+	#os.environ["COLOREDLOGS_DATE_FORMAT"] = "date format here"
+
 	logger = logging.getLogger("wordpress_orm") # package name
 
 	color_logs = app.config.get("ENABLE_COLOR_LOGS", False)

@@ -149,29 +149,33 @@ class JobRequest(WPRequest):
 				pass
 
 			job = Job(api=self.api)
-			job.json = d
+			job.json = json.dumps(d)
 
-			job.s.id = d["id"]
-			job.s.date = d["date"]
-			job.s.date_gmt = d["date_gmt"]
-			job.s.guid = d["guid"]
-			job.s.modified = d["modified"]
-			job.s.modified_gmt = d["modified_gmt"]
-			job.s.slug = d["slug"]
-			job.s.status = d["status"]
-			job.s.type = d["type"]
-			job.s.link = d["link"]
-			job.s.title = d["title"]
-			job.s.content = d["content"]
-			job.s.template = d["template"]
-			job.s.company = d["company"]
-			job.s.job_requirements = d["job_requirements"]
-			job.s.job_url = d["job_url"]
-			job.s.expiration_date = d["expiration_date"]
+			job.update_schema_from_dictionary(d)
+
+# 			job.s.id = d["id"]
+# 			job.s.date = d["date"]
+# 			job.s.date_gmt = d["date_gmt"]
+# 			job.s.guid = d["guid"]
+# 			job.s.modified = d["modified"]
+# 			job.s.modified_gmt = d["modified_gmt"]
+# 			job.s.slug = d["slug"]
+# 			job.s.status = d["status"]
+# 			job.s.type = d["type"]
+# 			job.s.link = d["link"]
+# 			job.s.title = d["title"]
+# 			job.s.content = d["content"]
+# 			job.s.template = d["template"]
+# 			job.s.company = d["company"]
+# 			job.s.job_requirements = d["job_requirements"]
+# 			job.s.job_url = d["job_url"]
+# 			job.s.expiration_date = d["expiration_date"]
+
+			if "_embedded" in d:
+				logger.debug("TODO: implement _embedded content for Job object")
 
 			# add to cache
-			self.api.wordpress_object_cache.set(class_name=Job.__name__, key=job.s.id, value = job)
-			self.api.wordpress_object_cache.set(class_name=Job.__name__, key=job.s.slug, value = job)
+			self.api.wordpress_object_cache.set(value=job, keys=(job.s.id, job.s.slug))
 
 			jobs.append(job)
 
