@@ -10,7 +10,7 @@ import xml.dom.minidom
 # register with user account
 pubmed.connect("PUBMED", 'muna@cshl.edu')
 
-ids = [29161754]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
+ids = [29161754, 29292376]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
 fetch = pubmed.PubMedFetch(id_list=ids)
 refs = fetch.get_content()
 
@@ -28,7 +28,7 @@ refs = fetch.get_content()
 
 Note that more information is available in the returned XML that doesn't appear to be
 in the reference object created. This includes copyright information (<CopyrightInformation>),
-author affiliations, 
+author affiliations,
 '''
 
 #print(refs)
@@ -41,7 +41,7 @@ author affiliations,
 xml_string = refs[0]["xml"].replace("\n","")
 xml = xml.dom.minidom.parseString(xml_string)
 pretty_xml_string = xml.toprettyxml()
-print(pretty_xml_string)
+# print(pretty_xml_string)
 
 """
 Result:

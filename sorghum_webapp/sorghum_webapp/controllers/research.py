@@ -29,6 +29,10 @@ def research():
 
 		papers = paper_request.get()
 
+		for paper in papers:
+			if not paper.abstract:
+				papers.pop(paper)
+
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media
 
@@ -39,4 +43,3 @@ def research():
 	logger.debug(" ============= controller finished ============= ")
 
 	return render_template("research.html", **templateDict)
-

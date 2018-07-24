@@ -73,7 +73,7 @@ class Event(WPEntity):
 			# 	self._featured_image = media_list[0]
 			# else:
 			# 	self._featured_image = None
-			self._featured_image = self.s.featured_image
+			self._featured_image = self.s.featured_image[0]
 		return self._featured_image
 
 	@property
