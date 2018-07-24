@@ -194,3 +194,8 @@ img {
 	padding-top: 90px;
 	margin-top: -90px;
 }
+
+.dropdown-menu-right {
+	text-align: right;
+	min-width: 10em;
+}
