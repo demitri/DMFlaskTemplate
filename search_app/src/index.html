@@ -1,21 +1,398 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,default,Array.prototype.find"></script>
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.9.1/css/tachyons.min.css"/>
-  <style>
-    body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Search</title>
+    <!-- Plugins CSS -->
+    <link href="http://dev.sorghumbase.org/static/assan/classic-template/css/plugins/plugins.css" rel="stylesheet">
+    <!-- REVOLUTION STYLE SHEETS -->
+    <link rel="stylesheet" type="text/css"
+          href="http://dev.sorghumbase.org/static/assan/classic-template/revolution/css/settings.css">
+    <!-- REVOLUTION LAYERS STYLES -->
+    <link rel="stylesheet" type="text/css"
+          href="http://dev.sorghumbase.org/static/assan/classic-template/revolution/css/layers.css">
+    <!-- REVOLUTION NAVIGATION STYLES -->
+    <link rel="stylesheet" type="text/css"
+          href="http://dev.sorghumbase.org/static/assan/classic-template/revolution/css/navigation.css">
+    <!-- load css for cubeportfolio -->
+    <link rel="stylesheet" type="text/css"
+          href="http://dev.sorghumbase.org/static/assan/classic-template/cubeportfolio/css/cubeportfolio.min.css">
+    <link href="http://dev.sorghumbase.org/static/assan/classic-template/smart-form/contact-recaptcha/css/smart-forms.css"
+          rel="stylesheet">
+    <link href="http://dev.sorghumbase.org/static/assan/classic-template/css/style.css" rel="stylesheet">
+    <link href="http://dev.sorghumbase.org/static/css/sorghumbase.css" rel="stylesheet">
+
+
 </head>
+
 <body>
-<div id='search-box'></div>
-<div id='search-summary'></div>
-<div id='search-results'></div>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div><!--/preloader-->
+
+<!-- Site Overlay -->
+<div class="site-overlay"></div>
+
+<nav class="navbar navbar-expand-lg navbar-light navbar-transparent bg-faded nav-sticky nav-stick-top">
+    <div class="search-inline">
+        <form action="/search">
+            <input id="sorghumbase-search-input" name="q" type="text" class="form-control"
+                   placeholder="Type and hit enter...">
+            <button type="submit"><i class="ti-search"></i></button>
+            <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
+        </form>
+    </div><!--/search form-->
+    <div class="container">
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+            <img class='logo logo-dark' src="http://dev.sorghumbase.org/static/images/logo.png" alt="">
+            <img class='logo logo-light hidden-md-down' src="http://dev.sorghumbase.org/static/images/logo-light.png"
+                 alt="">
+        </a>
+        <div id="navbarNavDropdown" class="navbar-collapse collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        About
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <!-- <li><a href="/about" class="dropdown-item font-weight-bold">ABOUT</a></li> -->
+                        <li><a href="/mission-statement" class="dropdown-item">Mission Statement</a></li>
+                        <li><a href="/faq" class="dropdown-item">FAQ</a></li>
+                        <li><a href="/contact" class="dropdown-item">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        News
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <!-- <li><a href="/news" class="dropdown-item font-weight-bold">NEWS</a></li> -->
+                        <li><a href="/posts?categories=news" class="dropdown-item">News</a></li>
+                        <li><a href="/research" class="dropdown-item">Research</a></li>
+                        <li><a href="/events" class="dropdown-item">Events</a></li>
+                        <li><a href="/jobs" class="dropdown-item">Jobs</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        Community
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <!-- <li><a href="/community" class="dropdown-item font-weight-bold">COMMUNITY</a></li> -->
+                        <li><a href="/posts?categories=blog" class="dropdown-item">Blog</a></li>
+                        <li><a href="/people" class="dropdown-item">People</a></li>
+                        <li><a href="/mailing_list" class="dropdown-item">Mailing List</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false" href="#">
+                        Resources
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <!-- <li><a href="/resources" class="dropdown-item font-weight-bold">RESOURCES</a></li> -->
+                        <li><a href="/resource_links" class="dropdown-item">Links</a></li>
+                        <li><a href="/posts?categories=tools" class="dropdown-item">Tools</a></li>
+                        <li><a href="/posts?categories=tutorials" class="dropdown-item">Tutorials</a></li>
+                        <li><a href="/posts?categories=projects" class="dropdown-item">Projects</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class=" navbar-right-elements">
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a>
+                </li>
+            </ul>
+        </div><!--right nav icons-->
+    </div>
+</nav>
+
+
+<div class="page-titles-img title-space-search bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}'
+     style='background-image: url("http://content.sorghumbase.org/wordpress/wp-content/uploads/2018/05/k-state-sorghum-field-1920x1000.jpg")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1>Search</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb70" id="wrapper" style="transform: none;">
+    <div class="row" style="transform: none;">
+        <div class="col-lg-3 mb40 sticky-sidebar"
+             style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+            <!--/col-->
+            <div class="theiaStickySidebar"
+                 style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+                <div class="pt40" id="search-box"></div>
+                <div class="mb40" id="search-summary">
+                </div>
+                <div class="resize-sensor"
+                     style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
+                    <div class="resize-sensor-expand"
+                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                        <div style="position: absolute; left: 0px; top: 0px; transition: 0s; width: 295px; height: 826px;"></div>
+                    </div>
+                    <div class="resize-sensor-shrink"
+                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                        <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9 sticky-content"
+             style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+            <div class="theiaStickySidebar"
+                 style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
+                <div id="search-results"></div>
+                <div class="resize-sensor"
+                     style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
+                    <div class="resize-sensor-expand"
+                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                        <div style="position: absolute; left: 0px; top: 0px; transition: 0s; width: 865px; height: 866px;"></div>
+                    </div>
+                    <div class="resize-sensor-shrink"
+                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
+                        <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer footer-standard pt50 pb20">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb40">
+                <h3>About Us</h3>
+                <p class="mb30">
+                    Sorghumbase aims to be a portal that enables researchers and growers of sorghum to exploit data
+                    management resources, relevant biological knowledge and genetic resources in a manner that
+                    effectively addresses the needs of the sorghum community to increase our ability to understand
+                    complex biological traits that are critical to U.S. agriculture.
+                </p>
+                <img class="logo-footer mr-4 mb-4"
+                     src="http://dev.sorghumbase.org/static/images/CSHL_logo_alternate_KO.svg"
+                     alt="Cold Spring Harbor Laboratory" width="72">
+                <img class="logo-footer mr-4 mb-4" src="http://dev.sorghumbase.org/static/images/USDA_KO.svg" alt="USDA"
+                     width="72">
+            </div>
+            <div class="col-lg-2 col-md-6 mb40">
+                <h3>Quick links</h3>
+                <ul class="list-unstyled footer-list-item">
+                    <li>
+                        <a href="/faq">
+                            FAQs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/research">
+                            Research
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/people">
+                            People
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/contact">
+                            Contact Us
+                        </a>
+                    </li>
+                    <!-- <li>
+                    <a href="#">
+                    Sitemap
+                  </a>
+                </li> -->
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb40">
+                <h3>Latest News</h3>
+                <ul class="list-unstyled latest-news">
+
+                    <li class="media">
+
+                        <a href="/post/sorghum-improvement-conference-of-north-america-sicna-an-integrative-conference-for-crop-advancement">
+                            <img class="d-flex mr-3 img-fluid" width="64"
+                                 src="http://content.sorghumbase.org/wordpress/wp-content/uploads/2018/07/SICNA-logo.png"
+                                 alt=""></a>
+
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1"><a
+                                    href="/post/sorghum-improvement-conference-of-north-america-sicna-an-integrative-conference-for-crop-advancement">Sorghum
+                                Improvement Conference of North America (SICNA): An Integrative Conference for Crop
+                                Advancement</a></h5>
+                            12 July 2018
+                        </div>
+                    </li>
+
+                    <li class="media">
+
+                        <a href="/post/sorghum-checkoff-fromthefield-photography-contest"> <img
+                                class="d-flex mr-3 img-fluid" width="64"
+                                src="http://content.sorghumbase.org/wordpress/wp-content/uploads/2018/06/sorghum_sky.jpg"
+                                alt=""></a>
+
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1"><a href="/post/sorghum-checkoff-fromthefield-photography-contest">#FromtheField
+                                photography contest</a></h5>
+                            26 June 2018
+                        </div>
+                    </li>
+
+                    <li class="media">
+
+                        <a href="/post/the-bloomless-mutant-a-paragon-of-modern-sorghum-genetic-and-genomic-resources">
+                            <img class="d-flex mr-3 img-fluid" width="64"
+                                 src="http://content.sorghumbase.org/wordpress/wp-content/uploads/2018/03/sorghum_stalks.jpg"
+                                 alt=""></a>
+
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1"><a
+                                    href="/post/the-bloomless-mutant-a-paragon-of-modern-sorghum-genetic-and-genomic-resources">The
+                                Bloomless Mutant: A Paragon of Modern Sorghum Genetic and Genomic Resources</a></h5>
+                            26 March 2018
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="mb20">
+                    <h3>Twitter</h3>
+                    <a class="twitter-timeline" href="https://twitter.com/hashtag/sorghum"
+                       data-widget-id="999762329989500928">#sorghum Tweets</a>
+                    <script>!function (d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                        if (!d.getElementById(id)) {
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = p + "://platform.twitter.com/widgets.js";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }
+                    }(document, "script", "twitter-wjs");</script>
+                </div>
+
+            </div> <!-- end container -->
+            <div class="col-lg-12 col-md-6 mb5">
+
+
+                <h4>Photo Credits</h4>
+                <ul class="list-inline">
+
+
+                    <!-- <li> <p class="text-muted"><a href=""></a>, <a href=""></a></p></li> -->
+                    <li class="list-inline-item"><p><a href='https://www.flickr.com/photos/ksrecomm/25792191723/'
+                                                       target="_blank">Kansas State Research</a>, <a
+                            href='https://creativecommons.org/licenses/by/2.0/'>CC BY 2.0<a/></p></li>
+                    <li class="list-inline-item">|</li>
+
+
+                    <!-- <li> <p class="text-muted"><a href=""></a>, <a href=""></a></p></li> -->
+                    <li class="list-inline-item"><p>John Burke, Used with permission</p></li>
+                    <li class="list-inline-item">|</li>
+
+
+                </ul>
+
+            </div>
+</footer><!--/footer-->
+
+<div class="footer-bottomAlt">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="clearfix">
+                    <a href="https://www.facebook.com/sorghumbase/" target="_blank"
+                       class="social-icon-sm si-dark si-facebook si-dark-round">
+                        <i class="fa fa-facebook"></i>
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://twitter.com/sorghumbase" target="_blank"
+                       class="social-icon-sm si-dark si-twitter si-dark-round">
+                        <i class="fa fa-twitter"></i>
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <!--a href="#" class="social-icon-sm si-dark si-g-plus si-dark-round">
+                    <i class="fa fa-google-plus"></i>
+                    <i class="fa fa-google-plus"></i>
+                  </a-->
+                    <!--a href="#" class="social-icon-sm si-dark si-skype si-dark-round">
+                    <i class="fa fa-skype"></i>
+                    <i class="fa fa-skype"></i>
+                  </a-->
+                    <!--a href="#" class="social-icon-sm si-dark si-linkedin si-dark-round">
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-linkedin"></i>
+                  </a-->
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <span>&copy; Copyright 2018. All Right Reserved</span>
+            </div>
+        </div>
+    </div>
+</div><!--/footer bottom-->
+<!--back to top-->
+<a href="#" class="back-to-top hidden-xs-down" id="back-to-top"><i class="ti-angle-up"></i></a>
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/js/plugins/plugins.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/js/assan.custom.js"></script>
+<!-- load cubeportfolio -->
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+<!-- REVOLUTION JS FILES -->
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript"
+        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.video.min.js"></script>
 <script>
-  // just turning 'debug' on by default so people
-  // don't have to figure out how to do it when
-  // just viewing the sample
-  localStorage.debug = true
+    localStorage.debug = true;
 </script>
 <script src="./index.js"></script>
+
 </body>
 </html>
