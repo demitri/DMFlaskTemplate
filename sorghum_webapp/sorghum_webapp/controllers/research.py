@@ -29,9 +29,9 @@ def research():
 
 		papers = paper_request.get()
 
-		for paper in papers:
-			if not paper.abstract:
-				papers.pop(paper)
+		for num, paper in enumerate(papers):
+			if paper.abstract is "":
+				papers.pop(num)
 
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media
