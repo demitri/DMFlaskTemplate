@@ -10,9 +10,10 @@ import xml.dom.minidom
 # register with user account
 pubmed.connect("PUBMED", 'muna@cshl.edu')
 
-ids = [29161754, 29292376]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
+ids = [2916175]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
 fetch = pubmed.PubMedFetch(id_list=ids)
 refs = fetch.get_content()
+print(list(refs))
 
 # "refs" is a list of dictionaries with keys:
 '''
