@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 # register with user account
 pubmed.connect("PUBMED", 'muna@cshl.edu')
 
-def getMetaDAta(papersToFind):
+def getMetaData(papersToFind):
 
 	ids = []
 	for paper in papersToFind:
@@ -15,7 +15,7 @@ def getMetaDAta(papersToFind):
 	refs = fetch.get_content()
 
 	for num, id in enumerate(refs):
-		if papersToFind[num].s.title.lower() = refs[num]['title'].lower():
+		if papersToFind[num].s.title.lower() == refs[num]['title'].lower():
 			papersToFind[num].abstract = refs[num]['abstract']
 			papersToFind[num].paper_authors = ', '.join(refs[num]['authors_list'])
 			papersToFind[num].source_url = "https://www.ncbi.nlm.nih.gov/pubmed/" + papersToFind[num].pubmed_id

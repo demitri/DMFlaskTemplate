@@ -8,7 +8,7 @@ from flask import request, render_template
 from wordpress_orm import wp_session
 from ..wordpress_orm_extensions.scientific_paper import ScientificPaperRequest
 
-from ..utilities.pubmedIDpull import getMetaDAta
+from ..utilities.pubmedIDpull import getMetaData
 
 from .. import app
 from .. import wordpress_api as api
@@ -40,7 +40,7 @@ def research():
 				else:
 					queryPubmed.append(papers.pop(num))
 
-		info = getMetaDAta(queryPubmed)
+		info = getMetaData(queryPubmed)
 
 		for paper in info:
 			if paper.s.paper_authors is not "":

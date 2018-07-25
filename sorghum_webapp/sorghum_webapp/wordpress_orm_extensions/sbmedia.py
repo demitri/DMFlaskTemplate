@@ -7,6 +7,7 @@ import os
 import logging
 
 import requests
+from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
 from wordpress_orm.entities import Media as WPORMMedia
 
 class SBMedia(WPORMMedia):

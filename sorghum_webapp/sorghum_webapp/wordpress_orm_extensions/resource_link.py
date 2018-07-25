@@ -10,12 +10,11 @@ import logging
 import requests
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
-from wordpress_orm.entities import Post
-from .media import Media # our custom Media type
+from .sbmedia import SBMedia # our custom Media type
 
 logger = logging.getLogger("wordpress_orm")
 
-class ResourceLink(WPPost):
+class ResourceLink(WPEntity):
 
 	def __init__(self, id=None, api=None):
 		super().__init__(api=api)
@@ -191,6 +190,7 @@ class ResourceLinkRequest(WPRequest):
 
 	def postprocess_response(self):
 		# do extra stuff
+		pass
 	
 
 	@property
