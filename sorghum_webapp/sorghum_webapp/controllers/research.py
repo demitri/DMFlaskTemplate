@@ -31,22 +31,20 @@ def research():
 
 		papers = paper_request.get()
 
-		queryPubmed = []
+		queryPubmed = [p for p in papers if not (len(p.s.abstract) == 0 or len(p.s.pubmed_id) == 0)]
 
-		for num, paper in enumerate(papers):
-			if paper.s.abstract is "":
-				if paper.s.pubmed_id is "":
-					papers.pop(num)
-				else:
-					queryPubmed.append(papers.pop(num))
+#		for paper in papers:
+#			if not (len(paper.s.abstract) == 0 or len(paper.s.pubmed_id) == 0):
+#				queryPubmed.append(paper)
+#				print(paper.s.publication_date)
 
-		info = getMetaData(queryPubmed)
+		# info = getMetaData(queryPubmed)
+		#
+		# for paper in info:
+		# 	if paper.s.paper_authors is not "":
+		# 		papers.append(paper)
 
-		for paper in info:
-			if paper.s.paper_authors is not "":
-				papers.append(paper)
-
-		papersByDate = sorted(papers, reverse=True, key=lambda k: k.s.publication_date)
+		papersByDate = sorted(queryPubmed, reverse=True, key=lambda k: k.s.publication_date)
 
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media

@@ -23,8 +23,8 @@ class ResourceLink(WPEntity):
 		#self._author = None
 		#self._category = None
 		self._resource_image = None
-		
-		
+
+
 	def __repr__(self):
 		if len(self.s.resource_url) < 11:
 			truncated_url = self.s.resource_url
@@ -80,15 +80,15 @@ class ResourceLink(WPEntity):
 					return None
 			else:
 				resource_data = self.s.resource_image
-				
+
 			try:
 				media = self.api.wordpress_object_cache.get(class_name=SBMedia.__name__, key=self.s.id)
 			except WPORMCacheObjectNotFoundError:
 				media = SBMedia(api=self.api)
 				media.update_schema_from_dictionary(resource_data)
-				self.api.wordpress_object_cache.set(value=media, keys=(media.s.id, media.s.slug))	
+				self.api.wordpress_object_cache.set(value=media, keys=[media.s.id])	
 				self._resource_image = media
-				
+
 		return self._resource_image
 
 	@property
@@ -191,7 +191,7 @@ class ResourceLinkRequest(WPRequest):
 			link = classobject.__new__(classobject)
 			link.__init__(api=self.api)
 			link.json = json.dumps(d)
-			
+
 			link.update_schema_from_dictionary(d)
 
 			# additional processing of related data (not schema fields) goes here
@@ -214,7 +214,7 @@ class ResourceLinkRequest(WPRequest):
 	#def postprocess_response(self, data=None):
 		# do extra stuff
 	#	pass
-	
+
 
 	@property
 	def slugs(self):

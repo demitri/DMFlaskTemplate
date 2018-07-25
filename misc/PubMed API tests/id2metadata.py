@@ -10,7 +10,7 @@ import xml.dom.minidom
 # register with user account
 pubmed.connect("PUBMED", 'muna@cshl.edu')
 
-ids = [2916175]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
+ids = [30025022]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
 fetch = pubmed.PubMedFetch(id_list=ids)
 refs = fetch.get_content()
 print(list(refs))
@@ -42,7 +42,7 @@ author affiliations,
 xml_string = refs[0]["xml"].replace("\n","")
 xml = xml.dom.minidom.parseString(xml_string)
 pretty_xml_string = xml.toprettyxml()
-# print(pretty_xml_string)
+print(pretty_xml_string)
 
 """
 Result:
