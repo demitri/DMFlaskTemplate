@@ -64,8 +64,10 @@ class ResourceLink(WPEntity):
 		Returns a WordPress 'Media' object.
 		'''
 		if self._resource_image is None:
+			if self.s.resource_image is in [False, None]:
+				return None # no image associated with link
 			try:
-				media = self.api.wordpress_object_cache.get(class_name=Media.__name__, key=d["id"])
+				media = self.api.wordpress_object_cache.get(class_name=Media.__name__, key=self.s.id])
 			except WPORMCacheObjectNotFoundError:
 				media = Media(api=self.api)
 				media.update_schema_from_dictionary(self.s.resource_image)
@@ -178,6 +180,11 @@ class ResourceLinkRequest(WPRequest):
 
 			# additional processing of related data (not schema fields) goes here
 
+			# unset values are returned as "false", change to "None" in schema
+			for field in self.schema_fields:
+				if getattr(link.s,  field) is False:
+					setattr(link.s, field, None)
+
 			if "_embedded" in d:
 				logger.debug("TODO: implement _embedded content for ResourceLink object")
 
@@ -188,9 +195,9 @@ class ResourceLinkRequest(WPRequest):
 
 		return links
 
-	def postprocess_response(self):
+	#def postprocess_response(self, data=None):
 		# do extra stuff
-		pass
+	#	pass
 	
 
 	@property
