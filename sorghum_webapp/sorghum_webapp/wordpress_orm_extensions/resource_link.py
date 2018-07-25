@@ -23,8 +23,8 @@ class ResourceLink(WPEntity):
 		#self._author = None
 		#self._category = None
 		self._resource_image = None
-
-
+		
+		
 	def __repr__(self):
 		if len(self.s.resource_url) < 11:
 			truncated_url = self.s.resource_url
@@ -61,17 +61,26 @@ class ResourceLink(WPEntity):
 	@property
 	def resource_image(self):
 		'''
-		Returns a WordPress 'SBMedia' object.
+		Returns a WordPress 'Media' object.
 		'''
 		if self._resource_image is None:
-			if self.s.resource_image is in [False, None]:
+			if self.s.resource_image in [False, None]:
 				return None # no image associated with link
+			if isinstance(self.s.resource_image, list):
+				if len(self.s.resource_image) > 0:
+					self.s.resource_image = self.s.resource_image[0]
+				elif len(self.s.resource_image) > 1:
+					logger.warning("More than one resource image was found associated with a ResourceLink; selecting the first.")
+					self.s.resource_image = self.s.resource_image[0]
+				else:
+					self._resource_image = None
+					return None
 			try:
 				media = self.api.wordpress_object_cache.get(class_name=SBMedia.__name__, key=self.s.id)
 			except WPORMCacheObjectNotFoundError:
 				media = SBMedia(api=self.api)
-				media.update_schema_from_dictionary(self.s.resource_image[0])
-				self.api.wordpress_object_cache.set(value=media, keys=[media.s.id])
+				media.update_schema_from_dictionary(self.s.resource_image)
+				self.api.wordpress_object_cache.set(value=media, keys=(media.s.id, media.s.slug))	
 				self._resource_image = media
 		return self._resource_image
 
@@ -175,13 +184,13 @@ class ResourceLinkRequest(WPRequest):
 			link = classobject.__new__(classobject)
 			link.__init__(api=self.api)
 			link.json = json.dumps(d)
-
+			
 			link.update_schema_from_dictionary(d)
 
 			# additional processing of related data (not schema fields) goes here
 
 			# unset values are returned as "false", change to "None" in schema
-			for field in self.schema_fields:
+			for field in link.schema_fields:
 				if getattr(link.s,  field) is False:
 					setattr(link.s, field, None)
 
@@ -198,7 +207,7 @@ class ResourceLinkRequest(WPRequest):
 	#def postprocess_response(self, data=None):
 		# do extra stuff
 	#	pass
-
+	
 
 	@property
 	def slugs(self):

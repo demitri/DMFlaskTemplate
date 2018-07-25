@@ -14,4 +14,4 @@ def test_valid_paper_dates(client, wp_api):
 	paper_request = ScientificPaperRequest(api=wp_api)
 	papers = paper_request.get()
 	for paper in papers:
-		dt = datetime.strptime(value, "%Y-%m-%d")
+		dt = datetime.strptime(paper.publication_date, "%Y-%m-%d")
