@@ -34,8 +34,8 @@ def research():
 		queryPubmed = []
 
 		for num, paper in enumerate(papers):
-			if paper.abstract is "":
-				if paper.pubmed_id is "":
+			if paper.s.abstract is "":
+				if paper.s.pubmed_id is "":
 					papers.pop(num)
 				else:
 					queryPubmed.append(papers.pop(num))
@@ -46,7 +46,7 @@ def research():
 			if paper.s.paper_authors is not "":
 				papers.append(paper)
 
-		papersByDate = sorted(papers, reverse=True, key=lambda k: k.publication_date)
+		papersByDate = sorted(papers, reverse=True, key=lambda k: k.s.publication_date)
 
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media

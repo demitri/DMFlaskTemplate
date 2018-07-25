@@ -30,7 +30,7 @@
 
                 <div class="mb40">
                   {% for event in eventsDisplayed %}
-                      <a href="#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered | safe}}</a>
+                      <a href="#{{event.s.title}}" class="nav-link">{{event.s.title | safe}}</a>
                   {% endfor %}
                 </div>
 
@@ -43,9 +43,9 @@
                 <div class="mb40">
                   {% for event in eventsNotDisplayed %}
                       {% if past %}
-                      <a href="/events#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered | safe}}</a>
+                      <a href="/events#{{event.s.title}}" class="nav-link">{{event.s.title | safe}}</a>
                       {% else %}
-                      <a href="/events?past=true#{{event.s.title.rendered}}" class="nav-link">{{event.s.title.rendered | safe}}</a>
+                      <a href="/events?past=true#{{event.s.title}}" class="nav-link">{{event.s.title | safe}}</a>
                       {% endif %}
                   {% endfor %}
                 </div>
@@ -55,7 +55,7 @@
             <div id='eventList' class="page-timeline">
               {% for event in eventsDisplayed %}
                 <div class="vtimeline-point">
-                  <div id='{{event.s.title.rendered}}' style="position:absolute; top:-90px;"></div>
+                  <div id='{{event.s.title}}' style="position:absolute; top:-90px;"></div>
                     <div class="vtimeline-icon">
                         <i class="fa fa-calendar"></i>
                     </div>
@@ -65,7 +65,7 @@
                             {% if event.s.featured_image %}
                             <img src='{{event.featured_image['guid']}}' alt='' class='img-fluid mb20'>
                             {% endif %}
-                            <h2>{{event.s.title.rendered | safe}}</h2>
+                            <h2>{{event.s.title | safe}}</h2>
                             <h3>{{(event.s.start_date|str2datetime).strftime('%-d %B %Y')}}
                                 {% if (event.s.end_date != "0000-00-00") %}
                                 - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
@@ -76,7 +76,7 @@
                                 </li>
                             </ul>
                             <p>
-                                {{event.s.content.rendered | safe }}
+                                {{event.s.content | safe }}
                             </p><br>
                             <a href='{{event.s.event_url}}' class='btn btn-outline-secondary btn-sm'>Event Site</a>
                         </div>

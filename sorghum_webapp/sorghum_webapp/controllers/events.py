@@ -48,5 +48,4 @@ def events():
 
 	templateDict['past'] = past
 
-
 	return render_template("events.html", **templateDict)

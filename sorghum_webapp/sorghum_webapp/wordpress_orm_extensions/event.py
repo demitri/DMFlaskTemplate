@@ -5,7 +5,7 @@ Custom WordPress object defined using the plugin WordPress Pods.
 
 Ref: https://wordpress.org/plugins/pods/
 '''
-
+import json
 import logging
 import requests
 from datetime import datetime

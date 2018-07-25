@@ -22,13 +22,13 @@
               <div class="mx10">
                 <a href="{{resource.s.resource_url}}">
                   {% if resource.resource_image %}
-                  <img src="{{resource.resource_image[0]['guid']}}" alt="{{resource.s.title.rendered | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  <img src="{{resource.s.resource_image[0]["guid"]}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
                   {% else %}
-                  <img src="{{default_image.s.source_url}}" alt="{{resource.s.title.rendered | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
                   {% endif %}
-                    <h3 class="masonry-title mb0">{{resource.s.title.rendered | safe}}</h3>
+                    <h3 class="masonry-title mb0">{{resource.s.title | safe}}</h3>
                 </a>
-                    <p class="card-text">{{resource.s.content.rendered | safe}}</p>
+                    <p class="card-text">{{resource.s.content | safe}}</p>
               </div>
             </div>
           </article>

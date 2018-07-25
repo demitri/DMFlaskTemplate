@@ -9,16 +9,16 @@ def getMetaData(papersToFind):
 
 	ids = []
 	for paper in papersToFind:
-		ids.append(paper.pubmed_id)
+		ids.append(paper.s.pubmed_id)
 
 	fetch = pubmed.PubMedFetch(id_list=ids)
 	refs = fetch.get_content()
 
 	for num, id in enumerate(refs):
 		if papersToFind[num].s.title.lower() == refs[num]['title'].lower():
-			papersToFind[num].abstract = refs[num]['abstract']
-			papersToFind[num].paper_authors = ', '.join(refs[num]['authors_list'])
-			papersToFind[num].source_url = "https://www.ncbi.nlm.nih.gov/pubmed/" + papersToFind[num].pubmed_id
+			papersToFind[num].s.abstract = refs[num]['abstract']
+			papersToFind[num].s.paper_authors = ', '.join(refs[num]['authors_list'])
+			papersToFind[num].s.source_url = "https://www.ncbi.nlm.nih.gov/pubmed/" + papersToFind[num].pubmed_id
 
 			root = ET.fromstring(refs[num]["xml"])
 
@@ -29,8 +29,8 @@ def getMetaData(papersToFind):
 					day = pubDate.find('Day').text
 					break
 
-			papersToFind[num].publication_date = year + "-" + month + "-" + day
+			papersToFind[num].s.publication_date = year + "-" + month + "-" + day
 		else:
-			papersToFind[num].abstract = "The title and PubMed ID do not seem to match, please check."
+			papersToFind[num].s.abstract = "The title and PubMed ID do not seem to match, please check."
 
 	return papersToFind
