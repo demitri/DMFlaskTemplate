@@ -5,25 +5,27 @@ Custom WordPress object defined using the plugin WordPress Pods.
 
 Ref: https://wordpress.org/plugins/pods/
 '''
-
+import json
 import logging
 import requests
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
-
+from wordpress_orm.entities import Post
+from .media import Media # our custom Media type
 
 logger = logging.getLogger("wordpress_orm")
 
-class ResourceLink(WPEntity):
+class ResourceLink(WPPost):
 
 	def __init__(self, id=None, api=None):
 		super().__init__(api=api)
 
 		# related objects that need to be cached
-		self._author = None
-		self._category = None
+		#self._author = None
+		#self._category = None
 		self._resource_image = None
-
+		
+		
 	def __repr__(self):
 		if len(self.s.resource_url) < 11:
 			truncated_url = self.s.resource_url
@@ -36,8 +38,8 @@ class ResourceLink(WPEntity):
 	@property
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
-				"slug", "status", "type", "link", "title", "content", "template",
-				"resource_url", "resource_image"]
+				"slug", "status", "type", "link", "title", "content", "author",
+				"template", "resource_url", "resource_image", "resource_category"]
 
 	@property
 	def categories(self):
@@ -63,8 +65,13 @@ class ResourceLink(WPEntity):
 		Returns a WordPress 'Media' object.
 		'''
 		if self._resource_image is None:
-			self._resource_image = self.s.resource_image
-
+			try:
+				media = self.api.wordpress_object_cache.get(class_name=Media.__name__, key=d["id"])
+			except WPORMCacheObjectNotFoundError:
+				media = Media(api=self.api)
+				media.update_schema_from_dictionary(self.s.resource_image)
+				self.api.wordpress_object_cache.set(value=media, keys=(media.s.id, media.s.slug))	
+				self._resource_image = media
 		return self._resource_image
 
 	@property
@@ -103,7 +110,7 @@ class ResourceLinkRequest(WPRequest):
 	def parameter_names(self):
 		return ["slug", "before", "after", "status", "categories", "resource_image"]
 
-	def get(self):
+	def get(self, classobject=ResourceLink, count=False, embed=True):
 		'''
 		Returns a list of 'Resource Links' objects that match the parameters set in this object.
 		'''
@@ -115,6 +122,9 @@ class ResourceLinkRequest(WPRequest):
 		# -------------------
 		# populate parameters
 		# -------------------
+		if embed is True:
+			self.parameters["_embed"] = "true"
+
 		if self.slug:
 			self.parameters["slug"] = self.slug
 
@@ -154,40 +164,34 @@ class ResourceLinkRequest(WPRequest):
 
 			# Before we continue, do we have this ResourceLink in the cache already?
 			try:
-				link = self.api.wordpress_object_cache.get(class_name=ResourceLink.__name__, key=d["id"])
+				link = self.api.wordpress_object_cache.get(class_name=classobject.__name__, key=d["id"])
 				links.append(link)
 				continue
 			except WPORMCacheObjectNotFoundError:
 				# nope, carry on
 				pass
 
-			link = ResourceLink(api=self.api)
-			link.json = d
+			link = classobject.__new__(classobject)
+			link.__init__(api=self.api)
+			link.json = json.dumps(d)
+			
+			link.update_schema_from_dictionary(d)
 
-			link.s.id = d["id"]
-			link.s.date = d["date"]
-			link.s.date_gmt = d["date_gmt"]
-			link.s.guid = d["guid"]
-			link.s.modified = d["modified"]
-			link.s.modified_gmt = d["modified_gmt"]
-			link.s.slug = d["slug"]
-			link.s.status = d["status"]
-			link.s.type = d["type"]
-			link.s.link = d["link"]
-			link.s.title = d["title"]
-			link.s.content = d["content"]
-			link.s.template = d["template"]
-			link.s.resource_url = d["resource_url"]
-			link.s.resource_image = d["resource_image"]
+			# additional processing of related data (not schema fields) goes here
+
+			if "_embedded" in d:
+				logger.debug("TODO: implement _embedded content for ResourceLink object")
 
 			# add to cache
-			self.api.wordpress_object_cache.set(class_name=ResourceLink.__name__, key=link.s.id, value = link)
-			self.api.wordpress_object_cache.set(class_name=ResourceLink.__name__, key=link.s.slug, value = link)
+			self.api.wordpress_object_cache.set(value=link, keys=(link.s.id, link.s.slug))
 
 			links.append(link)
 
 		return links
 
+	def postprocess_response(self):
+		# do extra stuff
+	
 
 	@property
 	def slugs(self):
