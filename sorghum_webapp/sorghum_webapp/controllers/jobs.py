@@ -25,7 +25,7 @@ def jobs():
 
 	with wp_session(api):
 		job_request = JobRequest(api=api)
-
+		
 		jobs = job_request.get()
 
 		news_banner_media = api.media(slug="sorghum_panicle")

@@ -8,11 +8,9 @@ Ref: https://wordpress.org/plugins/pods/
 import json
 import logging
 import requests
-from datetime import datetime
-today = datetime.now()
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
-
+from .sbmedia import SBMedia # our custom Media type
 
 logger = logging.getLogger("wordpress_orm")
 
@@ -39,8 +37,7 @@ class Event(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"start_date", "end_date", "organizer", "event_url",
-				"featured_image"]
+				"start_date", "end_date", "event_url", "organizer", "featured_image"]
 
 	@property
 	def categories(self):
@@ -66,14 +63,31 @@ class Event(WPEntity):
 		Returns a WordPress 'Media' object.
 		'''
 		if self._featured_image is None:
-			# mr = self.api.MediaRequest()
-			# mr.id = self.s.featured_image
-			# media_list = mr.get()
-			# if len(media_list) == 1:
-			# 	self._featured_image = media_list[0]
-			# else:
-			# 	self._featured_image = None
-			self._featured_image = self.s.featured_image[0]
+
+			if self.s.featured_image in [False, None]:
+				return None # no image associated with link
+
+			if isinstance(self.s.featured_image, list):
+				if len(self.s.featured_image) > 0:
+					resource_data = self.s.featured_image[0]
+				elif len(self.s.featured_image) > 1:
+					logger.warning("More than one resource image was found associated with a ResourceLink; selecting the first.")
+					resource_data = self.s.featured_image[0]
+				else:
+					# empty list returned,  no image
+					self._featured_image = None
+					return None
+			else:
+				resource_data = self.s.featured_image
+
+			try:
+				media = self.api.wordpress_object_cache.get(class_name=SBMedia.__name__, key=self.s.id)
+			except WPORMCacheObjectNotFoundError:
+				media = SBMedia(api=self.api)
+				media.update_schema_from_dictionary(resource_data)
+				self.api.wordpress_object_cache.set(value=media, keys=[media.s.id])
+				self._featured_image = media
+
 		return self._featured_image
 
 	@property
@@ -101,7 +115,8 @@ class EventRequest(WPRequest):
 		self.id = None # WordPress ID
 		self._before = None
 		self._after = None
-		self._past = False
+		self._page = None
+		self._per_page= None
 
 		self._status = list()
 		self._category_ids = list()
@@ -109,7 +124,7 @@ class EventRequest(WPRequest):
 
 	@property
 	def parameter_names(self):
-		return ["slug", "before", "after", "status", "categories", "featured_image", "past"]
+		return ["slug", "before", "after", "status", "categories", "featured_image"]
 
 	def get(self):
 		'''
@@ -132,8 +147,11 @@ class EventRequest(WPRequest):
 		if self.after:
 			self.parameters["after"] = self._after.isoformat()
 
-		if self.past:
-			self.parameters['past'] = self.past
+		if self.page:
+			self.parameters["page"] = self.page
+
+		if self.per_page:
+			self.parameters["per_page"] = self.per_page
 
 		# -------------------
 
@@ -156,56 +174,29 @@ class EventRequest(WPRequest):
 
 		events = list()
 		for d in events_data:
-
-			isPastEvent = datetime.strptime(d["start_date"], '%Y-%m-%d') < today
-
-			if (self.past and isPastEvent) or ((not self.past) and (not isPastEvent)):
-				# Before we continue, do we have this Event in the cache already?
-				try:
-					event = self.api.wordpress_object_cache.get(class_name=Event.__name__, key=d["id"])
-					events.append(event)
-					continue
-				except WPORMCacheObjectNotFoundError:
-					# nope, carry on
-					pass
-
-				event = Event(api=self.api)
-				event.json = json.dumps(d)
-
-				event.update_schema_from_dictionary(d)
-
-# 				event.s.id = d["id"]
-# 				event.s.date = d["date"]
-# 				event.s.date_gmt = d["date_gmt"]
-# 				event.s.guid = d["guid"]
-# 				event.s.modified = d["modified"]
-# 				event.s.modified_gmt = d["modified_gmt"]
-# 				event.s.slug = d["slug"]
-# 				event.s.status = d["status"]
-# 				event.s.type = d["type"]
-# 				event.s.link = d["link"]
-# 				event.s.title = d["title"]
-# 				event.s.content = d["content"]
-# 				event.s.template = d["template"]
-# 				event.s.start_date = d["start_date"]
-# 				event.s.end_date = d["end_date"]
-# 				event.s.organizer = d["organizer"]
-# 				event.s.event_url = d["event_url"]
-# 				event.s.featured_image = d["featured_image"]
-
-				if "_embedded" in d:
-					logger.debug("TODO: implement _embedded content for Event object")
-
-				# add to cache
-				self.api.wordpress_object_cache.set(value=event, keys=(event.s.id, event.s.slug))
-
+			# Before we continue, do we have this Event in the cache already?
+			try:
+				event = self.api.wordpress_object_cache.get(class_name=Event.__name__, key=d["id"])
 				events.append(event)
+				continue
+			except WPORMCacheObjectNotFoundError:
+				# nope, carry on
+				pass
 
+			event = Event(api=self.api)
+			event.json = json.dumps(d)
 
-		sortedByEventDate = sorted(events, reverse=self.past, key=lambda k: k.s.start_date)
+			event.update_schema_from_dictionary(d)
 
-		return sortedByEventDate
+			if "_embedded" in d:
+				logger.debug("TODO: implement _embedded content for Event object")
 
+			# add to cache
+			self.api.wordpress_object_cache.set(value=event, keys=(event.s.id, event.s.slug))
+
+			events.append(event)
+
+		return events
 
 	@property
 	def slugs(self):
@@ -318,3 +309,42 @@ class EventRequest(WPRequest):
 			# Categories are stored as string ID values.
 			#
 			self._category_ids.append(str(cat_id))
+
+	@property
+	def page(self):
+		'''
+		Current page of the collection.
+		'''
+		return self._page
+
+	@page.setter
+	def page(self, value):
+		#
+		# only accept integers or strings that can become integers
+		#
+		if isinstance(value, int):
+			self._page = value
+		elif isinstance(value, str):
+			try:
+				self._page = int(value)
+			except ValueError:
+				raise ValueError("The 'page' parameter must be an integer, was given '{0}'".format(value))
+
+	@property
+	def per_page(self):
+		'''
+		Maximum number of items to be returned in result set.
+		'''
+		return self._per_page
+
+	@per_page.setter
+	def per_page(self, value):
+		# only accept integers or strings that can become integers
+		#
+		if isinstance(value, int):
+			self._per_page = value
+		elif isinstance(value, str):
+			try:
+				self._per_page = int(value)
+			except ValueError:
+				raise ValueError("The 'per_page' parameter must be an integer, was given '{0}'".format(value))

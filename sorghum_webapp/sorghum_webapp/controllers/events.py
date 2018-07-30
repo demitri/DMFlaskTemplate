@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 # from flask import request #, make_response
+from datetime import datetime
 
 import flask
 import logging
@@ -26,25 +27,31 @@ def events():
 	past = valueFromRequest(key="past", request=request) or False
 	if type(past) is str:
 		past = True
+	today = datetime.now()
 
 	with wp_session(api):
 		event_request = EventRequest(api=api)
-		event_request.past = False
-		futureEvents = event_request.get()
+		event_request.per_page = 50
+		events = event_request.get()
+		pastEvents = []
+		futureEvents = []
 
-		event_request = EventRequest(api=api)
-		event_request.past = True
-		event_request.per_page = 10
-		pastEvents = event_request.get()
+		for e in events:
+			if (datetime.strptime(e.s.start_date, '%Y-%m-%d') < today): # Is the event in the past?
+				pastEvents.append(e)
+			else:
+				futureEvents.append(e)
+
+		sortedFutureEvents = sorted(futureEvents, reverse=past, key=lambda k: k.s.start_date)
+		sortedPastEvents = sorted(pastEvents, reverse=past, key=lambda k: k.s.start_date)
 
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[news_banner_media])
 
-
-	templateDict["eventsDisplayed"] = pastEvents if past else futureEvents
-	templateDict["eventsNotDisplayed"] = futureEvents if past else pastEvents
+	templateDict["eventsDisplayed"] = sortedPastEvents if past else sortedFutureEvents
+	templateDict["eventsNotDisplayed"] = sortedFutureEvents if past else sortedPastEvents
 
 	templateDict['past'] = past
 

@@ -29,22 +29,19 @@ def research():
 	with wp_session(api):
 		paper_request = ScientificPaperRequest(api=api)
 
-		papers = paper_request.get()
+		rawPapers = paper_request.get()
 
-		queryPubmed = [p for p in papers if not (len(p.s.abstract) == 0 or len(p.s.pubmed_id) == 0)]
+		papersWithInfo = [p for p in rawPapers if not (len(p.s.abstract) == 0 or len(p.s.pubmed_id) == 0)]
 
-#		for paper in papers:
-#			if not (len(paper.s.abstract) == 0 or len(paper.s.pubmed_id) == 0):
-#				queryPubmed.append(paper)
-#				print(paper.s.publication_date)
+		queryPubmed = [p for p in rawPapers if len(p.s.abstract) == 0]
 
-		# info = getMetaData(queryPubmed)
-		#
-		# for paper in info:
-		# 	if paper.s.paper_authors is not "":
-		# 		papers.append(paper)
+		info = getMetaData(queryPubmed)
 
-		papersByDate = sorted(queryPubmed, reverse=True, key=lambda k: k.s.publication_date)
+		for paper in info:
+			if not len(paper.s.paper_authors) == 0:
+				papersWithInfo.append(paper)
+
+		papersByDate = sorted(papersWithInfo, reverse=True, key=lambda k: k.s.publication_date)
 
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media

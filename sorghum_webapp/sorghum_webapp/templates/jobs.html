@@ -23,7 +23,7 @@
       <div class="pt50 title">Jobs in sorghum</div>
       <div class="mb40">
         {% for job in jobs %}
-        <a data-scroll="" href="#{{job.s.job_title}}" class="nav-link active">{{job.s.job_title | safe}}</a>
+        <a data-scroll="" href="#{{job.s.job_title}}" class="nav-link active">{{job.s.title | safe}}</a>
         {% endfor %}
       </div>
     </div>
@@ -32,12 +32,12 @@
           {% for job in jobs %}
             <div class="career-card clearfix">
                 <div class="clearfix pb20">
-                    <h2 class="mb0">{{job.s.title.rendered | safe}}</h2>
+                    <h2 class="mb0">{{job.s.title | safe}}</h2>
                     <span class="label label-default">{{job.s.company | safe}}</span>
                 </div>
                 <br>
                 <p>
-                  {{job.s.content.rendered | safe }}
+                  {{job.s.content | safe }}
                 </p>
                 <br>
                 <h6>Job Requirements</h6>
