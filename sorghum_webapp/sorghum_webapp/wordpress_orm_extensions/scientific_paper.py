@@ -36,27 +36,31 @@ class ScientificPaper(WPEntity):
 	@property
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
-				"slug", "status", "type", "link", "title", "content", "template",
-				"paper_title", "abstract","source_url", "paper_authors", "publication_date",
-				"pubmed_id"]
+				"slug", "status", "type", "link", "title", "content", "author",
+				"template", "abstract","source_url", "paper_authors",
+				"publication_date", "pubmed_id"]
 
 	@property
-	def categories(self):
-		'''
-		Returns a list of categories (as Category objects) associated with this post.
-		'''
-		if self._categories is None:
-			self._categories = list()
-			for category_id in self.s.categories:
-				try:
-					self._categories.append(self.api.category(id=category_id))
-				except exc.NoEntityFound:
-					logger.debug("Expected to find category ID={0} from post (ID={1}), but no category found.".format(category_id, self.s.id))
-		return self._categories
+	def post_fields(self):
+		return ["id", "abstract", "source_url", "paper_authors", "publication_date"]
 
-	@property
-	def category_names(self):
-		return [x.s.name for x in self.categories]
+	# @property
+	# def categories(self):
+	# 	'''
+	# 	Returns a list of categories (as Category objects) associated with this post.
+	# 	'''
+	# 	if self._categories is None:
+	# 		self._categories = list()
+	# 		for category_id in self.s.categories:
+	# 			try:
+	# 				self._categories.append(self.api.category(id=category_id))
+	# 			except exc.NoEntityFound:
+	# 				logger.debug("Expected to find category ID={0} from post (ID={1}), but no category found.".format(category_id, self.s.id))
+	# 	return self._categories
+	#
+	# @property
+	# def category_names(self):
+	# 	return [x.s.name for x in self.categories]
 
 	@property
 	def author(self):
@@ -88,9 +92,11 @@ class ScientificPaperRequest(WPRequest):
 		self._category_ids = list()
 		self._slugs = list()
 
+		self._data = None
+
 	@property
 	def parameter_names(self):
-		return ["slug", "before", "after", "status", "categories", "paper_title"]
+		return ["slug", "before", "after", "status", "categories", "title"]
 
 	def get(self):
 		'''
@@ -148,26 +154,6 @@ class ScientificPaperRequest(WPRequest):
 			paper.json = json.dumps(d)
 
 			paper.update_schema_from_dictionary(d)
-			
-# 			paper.s.id = d["id"]
-# 			paper.s.date = d["date"]
-# 			paper.s.date_gmt = d["date_gmt"]
-# 			paper.s.guid = d["guid"]
-# 			paper.s.modified = d["modified"]
-# 			paper.s.modified_gmt = d["modified_gmt"]
-# 			paper.s.slug = d["slug"]
-# 			paper.s.status = d["status"]
-# 			paper.s.type = d["type"]
-# 			paper.s.link = d["link"]
-# 			paper.s.title = d["title"]
-# 			paper.s.content = d["content"]
-# 			paper.s.template = d["template"]
-# 
-# 			paper.abstract = d["abstract"]
-# 			paper.paper_authors = d["paper_authors"]
-# 			paper.source_url = d["source_url"]
-# 			paper.publication_date = d["publication_date"]
-# 			paper.pubmed_id = d["pubmed_id"]
 
 			if "_embedded" in d:
 				logger.debug("TODO: implement _embedded content for ScientificPaper object")
@@ -179,6 +165,33 @@ class ScientificPaperRequest(WPRequest):
 
 		return papers
 
+	def update(self, updateItem=None):
+		'''
+		Returns a list of 'Scientific Paper' objects that match the parameters set in this object.
+		'''
+
+		self._data = updateItem.s.__dict__
+		print("got this far")
+
+		self.url = self.api.base_url + "scientific_paper" + "/{}".format(updateItem.s.id) + "?context=edit"
+
+		try:
+			self.post_update()
+			logger.debug("URL='{}'".format(self.request.url))
+		except requests.exceptions.HTTPError:
+			logger.debug("Post response code: {}".format(self.response.status_code))
+			if self.response.status_code == 400: # bad request
+				logger.debug("URL={}".format(self.response.url))
+				raise exc.BadRequest("400: Bad request. Error: \n{0}".format(json.dumps(self.response.json(), indent=4)))
+			elif self.response.status_code == 404: # not found
+				return None
+
+	@property
+	def data(self):
+		'''
+		The list of post slugs to retrieve.
+		'''
+		return self._data
 
 	@property
 	def slugs(self):

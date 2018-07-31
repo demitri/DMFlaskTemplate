@@ -33,13 +33,15 @@ def research():
 
 		papersWithInfo = [p for p in rawPapers if not (len(p.s.abstract) == 0 or len(p.s.pubmed_id) == 0)]
 
-		queryPubmed = [p for p in rawPapers if len(p.s.abstract) == 0]
-
-		info = getMetaData(queryPubmed)
-
-		for paper in info:
-			if not len(paper.s.paper_authors) == 0:
-				papersWithInfo.append(paper)
+		# queryPubmed = [p for p in rawPapers if len(p.s.abstract) == 0]
+		#
+		# info = getMetaData(queryPubmed)
+		#
+		# for paper in info:
+		# 	if not len(paper.s.paper_authors) == 0:
+		# 		update_request = ScientificPaperRequest(api=api)
+		# 		update_request.update(paper)
+		# 		papersWithInfo.append(paper)
 
 		papersByDate = sorted(papersWithInfo, reverse=True, key=lambda k: k.s.publication_date)
 

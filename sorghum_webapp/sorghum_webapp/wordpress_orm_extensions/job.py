@@ -39,7 +39,7 @@ class Job(WPEntity):
 	@property
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
-				"slug", "status", "type", "link", "title", "content", "template",
+				"slug", "status", "type", "link", "title", "content", "author", "template",
 				"company", "job_requirements", "job_url", "expiration_date"]
 
 	@property
