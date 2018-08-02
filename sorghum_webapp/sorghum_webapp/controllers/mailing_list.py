@@ -12,22 +12,28 @@ from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
 from .footer import populate_footer_template
+from mailmanclient import Client
 
 logger = logging.getLogger("wordpress_orm")
 
 mailing_list_page = flask.Blueprint("mailing_list_page", __name__)
 
-@mailing_list_page.route('/mailing_list')
+@mailing_list_page.route('/mailing_list', methods=['GET','POST'])
 def mailing_list():
-	''' Mailing list page. '''
-	templateDict = {}
+    ''' Mailing list page. '''
+    templateDict = {}
 
-	with wp_session(api):
+    email = valueFromRequest(key="widget-subscribe-form-email", request=request)
+    if email:
+        # add this email address to the mailing list
+        # client = Client('http://brie4:8000/3.1', 'restadmin', 'restpass')
+        templateDict["subscribed"] = True
 
-		ms_banner_media = api.media(slug="sorghum_combine")
-		templateDict["banner_media"] = ms_banner_media
+    with wp_session(api):
+        ms_banner_media = api.media(slug="sorghum_combine")
+        templateDict["banner_media"] = ms_banner_media
 
-		logger.debug(ms_banner_media.json)
-		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[ms_banner_media])
+        logger.debug(ms_banner_media.json)
+        populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[ms_banner_media])
 
-	return render_template("mailing_list.html", **templateDict)
+    return render_template("mailing_list.html", **templateDict)

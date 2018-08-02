@@ -3,31 +3,45 @@
 {% block additional_header %}{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
-  <div class="container">
-    <div class="row">
-      <div class=" col-md-12">
-        <h1 class="text-uppercase">Mailing List</h1>
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}'
+     style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-12">
+                <h1 class="text-uppercase">Mailing List</h1>
 
-      </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div><!--page title end-->
 
 <div class="bg-faded pt90 pb90">
     <div class="container">
+        {% if subscribed %}
+        <div class="title-heading1 mb50">
+            <h3>You have been subscribed</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mr-auto ml-auto">
+                <div class="text-center mb30">
+                    <p>[The welcome message text should go here]</p>
+                </div>
+            </div>
+        </div>
+        {% else %}
         <div class="title-heading1 mb50">
             <h3>Subscribe to our mailing list</h3>
         </div>
         <div class="row">
             <div class="col-lg-6 mr-auto ml-auto">
-              <div class="text-center mb30">
-                <p>[By far and away a mailing list for the Sorghum community.]</p>
-              </div>
-                <form id="widget-subscribe-form" action="index.html" role="form" method="post" class="mb0">
+                <div class="text-center mb30">
+                    <p>[By far and away a mailing list for the Sorghum community.]</p>
+                </div>
+                <form id="widget-subscribe-form" action="/mailing_list" role="form" method="post" class="mb0">
                     <div class="input-group input-group-lg">
 
-                        <input type="email" name="widget-subscribe-form-email" class="form-control required" placeholder="Enter your Email">
+                        <input type="email" name="widget-subscribe-form-email" class="form-control required"
+                               placeholder="Enter your Email">
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="submit">Subscribe</button>
                         </span>
@@ -35,6 +49,7 @@
                 </form>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
