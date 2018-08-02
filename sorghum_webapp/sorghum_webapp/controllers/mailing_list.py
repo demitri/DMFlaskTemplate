@@ -26,8 +26,12 @@ def mailing_list():
     email = valueFromRequest(key="widget-subscribe-form-email", request=request)
     if email:
         # add this email address to the mailing list
-        # client = Client('http://brie4:8000/3.1', 'restadmin', 'restpass')
-        templateDict["subscribed"] = True
+        mailmanUrl = "http://brie4.cshl.edu/mailman/subscribe/sorghum-community"
+        r = requests.post(mailmanUrl, data={'email': email})
+        if r.status_code == 200:
+            templateDict["subscribed"] = True
+        else:
+            templateDict["error"] = r.reason
 
     with wp_session(api):
         ms_banner_media = api.media(slug="sorghum_combine")

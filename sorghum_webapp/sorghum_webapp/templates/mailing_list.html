@@ -28,6 +28,17 @@
                 </div>
             </div>
         </div>
+        {% elif error %}
+        <div class="title-heading1 mb50">
+            <h3>An error occurred</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 mr-auto ml-auto">
+                <div class="text-center mb30">
+                    <p>[{{error}}]</p>
+                </div>
+            </div>
+        </div>
         {% else %}
         <div class="title-heading1 mb50">
             <h3>Subscribe to our mailing list</h3>
