@@ -4,6 +4,7 @@
 
 import flask
 import logging
+import requests
 from flask import request, render_template
 
 from wordpress_orm import wp_session
@@ -12,7 +13,6 @@ from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
 from .footer import populate_footer_template
-from mailmanclient import Client
 
 logger = logging.getLogger("wordpress_orm")
 
