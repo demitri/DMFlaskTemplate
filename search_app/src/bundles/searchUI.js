@@ -18,7 +18,7 @@ const UIbundle = {
             Links: true,
             Papers: true,
             updates: 1,
-            Gramene: true,
+            Gramene: false,
             Genes: true,
             Domains: false,
             Pathways: false,
