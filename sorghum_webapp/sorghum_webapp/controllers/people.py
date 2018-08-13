@@ -33,14 +33,15 @@ def people():
 
 		team = user_request.get(classobject=SBUser)
 
-		PIs = [u for u in team if ("Professor" in u.s.job_title)]
-		
-		grunts = [u for u in team if ("Computational" in u.s.job_title)
+		USDA = [u for u in team if ("USDA" in u.s.organization)]
+
+		comp = [u for u in team if ("Computational" in u.s.job_title)
+					and not ("USDA" in u.s.organization)
 					and not ("Post" in u.s.job_title)
 					or ("Systems" in u.s.job_title)]
 
 		researchers = [u for u in team if not ("Computational" in u.s.job_title)
-						and not ("Professor" in u.s.job_title)
+						and not ("USDA" in u.s.organization)
 						and not ("Systems" in u.s.job_title)
 						or ("Post" in u.s.job_title)]
 
@@ -50,8 +51,8 @@ def people():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=wpapi, photos_to_credit=[people_banner_media])
 
-	templateDict['team'] = grunts
-	templateDict['PIs'] = PIs
+	templateDict['comp'] = comp
+	templateDict['USDA'] = USDA
 	templateDict['researchers'] = researchers
 	print(researchers)
 	return render_template("people.html", **templateDict)
