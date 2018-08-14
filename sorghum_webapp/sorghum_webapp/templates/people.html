@@ -18,7 +18,43 @@
     <h3 class="mb30">Sorghumbase Team</h3>
   </div>
   <div class="row pb60">
-  {% for user in team %}
+  {% for user in USDA %}
+    <div class="col-lg-4 col-md-6  mb30">
+        <div class="team-card-default">
+            <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
+            <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
+            <div class="team-default-content text-center pt30 pb20">
+                    <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
+                    <span>{{user.job_title | safe}}</span><br>
+                    <span class="font-weight-bold">{{user.organization | safe}}</span>
+            </div>
+            <div class="text-center">
+              <p>{{ user.s.description | safe }}</p>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="row pb60">
+  {% for user in researchers %}
+    <div class="col-lg-4 col-md-6  mb30">
+        <div class="team-card-default">
+            <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
+            <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
+            <div class="team-default-content text-center pt30 pb20">
+                    <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
+                    <span>{{user.job_title | safe}}</span><br>
+                    <span class="font-weight-bold">{{user.organization | safe}}</span>
+            </div>
+            <!-- <div class="text-center">
+              <p>{{ user.s.description | safe }}</p>
+            </div> -->
+        </div>
+    </div>
+  {% endfor %}
+  </div>
+  <div class="row pb60">
+  {% for user in comp %}
     <div class="col-lg-4 col-md-6  mb30">
         <div class="team-card-default">
             <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
