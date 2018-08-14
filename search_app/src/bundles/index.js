@@ -5,11 +5,11 @@ import UIbundle from './searchUI'
 import cache from "../utils/cache"
 
 const sorghumBundles = sorghum.bundles;
-// const grameneBundles = gramene.bundles;
+const grameneBundles = gramene.bundles;
 
 const bundle = composeBundles(
   ...sorghumBundles,
-  // ...grameneBundles,
+  ...grameneBundles,
   UIbundle,
   createCacheBundle(cache.set)
 );
