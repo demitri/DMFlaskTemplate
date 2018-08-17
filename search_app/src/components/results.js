@@ -9,7 +9,6 @@ export default (store) => (
   <Provider store={store}>
     <div>
       <SorghumList />
-      <GrameneList />
     </div>
   </Provider>
 )

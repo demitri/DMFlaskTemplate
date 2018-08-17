@@ -10,7 +10,6 @@ export default (store) => (
   <Provider store={store}>
     <ul className="list-unstyled category">
       <SorghumSummary />
-      <GrameneSummary />
     </ul>
   </Provider>
 )
