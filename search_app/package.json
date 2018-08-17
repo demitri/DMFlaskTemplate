@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel ./src/index.html",
-    "build": "parcel build -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js"
+    "build": "parcel build -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js",
+    "watch": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js"
   },
   "author": "Andrew Olson",
   "license": "MIT",
