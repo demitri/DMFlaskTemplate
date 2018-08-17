@@ -87,6 +87,7 @@ class ScientificPaperRequest(WPRequest):
 		self.id = None # WordPress ID
 		self._before = None
 		self._after = None
+		self._per_page = None
 
 		self._status = list()
 		self._category_ids = list()
@@ -118,6 +119,9 @@ class ScientificPaperRequest(WPRequest):
 
 		if self.after:
 			self.parameters["after"] = self._after.isoformat()
+
+		if self.per_page:
+			self.parameters["per_page"] = self.per_page
 
 		# -------------------
 
@@ -304,3 +308,22 @@ class ScientificPaperRequest(WPRequest):
 			# Categories are stored as string ID values.
 			#
 			self._category_ids.append(str(cat_id))
+
+	@property
+	def per_page(self):
+		'''
+		Maximum number of items to be returned in result set.
+		'''
+		return self._per_page
+
+	@per_page.setter
+	def per_page(self, value):
+		# only accept integers or strings that can become integers
+		#
+		if isinstance(value, int):
+			self._per_page = value
+		elif isinstance(value, str):
+			try:
+				self._per_page = int(value)
+			except ValueError:
+				raise ValueError("The 'per_page' parameter must be an integer, was given '{0}'".format(value))

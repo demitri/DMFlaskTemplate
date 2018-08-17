@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 # from flask import request #, make_response
+import os
 import requests
 import flask
 from flask import request, jsonify
@@ -22,9 +23,12 @@ def searchapi(cat):
         with requests.Session() as session:
             url = WP_BASE_URL + cat + '?_embed=true&search=' + q
             if cat == 'posts':
-                url = url + '&categories_exclude=17,8'
+                url = url + '&categories_exclude=8,17'
             if rows:
                 url = url + '&per_page=' + rows
+            if cat == 'users':
+                session.auth = (os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
+                url = WP_BASE_URL + cat + '?context=edit&roles=team_member&per_page=50&search=' + q
             response = session.get(url=url)
             dict = {}
             dict['docs'] = response.json()

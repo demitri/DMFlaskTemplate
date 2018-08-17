@@ -28,20 +28,21 @@ def research():
 
 	with wp_session(api):
 		paper_request = ScientificPaperRequest(api=api)
-
+		paper_request.per_page = 50
 		rawPapers = paper_request.get()
 
-		papersWithInfo = [p for p in rawPapers if not (len(p.s.abstract) == 0 or len(p.s.pubmed_id) == 0)]
+		papersWithInfo = [p for p in rawPapers if not len(p.s.abstract) == 0 or len(p.s.pubmed_id) == 0]
 
-		# queryPubmed = [p for p in rawPapers if len(p.s.abstract) == 0]
+		# queryPubmed = [p for p in rawPapers if (len(p.s.abstract) == 0 and not len(p.s.pubmed_id) == 0)]
 		#
-		# info = getMetaData(queryPubmed)
+		# if len(queryPubmed) > 0:
+		# 	info = getMetaData(queryPubmed)
 		#
-		# for paper in info:
-		# 	if not len(paper.s.paper_authors) == 0:
-		# 		update_request = ScientificPaperRequest(api=api)
-		# 		update_request.update(paper)
-		# 		papersWithInfo.append(paper)
+		# 	for paper in info:
+		# 		if not len(paper.s.paper_authors) == 0:
+		# 			update_request = ScientificPaperRequest(api=api)
+		# 			update_request.update(paper)
+		# 			papersWithInfo.append(paper)
 
 		papersByDate = sorted(papersWithInfo, reverse=True, key=lambda k: k.s.publication_date)
 

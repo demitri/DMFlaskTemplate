@@ -20,8 +20,8 @@
       <h4 class="mb0 text-uppercase">{{ paper.s.title | safe}}</h4>
       <br>
       <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
-      {% if paper.pubmed_id %}
-      <p>Pubmed ID: {{paper.pubmed_id}}</p>
+      {% if paper.s.pubmed_id %}
+      <p>Pubmed ID: {{paper.s.pubmed_id}}</p>
       {% endif %}
       <p><em>{{ paper.s.paper_authors | safe }}</em></p>
       <p>{{ paper.s.abstract | safe }}</p>
