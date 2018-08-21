@@ -10,6 +10,7 @@ import logging
 import requests
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
+from wordpress_orm.entities import Media
 from .sbmedia import SBMedia # our custom Media type
 
 logger = logging.getLogger("wordpress_orm")
@@ -84,12 +85,38 @@ class ResourceLink(WPEntity):
 			try:
 				media = self.api.wordpress_object_cache.get(class_name=SBMedia.__name__, key=self.s.id)
 			except WPORMCacheObjectNotFoundError:
-				media = SBMedia(api=self.api)
-				media.update_schema_from_dictionary(resource_data)
+				media = Media(api=self.api)
+				media = self.api.media(id=resource_data['id'])
 				self.api.wordpress_object_cache.set(value=media, keys=[media.s.id])
 				self._resource_image = media
 
 		return self._resource_image
+
+	# @property
+	# def resource_image(self):
+	# 	'''
+	# 	Returns the 'Media' object that is the "featured media" for this post.
+	# 	'''
+	# 	if self._resource_image is None:
+	#
+	# 		media_dict = self.s.resource_image[0]
+	# 		media_id = media_dict['id']
+	# 		if media_id == 0:
+	# 			# no featured media for this post entry (this is what WordPress returns)
+	# 			self._resource_image = None
+	# 		else:
+	# 			self._resource_image = self.api.media(id=media_id)
+	# 	return self._resource_image
+	#
+	# @resource_image.setter
+	# def resource_image(self, new_media):
+	# 	'''
+	# 	Set the "featured media" object to this post.
+	# 	'''
+	# 	if isinstance(new_media, Media) or new_media is None:
+	# 		self._resource_image = new_media
+	# 	else:
+	# 		raise ValueError("The featured media of a Post must be an object of class 'Media' ('{0}' provided).".format(type(new_media).__name__))
 
 	@property
 	def author(self):

@@ -22,7 +22,7 @@
               <div class="mx10">
                 <a href="{{resource.s.resource_url}}">
                   {% if resource.resource_image is not none %}
-                  <img src="{{resource.resource_image.s.guid}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  <img src="{{resource.resource_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
                   {% else %}
                   <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
                   {% endif %}

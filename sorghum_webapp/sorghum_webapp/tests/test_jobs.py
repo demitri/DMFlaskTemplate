@@ -1,5 +1,6 @@
 import requests
 import json
+import pytest
 
 import wordpress_orm
 from wordpress_orm import wp_session
@@ -23,6 +24,8 @@ def test_event_schema(wp_api):
 	job_request = JobRequest(api=wp_api)
 	job_request.per_page = 1
 	jobs = job_request.get()
+	if len(jobs) == 0:
+		pytest.skip('No jobs in the CMS')
 	ormSchema = list(jobs[0].s.__dict__)
 	apiSchema = list(r.json()[0])
 	apiSchema.pop() # Removes "_links" property

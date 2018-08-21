@@ -3,6 +3,7 @@
 # from flask import request #, make_response
 import os
 import requests
+import json
 import flask
 from flask import request, jsonify
 
@@ -31,7 +32,16 @@ def searchapi(cat):
                 url = WP_BASE_URL + cat + '?context=edit&roles=team_member&per_page=50&search=' + q
             response = session.get(url=url)
             dict = {}
-            dict['docs'] = response.json()
+            if cat == 'resource-link':
+                links = response.json()
+                for item in links:
+                    if item['resource_image']:
+                        url2 = WP_BASE_URL + 'media/' + str(item['resource_image'][0]['id'])
+                        response2 = session.get(url=url2)
+                        item['resource_image'][0]['source_url'] = response2.json()['source_url']
+                dict['docs'] = links
+            else :
+                dict['docs'] = response.json()
             dict['numFound'] = int(response.headers['X-WP-TOTAL'])
             results = jsonify(dict)
     else:
