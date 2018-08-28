@@ -13,20 +13,7 @@
     </div>
   </div>
 </div><!--page title end-->
-<div class="container">
-  <div class="row">
-    <div class="filters-group-wrap">
-      <div class="filters-group">
-        <p>Filter</p>
-        <div class="btn-group filter-options">
-          {% for kw in keywords[0:3] %}
-            <button class="btn btn-primary" data-group="{{kw}}">{{kw}}</button>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div class="container pt90 ">
   <div id="grid" class="row my-shuffle-container">
   {% for paper in papers %}
@@ -60,6 +47,5 @@
   </div>
 </div>
 
-<script type="text/javascript" src="{{request.script_root}}/static/js/shuffle.js"></script>
-<script type="text/javascript" src="{{request.script_root}}/static/js/research_page.js"></script>
+
 {% endblock %}
