@@ -5,15 +5,26 @@ This script takes a PubMed ID and retrieves the article metadata.
 '''
 
 from litter_getter import pubmed
+import xml.etree.ElementTree as ET
 import xml.dom.minidom
 
 # register with user account
 pubmed.connect("PUBMED", 'muna@cshl.edu')
 
-ids = [30025022]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
+ids = [29161754]  # Ref: https://www.ncbi.nlm.nih.gov/pubmed/29161754
 fetch = pubmed.PubMedFetch(id_list=ids)
 refs = fetch.get_content()
-print(list(refs))
+
+root = ET.fromstring(refs[0]["xml"])
+
+keywordlist = root[0].find("KeywordList").findall("Keyword")
+
+kwl =[]
+
+for word in keywordlist:
+	kwl.append((word.text).strip())
+
+print(', '.join(kwl))
 
 # "refs" is a list of dictionaries with keys:
 '''
@@ -39,10 +50,10 @@ author affiliations,
 # ---------------------
 # ref: https://stackoverflow.com/questions/749796/pretty-printing-xml-in-python
 
-xml_string = refs[0]["xml"].replace("\n","")
-xml = xml.dom.minidom.parseString(xml_string)
-pretty_xml_string = xml.toprettyxml()
-print(pretty_xml_string)
+# xml_string = refs[0]["xml"].replace("\n","")
+# xml = xml.dom.minidom.parseString(xml_string)
+# pretty_xml_string = xml.toprettyxml()
+# print(pretty_xml_string)
 
 """
 Result:
