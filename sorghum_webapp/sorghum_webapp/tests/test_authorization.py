@@ -22,7 +22,7 @@ def test_authorization(wp_api):
 	user_request.context = "edit"
 	user_request.per_page = 50
 	user_request.roles = ["team_member"]
-	users = user_request.get(classobject=SBUser)
+	users = user_request.get(class_object=SBUser)
 
 	json_response = user_request.response.json()
 

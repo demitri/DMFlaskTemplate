@@ -31,7 +31,7 @@ def people():
 		user_request.per_page = 50
 		user_request.roles = ['team_member']
 
-		team = user_request.get(classobject=SBUser)
+		team = user_request.get(class_object=SBUser)
 
 		USDA = [u for u in team if ("USDA" in u.s.organization)]
 

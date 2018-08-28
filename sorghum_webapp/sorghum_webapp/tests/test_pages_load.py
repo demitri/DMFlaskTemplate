@@ -22,7 +22,7 @@ def test_mission_statement_page_loads(client):
 	response = client.get('/mission-statement')
 	assert response.status_code == 200
 
-def faq_statement_page_loads(client):
+def test_faq_statement_page_loads(client):
 	response = client.get('/faq')
 	assert response.status_code == 200
 

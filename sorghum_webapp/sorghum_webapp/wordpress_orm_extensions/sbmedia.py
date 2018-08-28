@@ -31,8 +31,8 @@ class SBMedia(WPORMMedia):
 
 class MediaRequest(WPRequest):
 
-	def get(self, classobject=SBMedia):
-		super().get(classobject=classobject)
+	def get(self, class_object=SBMedia):
+		super().get(class_object=class_object)
 
 	def postprocess_response(self):
 		'''

@@ -77,6 +77,7 @@ if args.log_level:
 #						level=logging.DEBUG)
 
 	# coloredlogs is configured with environment variables... weird
+	# define them here instead of from the shell
 	os.environ["COLOREDLOGS_LOG_FORMAT"] = "%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s"
 	#os.environ["COLOREDLOGS_DATE_FORMAT"] = "date format here"
 

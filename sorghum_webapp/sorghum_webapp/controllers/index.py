@@ -74,7 +74,7 @@ def index():
 		user_request.context = "edit"
 		user_request.per_page = 50
 		user_request.roles = ["team_member"]
-		users = user_request.get(classobject=SBUser)
+		users = user_request.get(class_object=SBUser)
 
 		# Way to check if WP access is authenticated - all users would be returned in that case,
 		# not just the ones who have posted.
