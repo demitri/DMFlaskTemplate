@@ -11,7 +11,6 @@ import requests
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
 from wordpress_orm.entities import Media
-from .sbmedia import SBMedia # our custom Media type
 
 logger = logging.getLogger("wordpress_orm")
 
@@ -93,7 +92,7 @@ class Event(WPEntity):
 				resource_data = self.s.featured_image
 
 			try:
-				media = self.api.wordpress_object_cache.get(class_name=SBMedia.__name__, key=self.s.id)
+				media = self.api.wordpress_object_cache.get(class_name=Media.__name__, key=self.s.id)
 			except WPORMCacheObjectNotFoundError:
 				media = Media(api=self.api)
 				media = self.api.media(id=resource_data['id'])

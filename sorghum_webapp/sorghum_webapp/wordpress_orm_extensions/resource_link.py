@@ -9,7 +9,7 @@ import logging
 import requests
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
-from .sbmedia import SBMedia # our custom Media type
+from wordpress_orm.entities import Media
 
 logger = logging.getLogger("wordpress_orm")
 
@@ -22,7 +22,7 @@ class ResourceLink(WPEntity):
 		#self._author = None
 		#self._category = None
 		self._resource_image = None
-		
+
 	def __repr__(self):
 		if len(self.s.resource_url) < 11:
 			truncated_url = self.s.resource_url
@@ -37,7 +37,7 @@ class ResourceLink(WPEntity):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "author",
 				"template", "resource_url", "resource_image", "resource_category"]
-	
+
 	@property
 	def post_fields(self):
 		'''
@@ -87,15 +87,15 @@ class ResourceLink(WPEntity):
 				resource_data = self.s.resource_image # -> type: list of (probably just one) dictionary
 				if isinstance(resource_data, list):
 					resource_data = resource_data[0]
-					
+
 			try:
-				media = self.api.wordpress_object_cache.get(class_name=SBMedia.__name__, key=resource_data["id"])
+				media = self.api.wordpress_object_cache.get(class_name=Media.__name__, key=resource_data["id"])
 			except WPORMCacheObjectNotFoundError:
-				media = SBMedia(api=self.api)
+				media = Media(api=self.api)
 				media.update_schema_from_dictionary(resource_data)
-				self.api.wordpress_object_cache.set(value=media, keys=(media.s.id, media.s.slug))	
+				self.api.wordpress_object_cache.set(value=media, keys=(media.s.id, media.s.slug))
 				self._resource_image = media
-				
+
 		return self._resource_image
 
 	@property
@@ -193,19 +193,19 @@ class ResourceLinkRequest(WPRequest):
 				link = class_object.__new__(class_object)
 				link.__init__(api=self.api)
 				link.json = json.dumps(d)
-				
+
 				link.update_schema_from_dictionary(d)
-	
+
 				# additional processing of related data (not schema fields) goes here
-	
+
 				# unset values are returned as "false", change to "None" in schema
 				for field in link.schema_fields:
 					if getattr(link.s,  field) is False:
 						setattr(link.s, field, None)
-	
+
 				if "_embedded" in d:
 					logger.debug("TODO: implement _embedded content for ResourceLink object")
-	
+
 				# add to cache
 				self.api.wordpress_object_cache.set(value=link, keys=(link.s.id, link.s.slug))
 			finally:
@@ -216,7 +216,7 @@ class ResourceLinkRequest(WPRequest):
 	#def postprocess_response(self, data=None):
 		# do extra stuff
 	#	pass
-	
+
 
 	@property
 	def slugs(self):
