@@ -22,7 +22,7 @@ def mission():
 	''' Mission Statement page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 
 		ms_post = api.post(slug='mission-statement')
 

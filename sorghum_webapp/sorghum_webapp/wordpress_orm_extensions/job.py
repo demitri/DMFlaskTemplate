@@ -43,6 +43,17 @@ class Job(WPEntity):
 				"company", "job_requirements", "job_url", "expiration_date"]
 
 	@property
+	def post_fields(self):
+		'''
+		Arguments for JOB requests.
+		'''
+		if self._post_fields is None:
+			# Note that 'date' is excluded in favor of exclusive use of 'date_gmt'.
+			self._post_fields = ["title", "content", "author", "company",
+								 "job_requirements", "job_url", "expiration_date"]
+		return self._post_fields
+
+	@property
 	def categories(self):
 		'''
 		Returns a list of categories (as Category objects) associated with this post.

@@ -31,7 +31,7 @@ def posts():
     n_per_page = valueFromRequest(key="show", request=request) or 9
     categories = valueFromRequest(key="categories", request=request, aslist=True)
 
-    with wp_session(api):
+    with api.Session():
 
         post_count = api.PostRequest()
         if categories:

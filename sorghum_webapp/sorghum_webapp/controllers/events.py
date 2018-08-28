@@ -29,7 +29,7 @@ def events():
 		past = True
 	today = datetime.now()
 
-	with wp_session(api):
+	with api.Session():
 		event_request = EventRequest(api=api)
 		event_request.per_page = 50
 		events = event_request.get()

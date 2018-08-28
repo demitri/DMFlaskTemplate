@@ -23,7 +23,7 @@ def about():
 	''' News page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 		ms_post = api.post(slug='mission-statement')
 
 		post_request = api.PostRequest()

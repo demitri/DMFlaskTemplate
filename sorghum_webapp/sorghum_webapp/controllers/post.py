@@ -27,7 +27,7 @@ def post(slug):
 
 	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 
-	with wp_session(api):
+	with api.Session():
 		# get the post based on the slug
 		try:
 			post = api.post(slug=slug)

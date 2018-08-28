@@ -24,7 +24,7 @@ def people():
 	''' People page. '''
 	templateDict = {}
 
-	with wp_session(wpapi):
+	with wpapi.Session():
 
 		user_request = wpapi.UserRequest()
 		user_request.context = "edit"

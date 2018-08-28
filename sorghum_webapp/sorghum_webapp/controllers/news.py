@@ -25,7 +25,7 @@ def news():
 	''' News page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 		paper_request = ScientificPaperRequest(api=api)
 		papers = paper_request.get()
 

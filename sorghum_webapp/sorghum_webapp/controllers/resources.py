@@ -23,7 +23,7 @@ def resources():
 	''' Resources page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 		rl_pr = ResourceLinkRequest(api=api)
 		links = rl_pr.get()
 

@@ -22,7 +22,7 @@ def faq():
 	''' FAQ page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 
 		post_request = api.PostRequest()
 		post_request.categories = ["faq"]

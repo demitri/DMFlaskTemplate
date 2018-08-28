@@ -22,7 +22,7 @@ def contact():
 	''' Contact page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 
 		ms_banner_media = api.media(slug="aerial_combines")
 		templateDict["banner_media"] = ms_banner_media

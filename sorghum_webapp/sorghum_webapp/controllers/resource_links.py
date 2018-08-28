@@ -21,7 +21,7 @@ def resource_links():
 	''' List of sorghum resources '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 		rl_pr = ResourceLinkRequest(api=api)
 		rl_pr.per_page = 100
 		resources = rl_pr.get()

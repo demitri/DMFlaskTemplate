@@ -23,7 +23,7 @@ def community():
 	''' Community page. '''
 	templateDict = {}
 
-	with wp_session(api):
+	with api.Session():
 		post_request = api.PostRequest()
 		post_request.categories = ["blog"]	# search by slug
 		post_request.orderby = "date"

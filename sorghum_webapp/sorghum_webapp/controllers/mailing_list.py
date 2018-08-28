@@ -33,7 +33,7 @@ def mailing_list():
         else:
             templateDict["error"] = r.reason
 
-    with wp_session(api):
+    with api.Session():
         ms_banner_media = api.media(slug="sorghum_combine")
         templateDict["banner_media"] = ms_banner_media
 

@@ -41,6 +41,17 @@ class Event(WPEntity):
 				"start_date", "end_date", "event_url", "organizer", "featured_image"]
 
 	@property
+	def post_fields(self):
+		'''
+		Arguments for EVENT requests.
+		'''
+		if self._post_fields is None:
+			# Note that 'date' is excluded in favor of exclusive use of 'date_gmt'.
+			self._post_fields = ["title", "content", "start_date", "end_date",
+								 "event_url", "organizer", "featured_image"]
+		return self._post_fields
+
+	@property
 	def categories(self):
 		'''
 		Returns a list of categories (as Category objects) associated with this post.

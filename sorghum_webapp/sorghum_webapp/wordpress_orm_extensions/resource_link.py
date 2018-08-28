@@ -38,8 +38,19 @@ class ResourceLink(WPEntity):
 	@property
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
-				"slug", "status", "type", "link", "title", "content", "author",
-				"template", "resource_url", "resource_image", "resource_category"]
+				"slug", "status", "type", "link", "title", "content", "author", "template",
+				 "resource_url", "resource_image", "resource_category"]
+
+	@property
+	def post_fields(self):
+		'''
+		Arguments for RESOURCE Links requests.
+		'''
+		if self._post_fields is None:
+			# Note that 'date' is excluded in favor of exclusive use of 'date_gmt'.
+			self._post_fields = ["title", "content", "resource_url",
+								"resource_image", "resource_category"]
+		return self._post_fields
 
 	@property
 	def categories(self):

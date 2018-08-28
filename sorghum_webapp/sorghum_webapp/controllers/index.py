@@ -49,7 +49,7 @@ def index():
 	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 
 	# perform all WordPress requests in a single session
-	with wp_session(api):
+	with api.Session():
 
 		post_request = api.PostRequest()
 		post_request.categories = ["blog"]	# search by slug
