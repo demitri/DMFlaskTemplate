@@ -22,7 +22,9 @@ def searchapi(cat):
     rows = valueFromRequest(key="rows", request=request)
     if cat in WP_CATS:
         with requests.Session() as session:
-            url = WP_BASE_URL + cat + '?_embed=true&search=' + q
+            url = WP_BASE_URL + cat + '?_embed=true'
+            if q:
+                url = url + '&search=' + q
             if cat == 'posts':
                 url = url + '&categories_exclude=8,17'
             if rows:
@@ -34,11 +36,21 @@ def searchapi(cat):
             dict = {}
             if cat == 'resource-link':
                 links = response.json()
+                mediaIDs = []
+                mediaIDToLink = {}
                 for item in links:
                     if item['resource_image']:
-                        url2 = WP_BASE_URL + 'media/' + str(item['resource_image'][0]['id'])
-                        response2 = session.get(url=url2)
-                        item['resource_image'][0]['source_url'] = response2.json()['source_url']
+                        id = str(item['resource_image'][0]['id'])
+                        mediaIDs.append(id)
+                        mediaIDToLink[id] = item
+                if mediaIDs:
+                    url2 = WP_BASE_URL + 'media?include=' + ','.join(mediaIDs)
+                    response2 = session.get(url=url2)
+                    media = response2.json()
+                    for mediaItem in media:
+                        id = str(mediaItem['id'])
+                        item = mediaIDToLink[id]
+                        item['resource_image'][0]['source_url'] = mediaItem['source_url']
                 dict['docs'] = links
             else :
                 dict['docs'] = response.json()
