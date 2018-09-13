@@ -44,13 +44,18 @@ def searchapi(cat):
                         mediaIDs.append(id)
                         mediaIDToLink[id] = item
                 if mediaIDs:
-                    url2 = WP_BASE_URL + 'media?include=' + ','.join(mediaIDs)
-                    response2 = session.get(url=url2)
-                    media = response2.json()
-                    for mediaItem in media:
-                        id = str(mediaItem['id'])
-                        item = mediaIDToLink[id]
-                        item['resource_image'][0]['source_url'] = mediaItem['source_url']
+                    batchSize = 100
+                    start = 0
+                    while start < len(mediaIDs):
+                        batch = mediaIDs[start:start+batchSize]
+                        start += batchSize
+                        url2 = WP_BASE_URL + 'media?per_page=100&include=' + ','.join(batch)
+                        response2 = session.get(url=url2)
+                        media = response2.json()
+                        for mediaItem in media:
+                            id = str(mediaItem['id'])
+                            item = mediaIDToLink[id]
+                            item['resource_image'][0]['source_url'] = mediaItem['source_url']
                 dict['docs'] = links
             else :
                 dict['docs'] = response.json()
