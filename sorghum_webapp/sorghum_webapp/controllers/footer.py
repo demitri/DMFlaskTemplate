@@ -2,7 +2,7 @@
 import wordpress_orm as wp
 from wordpress_orm import wp_session, exc
 
-def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_credit=None):
+def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_credit=list()):
 	'''
 	This function takes a template dictionary and populates the information needed for the footer.
 
