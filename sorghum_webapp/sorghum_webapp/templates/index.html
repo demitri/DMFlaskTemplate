@@ -301,7 +301,9 @@
             <div class="col-lg-4 mb30">
                 <div class="entry-card">
                     <a href="/post/{{post.s.slug}}" class="entry-thumb">
+                      {% if post.featured_media is not none %}
                         <img src="{{post.featured_media.s.source_url}}" alt="" class="img-fluid">
+                      {% endif %}
                         <span class="thumb-hover ti-back-right"></span>
                     </a><!--/entry thumb-->
                     <div class="entry-content">
