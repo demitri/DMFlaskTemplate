@@ -33,7 +33,7 @@ def searchapi(cat):
                 session.auth = (os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
                 url = WP_BASE_URL + cat + '?context=edit&roles=team_member&per_page=50&search=' + q
             response = session.get(url=url)
-            dict = {}
+            results_dict = {}
             if cat == 'resource-link':
                 links = response.json()
                 mediaIDs = []
@@ -56,11 +56,11 @@ def searchapi(cat):
                             id = str(mediaItem['id'])
                             item = mediaIDToLink[id]
                             item['resource_image'][0]['source_url'] = mediaItem['source_url']
-                dict['docs'] = links
+                results_dict['docs'] = links
             else :
-                dict['docs'] = response.json()
-            dict['numFound'] = int(response.headers['X-WP-TOTAL'])
-            results = jsonify(dict)
+                results_dict['docs'] = response.json()
+            results_dict['numFound'] = int(response.headers['X-WP-TOTAL'])
+            results = jsonify(results_dict)
     else:
         results = jsonify(WP_CATS)
     results.headers.add('Access-Control-Allow-Origin','*')

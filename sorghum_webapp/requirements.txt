@@ -5,5 +5,8 @@ termcolor
 coloredlogs
 litter_getter
 
+# needs to be converted into an installable module before uncommenting
+#wordpress_orm
+
 # asset management
 Flask-Webpack>=0.1.0
