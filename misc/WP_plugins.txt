@@ -14,3 +14,6 @@ https://wordpress.org/plugins/wp-rest-api-log/
 
 JSON Basic Authentication: Enables basic HTTP authentication - URL not installable
 https://github.com/WP-API/Basic-Auth
+
+Activity Log
+https://wordpress.org/plugins/aryo-activity-log/

@@ -12,11 +12,13 @@ from ..utilities.pubmedIDpull import getMetaData
 
 from .. import app
 from .. import wordpress_api as api
-from .. import wordpress_orm_logger as wp_logger
+#from .. import wordpress_orm_logger as wp_logger
 from . import valueFromRequest
 from .footer import populate_footer_template
 
-logger = logging.getLogger("wordpress_orm")
+#logger = logging.getLogger("wordpress_orm")
+wp_logger = logging.getLogger("wordpress_orm")
+app_logger = logging.getLogger("sorghumbase")
 
 research_page = flask.Blueprint("research_page", __name__)
 
@@ -62,6 +64,6 @@ def research():
 	templateDict['papers'] = papersByDate
 	templateDict['keywords'] = uniqueKeys
 
-	logger.debug(" ============= controller finished ============= ")
+	app_logger.debug(" ============= controller finished ============= ")
 
 	return render_template("research.html", **templateDict)

@@ -1,6 +1,11 @@
 
+import logging
+
 import wordpress_orm as wp
-from wordpress_orm import wp_session, exc
+#from wordpress_orm import wp_session, exc
+
+wp_logger = logging.getLogger("wordpress_orm")
+app_logger = logging.getLogger("sorghumbase")
 
 def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_credit=list()):
 	'''
@@ -24,13 +29,19 @@ def populate_footer_template(template_dictionary=None, wp_api=None, photos_to_cr
 	pr.per_page = 3				# only get three newest
 	posts = pr.get()
 
+	app_logger.debug("photos_to_credit = {0}".format(photos_to_credit))
+
 	# while we're here, fetch the featured media
 	for post in posts:
 		if post.featured_media:
 			photos_to_credit.append(post.featured_media)
 
+	# flag this error
+	if None in photos_to_credit:
+		app_logger.warning("'None' value being passed into 'photos_to_credit' - catch this error.")
+	
 	#remove duplicates
-	photos_to_credit = list(set(photos_to_credit))
+	photos_to_credit = list(set([x for x in photos_to_credit if x is not None]))
 
 	photographers = []
 	filtered_photographs = []

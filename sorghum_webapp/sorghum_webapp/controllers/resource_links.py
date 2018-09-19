@@ -10,11 +10,14 @@ from ..wordpress_orm_extensions.resource_link import ResourceLinkRequest
 
 from .. import app
 from .. import wordpress_api as api
-from .. import wordpress_orm_logger as wp_logger
+#from .. import wordpress_orm_logger as wp_logger
 from . import valueFromRequest
 from .footer import populate_footer_template
 
 resource_links_page = flask.Blueprint("resource_links_page", __name__)
+
+wp_logger = logging.getLogger("wordpress_orm")
+app_logger = logging.getLogger("sorghumbase")
 
 @resource_links_page.route('/resource_links')
 def resource_links():

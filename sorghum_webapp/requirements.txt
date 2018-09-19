@@ -4,3 +4,6 @@ flask
 termcolor
 coloredlogs
 litter_getter
+
+# asset management
+Flask-Webpack>=0.1.0

@@ -27,3 +27,23 @@ But things work now.
 * [pytest-flask on GitHub](https://github.com/pytest-dev/pytest-flask)
 * [pytest-flask Documentation](https://pytest-flask.readthedocs.io/en/latest/)
 * [Example pytest-flask usage pattern](https://github.com/pytest-dev/pytest-flask/issues/7)
+
+### Produce a Summary Report
+
+```
+py.test -r<x>
+```
+
+where `<x>` is one or more of:
+
+Ref: <https://docs.pytest.org/en/latest/usage.html#detailed-summary-report>
+
+ * `f` - failed
+ * `E` - error
+ * `s` - skipped
+ * `x` - xfailed
+ * `X` - xpassed
+ * `p` - passed
+ * `P` - passed with output
+ * `a` - all except pP
+

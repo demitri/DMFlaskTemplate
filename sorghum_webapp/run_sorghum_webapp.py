@@ -46,8 +46,9 @@ parser.add_argument('-r','--rules',
                     required=False)
 parser.add_argument('-l','--log-level',
 					help="debug log level (one of debug, info, warning, critical)",
+					choices=["debug", "info", "warning", "critical", "DEBUG", "INFO", "WARNING", "CRITICAL"],
 					type=str.upper, # force value to be uppercase
-					default=None,
+					default="WARNING",
 					required=False)
 
 args = parser.parse_args()
@@ -61,12 +62,12 @@ from sorghum_webapp import create_app
 # otherwise use what is set on command line.
 debug = (__name__ == "__main__") or args.debug
 
-app = create_app(debug=debug) #, conf=conf) # actually creates the Flask application instance
+app = create_app(debug=debug, log_level=args.log_level) #, conf=conf) # actually creates the Flask application instance
 
 # --------------
 # Set up logging
 # --------------
-if args.log_level:
+if False: #args.log_level:
 	import logging
 		
 	# set up logging output format

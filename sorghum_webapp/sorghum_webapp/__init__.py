@@ -8,6 +8,7 @@ import sys
 import socket
 import logging
 
+import coloredlogs
 import wordpress_orm
 from flask import Flask
 
@@ -89,9 +90,74 @@ wordpress_api = None # define below after configuration is read -> app.config["W
 
 # set up wordpress-orm logger
 # can be called multiple times as it's a singleton
-wordpress_orm_logger = logging.getLogger("wordpress_orm")
+#wordpress_orm_logger = None
+#app_logger = None
 
-def create_app(debug=False):#, conf=dict()):
+def setUpLoggers(log_level="WARNING"):
+	'''
+	Set up loggers for this application.
+	'''
+	# Loggers can be called multiple times as they are implemented a singleton.
+	# To access a logger from elsewhere, retrieve it by name - a new one won't be created:
+	#
+	# import logging
+	# wp_logger = logging.getLogger("wordpress_orm")
+	#
+
+	# set up logging output format
+	# ref: https://stackoverflow.com/questions/533048/how-to-log-source-file-name-and-line-number-in-python
+	#
+#	logging.basicConfig(format='%(asctime)s,%(msecs)d %(levelname)-8s [%(filename)s:%(lineno)d] %(message)s',
+#						datefmt='%Y-%m-%d:%H:%M:%S',
+#						level=logging.DEBUG)
+
+	# coloredlogs is configured with environment variables... weird
+	# define them here instead of from the shell
+	# Ref: Logging attributes: https://docs.python.org/3/library/logging.html#logrecord-attributes
+	#
+	os.environ["COLOREDLOGS_LOG_FORMAT"] = "%(asctime)s,%(msecs)d %(levelname)-8s [%(name)s] [%(filename)s:%(lineno)d] %(message)s"
+	#os.environ["COLOREDLOGS_DATE_FORMAT"] = "date format here"
+
+	color_logs = app.config.get("ENABLE_COLOR_LOGS", False)
+
+	# ------------------------
+	# application level logger
+	# ------------------------
+	app_logger = logging.getLogger("sorghumbase")
+	console_handler = logging.StreamHandler()
+	app_logger.addHandler(console_handler)
+	if color_logs:
+		# This adds a handler to the logger.
+		#logger.setLevel(logging.DEBUG)
+		coloredlogs.install(level=logging.getLevelName(log_level), logger=app_logger)
+	else:
+		# The code below should be used *INSTEAD* if colorless logs are prefer	
+		# Where should logging output go?
+		#
+		ch = logging.StreamHandler()  # output to console
+		ch.setLevel(getattr(logging, log_level))   # set log level for output
+		app_logger.addHandler(ch)         # add to logger
+		
+
+	# --------------------
+	# wordpress_orm logger
+	# --------------------
+	wordpress_orm_logger = logging.getLogger("wordpress_orm")
+	console_handler = logging.StreamHandler()
+	wordpress_orm_logger.addHandler(console_handler)
+	if color_logs:
+		# This adds a handler to the logger.
+		#logger.setLevel(logging.DEBUG)
+		coloredlogs.install(level=logging.getLevelName(log_level), logger=wordpress_orm_logger)
+	else:
+		# The code below should be used *INSTEAD* if colorless logs are prefer	
+		# Where should logging output go?
+		#
+		ch = logging.StreamHandler()  # output to console
+		ch.setLevel(getattr(logging, log_level))   # set log level for output
+		wordpress_orm_logger.addHandler(ch)         # add to logger
+
+def create_app(debug=False, log_level=None):#, conf=dict()):
 
 	#print(" = = = = = = = = = = = creating app ...")
 
@@ -224,6 +290,8 @@ def create_app(debug=False):#, conf=dict()):
 		wordpress_api.authenticator = HTTPBasicAuth(os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
 	else:
 		print(red_text("Basic authentication failed."))
+		
+	setUpLoggers(log_level)
 
 	# OAuth authentication
 	# --------------------
