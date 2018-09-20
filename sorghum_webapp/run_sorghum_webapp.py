@@ -140,7 +140,7 @@ if __name__ == "__main__":
         # If running on a remote host via a tunnel, not that
         # Safari blocks some high ports (e.g.port 6000)
         # Ref: http://support.apple.com/kb/TS4639
-        app.run(debug=debug, port=args.port)
+        app.run(debug=debug, port=args.port, threaded=True)
     else:
         app.run()
 

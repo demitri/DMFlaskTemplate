@@ -115,7 +115,7 @@ def setUpLoggers(log_level="WARNING"):
 	# define them here instead of from the shell
 	# Ref: Logging attributes: https://docs.python.org/3/library/logging.html#logrecord-attributes
 	#
-	os.environ["COLOREDLOGS_LOG_FORMAT"] = "%(asctime)s,%(msecs)d %(levelname)-8s [%(name)s] [%(filename)s:%(lineno)d] %(message)s"
+	os.environ["COLOREDLOGS_LOG_FORMAT"] = "%(asctime)s [%(msecs)4dms] %(levelname)-8s [%(name)s] [%(filename)s:%(lineno)d] %(message)s"
 	#os.environ["COLOREDLOGS_DATE_FORMAT"] = "date format here"
 
 	color_logs = app.config.get("ENABLE_COLOR_LOGS", False)

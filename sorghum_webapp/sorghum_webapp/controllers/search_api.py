@@ -5,6 +5,7 @@ import os
 import requests
 import json
 import flask
+import logging
 from flask import request, jsonify
 
 from .. import app
@@ -15,6 +16,8 @@ WP_BASE_URL = app.config["WP_BASE_URL"]
 WP_CATS = ['posts', 'pages', 'users', 'resource-link', 'job', 'event', 'scientific_paper']
 
 search_api = flask.Blueprint("search_api", __name__)
+
+logger = logging.getLogger("sorghumbase")
 
 @search_api.route('/search_api/<cat>')
 def searchapi(cat):
