@@ -1102,9 +1102,10 @@
         if (typeof category === 'function') {
           return category.call(element, element, this);
         }
-
         // Check each element's data-groups attribute against the given category.
         var attr = element.getAttribute('data-' + Shuffle.FILTER_ATTRIBUTE_KEY);
+        console.log(attr);
+        console.log(category);
         var keys = this.options.delimiter ? attr.split(this.options.delimiter) : JSON.parse(attr);
 
         function testCategory(category) {
@@ -2202,7 +2203,7 @@
 
     // If your group is not json, and is comma delimeted, you could set delimiter
     // to ','.
-    delimiter: null,
+    delimiter: ', ',
 
     // Useful for percentage based heights when they might not always be exactly
     // the same (in pixels).

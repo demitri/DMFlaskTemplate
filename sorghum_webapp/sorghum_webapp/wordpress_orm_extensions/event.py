@@ -82,7 +82,7 @@ class Event(WPEntity):
 				if len(self.s.featured_image) > 0:
 					resource_data = self.s.featured_image[0]
 				elif len(self.s.featured_image) > 1:
-					logger.warning("More than one resource image was found associated with a ResourceLink; selecting the first.")
+					logger.warning("More than one resource image was found associated with an Event; selecting the first.")
 					resource_data = self.s.featured_image[0]
 				else:
 					# empty list returned,  no image

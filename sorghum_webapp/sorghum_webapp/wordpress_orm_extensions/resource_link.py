@@ -92,7 +92,7 @@ class ResourceLink(WPEntity):
 				media = self.api.wordpress_object_cache.get(class_name=Media.__name__, key=resource_data["id"])
 			except WPORMCacheObjectNotFoundError:
 				media = Media(api=self.api)
-				media.update_schema_from_dictionary(resource_data)
+				media = self.api.media(id=resource_data['id'])
 				self.api.wordpress_object_cache.set(value=media, keys=(media.s.id, media.s.slug))
 				self._resource_image = media
 

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">People</h1>
+
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+
+<div class="container pt90 ">
+  <div class="navbar-seconday sticky-top text-center anchor" id="navsecondary">
+
+          <ul class="mb0 list-inline">
+          <li class="list-inline-item nav-item "><a data-scroll href="#one" class="nav-link active">One</a></li>
+          <li class="list-inline-item nav-item "><a data-scroll href="#two" class="nav-link">Two</a></li>
+          <li class="list-inline-item nav-item "><a data-scroll href="#three" class="nav-link">Three</a></li>
+      </ul>
+  </div>
+  <div class="title-heading1 mb60">
+    <h3 class="mb30">Sorghumbase Team</h3>
+  </div>
+  <div class="row pb60">
+  {% for user in team %}
+    <div class="col-lg-4 col-md-6  mb30">
+        <div class="team-card-default">
+            <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
+            <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
+            <div class="team-default-content text-center pt30 pb20">
+                    <h4 class="mb0 text-uppercase">{{ user.s.name }}</h4>
+                    <span>{{user.job_title}}</span><br>
+                    <span class="font-weight-bold">{{user.organization}}</span>
+            </div>
+            <div class="text-center">
+              <p>{{ user.s.description | safe }}</p>
+            </div>
+        </div>
+    </div>
+  {% endfor %}
+    </div>
+</div>
+{% endblock %}

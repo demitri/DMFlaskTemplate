@@ -4,6 +4,7 @@
 
 import flask
 import logging
+import json
 from flask import request, render_template
 from wordpress_orm import wp_session
 from ..wordpress_orm_extensions.scientific_paper import ScientificPaperRequest
@@ -32,6 +33,7 @@ def research():
 		paper_request = ScientificPaperRequest(api=api)
 		paper_request.per_page = 50
 		rawPapers = paper_request.get()
+		print(len(rawPapers))
 
 		papersWithInfo = [p for p in rawPapers if not (len(p.s.abstract) == 0 or len(p.s.keywords) == 0) or len(p.s.pubmed_id) == 0]
 
@@ -45,14 +47,24 @@ def research():
 					paper.update()
 					papersWithInfo.append(paper)
 
-		all_keywords = []
-		for paper in papersWithInfo:
-			if len(paper.s.keywords) > 0 and paper.s.keywords is not "No keywords in Pubmed":
-				kwl = paper.s.keywords.split(',')
-				all_keywords.append(kwl)
-				paper.s.kwl = kwl
+		all_keywords = set()
 
-		uniqueKeys = list(set().union(*all_keywords))
+		# toggle = True
+		# for paper in papersWithInfo:
+		# 	if toggle:
+		# 		[all_keywords.add(x) for x in ['blue brown bear black', 'green', 'Black']]
+		# 		paper.kwd = json.dumps(['blue brown bear black', 'green', 'Black'])
+		# 		toggle = False
+		# 	else:
+		# 		[all_keywords.add(x) for x in ["orange/", "yellow9", "red"]]
+		# 		paper.kwd = json.dumps(["orange/", "yellow9", "red"])
+		# 		toggle = True
+
+		for paper in papersWithInfo:
+			if len(paper.s.keywords) > 0 and paper.s.keywords != "No keywords in Pubmed":
+				kwl = paper.s.keywords.split(',')
+				kwd = [w.strip() for w in kwl]
+				[all_keywords.add(x) for x in kwd]
 
 		papersByDate = sorted(papersWithInfo, reverse=True, key=lambda k: k.s.publication_date)
 
@@ -62,7 +74,7 @@ def research():
 		populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[news_banner_media])
 
 	templateDict['papers'] = papersByDate
-	templateDict['keywords'] = uniqueKeys
+	templateDict['keywords'] = all_keywords
 
 	app_logger.debug(" ============= controller finished ============= ")
 

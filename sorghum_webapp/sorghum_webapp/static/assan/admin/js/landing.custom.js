@@ -1,10 +1,10 @@
-/* 
+/*
 Landing page custom script file
  */
 $(function () {
 //preloader
     $(window).preloader({
-        delay: 500
+        delay: 100
     });
      //auto close navbar-collapse on click a
             $('.navbar a.nav-link').on('click', function () {
@@ -69,7 +69,3 @@ $(function () {
         callback: function (anchor, toggle) {} // Function to run after scrolling
     });
 });
-
-
-
-

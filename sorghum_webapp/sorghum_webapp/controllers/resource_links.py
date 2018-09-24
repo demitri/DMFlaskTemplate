@@ -28,7 +28,8 @@ def resource_links():
 		rl_pr = ResourceLinkRequest(api=api)
 		rl_pr.per_page = 100
 		resources = rl_pr.get()
-		print(resources[0].resource_image.s.source_url)
+		print(resources[0].resource_image.s.id)
+		# print(resources[0].resource_image.s.resource_url)
 
 		resources_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		resources_default_image = api.media(slug="sorghum-grains_1920x1000")
