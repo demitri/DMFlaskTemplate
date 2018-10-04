@@ -11,19 +11,22 @@
   "author": "Andrew Olson",
   "license": "MIT",
   "dependencies": {
+    "gramene-search": "^1.1.5",
     "internal-nav-helper": "1.0.2",
     "money-clip": "2.0.0",
-    "preact": "8.2.7",
     "querystringify": "^2.0.0",
-    "redux-bundler": "21.0.0",
-    "redux-bundler-preact": "1.0.0",
-    "gramene-search": "^1.0.17",
-    "sorghum-search": "^1.0.17"
+    "react": "*",
+    "react-debounce-input": "^3.2.0",
+    "react-dom": "^16.5.2",
+    "redux-bundler": "^21.0.0",
+    "redux-bundler-react": "^1.0.1",
+    "sorghum-search": "^1.1.4"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
     "babel-preset-env": "1.6.1",
-    "babel-preset-preact": "1.1.0",
-    "parcel-bundler": "1.6.2"
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.10.1"
   },
   "prettier": {
     "singleQuote": true,

@@ -1,16 +1,28 @@
-import { h } from 'preact'
-import { Provider } from 'redux-bundler-preact'
+import React from 'react'
+import {Provider, connect} from 'redux-bundler-react'
+import {DebounceInput} from 'react-debounce-input'
+
+const SearchBoxCmp = ({queryObject, doUpdateTheQueries}) =>
+    <DebounceInput
+        minLength={0}
+        debounceTimeout={300}
+        onChange={e => doUpdateTheQueries(`q=${e.target.value}`)}
+        className="form-control"
+        value={queryObject ? queryObject.q : ''}
+        placeholder="search here"
+    />;
+
+const SearchBox = connect(
+    'selectQueryObject',
+    'doUpdateTheQueries',
+    SearchBoxCmp
+);
 
 export default (store) => {
-  const query = store.selectQueryObject();
-  return (
-    <Provider store={store}>
-      <input type="search"
-             class="form-control"
-             value={query.q}
-             placeholder="search here"
-             onChange={e => {store.doUpdateTheQueries(`q=${e.target.value}`)}}
-      />
-    </Provider>
-  )
+    return (
+        <Provider store={store}>
+            <SearchBox/>
+        </Provider>
+    )
 }
+
