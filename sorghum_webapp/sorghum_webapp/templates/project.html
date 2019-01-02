@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block page_title %}{{ project.title }}{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<!-- place page content here -->
+
+{# Page is constructed in sections (rows). #}
+
+
+{# Section: Image slider #}
+
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}'
+     style='background-image: url("{{sorghum_grains_image.s.source_url}}")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1 class='text-uppercase'>Research project</h1>
+
+            </div>
+        </div>
+    </div>
+</div><!--page title end-->
+
+<div class="container pb50">
+    <div class="row justify-content-md-center">
+        <div class="col-md-9 mb40">
+            <article>
+
+              {% if project.s.featured_media %}
+              <div class="col-lg-6 col-md-9">
+                <img src='{{ project.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
+              </div>
+              {% endif %}
+              <div class="clearfix pb20">
+                  <h2 class="mb0">{{project.s.title | safe}}</h2>
+              </div>
+              <p>
+                {{project.s.content | safe }}
+              </p>
+              <br>
+              <h6>Researcher</h6>
+              <p>{{ project.author.s.name | safe}}</p>
+              <br>
+              <h6>Project citations</h6>
+              <p>
+                {{project.s.project_publications | safe}}
+              </p>
+              <br>
+              <h6>Project Images</h6>
+              <div id="js-grid-lightbox-gallery" class="cbp">
+              {% for image in project.project_images %}
+              <div class="cbp-item identity graphic print">
+                <div class="cbp-caption margin-bottom-20">
+                    <div class="cbp-caption-defaultWrap">
+                        <img src="{{image.s.source_url}}" alt="">
+                    </div>
+                    <div class="cbp-caption-activeWrap">
+                        <div class="cbp-l-caption-alignCenter">
+                            <div class="cbp-l-caption-body">
+                                <ul class="link-captions no-bottom-space">
+                                    <li><a href="{{image.s.source_url}}" class="cbp-lightbox" data-title="{{image.s.caption}}"><i class="ti-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <br>
+            <h6>Project Funding</h6>
+            <p>
+              {{project.s.project_funding}}
+            </p>
+            <br>
+            <h6>Affiliated Projects</h6>
+            <p>
+              {{project.s.affiliated_projects}}
+            </p>
+            <br>
+              <a href="{{project.s.project_url}}" class="btn btn-sm btn-primary">Learn More at project website</a>
+            <hr class="mb40">
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script_below_content %}
+
+    (function ($, window, document, undefined) {
+        'use strict';
+
+        // init cubeportfolio
+        $('#js-grid-lightbox-gallery').cubeportfolio({
+            filters: '#js-filters-lightbox-gallery',
+            layoutMode: 'grid',
+            mediaQueries: [{
+                    width: 1500,
+                    cols: 3
+                }, {
+                    width: 1100,
+                    cols: 3
+                }, {
+                    width: 800,
+                    cols: 3
+                }, {
+                    width: 480,
+                    cols: 2,
+                    options: {
+                        caption: ''
+                    }
+                }],
+            defaultFilter: '*',
+            animationType: 'sequentially',
+            gapHorizontal: 15,
+            gapVertical: 15,
+            gridAdjustment: 'responsive',
+            caption: 'zoom',
+            displayType: 'fadeIn',
+            displayTypeSpeed: 100,
+            // lightbox
+            lightboxDelegate: '.cbp-lightbox',
+            lightboxGallery: true,
+            lightboxTitleSrc: 'data-title'
+            // lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>'
+        });
+    })(jQuery, window, document);
+
+{% endblock %}

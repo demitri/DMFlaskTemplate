@@ -45,6 +45,8 @@ def register_blueprints(app=None):
 	from .controllers.about import about_page
 	from .controllers.community import community_page
 	from .controllers.resources import resources_page
+	from .controllers.projects import projects_list
+	from .controllers.project import project_page
 	from .controllers.clear_wp_cache import clear_wp_cache_page
 	#from .controllers.controller1 import xxx
 
@@ -68,6 +70,8 @@ def register_blueprints(app=None):
 	app.register_blueprint(about_page)
 	app.register_blueprint(community_page)
 	app.register_blueprint(resources_page)
+	app.register_blueprint(projects_list)
+	app.register_blueprint(project_page)
 	app.register_blueprint(search_api)
 	app.register_blueprint(clear_wp_cache_page)
 	#app.register_blueprint(xxx)
@@ -131,13 +135,13 @@ def setUpLoggers(log_level="WARNING"):
 		#logger.setLevel(logging.DEBUG)
 		coloredlogs.install(level=logging.getLevelName(log_level), logger=app_logger)
 	else:
-		# The code below should be used *INSTEAD* if colorless logs are prefer	
+		# The code below should be used *INSTEAD* if colorless logs are prefer
 		# Where should logging output go?
 		#
 		ch = logging.StreamHandler()  # output to console
 		ch.setLevel(getattr(logging, log_level))   # set log level for output
 		app_logger.addHandler(ch)         # add to logger
-		
+
 
 	# --------------------
 	# wordpress_orm logger
@@ -150,7 +154,7 @@ def setUpLoggers(log_level="WARNING"):
 		#logger.setLevel(logging.DEBUG)
 		coloredlogs.install(level=logging.getLevelName(log_level), logger=wordpress_orm_logger)
 	else:
-		# The code below should be used *INSTEAD* if colorless logs are prefer	
+		# The code below should be used *INSTEAD* if colorless logs are prefer
 		# Where should logging output go?
 		#
 		ch = logging.StreamHandler()  # output to console
@@ -290,7 +294,7 @@ def create_app(debug=False, log_level=None):#, conf=dict()):
 		wordpress_api.authenticator = HTTPBasicAuth(os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
 	else:
 		print(red_text("Basic authentication failed."))
-		
+
 	setUpLoggers(log_level)
 
 	# OAuth authentication

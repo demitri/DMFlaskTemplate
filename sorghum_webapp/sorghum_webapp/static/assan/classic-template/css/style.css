@@ -2,6 +2,7 @@
 Assan main style file
 */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800|Open+Sans:300,300i,400,400i,600,700,800");
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif:400,400i");
 @font-face {
   font-family: 'FontAwesome';
@@ -53,7 +54,7 @@ a, .simple-hover img, button, .btn {
   -webkit-transition: all 0.3s; }
 
 a {
-  color: #4782d3;
+  color: #9F3D34;
   text-decoration: none; }
   a:hover, a:focus {
     text-decoration: none;
@@ -73,7 +74,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   color: #252525;
   font-weight: 700;
   font-variant-ligatures: common-ligatures;
@@ -170,8 +171,8 @@ small {
   background: #4782d3 !important; }
 
 .bg-primary {
-  background: #4782d3 !important;
-  border-color: #4782d3; }
+  background: #FBBB19 !important;
+  border-color: #FBBB19; }
 
 .bg-success {
   background: #5cb85c !important;
@@ -197,7 +198,9 @@ small {
   background: #fff; }
 
 .text-primary {
-  color: #4782d3 !important; }
+  color: #9F3D34 !important; }
+  /* .text-primary {
+    color: #4782d3 !important; } */
 
 .text-danger {
   color: #c9302c !important; }
@@ -440,7 +443,7 @@ strong, b {
   padding-left: 23px;
   margin-top: 5px;
   display: block;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "PT Sans", sans-serif; }
   .list-icon li:before {
     content: "\e64c";
     font-family: 'themify';
@@ -590,7 +593,7 @@ Buttons
     padding: 15px 40px 15px !important;
     font-size: 0.8rem !important; }
   .btn.btn-link {
-    color: #4782d3;
+    color: #00A14B;
     overflow: hidden;
     text-transform: uppercase; }
     .btn.btn-link:after {
@@ -732,10 +735,10 @@ Buttons
     box-shadow: none; }
 
 .btn-primary {
-  background: #4782d3;
+  background: #9F3D34;
   color: #fff; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background: #4782d3;
+    background: #FBBB19;
     color: #fff; }
 
 .btn-circle {
@@ -1006,7 +1009,7 @@ Assan Header Style
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: .75rem;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "PT Sans", sans-serif; }
 
 .navbar-nav > li .navbar-light .navbar-nav .nav-link:focus, .navbar-nav > li .navbar-light .navbar-nav .nav-link:hover {
   color: #4782d3; }
@@ -1101,7 +1104,7 @@ Assan Header Style
     top: 0;
     height: 100%;
     width: 99%;
-    font-family: "Montserrat", sans-serif;
+    font-family: "PT Sans", sans-serif;
     font-weight: 700; }
   .search-inline .search-close {
     position: absolute;
@@ -1218,7 +1221,7 @@ Assan Header Style
         .navbar.navbar-transparent.navbar-dark.bg-dark .nav-link:hover, .navbar.navbar-transparent.navbar-dark.bg-dark .navbar-right-elements .list-inline > li > a:hover {
           color: #4782d3; }
       .navbar.navbar-transparent.navbar-dark.bg-dark .nav-item.active .nav-link, .navbar.navbar-transparent.navbar-dark.bg-dark .nav-item .nav-link.active {
-        color: #4782d3 !important; }
+        color: #FBBB19 !important; }
     .navbar.navbar-transparent .dropdown-menu {
       border-top-color: #4782d3; }
     .navbar.navbar-transparent .search-inline .form-control {
@@ -1228,7 +1231,7 @@ Assan Header Style
       .navbar.navbar-transparent .navbar-right-elements .list-inline > li > a:hover {
         color: white; }
     .navbar.navbar-transparent.nav-sticky.nav-stick-top .active .nav-link, .navbar.navbar-transparent.nav-sticky.nav-stick-top .nav-item.show .nav-link {
-      color: #4782d3 !important; }
+      color: #FBBB19 !important; }
   /**header sticky**/
   .navbar.navbar-transparent.nav-sticky .navbar-brand .logo {
     position: absolute;
@@ -1294,7 +1297,7 @@ Assan Header Style
     text-transform: uppercase;
     color: #666;
     font-weight: 700;
-    font-family: "Montserrat", sans-serif;
+    font-family: "PT Sans", sans-serif;
     padding: 1rem 1rem; }
   .navbar-seconday.nav-stick-top {
     position: fixed;
@@ -1421,10 +1424,10 @@ Dropdown menu styles
   padding: 4px 20px; }
   .dropdown .dropdown-menu .dropdown-item:hover, .mega-inner-nav > li > a:hover {
     background-color: transparent;
-    color: #4782d3; }
+    color: #00A14B; }
   .dropdown .dropdown-menu .dropdown-item:focus, .mega-inner-nav > li > a:focus {
     background-color: transparent;
-    color: #4782d3; }
+    color: #FBBB19; }
 
 @media (min-width: 992px) {
   .dropdown-menu {
@@ -1524,7 +1527,7 @@ Accordoins card style
   .accordion-header a {
     position: relative;
     display: block;
-    color: #4782d3;
+    color: #9F3D34;
     font-weight: 600;
     font-size: 1rem;
     padding-right: 20px; }
@@ -1649,7 +1652,7 @@ Blog post entries
   .entry-content .entry-title a {
     color: #333; }
     .entry-content .entry-title a:hover {
-      color: #4782d3; }
+      color: #00A14B; }
   .entry-content .entry-meta span {
     font-size: 12px; }
 
@@ -1671,7 +1674,7 @@ Blog post entries
     position: absolute;
     width: 100px;
     height: 100px;
-    background: rgba(71, 130, 211, 0.85);
+    background: rgba(251, 187, 25, 0.85);
     display: block;
     top: 50%;
     left: 50%;
@@ -2058,7 +2061,7 @@ Icon boxes
   .icon-hover-1.bg-default {
     color: #999; }
   .icon-hover-1.bg-primary:after {
-    box-shadow: 0 0 0 2px #4782d3; }
+    box-shadow: 0 0 0 2px #FBBB19; }
   .icon-hover-1.bg-success:after {
     box-shadow: 0 0 0 2px #5cb85c; }
   .icon-hover-1.bg-default:after {
@@ -2423,7 +2426,7 @@ Page title styles
     text-transform: capitalize;
     font-size: 1.5rem;
     letter-spacing: -1px;
-    font-family: "Montserrat", sans-serif;
+    font-family: "PT Sans", sans-serif;
     color: #252525; }
 
 .page-titles-img {
@@ -2474,7 +2477,7 @@ Portfolio style
   background: rgba(71, 130, 211, 0.8); }
 
 .cbp-l-grid-mosaic-flat .cbp-l-caption-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 400; }
 
 .cbp-l-grid-slider-testimonials-body {
@@ -2483,24 +2486,24 @@ Portfolio style
   font-style: italic; }
 
 .cbp-l-grid-slider-testimonials-footer {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 500; }
 
 .cbp-l-slider-testimonials-wrap {
   border: 0px; }
 
 .cbp-l-caption-title, .cbp-l-filters-dropdownHeader {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 500; }
 
 .cbp-l-caption-desc, .cbp-l-filters-dropdownList .cbp-filter-item {
   font-family: "Open Sans", sans-serif; }
 
 .cbp-caption-activeWrap {
-  background-color: #4782d3; }
+  background-color: #9F3D34; }
 
 .cbp-caption-fadeIn .cbp-caption-activeWrap, .cbp-caption-zoom .cbp-caption-activeWrap {
-  background-color: rgba(71, 130, 211, 0.8); }
+  background-color: rgba(0,161,75, 0.8); }
 
 .cbp-l-caption-desc {
   color: rgba(255, 255, 255, 0.8); }
@@ -2566,21 +2569,21 @@ Portfolio style
   font-family: "Open Sans", sans-serif; }
 
 .cbp-l-grid-projects-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   text-transform: uppercase;
   font-size: 13px; }
 
 .cbp-l-caption-buttonLeft, .cbp-l-caption-buttonRight {
   background-color: rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-size: 11px;
   font-weight: 600; }
   .cbp-l-caption-buttonLeft:hover, .cbp-l-caption-buttonRight:hover {
     color: #fff; }
 
 .cbp-l-project-desc-title span, .cbp-l-project-details-title span, .cbp-l-project-related-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 600; }
 
 .cbp-l-project-desc-text, .cbp-l-project-details-list > li, .cbp-l-project-details-list > div {
@@ -2591,7 +2594,7 @@ Portfolio style
   font-family: "Open Sans", sans-serif; }
 
 .cbp-l-grid-agency-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 500; }
 
 /*
@@ -2666,7 +2669,7 @@ Progress bars
   margin-top: 15px; }
   .progress-label .progress-title, .progress-label .progress-value {
     font-weight: 500;
-    font-family: "Montserrat", sans-serif;
+    font-family: "PT Sans", sans-serif;
     text-transform: capitalize;
     display: inline-block;
     margin-right: 5px; }
@@ -2710,10 +2713,10 @@ Promo boxes
 Revolution slider customization
 */
 .tp-caption {
-  font-family: "Montserrat", sans-serif; }
+  font-family: "PT Sans", sans-serif; }
 
 .particale-title {
-  font-family: "Montserrat", sans-serif; }
+  font-family: "PT Sans", sans-serif; }
 
 .tp-caption.BigBold-Title {
   font-family: "Open Sans", sans-serif;
@@ -2729,12 +2732,12 @@ Revolution slider customization
   font-weight: 300; }
 
 .tp-caption.NotGeneric-Title, .NotGeneric-Title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 700;
   letter-spacing: -3px; }
 
 .tp-caption.NotGeneric-CallToAction, .NotGeneric-CallToAction {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 700;
   letter-spacing: 0px; }
 
@@ -2743,7 +2746,7 @@ Revolution slider customization
   color: rgba(255, 255, 255, 0.8); }
 
 .tp-caption.Agency-Title, .Agency-Title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   font-weight: 600;
   letter-spacing: -3px; }
 
@@ -2753,7 +2756,7 @@ Revolution slider customization
   font-weight: 700;
   text-transform: capitalize;
   letter-spacing: -1px;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "PT Sans", sans-serif; }
 
 .mainSlide-Subtitle {
   font-family: "Droid Serif", serif;
@@ -2767,7 +2770,7 @@ Revolution slider customization
   font-family: "Open Sans", sans-serif; }
 
 .sliderImg-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   color: #fff;
   font-weight: 700; }
 
@@ -2838,7 +2841,7 @@ Tabs style
 .tabs-default.nav-tabs.nav-tabs .nav-link {
   border-top: 3px solid transparent;
   font-size: .8rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: "PT Sans", sans-serif;
   color: #333;
   font-weight: 700;
   text-transform: uppercase; }
@@ -3033,7 +3036,7 @@ Title headings
     letter-spacing: 0px;
     padding-right: 15px;
     text-align: left;
-    font-family: "Montserrat", sans-serif;
+    font-family: "PT Sans", sans-serif;
     text-transform: capitalize; }
   .fancy-title h4 {
     font-size: 1rem;
@@ -3069,7 +3072,7 @@ Title headings
     position: relative;
     display: inline-block;
     padding: 0px 50px;
-    font-family: "Montserrat", sans-serif; }
+    font-family: "PT Sans", sans-serif; }
     .title-heading1 h3:after {
       content: "";
       position: absolute;
@@ -3133,7 +3136,7 @@ Top bar style
   .links .list-inline-item i {
     color: rgba(0, 0, 0, 0.1); }
   .links .list-inline-item a:hover {
-    color: #4782d3; }
+    color: #FBBB19; }
 
 /**dark top bar**/
 .top-bar.dark {
@@ -3147,11 +3150,11 @@ Career
   background: rgba(71, 130, 211, 0.02);
   margin-bottom: 40px; }
   .career-card h2 {
-    color: #4782d3;
+    color: #9F3D34;
     font-weight: 500; }
     .career-card h2 small {
       font-size: .7rem;
-      color: #aeaeae; }
+      color: #00A14B; }
 
 /*
 Timeline
@@ -3170,7 +3173,7 @@ Timeline
   right: auto;
   height: 100%;
   width: 3px;
-  background: #3498db;
+  background: #00A14B;
   z-index: 0; }
 
 .page-timeline:after {
@@ -3178,9 +3181,9 @@ Timeline
   content: '';
   width: 3px;
   height: 40px;
-  background: #3498db;
-  background: -webkit-linear-gradient(top, #4782d3, rgba(52, 152, 219, 0));
-  background: linear-gradient(to bottom, #4782d3, rgba(52, 152, 219, 0));
+  background: #00A14B;
+  background: -webkit-linear-gradient(top, #00A14B, rgba(0,161,75, 0));
+  background: linear-gradient(to bottom, #00A14B, rgba(0,161,75, 0));
   top: 100%;
   left: 100px; }
 
@@ -3213,7 +3216,7 @@ Timeline
   color: #fff;
   width: 50px;
   height: 50px;
-  background: #4782d3;
+  background: #9F3D34;
   border-radius: 50%;
   float: left;
   text-align: center;
@@ -3248,7 +3251,7 @@ Smart form customization
   margin: 0 auto; }
 
 .smart-forms {
-  font-family: "Montserrat", sans-serif; }
+  font-family: "PT Sans", sans-serif; }
   .smart-forms .form-body {
     padding: 0px;
     padding-bottom: 20px; }
@@ -3263,7 +3266,7 @@ Smart form customization
     border-color: #4782d3; }
   .smart-forms .button {
     padding: 13px 25px 13px !important;
-    font-family: "Montserrat", sans-serif;
+    font-family: "PT Sans", sans-serif;
     text-transform: uppercase; }
   .smart-forms .btn-primary {
     background-color: #4782d3; }
@@ -3316,7 +3319,7 @@ Smart form customization
   background: #4782d3 !important; }
 
 .smart-forms label, .smart-forms input, .smart-forms button, .smart-forms select, .smart-forms textarea {
-  font-family: "Montserrat", sans-serif !important; }
+  font-family: "PT Sans", sans-serif !important; }
 
 .smart-forms .select-multiple select:focus, .smart-forms .gui-input:focus ~ .input-hint, .smart-forms .gui-textarea:focus ~ .input-hint, .smart-forms .file .gui-file:focus + .gui-input {
   border-color: #4782d3 !important; }
@@ -3359,7 +3362,7 @@ Smart form customization
   color: #000;
   line-height: 2rem;
   text-transform: capitalize;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "PT Sans", sans-serif; }
   .typed-text .typed {
     color: #4782d3;
     display: inline-block; }
@@ -3467,7 +3470,7 @@ Image with text cards
 Footer styles
 */
 .footer.footer-dark {
-  background: #212121; }
+  background: #9F3D34; }
   .footer.footer-dark h3 {
     color: #fff;
     margin-bottom: 20px;
@@ -3559,7 +3562,7 @@ Footer styles
   .footer-light.footer .footer-list-item li a {
     color: #333; }
     .footer-light.footer .footer-list-item li a:hover {
-      color: #4782d3; }
+      color: #FBBB19; }
   .footer-light.footer .footer-list-item li em {
     color: #999; }
   .footer-light.footer p {
