@@ -1,4 +1,5 @@
-import {render} from 'preact'
+import React from 'react'
+import { render } from 'react-dom'
 import getStore from './bundles'
 import cache from './utils/cache'
 import Summary from './components/summary'
