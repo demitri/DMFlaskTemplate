@@ -14,20 +14,6 @@ import argparse
 
 from flask import Flask
 
-# =====================================
-# Set these values for your application
-# =====================================
-conf = dict()
-
-conf["usingSQLAlchemy"] = False
-conf["usingPostgreSQL"] = False
-
-# These options only apply when the app is served in a production mode.
-conf["usingSentry"]		= False	# only for use in production mode
-conf["sentryDSN"]		= "insert your Sentry DSN here, e.g. 'https://...'"
-conf["usingUWSGI"]		= True # only applies to serving the app in a production mode
-
-
 # --------------------------
 # Parse command line options
 # --------------------------
@@ -58,23 +44,7 @@ args = parser.parse_args()
 # -------------------
 from {{cookiecutter.app_name}} import create_app
 
-app = create_app(debug=args.debug, conf=conf) # actually creates the Flask application instance
-
-# -----------------------------------------
-# If using SQLAlchemy, uncomment this block
-# -----------------------------------------
-# if conf["usingSQLAlchemy"]:
-# 
-# 	# Can't create the database connection unless we've created the app
-# 	from {{cookiecutter.app_name}}.model.database import db
-# 
-# 	@app.teardown_appcontext
-# 	def shutdown_session(exception=None):
-# 	   ''' Enable Flask to automatically remove database sessions at the
-# 	   	end of the request or when the application shuts down.
-# 	   	Ref: http://flask.pocoo.org/docs/patterns/sqlalchemy/
-# 	   '''
-# 	   db.Session.remove()
+app = create_app(debug=args.debug) # actually creates the Flask application instance
 
 # ------------------------------------
 # Register Flask modules (if any) here
@@ -82,33 +52,33 @@ app = create_app(debug=args.debug, conf=conf) # actually creates the Flask appli
 #app.register_module(xxx)
 
 if __name__ == "__main__":
-    '''
-    This is called when this script is directly run.
-    uWSGI gets the "app" object (the "callable") and runs it itself.
-    '''
+	'''
+	This is called when this script is directly run.
+	uWSGI gets the "app" object (the "callable") and runs it itself.
+	'''
 	# Useful for debugging - specify the command line option "-r"
 	# to display the list of rules (valid URL paths) available.
 	#
 	# Ref: http://stackoverflow.com/questions/13317536/get-a-list-of-all-routes-defined-in-the-app
 	# Ref: http://stackoverflow.com/questions/17249953/list-all-available-routes-in-flask-along-with-corresponding-functions-docstrin
 	if args.rules:
-	    for rule in app.url_map.iter_rules():
-	        print("Rule: {0} calls {1} ({2})".format(rule, rule.endpoint, ",".join(rule.methods)))
+		for rule in app.url_map.iter_rules():
+			print("Rule: {0} calls {1} ({2})".format(rule, rule.endpoint, ",".join(rule.methods)))
 	
 	# TODO: Switch over to new "flask run" method.
 	
-    if args.debug:
-        # If running on a remote host via a tunnel, not that
-        # Safari blocks some high ports (e.g.port 6000)
-        # Ref: http://support.apple.com/kb/TS4639
-        #
-        # By default, app is only available from localhost.
-        # To make available from any host (caution!!),
-        # pass "host='0.0.0.0'" as a parameter below.
-        #
-        app.run(debug=args.debug, port=args.port, host=args.host)
-    else:
-        app.run()
+	if args.debug:
+		# If running on a remote host via a tunnel, not that
+		# Safari blocks some high ports (e.g.port 6000)
+		# Ref: http://support.apple.com/kb/TS4639
+		#
+		# By default, app is only available from localhost.
+		# To make available from any host (caution!!),
+		# pass "host='0.0.0.0'" as a parameter below.
+		#
+		app.run(debug=args.debug, port=args.port, host=args.host)
+	else:
+		app.run()
 
 # PLACE NO CODE BELOW THIS LINE - it won't get called. "app.run" is the main event loop.
 
