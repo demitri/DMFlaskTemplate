@@ -1,18 +1,23 @@
 A Flask Application Template
 ============================
 
-Copying the template
---------------------
+This repository contains a skeleton Flask framework. It has been used many times for my own projects. It supports PostgreSQL, SQLite, and Sentry on an opt-in basis. It is configured to use [uWSGI](https://uwsgi-docs.readthedocs.io) for deployment (though there is nothing that prohibits you from using something else, e.g. [Gunicorn](https://gunicorn.org)).
 
-Make a copy of this repository and run:
+Creating the Template
+---------------------
 
-    % /bin/bash rename_this_app.sh NEW_NAME
+The project has been written as a [cookiecutter](https://github.com/audreyr/cookiecutter) template. You don't need to know the details of cookiecutter, but you should [install it](https://cookiecutter.readthedocs.io/en/latest/installation.html). Once installed, it is simplest to check out this repository and run this command from the top level directory:
 
-to change filenames, paths, and statements inside from "myapplication"
-to a new name of your choice.
+```
+cookiecutter .
+```
+
+You will be prompted for the name of the project, after which you can copy the newly created directory anywhere you'd like.
 
 Python Dependendies
 -------------------
+
+There are several Python dependecies, though some are optional.
 
 Make sure that [Flask](https://pypi.python.org/pypi/Flask/) is installed:
 
@@ -53,19 +58,13 @@ at `http://your.domain.com/somePage`, the decorator would be
 
     @app.route('/somePage')
     
-The decorated function immediately below that will typically have the same
-name as the page, but it doesn't have to. The decorator just binds the function
-to the name that it’s given.
+The decorated function immediately below that will typically have the same name as the page, but it doesn't have to. The decorator just binds the function to the name that it’s given.
 
-Controllers or views?
+Controllers or Views?
 ---------------------
 
 Flask calls the code that takes HTTP requests and returns HTML responses
-"views". In the [MVC](http://en.wikipedia.org/wiki/Model–view–controller) design pattern
-(which Flask clearly follows), these parts of the code are called
-"controllers". In MVC, the HTML responses are actually the views, so this is
-terribly confusing. That is why the folder that contains the Python
-code is called `controllers`. Just so you know.
+"views". In the [MVC](http://en.wikipedia.org/wiki/Model–view–controller) design pattern (which Flask clearly follows), these parts of the code are called "controllers". In MVC, the HTML responses are actually the views, so this is terribly confusing. That is why the folder that contains the Python code is called `controllers`. Just so you know.
 
 Typically, there will be one controller file per web page, but this is not required.
 
@@ -78,7 +77,7 @@ There are two levels of configuration files that I use:
  
 I recommend creating a configuration file for each server that the app will be run on. It’s handy to keep all such files in the app module so they can be tracked under version control. You will then need to know which configuration file to choose at run time.
 
-I'm assuming the application will be served under uWSGI. At the top level of the app I’ve made a `uwsgi_configuration_files` directory which will contain the uWSGI startup configuration for each server. This is an example:
+I'm assuming the application will be served under uWSGI. At the top level of the app I’ve made a `uwsgi_configuration_files` directory which will contain the uWSGI startup configuration for each server the app is run on. This is an example:
 
 	[uwsgi]
 	base = /var/www/myapp

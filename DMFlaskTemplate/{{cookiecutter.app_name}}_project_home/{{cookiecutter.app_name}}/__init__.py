@@ -6,7 +6,7 @@ from __future__ import print_function
 import sys
 import socket
 
-from flask import Flask
+from flask import Flask, g
 
 from . import jinja_filters
 from . import _app_setup_utils
@@ -88,6 +88,23 @@ def create_app(debug=False, conf=dict()):
 		pass # not available
 
 	if conf["usingSQLAlchemy"]:
+
+		# Establish database connection
+		#
+		from .model.database import Database
+		database = Database()
+		database.connect(flask_app=app)
+
+		@app.teardown_appcontext
+		def shutdown_session(exception=None):
+			'''
+			Enable Flask to automatically remove database schema at the end of the request.
+			Also removes session at app shutdown.
+			Ref: https://flask.pocoo.org/docs/patterns/sqlalchemy/
+			'''
+			if hasattr(g, 'my_session'):
+				g.my_session.remove()
+
 		if conf["usingPostgreSQL"]:
 			_app_setup_utils.setupJSONandDecimal()
 	
@@ -95,8 +112,8 @@ def create_app(debug=False, conf=dict()):
 	    #    RuntimeError: working outside of application context
 	    #    (i.e. the app object doesn't exist yet - being created here)
 		
-			with app.app_context():
-				from .model.databasePostgreSQL import db
+		#with app.app_context():
+		#	from .model.databasePostgreSQL import db
 
 	# Register all paths (URLs) available.
 	register_blueprints(app=app)
