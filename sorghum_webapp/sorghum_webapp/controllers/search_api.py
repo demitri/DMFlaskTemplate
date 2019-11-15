@@ -13,7 +13,7 @@ from . import valueFromRequest
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 
-WP_CATS = ['posts', 'pages', 'users', 'resource-link', 'job', 'event', 'scientific_paper']
+WP_CATS = ['posts', 'pages', 'users', 'resource-link', 'job', 'event', 'scientific_paper', 'project']
 
 search_api = flask.Blueprint("search_api", __name__)
 

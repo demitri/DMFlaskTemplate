@@ -12,6 +12,7 @@ const UIbundle = {
         const initialState = {
             sorghumbase: true,
             Posts: true,
+            Projects: true,
             Events: true,
             Jobs: true,
             People: true,
@@ -25,6 +26,7 @@ const UIbundle = {
             Species: false,
             rows: {
                 Posts: 6,
+                Projects: 6,
                 Events: 6,
                 Jobs: 6,
                 People: 6,
@@ -82,6 +84,7 @@ const UIbundle = {
         dispatch({
             type: 'BATCH_ACTIONS', actions: [
                 {type: 'SORGHUM_POSTS_CLEARED'},
+                {type: 'SORGHUM_PROJECTS_CLEARED'},
                 {type: 'SORGHUM_LINKS_CLEARED'},
                 {type: 'SORGHUM_JOBS_CLEARED'},
                 {type: 'SORGHUM_EVENTS_CLEARED'},
