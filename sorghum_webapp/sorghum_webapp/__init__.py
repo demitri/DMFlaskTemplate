@@ -52,6 +52,7 @@ def register_blueprints(app=None):
 	from .controllers.VEP import VEP_entry_page
 	from .controllers.VEP import VEP_source_page
 	from .controllers.VEP import VEP_page
+	from .controllers.gramoogle import gramoogle_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
@@ -82,6 +83,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(VEP_entry_page)
 	app.register_blueprint(VEP_source_page)
 	app.register_blueprint(VEP_page)
+	app.register_blueprint(gramoogle_page)
 	#app.register_blueprint(xxx)
 
 	if (app.debug):
