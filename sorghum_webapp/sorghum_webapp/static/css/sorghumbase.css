@@ -129,6 +129,12 @@ img {
 	width: auto;
 }
 
+@media (max-width: 991px) {
+  .logo-sb {
+    height: 50px;
+  }
+}
+
 .resource-link-image {
 	max-height: 150px;
 }
@@ -205,4 +211,16 @@ img {
   font-size  : .75rem;
   line-height  : .5;
   border-radius : .2rem;
+}
+
+@media (min-width: 992px) {
+.navbar-right-elements {
+  top: calc(50% - 0.75em);
+}
+
+#gramoogleFrame {
+  position: absolute;
+  top: 117px;
+  height:1000px;
+  width:1000px;
 }
