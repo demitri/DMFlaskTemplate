@@ -2,11 +2,40 @@
 {% block title %}Genes{% endblock %}
 {% block additional_header %}
     <link rel="stylesheet" href="{{request.script_root}}/static/gramoogle/style.css">
+    <script type="text/javascript">
+       function clearLocalStorage() {
+           localStorage.clear();
+           window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname;
+           window.location.reload();
+       }
+       // get all search params into an object that we will store globally
+       // adapted from http://stackoverflow.com/a/1404074
+       var searchParams = (function() {
+           var str = window.location.search;
+           var objURL = {};
+   
+           str.replace(
+                   new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+                   function( $0, $1, $2, $3 ){
+                       objURL[ $1 ] = $3;
+                   }
+           );
+           return objURL;
+       })();
+   
+       window.gramene = {
+           defaultServer: 'http://devdata.gramene.org/sorghum1/swagger',
+           searchParams: searchParams,
+           grameneRelease: "1",
+       };
+    </script>
 {% endblock %}
 {% block content %}
 
         <!-- place BODY content here -->
-<div id="content" class="content">Gramoogle placeholder</div>
+<div id="gramoogle_header" class="content">Gramoogle placeholder</div>
+<div id="gramoogle_results" class="content">results go here</div>
 <script type="text/javascript" src="{{request.script_root}}/static/gramoogle/bundle.js"></script>
 
 {% endblock %}
+​

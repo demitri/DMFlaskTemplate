@@ -6,23 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Search</title>
     <!-- Plugins CSS -->
-    <link href="http://dev.sorghumbase.org/static/assan/classic-template/css/plugins/plugins.css" rel="stylesheet">
+    <link href="http://localhost:1234/static/assan/classic-template/css/plugins/plugins.css" rel="stylesheet">
     <!-- REVOLUTION STYLE SHEETS -->
     <link rel="stylesheet" type="text/css"
-          href="http://dev.sorghumbase.org/static/assan/classic-template/revolution/css/settings.css">
+          href="http://localhost:1234/static/assan/classic-template/revolution/css/settings.css">
     <!-- REVOLUTION LAYERS STYLES -->
     <link rel="stylesheet" type="text/css"
-          href="http://dev.sorghumbase.org/static/assan/classic-template/revolution/css/layers.css">
+          href="http://localhost:1234/static/assan/classic-template/revolution/css/layers.css">
     <!-- REVOLUTION NAVIGATION STYLES -->
     <link rel="stylesheet" type="text/css"
-          href="http://dev.sorghumbase.org/static/assan/classic-template/revolution/css/navigation.css">
+          href="http://localhost:1234/static/assan/classic-template/revolution/css/navigation.css">
     <!-- load css for cubeportfolio -->
     <link rel="stylesheet" type="text/css"
-          href="http://dev.sorghumbase.org/static/assan/classic-template/cubeportfolio/css/cubeportfolio.min.css">
-    <link href="http://dev.sorghumbase.org/static/assan/classic-template/smart-form/contact-recaptcha/css/smart-forms.css"
+          href="http://localhost:1234/static/assan/classic-template/cubeportfolio/css/cubeportfolio.min.css">
+    <link href="http://localhost:1234/static/assan/classic-template/smart-form/contact-recaptcha/css/smart-forms.css"
           rel="stylesheet">
-    <link href="http://dev.sorghumbase.org/static/assan/classic-template/css/style.css" rel="stylesheet">
-    <link href="http://dev.sorghumbase.org/static/css/sorghumbase.css" rel="stylesheet">
+    <link href="http://localhost:1234/static/assan/classic-template/css/style.css" rel="stylesheet">
+    <link href="http://localhost:1234/static/css/sorghumbase.css" rel="stylesheet">
 
 
 </head>
@@ -36,14 +36,16 @@
 <!-- Site Overlay -->
 <div class="site-overlay"></div>
 
-<nav class="navbar navbar-expand-lg navbar-light navbar-transparent bg-faded nav-sticky nav-stick-top">
-    <div class="search-inline">
+<nav class="navbar navbar-expand-lg navbar-light navbar-transparent zbg-faded nav-sticky nav-stick-top" style="background:white">
+    <div class="search-inline" id="sorghumbase-searchbar-parent">
+       <div id="sorghumbase-searchbar">
         <form action="/search">
             <input id="sorghumbase-search-input" name="q" type="text" class="form-control"
                    placeholder="Type and hit enter...">
             <button type="submit"><i class="ti-search"></i></button>
-            <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
         </form>
+        </div>
+        <a href="javascript:void(0)" class="search-close"><i class="ti-close"></i></a>
     </div><!--/search form-->
     <div class="container">
 
@@ -53,9 +55,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="/">
-            <img class='logo logo-dark' src="http://dev.sorghumbase.org/static/images/logo.png" alt="">
-            <img class='logo logo-light hidden-md-down' src="http://dev.sorghumbase.org/static/images/logo-light.png"
-                 alt="">
+            <img class='logo-sb mb-2' src="http://localhost:1234/static/images/Sorghumbase_logo_rgb.svg" alt="">
         </a>
         <div id="navbarNavDropdown" class="navbar-collapse collapse">
             <ul class="navbar-nav ml-auto">
@@ -113,7 +113,7 @@
         </div>
         <div class=" navbar-right-elements">
             <ul class="list-inline">
-                <li class="list-inline-item"><a href="javascript:void(0)" class="search-open"><i class="ti-search"></i></a>
+                <li class="list-inline-item"><a href="javascript:void(0)" class="search-open" style="color:#333"><i class="ti-search"></i></a>
                 </li>
             </ul>
         </div><!--right nav icons-->
@@ -126,55 +126,12 @@
     <div class="container">
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
-                <h1>Search</h1>
+                <h1>homepage</h1>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container mb70" id="wrapper" style="transform: none; max-width: none;">
-    <div class="row" style="transform: none;">
-        <div class="col-lg-3 mb40 sticky-sidebar"
-             style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-            <!--/col-->
-            <div class="theiaStickySidebar"
-                 style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
-                <div class="pt40" id="search-box"></div>
-                <div class="mb40" id="search-summary">
-                </div>
-                <div class="resize-sensor"
-                     style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
-                    <div class="resize-sensor-expand"
-                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
-                        <div style="position: absolute; left: 0px; top: 0px; transition: 0s; width: 295px; height: 826px;"></div>
-                    </div>
-                    <div class="resize-sensor-shrink"
-                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
-                        <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-9 sticky-content"
-             style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
-            <div class="theiaStickySidebar"
-                 style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
-                <div id="search-results"></div>
-                <div class="resize-sensor"
-                     style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
-                    <div class="resize-sensor-expand"
-                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
-                        <div style="position: absolute; left: 0px; top: 0px; transition: 0s; width: 865px; height: 866px;"></div>
-                    </div>
-                    <div class="resize-sensor-shrink"
-                         style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
-                        <div style="position: absolute; left: 0; top: 0; transition: 0s; width: 200%; height: 200%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <footer class="footer footer-standard pt50 pb20">
@@ -190,9 +147,9 @@
                     complex biological traits that are critical to U.S. agriculture.
                 </p>
                 <img class="logo-footer mr-4 mb-4"
-                     src="http://dev.sorghumbase.org/static/images/CSHL_logo_alternate_KO.svg"
+                     src="http://localhost:1234/static/images/CSHL_logo_alternate_KO.svg"
                      alt="Cold Spring Harbor Laboratory" width="72">
-                <img class="logo-footer mr-4 mb-4" src="http://dev.sorghumbase.org/static/images/USDA_KO.svg" alt="USDA"
+                <img class="logo-footer mr-4 mb-4" src="http://localhost:1234/static/images/USDA_KO.svg" alt="USDA"
                      width="72">
             </div>
             <div class="col-lg-2 col-md-6 mb40">
@@ -359,36 +316,36 @@
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/js/plugins/plugins.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/js/plugins/plugins.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/js/assan.custom.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/js/assan.custom.js"></script>
 <!-- load cubeportfolio -->
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
 <!-- REVOLUTION JS FILES -->
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/jquery.themepunch.tools.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/jquery.themepunch.tools.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/jquery.themepunch.revolution.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/jquery.themepunch.revolution.min.js"></script>
 <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.actions.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.migration.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
 <script type="text/javascript"
-        src="http://dev.sorghumbase.org/static/assan/classic-template/revolution/js/extensions/revolution.extension.video.min.js"></script>
+        src="http://localhost:1234/static/assan/classic-template/revolution/js/extensions/revolution.extension.video.min.js"></script>
 <script>
     localStorage.debug = true;
 </script>

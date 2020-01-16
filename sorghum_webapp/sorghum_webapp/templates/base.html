@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+       <link rel="apple-touch-icon" sizes="57x57" href="{{request.script_root}}/static/apple-icon-57x57.png">
+       <link rel="apple-touch-icon" sizes="60x60" href="{{request.script_root}}/static/apple-icon-60x60.png">
+       <link rel="apple-touch-icon" sizes="72x72" href="{{request.script_root}}/static/apple-icon-72x72.png">
+       <link rel="apple-touch-icon" sizes="76x76" href="{{request.script_root}}/static/apple-icon-76x76.png">
+       <link rel="apple-touch-icon" sizes="114x114" href="{{request.script_root}}/static/apple-icon-114x114.png">
+       <link rel="apple-touch-icon" sizes="120x120" href="{{request.script_root}}/static/apple-icon-120x120.png">
+       <link rel="apple-touch-icon" sizes="144x144" href="{{request.script_root}}/static/apple-icon-144x144.png">
+       <link rel="apple-touch-icon" sizes="152x152" href="{{request.script_root}}/static/apple-icon-152x152.png">
+       <link rel="apple-touch-icon" sizes="180x180" href="{{request.script_root}}/static/apple-icon-180x180.png">
+       <link rel="icon" type="image/png" sizes="192x192"  href="{{request.script_root}}/static/android-icon-192x192.png">
+       <link rel="icon" type="image/png" sizes="32x32" href="{{request.script_root}}/static/favicon-32x32.png">
+       <link rel="icon" type="image/png" sizes="96x96" href="{{request.script_root}}/static/favicon-96x96.png">
+       <link rel="icon" type="image/png" sizes="16x16" href="{{request.script_root}}/static/favicon-16x16.png">
+       <link rel="manifest" href="{{request.script_root}}/static/manifest.json">
+       <meta name="msapplication-TileColor" content="#ffffff">
+       <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+       <meta name="theme-color" content="#ffffff">
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +35,6 @@
         <link href="{{request.script_root}}/static/assan/classic-template/smart-form/contact-recaptcha/css/smart-forms.css" rel="stylesheet">
         <link href="{{request.script_root}}/static/assan/classic-template/css/style.css" rel="stylesheet">
         <link href="{{request.script_root}}/static/css/sorghumbase.css" rel="stylesheet">
-
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1624628-14"></script>
         <script>
@@ -46,7 +62,7 @@
         <!-- <div class="site-overlay"></div> -->
 
 		{% include "navbar_sorghum.html" %}
-
+      <div id="padding-behind-navbar"></div>
 		{% block content %}{% endblock %}
 
 		{% include "footer.html" %}
@@ -69,6 +85,8 @@
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
         <script type="text/javascript" src="{{request.script_root}}/static/assan/classic-template/revolution/js/extensions/revolution.extension.video.min.js"></script>
+        <!-- Site-wide type-ahead search interface -->
+        <script type="text/javascript" src="{{request.script_root}}/static/js/search.js"></script>
         <script>
 	        {% block script_below_content %}{% endblock %}
        </script>

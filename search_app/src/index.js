@@ -5,13 +5,26 @@ import cache from './utils/cache'
 import Summary from './components/summary'
 import Results from './components/results'
 import SearchBox from './components/searchbox'
+import SearchBar from './components/searchbar'
+import {GeneSearchUI} from 'gramene-search'
 
 cache.getAll().then(initialData => {
   if (initialData) {
     console.log('starting with locally cached data:', initialData)
   }
   const store = getStore(initialData);
-  render(Summary(store), document.getElementById('search-summary'));
-  render(Results(store), document.getElementById('search-results'));
-  render(SearchBox(store), document.getElementById('search-box'));
+  let element = document.getElementById('search-summary');
+  element && render(Summary(store), element);
+
+  element = document.getElementById('search-results');
+  element && render(Results(store), element);
+
+  element = document.getElementById('search-box');
+  element && render(SearchBox(store), element);
+
+  element = document.getElementById('sorghumbase-searchbar');
+  element && render(SearchBar(store), element);
+
+  element = document.getElementById('gene-search-ui');
+  element && render(GeneSearchUI(store), element);
 })

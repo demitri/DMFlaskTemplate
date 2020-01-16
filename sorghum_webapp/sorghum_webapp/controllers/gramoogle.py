@@ -18,4 +18,4 @@ def func_name():
 	templateDict = {}
 	
 	
-	return render_template("gramoogle.html", **templateDict)
+	return render_template("genes.html", **templateDict)

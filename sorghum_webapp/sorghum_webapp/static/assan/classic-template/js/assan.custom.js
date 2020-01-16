@@ -29,6 +29,11 @@ $(function () {
     $('.search-close').on('click', function () {
         $('.search-inline').removeClass('search-visible');
     });
+    $('.search-inline').keyup(function(e) {
+      if (e.key === "Escape") {
+        $('.search-inline').removeClass('search-visible');
+      }
+    });
 //back to top
     if ($('#back-to-top').length) {
         var scrollTrigger = 100, // px
