@@ -6,7 +6,7 @@ import Summary from './components/summary'
 import Results from './components/results'
 import SearchBox from './components/searchbox'
 import SearchBar from './components/searchbar'
-import {GeneSearchUI} from 'gramene-search'
+import GeneSearchUI from './components/gramene-search'
 
 cache.getAll().then(initialData => {
   if (initialData) {
