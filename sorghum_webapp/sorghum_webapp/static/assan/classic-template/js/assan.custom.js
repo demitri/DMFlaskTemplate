@@ -4,7 +4,7 @@ $(function () {
      */
 //preloader
     $(window).preloader({
-        delay: 500
+        delay: 0
     });
 //     $(".nav-sticky-top").sticky({topSpacing: 0});
 // shrink header
@@ -20,6 +20,12 @@ $(function () {
     /****************
      search inline
      */
+$(document).keyup(function(e) {
+  if (e.key === '/' && ! $('.search-inline').hasClass('search-visible')) {
+    $('.search-inline').addClass('search-visible');
+    $('#sorghumbase-search-input').focus();
+  }
+});
     $('.search-open').on('click', function () {
         {
             $('.search-inline').addClass('search-visible');
