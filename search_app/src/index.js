@@ -10,6 +10,7 @@ import GeneSearchUI from './components/gramene-search'
 
 cache.getAll().then(initialData => {
   if (initialData) {
+    if (initialData.hasOwnProperty('searchUI')) initialData.searchUI.suggestions_query="";
     console.log('starting with locally cached data:', initialData)
   }
   const store = getStore(initialData);
