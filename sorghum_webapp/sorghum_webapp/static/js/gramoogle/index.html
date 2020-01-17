@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gramene: A comparative resource for plants</title>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    <script async src="//plantreactomedev.gramene.org/DiagramJs/diagram/diagram.nocache.js"></script>
+    <script async src="//plantreactomedev.gramene.org/FireworksJs/fireworks/fireworks.nocache.js"></script>
+    <script async src="/assets/gramene-dalliance/dalliance-all.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-1624628-5', 'gramene.org');
+        ga('send', 'pageview');
+    </script>
+    <script async src="//www.google.com/recaptcha/api.js"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/react-table.css">
+    <link rel="stylesheet" href="/assets/react-tabs.css">
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<!--[if !IE]><!-->
+    <div id="gramoogle_header" class="content"></div>
+<code>Something to go between the header and the results</code>
+    <div id="gramoogle_results" class="content"></div>
+    <script>
+    (function hideIntro() {
+        var introEl = document.querySelector('div.gramene-intro');
+        var hideIntro = window.localStorage.hideIntro;
+
+        if(introEl && hideIntro) {
+            introEl.parentNode.removeChild(introEl);
+        }
+    })();
+</script>
+    <!--<nav class="submenu navbar navbar-default">-->
+    <!--<div class="container">-->
+        <!--<ul class="nav navbar-nav">-->
+            <!--<li><a href="//gramene.org/release-notes-1">-->
+                <!--Release Notes (v1)-->
+            <!--</a></li>-->
+            <!--<li><a href="//gramene.org/contact">Contact</a></li>-->
+            <!--<li><a href="//gramene.org/about-gramene">About</a></li>-->
+            <!--<li><a href="//gramene.org/cite">Cite</a></li>-->
+            <!--<li><a href="//tools.gramene.org/feedback">Feedback</a></li>-->
+        <!--</ul>-->
+        <!--<ul class="nav navbar-nav navbar-right social">-->
+            <!--<li>-->
+                <!--<iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FGramene&amp;layout=button_count&amp;show_faces=false&amp;width=80&amp;font=arial&amp;height=20&amp;action=like&amp;colorscheme=light&amp;locale=en_US&amp;send=false&amp;share=false"-->
+                        <!--scrolling="no"-->
+                        <!--frameborder="0"-->
+                        <!--style="border: none; overflow: hidden; width: 80px; height: 20px;"-->
+                        <!--allowTransparency="true">-->
+                <!--</iframe>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="https://twitter.com/GrameneDatabase"-->
+                   <!--class="twitter-follow-button"-->
+                   <!--data-show-count="true">-->
+                    <!--Follow @Gramene-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</nav>-->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-xs-12">
+                <p>Gramene is a collaborative effort among
+                    <a href="http://www.cshl.edu">Cold Spring Harbor Laboratory</a>,
+                    <a href="http://www.cgrb.oregonstate.edu">Oregon State University</a>, and
+                    <a href="http://www.ebi.ac.uk">EMBL-EBI</a>.
+                </p>
+
+                <p>
+                    Funding is provided by the
+                    <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=1127112">NSF</a> and
+                    <a href="http://www.ars.usda.gov">USDA ARS</a>.
+                </p>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="tech-info well">
+                    <h5>Application Info</h5>
+                    <ul class="buildInfo">
+                        <li><a title="API"
+                               href="http://devdata.gramene.org/sorghum1">Data Release 1</a></li>
+                        <li>Gramene Search UI
+                            
+                            LOCAL DEVELOPMENT BUILD
+                            
+                        </li>
+                        <li>Built on December 11th 2019 at 3:44:15 pm</li>
+                    </ul>
+                    <h5>Actions</h5>
+                    <button class="btn btn-xs btn-danger"
+                            onclick="clearLocalStorage()">
+                        Reset Gramene Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function clearLocalStorage() {
+        localStorage.clear();
+        window.location.href = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.location.reload();
+    }
+
+    // get all search params into an object that we will store globally
+    // adapted from http://stackoverflow.com/a/1404074
+    var searchParams = (function() {
+        var str = window.location.search;
+        var objURL = {};
+
+        str.replace(
+                new RegExp( "([^?=&]+)(=([^&]*))?", "g" ),
+                function( $0, $1, $2, $3 ){
+                    objURL[ $1 ] = $3;
+                }
+        );
+        return objURL;
+    })();
+
+    window.gramene = {
+        defaultServer: searchParams.server || "http://devdata.gramene.org/sorghum1/swagger",
+        searchParams: searchParams,
+        grameneRelease: "1",
+    };
+
+//    function onReactomeFireworksReady() {
+//      var event = new Event('launchFireworks');
+//      window.dispatchEvent(event);
+//    }
+//    function onReactomeDiagramReady() {
+//      var event = new Event('launchDiagram');
+//      window.dispatchEvent(event);
+//    }
+    // update the URL so that the search component only specifies the data server
+//    if (history.pushState) {
+//        var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+//        if(searchParams.server) {
+//            newurl += '?server=' + searchParams.server;
+//        }
+//        if(window.location.hash) {
+//            newurl += window.location.hash;
+//        }
+//        window.history.pushState({path:newurl},'',newurl);
+//    }
+</script>
+    <div id="loading-message" style="display: none;" class="suggestions panel panel-default">
+    <div class="panel-body">
+        <div class="alert alert-warning">
+            <strong>Loading…</strong> Gramene Search is initializing.
+        </div>
+    </div>
+</div>
+<script>
+    (function () {
+        var searchBox = document.querySelector('#search-box');
+        var msgEl = document.querySelector('#loading-message');
+        var q = gramene.searchParams['query'] || gramene.searchParams['q'] || '';
+
+        var showLoadingMessage = function() {
+            var parentNode;
+            if(searchBox.value) {
+                parentNode = searchBox.parentNode.parentNode;
+                if (msgEl && parentNode) {
+                    msgEl.style.removeProperty('display');
+                    parentNode.appendChild(msgEl);
+                }
+            }
+        };
+
+        var hideLoadingMessage = function() {
+            msgEl.parentNode.removeChild(msgEl);
+            searchBox.removeEventListener('input', showLoadingMessage);
+        };
+
+        if(q) {
+            searchBox.value = q;
+            searchBox.disabled = true;
+            showLoadingMessage();
+        }
+
+        searchBox.addEventListener('input', showLoadingMessage);
+        window.onload = hideLoadingMessage;
+        searchBox.focus();
+    })();
+</script>
+
+    <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="/bundle.js"></script>
+<!--<![endif]-->
+<!--[if IE]>
+<h1>Unsupported browser</h1>
+<p>Internet Explorer versions 9 and below are not supported.
+    Please upgrade to Internet Explorer 10 or above,
+    or the current version of Microsoft Edge, Google Chrome,
+    Apple Safari or Mozilla Firefox.</p>
+<![endif]-->
+
+</body>
+</html>
