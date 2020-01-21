@@ -1,7 +1,7 @@
 import React from 'react'
 import {Provider, connect} from 'redux-bundler-react'
 import {DebounceInput} from 'react-debounce-input'
-import { Tabs, Tab } from 'react-bootstrap'
+import { Tabs, Nav, Tab, Row, Col } from 'react-bootstrap'
 import { suggestions as SorghumSummary } from 'sorghum-search'
 import { suggestions as GrameneSummary } from 'gramene-search'
 
@@ -39,21 +39,63 @@ const SearchBar = connect(
   SearchBarCmp
 );
 
-const ResultsCmp = ({suggestionsQuery, suggestionsTab, doChangeSuggestionsTab}) => {
-  if (suggestionsQuery) {
+const ResultsCmp = props => { //}({suggestionsQuery, suggestionsTab, doChangeSuggestionsTab}) => {
+  if (props.suggestionsQuery) {
+    const spinner = <img src="/static/images/dna_spinner.svg"/>;
+
+    let genesStatus = props.grameneSuggestionsStatus === 'loading' ? spinner : props.grameneSuggestionsStatus;
+    let siteStatus = props.sorghumSuggestionsStatus === 'loading' ? spinner : props.sorghumSuggestionsStatus;
     return (
       <div className="search-suggestions">
-        <Tabs id="controlled-search-tabs" activeKey={suggestionsTab} onSelect={k => doChangeSuggestionsTab(k)}>
-          <Tab eventKey="gramene" title="Genes">
-            <GrameneSummary/>
-          </Tab>
-          <Tab eventKey="sorghumbase" title="Website">
-            <SorghumSummary/>
-          </Tab>
-          <Tab eventKey="germplasm" title="Germplasm" disabled>
-            <p>placeholder</p>
-          </Tab>
-        </Tabs>
+        <Tab.Container id="controlled-search-tabs" activeKey={props.suggestionsTab} onSelect={k => props.doChangeSuggestionsTab(k)}>
+          <Row>
+            <Col>
+              <Nav variant="tabs">
+                <Nav.Item>
+                  <Nav.Link eventKey="gramene">
+                    <div className="suggestions-tab">Genes {genesStatus}</div>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="sorghumbase">
+                    <div className="suggestions-tab">Website {siteStatus}</div>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="germplasm" disabled>
+                    <div className="suggestions-tab">Germplasm</div>
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Tab.Content>
+                <Tab.Pane eventKey="gramene">
+                  <GrameneSummary/>
+                </Tab.Pane>
+                <Tab.Pane eventKey="sorghumbase">
+                  {/*<SorghumSummary/>*/}
+                </Tab.Pane>
+                <Tab.Pane eventKey="germplasm">
+                  <p>placeholder</p>
+                </Tab.Pane>
+              </Tab.Content>
+            </Col>
+          </Row>
+        </Tab.Container>
+        {/*<Tabs id="controlled-search-tabs" activeKey={props.suggestionsTab} onSelect={k => props.doChangeSuggestionsTab(k)}>*/}
+        {/*  <Tab eventKey="gramene" title={`Genes ${genesStatus}`}>*/}
+        {/*    <GrameneSummary/>*/}
+        {/*  </Tab>*/}
+        {/*  <Tab eventKey="sorghumbase" title={`Website ${siteStatus}`}>*/}
+        {/*    <SorghumSummary/>*/}
+        {/*  </Tab>*/}
+        {/*  <Tab eventKey="germplasm" title="Germplasm" disabled>*/}
+        {/*    <p>placeholder</p>*/}
+        {/*  </Tab>*/}
+        {/*</Tabs>*/}
       </div>
     );
   }
@@ -63,6 +105,8 @@ const ResultsCmp = ({suggestionsQuery, suggestionsTab, doChangeSuggestionsTab}) 
 const Results = connect(
   'selectSuggestionsQuery',
   'selectSuggestionsTab',
+  'selectGrameneSuggestionsStatus',
+  'selectSorghumSuggestionsStatus',
   'doChangeSuggestionsTab',
   ResultsCmp
 );

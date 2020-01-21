@@ -246,6 +246,9 @@ img {
   }
 }
 
+.suggestions-tab {
+	min-width:150px;
+}
 
 #gramoogleFrame {
   position: absolute;
