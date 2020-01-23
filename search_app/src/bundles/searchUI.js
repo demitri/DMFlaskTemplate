@@ -1,5 +1,4 @@
 import qs from 'querystringify'
-import {createSelector} from 'redux-bundler'
 
 const isString = obj =>
     Object.prototype.toString.call(obj) === '[object String]'
@@ -129,6 +128,7 @@ const UIbundle = {
     });
   },
   doClearSuggestions: () => ({dispatch, getState}) => {
+    document.getElementById('sorghumbase-searchbar-parent').classList.remove('search-visible');
     dispatch({
       type: 'BATCH_ACTIONS', actions: clearSuggestions
     });
@@ -158,6 +158,23 @@ const UIbundle = {
     document.getElementById('sorghumbase-searchbar-parent').classList.remove('search-visible');
     if (updateLocation) {
       window.location = url
+    }
+  },
+  doAcceptGrameneSuggestion: suggestion => ({dispatch, getState}) => {
+    const url = new URL(getState().url.url);
+    if (url.pathname !== '/genes' && url.pathname !== '/genes.html') {
+      url.pathname = '/genes';
+      url.search = `filters=${JSON.stringify({suggestion: suggestion})}`;
+      window.location = url;
+    }
+    else {
+      document.getElementById('sorghumbase-searchbar-parent').classList.remove('search-visible');
+      dispatch({
+        type: 'BATCH_ACTIONS', actions: [
+          ...clearSuggestions,
+          {type: 'GRAMENE_FILTER_ADDED', payload: suggestion}
+        ]
+      });
     }
   },
   doChangeSuggestionsTab: key => ({dispatch, getState}) => {

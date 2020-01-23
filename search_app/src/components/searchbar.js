@@ -1,17 +1,23 @@
 import React from 'react'
-import {Provider, connect} from 'redux-bundler-react'
-import {DebounceInput} from 'react-debounce-input'
-import { Tabs, Nav, Tab, Row, Col } from 'react-bootstrap'
+import { Provider, connect } from 'redux-bundler-react'
+import { DebounceInput } from 'react-debounce-input'
+import { Nav, Tab, Row, Col } from 'react-bootstrap'
 import { suggestions as SorghumSummary } from 'sorghum-search'
 import { suggestions as GrameneSummary } from 'gramene-search'
 
-const handleKey = (key, props) => {
-  if (key === "Escape") {
+const handleKey = (e, props) => {
+  if (e.key === "Escape") {
     props.doClearSuggestions();
   }
-  if (key === "Enter") {
+  if (e.key === "Enter") {
     if (props.suggestionsTab === "sorghumbase") {
       props.doAcceptSorghumSuggestion(`q=${props.suggestionsQuery}`)
+    }
+  }
+  if (e.key === "Tab") {
+    if (props.suggestionsTab === "gramene" && props.grameneSuggestionsReady) {
+      e.preventDefault();
+      document.getElementById('0-0').focus();
     }
   }
 };
@@ -21,7 +27,8 @@ const SearchBarCmp = props =>
         minLength={0}
         debounceTimeout={300}
         onChange={e => props.doChangeSuggestionsQuery(e.target.value)}
-        onKeyUp={e => handleKey(e.key,props)}
+        onKeyDown={e => handleKey(e, props)}
+        // onKeyUp={e => handleKey(e.key,props)}
         className="form-control"
         value={props.suggestionsQuery || ''}
         placeholder="Search Sorghumbase"
@@ -36,15 +43,19 @@ const SearchBar = connect(
   'doChangeSuggestionsQuery',
   'doClearSuggestions',
   'doAcceptSorghumSuggestion',
+  'selectGrameneSuggestionsReady',
   SearchBarCmp
 );
 
-const ResultsCmp = props => { //}({suggestionsQuery, suggestionsTab, doChangeSuggestionsTab}) => {
+const ResultsCmp = props => {
   if (props.suggestionsQuery) {
     const spinner = <img src="/static/images/dna_spinner.svg"/>;
 
     let genesStatus = props.grameneSuggestionsStatus === 'loading' ? spinner : props.grameneSuggestionsStatus;
-    let siteStatus = props.sorghumSuggestionsStatus === 'loading' ? spinner : props.sorghumSuggestionsStatus;
+    let siteStatus = props.sorghumSuggestionsStatus === 'loading' ? spinner :
+      <button onClick={e=>props.doAcceptSorghumSuggestion(`q=${props.suggestionsQuery}`)}>
+        {props.sorghumSuggestionsStatus}
+      </button>;
     return (
       <div className="search-suggestions">
         <Tab.Container id="controlled-search-tabs" activeKey={props.suggestionsTab} onSelect={k => props.doChangeSuggestionsTab(k)}>
@@ -85,22 +96,11 @@ const ResultsCmp = props => { //}({suggestionsQuery, suggestionsTab, doChangeSug
             </Col>
           </Row>
         </Tab.Container>
-        {/*<Tabs id="controlled-search-tabs" activeKey={props.suggestionsTab} onSelect={k => props.doChangeSuggestionsTab(k)}>*/}
-        {/*  <Tab eventKey="gramene" title={`Genes ${genesStatus}`}>*/}
-        {/*    <GrameneSummary/>*/}
-        {/*  </Tab>*/}
-        {/*  <Tab eventKey="sorghumbase" title={`Website ${siteStatus}`}>*/}
-        {/*    <SorghumSummary/>*/}
-        {/*  </Tab>*/}
-        {/*  <Tab eventKey="germplasm" title="Germplasm" disabled>*/}
-        {/*    <p>placeholder</p>*/}
-        {/*  </Tab>*/}
-        {/*</Tabs>*/}
       </div>
     );
   }
   return null;
-}
+};
 
 const Results = connect(
   'selectSuggestionsQuery',
@@ -108,6 +108,7 @@ const Results = connect(
   'selectGrameneSuggestionsStatus',
   'selectSorghumSuggestionsStatus',
   'doChangeSuggestionsTab',
+  'doAcceptSorghumSuggestion',
   ResultsCmp
 );
 

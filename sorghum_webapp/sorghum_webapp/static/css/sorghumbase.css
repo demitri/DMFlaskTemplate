@@ -229,6 +229,16 @@ img {
   cursor: default;
 }
 
+.suggestion-button {
+	padding: 5px 10px 5px !important;
+}
+.suggestion-button:focus {
+	font-weight: bold;
+}
+.badge {
+	padding: 0.25em 0.1em 0.25em 1em;
+}
+
 #padding-behind-navbar {
   background:red;
   height: 0px;
