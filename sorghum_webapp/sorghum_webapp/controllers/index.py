@@ -55,7 +55,7 @@ def index():
 	with api.Session():
 
 		post_request = api.PostRequest()
-		post_request.categories = ["blog"]	# search by slug
+		post_request.categories = ["researchnote"]	# search by slug
 		post_request.orderby = "date"
 		post_request.order = "desc"
 		post_request.per_page = 3			# only get three newest

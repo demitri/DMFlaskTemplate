@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">Research</h1>
+
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+<div class="container pt90">
+  <div class="row">
+    <div class="col-lg-12 col-md-6">
+      <div class="filters-group-wrap">
+        <div class="filters-group ">
+          <p>Filter on keyword:</p>
+          <div class="filter-options">
+            {% for kw in keywords %}
+              <button class="btn btn-xs btn-outline-primary" data-group='{{kw}}'>{{kw}}</button>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container pt90 ">
+  <div id="grid" class="row my-shuffle-container">
+  {% for paper in papers %}
+    <div id="{{paper.s.paper_title}}" class="col-lg-12 col-md-6 mb50 shuffle-item" data-groups= '{{paper.s.keywords}}'>
+      <h4 class="mb0 text-uppercase">{{ paper.s.title | safe}}</h4>
+      <br>
+      <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
+      {% if paper.s.pubmed_id %}
+      <p>Pubmed ID: {{paper.s.pubmed_id}}</p>
+      <p><b>Keywords: </b>{{paper.s.keywords}}</p>
+      {% endif %}
+      <p><em>{{ paper.s.paper_authors | safe }}</em></p>
+      <!-- <div class="card mb10">
+          <div class="card-header accordion-header" role="tab" id="heading{{paper.s.id}}">
+              <h5 class="mb-0">
+                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{paper.s.id}}" aria-expanded="false" aria-controls="collapse{{paper.s.id}}">
+                      ABSTRACT
+                  </a>
+              </h5>
+          </div>
+          <div id="collapse{{paper.s.id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{paper.s.id}}">
+              <div class="card-body">
+                  {{ paper.s.abstract | safe }}
+              </div>
+          </div>
+      </div> -->
+      <p>{{ paper.s.abstract | safe }}</p>
+      <a href="{{paper.s.source_url}}"><h6 class="masonry-title mb0">View full paper at source</h6></a>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+<script type="text/javascript" src="{{request.script_root}}/static/js/shuffle.js"></script>
+<script type="text/javascript" src="{{request.script_root}}/static/js/research_page.js"></script>
+{% endblock %}

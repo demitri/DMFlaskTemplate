@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Datasets{% endblock %}
+{% block body_property %}class="sticky-footer-page"{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}'
+            style='background-image: url("{{banner_media.s.source_url}}")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1 class='text-uppercase'>Genomic Data</h1>
+
+             </div>
+        </div>
+    </div>
+</div><!--page title end-->
+
+<div class='container-fluid'>
+    <div class='row'>
+
+      <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
+      style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+      <!--/col-->
+      <div class="theiaStickySidebar"
+      style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+      <div class="pt50 title">Genomic data</div>
+      <div class="mb40">
+        <a data-scroll="" href="#BTx623 reference genome" class="nav-link active">BTx623 reference genome</a>
+        <a data-scroll="" href="#Reo reference genome" class="nav-link active">Reo reference genome</a>
+        <a data-scroll="" href="#TX2783 reference genome" class="nav-link active">TX2783 reference genome</a>
+      </div>
+    </div>
+  </div>
+
+        <div class='col-lg-8  mr-auto ml-auto my-5'>
+          <article id='BTx623 reference genome'>
+            <div class="clearfix pb20">
+                <h2>BTx623 reference genome</h2>
+            </div>
+            <p>
+              This is a reference genome for Sorghum Bicolor (L.) Moench, first published in 2009 by Doe et al. The latest version of this reference genome is v3.1.
+            </p>
+            <br>
+            <h6>Original publication</h6>
+            <p><a href="https://doi.org/10.1038/nature07723">The Sorghum bicolor genome and the diversification of grasses</a></p>
+            <br>
+            <h6>Latest publication</h6>
+            <p><a href="https://doi.org/10.1111/tpj.13781">The Sorghum bicolor reference genome: improved assembly, gene annotations, a transcriptome atlas, and signatures of genome organization</a></p>
+            <br>
+            <h6>Workflows</h6>
+            <p><a href="www.gramene.org">Gramene</a> offers a searchable index of genes found in the BTx623 reference genome.</p>
+            <br>
+            <h6>Availability</h6>
+            <a href="https://plants.ensembl.org/Sorghum_bicolor/Info/Annotation" class="btn btn-sm btn-primary">Find the BTx623 genome at Ensembl Plants</a>
+          <hr class="mb40">
+          </article>
+
+          <article id='Reo reference genome'>
+            <div class="clearfix pb20">
+                <h2>Reo reference genome</h2>
+            </div>
+            <p>
+              This is Reo reference genome for Sorghum Bicolor (L.) Moench that I have heard about in meetings but cannot find any information on right now. It is a good placeholder for this mockup though.
+            </p>
+            <br>
+            <h6>Original publication</h6>
+            <p>TBD </p>
+            <br>
+            <h6>Latest publication</h6>
+            <p>TBD </p>
+            <br>
+            <h6>Workflows</h6>
+            <p><a href="www.gramene.org">Gramene</a> always has good stuff.</p>
+            <br>
+            <h6>Availability</h6>
+            <a href="#" class="btn btn-sm btn-primary">Once I know where it is, click here</a>
+          <hr class="mb40">
+          </article>
+
+          <article id='TX2783 reference genome'>
+            <div class="clearfix pb20">
+                <h2>TX2783 reference genome</h2>
+            </div>
+            <p>
+              This is a new reference genome for a Sugurcane Aphid resistant line of Sorghum Bicolor. It was sequenced by the Ware Lab at CSHL and was released in Summer 2019.
+            </p>
+            <br>
+            <h6>Original publication</h6>
+            <p>TBD </p>
+            <br>
+            <h6>Latest publication</h6>
+            <p>TBD </p>
+            <br>
+            <h6>Workflows</h6>
+            <p><a href="www.gramene.org">Gramene</a> always has good stuff.</p>
+            <br>
+            <h6>Availability</h6>
+            <a href="#" class="btn btn-sm btn-primary">This genome will be avaialeble through Sorghumbase</a>
+          <hr class="mb40">
+          </article>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
