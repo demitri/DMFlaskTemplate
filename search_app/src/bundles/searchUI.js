@@ -8,7 +8,6 @@ const clearResults = [
   {type: 'SORGHUM_POSTS_CLEARED'},
   {type: 'SORGHUM_PROJECTS_CLEARED'},
   {type: 'SORGHUM_LINKS_CLEARED'},
-  {type: 'SORGHUM_JOBS_CLEARED'},
   {type: 'SORGHUM_EVENTS_CLEARED'},
   {type: 'SORGHUM_PEOPLE_CLEARED'},
   {type: 'SORGHUM_PAPERS_CLEARED'},
@@ -21,7 +20,6 @@ const clearSuggestions = [
   {type: 'SORGHUM_POSTS_SUGGESTIONS_CLEARED'},
   {type: 'SORGHUM_PROJECTS_SUGGESTIONS_CLEARED'},
   {type: 'SORGHUM_LINKS_SUGGESTIONS_CLEARED'},
-  {type: 'SORGHUM_JOBS_SUGGESTIONS_CLEARED'},
   {type: 'SORGHUM_EVENTS_SUGGESTIONS_CLEARED'},
   {type: 'SORGHUM_PEOPLE_SUGGESTIONS_CLEARED'},
   {type: 'SORGHUM_PAPERS_SUGGESTIONS_CLEARED'},
@@ -38,7 +36,6 @@ const UIbundle = {
       Posts: true,
       Projects: true,
       Events: true,
-      Jobs: true,
       People: true,
       Links: true,
       Papers: true,
@@ -52,7 +49,6 @@ const UIbundle = {
         Posts: 6,
         Projects: 6,
         Events: 6,
-        Jobs: 6,
         People: 6,
         Links: 6,
         Papers: 6,
@@ -65,27 +61,27 @@ const UIbundle = {
           updates: state.updates + 1
         };
         update[payload] = !state[payload];
-        return Object.assign(state, update)
+        return Object.assign({}, state, update)
       }
       if (type === 'CATEGORY_QUANTITY_CHANGED') {
-        let newState = Object.assign(state, {
+        let newState = Object.assign({}, state, {
           updates: state.updates + 1
         });
         newState.rows[payload.cat] += payload.delta;
         return newState;
       }
       if (type === 'SUGGESTIONS_QUERY_CHANGED') {
-        return Object.assign(state, {
+        return Object.assign({}, state, {
           suggestions_query: payload.query
         });
       }
       if (type === 'SUGGESTIONS_TAB_CHANGED') {
-        return Object.assign(state, {
+        return Object.assign({}, state, {
           suggestions_tab: payload.key
         });
       }
       if (type === 'SUGGESTIONS_CLEARED') {
-        return Object.assign(state, {
+        return Object.assign({}, state, {
           suggestions_query: ''
         });
       }
@@ -164,7 +160,7 @@ const UIbundle = {
     const url = new URL(getState().url.url);
     if (url.pathname !== '/genes' && url.pathname !== '/genes.html') {
       url.pathname = '/genes';
-      url.search = `filters=${JSON.stringify({suggestion: suggestion})}`;
+      url.search = `suggestion=${JSON.stringify(suggestion)}`;
       window.location = url;
     }
     else {
@@ -172,6 +168,7 @@ const UIbundle = {
       dispatch({
         type: 'BATCH_ACTIONS', actions: [
           ...clearSuggestions,
+          {type: 'GRAMENE_SEARCH_CLEARED'},
           {type: 'GRAMENE_FILTER_ADDED', payload: suggestion}
         ]
       });
@@ -201,8 +198,6 @@ const UIbundle = {
     if (state.sorghumLinksSuggestions.data) matches += state.sorghumLinksSuggestions.data.numFound;
     else loading++;
     if (state.sorghumPeopleSuggestions.data) matches += state.sorghumPeopleSuggestions.data.numFound;
-    else loading++;
-    if (state.sorghumJobsSuggestions.data) matches += state.sorghumJobsSuggestions.data.numFound;
     else loading++;
     if (state.sorghumEventsSuggestions.data) matches += state.sorghumEventsSuggestions.data.numFound;
     else loading++;
