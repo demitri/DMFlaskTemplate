@@ -10,7 +10,7 @@ export default (store) => (
         <Filters/>
         <Views/>
       </div>
-      <div className="col-md-8">
+      <div className="col-md-10">
         <Results/>
       </div>
     </div>

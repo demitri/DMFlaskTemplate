@@ -156,7 +156,7 @@ const UIbundle = {
       window.location = url
     }
   },
-  doAcceptGrameneSuggestion: suggestion => ({dispatch, getState}) => {
+  doAcceptSuggestion: suggestion => ({dispatch, getState}) => {
     const url = new URL(getState().url.url);
     if (url.pathname !== '/genes' && url.pathname !== '/genes.html') {
       url.pathname = '/genes';
@@ -167,9 +167,7 @@ const UIbundle = {
       document.getElementById('sorghumbase-searchbar-parent').classList.remove('search-visible');
       dispatch({
         type: 'BATCH_ACTIONS', actions: [
-          ...clearSuggestions,
-          {type: 'GRAMENE_SEARCH_CLEARED'},
-          {type: 'GRAMENE_FILTER_ADDED', payload: suggestion}
+          ...clearSuggestions
         ]
       });
     }
