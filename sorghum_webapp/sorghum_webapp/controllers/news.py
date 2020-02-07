@@ -14,6 +14,7 @@ from wordpress_orm import wp_session
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -23,7 +24,7 @@ news_page = flask.Blueprint("news_page", __name__)
 @news_page.route('/news')
 def news():
 	''' News page. '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with api.Session():
 		paper_request = ScientificPaperRequest(api=api)

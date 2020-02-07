@@ -15,6 +15,7 @@ from .. import app
 from .. import wordpress_api as api
 #from .. import wordpress_orm_logger as wp_logger
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 #logger = logging.getLogger("wordpress_orm")
@@ -27,7 +28,7 @@ WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
 @publications_page.route('/publications')
 def publications():
 	''' List of research papers '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with api.Session():
 		paper_request = ScientificPaperRequest(api=api)

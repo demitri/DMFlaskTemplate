@@ -11,6 +11,7 @@ from wordpress_orm import wp_session
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -20,7 +21,7 @@ datasets_page = flask.Blueprint("datasets_page", __name__)
 @datasets_page.route('/datasets')
 def datasets():
 	''' Datasets page. '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with api.Session():
 

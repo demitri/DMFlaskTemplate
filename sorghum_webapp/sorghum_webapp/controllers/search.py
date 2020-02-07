@@ -10,6 +10,7 @@ from wordpress_orm import wp_session
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -20,7 +21,7 @@ search_page = flask.Blueprint("search_page", __name__)
 @search_page.route('/search')
 def search():
     ''' search template - actual searches call /search_api '''
-    templateDict = {}
+    templateDict = navbar_template()
     categories = valueFromRequest(key="categories", request=request, aslist=True)
     if categories == None:
         categories = ['Sorghumbase','Gramene']

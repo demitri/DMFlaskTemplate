@@ -11,6 +11,7 @@ from math import ceil
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -24,7 +25,7 @@ spacer = " & "
 @post_grid.route('/posts')
 def posts():
     ''' List of posts '''
-    templateDict = {}
+    templateDict = navbar_template()
     current_page = valueFromRequest(key="page", request=request) or 1
     if type(current_page) is str:
         current_page = int(current_page)

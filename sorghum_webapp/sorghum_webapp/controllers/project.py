@@ -12,6 +12,7 @@ from wordpress_orm import wp_session, exc
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
@@ -23,7 +24,7 @@ def project(slug):
 	'''
 	This page displays a single project retrieved from WordPress.
 	'''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 

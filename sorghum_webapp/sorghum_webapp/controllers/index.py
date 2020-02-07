@@ -19,6 +19,7 @@ from random import randint
 from . import valueFromRequest
 from .. import app
 from .. import wordpress_api as api
+from .navbar import navbar_template
 from .footer import populate_footer_template
 from ..wordpress_orm_extensions.user import SBUser
 
@@ -47,7 +48,7 @@ def index():
 	Home page
 	'''
 
-	templateDict = {}
+	templateDict = navbar_template()
 
 	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 

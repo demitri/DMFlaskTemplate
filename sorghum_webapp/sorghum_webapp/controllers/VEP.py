@@ -13,6 +13,7 @@ from wordpress_orm import wp_session, exc
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 import mysql.connector
@@ -36,7 +37,7 @@ def VEP_entry(source, gene):
 	'''
 	This page displays a single VEP entry based on gene and study.
 	'''
-	templateDict = {}
+	templateDict = navbar_template()
 	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 
 	with api.Session():
@@ -85,7 +86,7 @@ def VEP_source(source):
 	'''
 	This page displays a list of samples within a study.
 	'''
-	templateDict = {}
+	templateDict = navbar_template()
 	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 
 	with api.Session():
@@ -117,7 +118,7 @@ def VEP():
 	'''
 	This page a list of studies that have samples with VEPs.
 	'''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	#api = wp.API(url="http://content.sorghumbase.org/wordpress/index.php/wp-json/wp/v2/")
 

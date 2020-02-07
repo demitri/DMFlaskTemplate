@@ -20,110 +20,44 @@
 
                 <div  id="navbarNavDropdown" class="navbar-collapse collapse">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                          <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                            News
-                          </a>
-                          <ul class="dropdown-menu dropdown-menu-right">
-                              <!-- <li><a href="/news" class="dropdown-item font-weight-bold">NEWS</a></li> -->
-                              <li><a href="/posts?categories=news" class="dropdown-item">News</a></li>
-                              <li><a href="/events" class="dropdown-item">Events</a></li>
-                              <li><a href="/publications" class="dropdown-item">Publications</a></li>
-
-                              <!-- <li><a href="/jobs" class="dropdown-item">Jobs</a></li> -->
-                          </ul>
-                        </li>
+                        {% for menu in navbar %}
+                        {% if menu.style == 'simple' %}
                         <li class="nav-item dropdown">
                             <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                              Community
+                                {{menu.label}}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <!-- <li><a href="/community" class="dropdown-item font-weight-bold">COMMUNITY</a></li> -->
-                                <li><a href="/posts?categories=researchnote" class="dropdown-item">Research notes</a></li>
-                                <li><a href="/people" class="dropdown-item">People</a></li>
-                                <li><a href="/mailing_list" class="dropdown-item">Mailing List</a></li>
+                                {% for item in menu.links %}
+                                <li><a href="{{item.link}}" class="dropdown-item">{{item.label}}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>
+                        {% else %}
                         <li class="nav-item dropdown dropdown-full-width">
                             <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                              Genomes
+                                {{menu.label}}
                             </a>
-                            <!-- <ul class="dropdown-menu dropdown-menu-right">
-                                <!-- <li><a href="/community" class="dropdown-item font-weight-bold">COMMUNITY</a></li>
-                                <li><a href="/" class="dropdown-item">BTx623 - PI 564163</a></li>
-                                <li><a href="/" class="dropdown-item">RTx430 - PI</a></li>
-                                <li><a href="/" class="dropdown-item">RTx436 - PI 561071</a></li>
-                                <li><a href="/" class="dropdown-item">Rio - PI 651496</a></li>
-                            </ul> -->
                             <ul class="dropdown-menu dropdown-mega-fw">
                                 <li class="container">
                                     <div class="mega-menu-content">
                                         <div class="row">
+                                            {% for category in menu.categories %}
                                             <div class="col-lg-3">
-                                                <h4 class="mega-title">Reference</h4>
+                                                <h4 class="mega-title">{{category.label}}</h4>
                                                 <ul class="mega-inner-nav list-unstyled">
-                                                    <li><a href="/" class="dropdown-item">BTx623 - PI 564163</a></li>
-                                                    <li><a href="/" class="dropdown-item">Rio - PI 651496</a></li>
-                                                </ul>
-
-                                            </div>
-                                            <div class="col-lg-3">
-                                              <h4 class="mega-title">SAP</h4>
-                                              <ul class="mega-inner-nav list-unstyled">
-                                                  <li><a href="/" class="dropdown-item">RTx430 - PI</a></li>
-                                                  <li><a href="/" class="dropdown-item">RTx436 - PI 561071</a></li>
-                                                  <li><a href="/" class="dropdown-item">RTx436 - PI 561071</a></li>
-                                                  <li><a href="/" class="dropdown-item">RTx2783 - PI 656001</a></li>
-                                              </ul>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <h4 class="mega-title">BAP</h4>
-                                                <ul class="mega-inner-nav list-unstyled">
-                                                    <li><a href="/"> Chinese Amber - PI 22913</a></li>
-                                                    <li><a href="/"> Grassl - PI 154844</a></li>
-                                                    <li><a href="/"> Leoti - PI 641825</a></li>
-                                                    <li><a href="/"> PI 229841</a></li>
-                                                    <li><a href="/"> PI 297155</a></li>
-                                                    <li><a href="/"> PI 329311</a></li>
+                                                    {% for item in category.links %}
+                                                    <li><a href="{{item.link}}" class="dropdown-item">{{item.label}}</a></li>
+                                                    {% endfor %}}
                                                 </ul>
                                             </div>
-                                            <div class="col-lg-3">
-                                                <h4 class="mega-title">EMS</h4>
-                                                <ul class="mega-inner-nav list-unstyled">
-                                                    <li><a href="/"> PI 506069</a></li>
-                                                    <li><a href="/"> PI 510757</a></li>
-                                                    <li><a href="/"> PI 655972</a></li>
-                                                    <li><a href="/"> PI 300119</a></li>
-                                                </ul>
-                                            </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                              Resources
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <!-- <li><a href="/resources" class="dropdown-item font-weight-bold">RESOURCES</a></li> -->
-                                <li><a href="/resource_links" class="dropdown-item">Links</a></li>
-                                <li><a href="/posts?categories=tools" class="dropdown-item">Tools</a></li>
-                                <li><a href="/posts?categories=tutorials" class="dropdown-item">Tutorials</a></li>
-                                <li><a href="/projects" class="dropdown-item">Projects</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                              About
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
-                                <!-- <li><a href="/about" class="dropdown-item font-weight-bold">ABOUT</a></li> -->
-                                <li><a href="/mission-statement" class="dropdown-item">Mission Statement</a></li>
-                                <li><a href="/faq" class="dropdown-item">FAQ</a></li>
-                                <li><a href="/contact" class="dropdown-item">Contact Us</a></li>
-                            </ul>
-                        </li>
+                        {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="navbar-right-elements">

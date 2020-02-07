@@ -12,6 +12,7 @@ from wordpress_orm import wp_session
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -21,7 +22,7 @@ projects_list = flask.Blueprint("projects_list", __name__)
 @projects_list.route('/projects')
 def projects():
 	''' Projects page. '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with api.Session():
 		project_request = ProjectRequest(api=api)

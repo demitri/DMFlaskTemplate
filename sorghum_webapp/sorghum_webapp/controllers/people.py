@@ -13,6 +13,7 @@ from ..wordpress_orm_extensions.user import SBUser
 from .. import app
 from .. import wordpress_api as wpapi
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -22,7 +23,7 @@ people_page = flask.Blueprint("people_page", __name__)
 @people_page.route('/people')
 def people():
 	''' People page. '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with wpapi.Session():
 
