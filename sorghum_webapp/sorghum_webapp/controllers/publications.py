@@ -21,11 +21,11 @@ from .footer import populate_footer_template
 wp_logger = logging.getLogger("wordpress_orm")
 app_logger = logging.getLogger("sorghumbase")
 
-research_page = flask.Blueprint("research_page", __name__)
+publications_page = flask.Blueprint("publications_page", __name__)
 
 WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
-@research_page.route('/research')
-def research():
+@publications_page.route('/publications')
+def publications():
 	''' List of research papers '''
 	templateDict = {}
 
@@ -78,4 +78,4 @@ def research():
 
 	app_logger.debug(" ============= controller finished ============= ")
 
-	return render_template("research.html", **templateDict)
+	return render_template("publications.html", **templateDict)

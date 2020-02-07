@@ -6,7 +6,12 @@
     <div class="container">
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
-                <h1 class='text-uppercase'>{{categories}}</h1>
+                <h1 class='text-uppercase'>{% if categories == "researchnote" %}
+                  Research notes
+                  {% else %}
+                  {{categories}}
+                  {% endif %}
+                </h1>
 
              </div>
         </div>
@@ -27,8 +32,8 @@
                     </li>
                     <li class="list-inline-item">
                         <i class="fa fa-tags"></i>
-                        {% for category in post.categories %}
-                            <a href="/posts?categories={{category.s.slug}}">{{ category.s.name | safe}}</a>
+                        {% for category in post.categories[1:] %}
+                            <a href="/posts?categories={{category.s.slug}}">{{ category.s.name | safe}} </a>
                         {% endfor %}
                     </li>
                     <li class="list-inline-item">

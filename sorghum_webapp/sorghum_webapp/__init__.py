@@ -37,7 +37,7 @@ def register_blueprints(app=None):
 	from .controllers.faq import faq_page
 	from .controllers.search import search_page
 	from .controllers.search_api import search_api
-	from .controllers.research import research_page
+	from .controllers.publications import publications_page
 	from .controllers.jobs import jobs_page
 	from .controllers.mailing_list import mailing_list_page
 	from .controllers.events import events_page
@@ -67,7 +67,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(people_page)
 	app.register_blueprint(faq_page)
 	app.register_blueprint(search_page)
-	app.register_blueprint(research_page)
+	app.register_blueprint(publications_page)
 	app.register_blueprint(jobs_page)
 	app.register_blueprint(mailing_list_page)
 	app.register_blueprint(events_page)
