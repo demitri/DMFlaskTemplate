@@ -43,7 +43,18 @@ def publications():
 			info = getMetaData(queryPubmed)
 
 			for paper in info:
-				if not len(paper.s.paper_authors) == 0:
+				paper.s.content = paper.s.abstract
+				if not len(paper.s.paper_authors) == 0 :
+					if paper.s.keywords != "No keywords in Pubmed":
+						paper_tags = []
+						kwl = paper.s.keywords.split(',')
+						kwd = [w.strip() for w in kwl]
+						for keyword in kwd:
+							new_tag = Tag(api=api)
+							new_tag.s.name = keyword
+							tag_id = str(new_tag.post)
+							paper_tags.append(tag_id)
+						paper.s.tags = ', '.join(paper_tags)
 					paper.update()
 					papersWithInfo.append(paper)
 
