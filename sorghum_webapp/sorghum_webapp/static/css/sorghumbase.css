@@ -125,13 +125,19 @@ img {
 }
 
 .logo-sb {
-	height: 100px;
-	width: auto;
+	height: 69px;
+	width: 300px;
+	background-size: 300px;
+	background-repeat: no-repeat;
+	background-image: url("/static/images/Sorghumbase_logo_long_rgb.svg");
 }
 
 @media (max-width: 991px) {
   .logo-sb {
-    height: 50px;
+	  height: 100%;
+	  width: 75px;
+	  background-size: 75px;
+	  background-image: url("/static/images/Sorghumbase_logo_rgb.svg");
   }
 }
 
@@ -216,7 +222,7 @@ img {
 .search-suggestions {
   background: white;
   position: absolute;
-  top: 6em;
+  top: 49px;
   left: 0;
   width: 100%;
   max-height: 500px;
@@ -249,10 +255,10 @@ img {
     top: calc(50% - 0.75em);
   }
   .search-suggestions {
-    top: 118px;
+    top: 69px;
   }
   #padding-behind-navbar {
-    height:118px;
+    height:69px;
   }
 }
 
