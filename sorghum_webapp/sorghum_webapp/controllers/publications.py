@@ -7,6 +7,7 @@ import logging
 import json
 from flask import request, render_template
 from wordpress_orm import wp_session
+from wordpress_orm.entities import Tag
 from ..wordpress_orm_extensions.scientific_paper import ScientificPaperRequest
 
 from ..utilities.pubmedIDpull import getMetaData
