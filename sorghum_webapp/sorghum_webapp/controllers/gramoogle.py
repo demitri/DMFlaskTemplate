@@ -8,6 +8,7 @@ from flask import request, render_template
 from .. import app
 #from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 
 gramoogle_page = flask.Blueprint("gramoogle_page", __name__)
 
@@ -15,7 +16,7 @@ gramoogle_page = flask.Blueprint("gramoogle_page", __name__)
 @gramoogle_page.route('/genes') #, methods=['GET'])
 def func_name():
 	''' Documentation here. '''
-	templateDict = {}
+	templateDict = navbar_template()
 	
 	
 	return render_template("genes.html", **templateDict)
