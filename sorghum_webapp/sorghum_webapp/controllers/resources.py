@@ -12,6 +12,7 @@ from ..wordpress_orm_extensions.resource_link import ResourceLinkRequest
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -21,7 +22,7 @@ resources_page = flask.Blueprint("resources_page", __name__)
 @resources_page.route('/resources')
 def resources():
 	''' Resources page. '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with api.Session():
 		rl_pr = ResourceLinkRequest(api=api)

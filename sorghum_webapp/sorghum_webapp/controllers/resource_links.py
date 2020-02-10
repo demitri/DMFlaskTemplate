@@ -12,6 +12,7 @@ from .. import app
 from .. import wordpress_api as api
 #from .. import wordpress_orm_logger as wp_logger
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 resource_links_page = flask.Blueprint("resource_links_page", __name__)
@@ -22,7 +23,7 @@ app_logger = logging.getLogger("sorghumbase")
 @resource_links_page.route('/resource_links')
 def resource_links():
 	''' List of sorghum resources '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with api.Session():
 		rl_pr = ResourceLinkRequest(api=api)

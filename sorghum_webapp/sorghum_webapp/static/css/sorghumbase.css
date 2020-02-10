@@ -251,14 +251,22 @@ img {
 }
 
 @media (min-width: 992px) {
-  .navbar-right-elements {
-    top: calc(50% - 0.75em);
-  }
-  .search-suggestions {
-    top: 69px;
-  }
-  #padding-behind-navbar {
-    height:69px;
+	.navbar-right-elements {
+		top: calc(50% - 0.75em);
+	}
+
+	.search-suggestions {
+		top: 69px;
+	}
+
+	#padding-behind-navbar {
+		height: 69px;
+	}
+}
+@media (max-width: 992px) {
+  .title-space-lg {
+	  padding-top: 2em;
+	  padding-bottom: 1em;
   }
 }
 
