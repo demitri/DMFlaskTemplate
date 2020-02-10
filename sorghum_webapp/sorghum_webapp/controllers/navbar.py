@@ -49,12 +49,19 @@ def genomes():
     bap = make_menu('BAP')
     add_link(bap, 'Chinese Amber - PI 22913 ', '#')
     add_link(bap, 'Grassl - PI 154844 ', '#')
-    add_link(bap, 'Leoti - PI 641825 ', '#')
+    add_link(bap, 'PI 229841 ', '#')
+    add_link(bap, 'PI 297155 ', '#')
+    add_link(bap, 'PI 506069 ', '#')
+    add_link(bap, 'PI 510757 ', '#')
+    add_link(bap, 'PI 655972 ', '#')
 
-    ems = make_menu('EMS')
+    other = make_menu('Other')
+    add_link(other, 'Leoti - PI 641825 ', '#')
+    add_link(other, 'PI 329311 ', '#')
+    add_link(other, 'PI 300119 - S. Verticiliflorum ', '#')
 
     menu = make_menu('Genomes','mega')
-    menu['categories'] = [ref,sap,bap,ems]
+    menu['categories'] = [ref,sap,bap,other]
 
     return menu
 
