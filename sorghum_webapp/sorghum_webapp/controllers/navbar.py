@@ -38,11 +38,19 @@ def about():
 
 def genomes():
     ref = make_menu('Reference')
-    add_link(ref, 'BTx723 - PI 564163', '#')
+    add_link(ref, 'BTx623 - PI 564163', '#')
     add_link(ref, 'Rio - PI 651496', '#')
 
     sap = make_menu('SAP')
+    add_link(sap, 'RTx430 - PI 655996 ', '#')
+    add_link(sap, 'RTx436 - PI 561071 ', '#')
+    add_link(sap, 'BTx2783 - PI 656001 ', '#')
+
     bap = make_menu('BAP')
+    add_link(bap, 'Chinese Amber - PI 22913 ', '#')
+    add_link(bap, 'Grassl - PI 154844 ', '#')
+    add_link(bap, 'Leoti - PI 641825 ', '#')
+
     ems = make_menu('EMS')
 
     menu = make_menu('Genomes','mega')
