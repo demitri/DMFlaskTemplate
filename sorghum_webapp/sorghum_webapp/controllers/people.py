@@ -27,24 +27,32 @@ def people():
 
 	with wpapi.Session():
 
-		user_request = wpapi.UserRequest()
-		user_request.context = "edit"
-		user_request.per_page = 50
-		user_request.roles = ['team_member']
+		team_request = wpapi.UserRequest()
+		team_request.context = "edit"
+		team_request.per_page = 50
+		team_request.roles = ['team_member']
+		team = team_request.get(class_object=SBUser)
 
-		team = user_request.get(class_object=SBUser)
+		leader = [u for u in team if ("Ware" in u.s.name)]
+		team = [u for u in team if not ("Ware" in u.s.name)]
 
-		USDA = [u for u in team if ("USDA" in u.s.organization)]
+		cont_request = wpapi.UserRequest()
+		cont_request.context = "edit"
+		cont_request.per_page = 50
+		cont_request.roles = ['contributor']
+		contributors = cont_request.get(class_object=SBUser)
 
-		comp = [u for u in team if ("Computational" in u.s.job_title)
-					and not ("USDA" in u.s.organization)
-					and not ("Post" in u.s.job_title)
-					or ("Systems" in u.s.job_title)]
-
-		researchers = [u for u in team if not ("Computational" in u.s.job_title)
-						and not ("USDA" in u.s.organization)
-						and not ("Systems" in u.s.job_title)
-						or ("Post" in u.s.job_title)]
+		# USDA = [u for u in team if ("USDA" in u.s.organization)]
+		#
+		# comp = [u for u in team if ("Computational" in u.s.job_title)
+		# 			and not ("USDA" in u.s.organization)
+		# 			and not ("Post" in u.s.job_title)
+		# 			or ("Systems" in u.s.job_title)]
+		#
+		# researchers = [u for u in team if not ("Computational" in u.s.job_title)
+		# 				and not ("USDA" in u.s.organization)
+		# 				and not ("Systems" in u.s.job_title)
+		# 				or ("Post" in u.s.job_title)]
 
 
 		people_banner_media = wpapi.media(slug="sorghum_combine")
@@ -52,8 +60,11 @@ def people():
 
 		populate_footer_template(template_dictionary=templateDict, wp_api=wpapi, photos_to_credit=[people_banner_media])
 
-	templateDict['comp'] = comp
-	templateDict['USDA'] = USDA
-	templateDict['researchers'] = researchers
-	print(researchers)
+	# templateDict['comp'] = comp
+	# templateDict['USDA'] = USDA
+	# templateDict['researchers'] = researchers
+	templateDict['leader'] = leader[0]
+	templateDict['team'] = team
+	templateDict['contributors'] = contributors
+	print(leader)
 	return render_template("people.html", **templateDict)

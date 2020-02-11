@@ -3,7 +3,7 @@
 {% block additional_header %}{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+<div class="page-titles-img title-space-md parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
   <div class="container">
     <div class="row">
       <div class=" col-md-12">
@@ -14,62 +14,81 @@
   </div>
 </div><!--page title end-->
 <div class="container pt90 ">
-  <div class="title-heading1 mb60">
-    <h3 class="mb30">Sorghumbase Team</h3>
-  </div>
-  <div class="row pb60">
-  {% for user in USDA %}
-    <div class="col-lg-4 col-md-6  mb30">
-        <div class="team-card-default">
-            <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
-            <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
-            <div class="team-default-content text-center pt30 pb20">
-                    <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
-                    <span>{{user.job_title | safe}}</span><br>
-                    <span class="font-weight-bold">{{user.organization | safe}}</span>
-            </div>
-            <div class="text-center">
-              <p>{{ user.s.description | safe }}</p>
-            </div>
+  <div class="row">
+    <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+      <!--/col-->
+      <div class="theiaStickySidebar"
+      style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+        <div class="pt50 title">People</div>
+        <div class="mb40">
+
+        <a data-scroll="" href="#team" class="nav-link active">Team Members</a>
+
+        <a data-scroll="" href="#contributors" class="nav-link active">Contributors</a>
+
         </div>
+      </div>
     </div>
-  {% endfor %}
-  </div>
-  <div class="row pb60">
-  {% for user in researchers %}
-    <div class="col-lg-4 col-md-6  mb30">
-        <div class="team-card-default">
+    <div class="col-lg-10">
+      <div class="title-heading1 mb60" id = "team">
+        <h3 class="mb10">Sorghumbase Team</h3>
+      </div>
+      <div class="row pb60">
+        <div class="class = col-lg-4"></div>
+          <div class="col-lg-4 col-md-6  mb30">
+            <div class="team-card-default">
+              <img src="{{leader.s.avatar_urls['96']}}" alt="" class="img-fluid rounded-circle centered">
+              <div class="team-default-content text-center pt30 pb20">
+                <h4 class="mb0 text-uppercase">{{leader.s.name | safe}}</h4>
+                <span>{{leader.job_title | safe}}</span><br>
+                <span class="font-weight-bold">{{leader.organization | safe}}</span>
+              </div>
+              <!-- <div class="text-center">
+                <p>{{leader.s.description | safe}}</p>
+              </div> -->
+            </div>
+          </div>
+        <div class="class = col-lg-4"></div>
+        {% for user in team %}
+        <div class="col-lg-4 col-md-6  mb30">
+          <div class="team-card-default">
             <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
-            <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
+            <img src="{{ user.s.avatar_urls['96'] }}" alt="" class="img-fluid rounded-circle centered">
             <div class="team-default-content text-center pt30 pb20">
-                    <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
-                    <span>{{user.job_title | safe}}</span><br>
-                    <span class="font-weight-bold">{{user.organization | safe}}</span>
+              <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
+              <span>{{user.job_title | safe}}</span><br>
+              <span class="font-weight-bold">{{user.organization | safe}}</span>
             </div>
             <!-- <div class="text-center">
               <p>{{ user.s.description | safe }}</p>
             </div> -->
+          </div>
         </div>
-    </div>
-  {% endfor %}
-  </div>
-  <div class="row pb60">
-  {% for user in comp %}
-    <div class="col-lg-4 col-md-6  mb30">
-        <div class="team-card-default">
+        {% endfor %}
+      </div>
+
+      <div class="title-heading1 mb60" id = "contributors">
+        <h3 class="mb10">Contributors</h3>
+      </div>
+      <div class="row pb60">
+        {% for user in contributors %}
+        <div class="col-lg-4 col-md-6  mb30">
+          <div class="team-card-default">
             <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
-            <img src="{{ user.s.avatar_urls['96'].replace("96", "128") }}" alt="" class="img-fluid rounded-circle centered">
+            <img src="{{ user.s.avatar_urls['96'] }}" alt="" class="img-fluid rounded-circle centered">
             <div class="team-default-content text-center pt30 pb20">
-                    <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
-                    <span>{{user.job_title | safe}}</span><br>
-                    <span class="font-weight-bold">{{user.organization | safe}}</span>
+              <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
+              <span>{{user.job_title | safe}}</span><br>
+              <span class="font-weight-bold">{{user.organization | safe}}</span>
             </div>
-            <div class="text-center">
-              <p>{{ user.s.description | safe }}</p>
-            </div>
+            <!-- <div class="text-center">
+            <p>{{ user.s.description | safe }}</p>
+          </div> -->
+          </div>
         </div>
+      {% endfor %}
+      </div>
     </div>
-  {% endfor %}
-    </div>
+  </div>
 </div>
 {% endblock %}
