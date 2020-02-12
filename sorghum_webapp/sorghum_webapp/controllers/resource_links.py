@@ -23,7 +23,7 @@ app_logger = logging.getLogger("sorghumbase")
 @resource_links_page.route('/resource_links')
 def resource_links():
 	''' List of sorghum resources '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('Resources')
 
 	with api.Session():
 		rl_pr = ResourceLinkRequest(api=api)

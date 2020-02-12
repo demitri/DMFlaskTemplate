@@ -23,7 +23,7 @@ people_page = flask.Blueprint("people_page", __name__)
 @people_page.route('/people')
 def people():
 	''' People page. '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('Community')
 
 	with wpapi.Session():
 

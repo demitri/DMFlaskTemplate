@@ -25,12 +25,17 @@ spacer = " & "
 @post_grid.route('/posts')
 def posts():
     ''' List of posts '''
-    templateDict = navbar_template()
     current_page = valueFromRequest(key="page", request=request) or 1
     if type(current_page) is str:
         current_page = int(current_page)
     n_per_page = valueFromRequest(key="show", request=request) or 9
     categories = valueFromRequest(key="categories", request=request, aslist=True)
+    active_menu = 'Resources'
+    if categories[0] == 'news':
+        active_menu = 'News'
+    if categories[0] == 'researchnote':
+        active_menu = 'Community'
+    templateDict = navbar_template(active_menu)
 
     with api.Session():
 

@@ -21,7 +21,7 @@ mission_statement_page = flask.Blueprint("mission_statment_page", __name__)
 @mission_statement_page.route('/mission-statement')
 def mission():
 	''' Mission Statement page. '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('About')
 
 	with api.Session():
 

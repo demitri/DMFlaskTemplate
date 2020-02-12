@@ -22,7 +22,7 @@ mailing_list_page = flask.Blueprint("mailing_list_page", __name__)
 @mailing_list_page.route('/mailing_list', methods=['GET','POST'])
 def mailing_list():
     ''' Mailing list page. '''
-    templateDict = navbar_template()
+    templateDict = navbar_template('Community')
 
     email = valueFromRequest(key="widget-subscribe-form-email", request=request)
     if email:
