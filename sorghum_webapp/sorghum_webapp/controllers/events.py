@@ -24,7 +24,7 @@ spacer = " & "
 @events_page.route('/events')
 def events():
 	''' Events page. '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('News')
 	past = valueFromRequest(key="past", request=request) or False
 	if type(past) is str:
 		past = True

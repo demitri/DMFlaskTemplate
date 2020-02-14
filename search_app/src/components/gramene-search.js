@@ -4,13 +4,13 @@ import { Status, Filters, Results, Views } from 'gramene-search'
 
 export default (store) => (
   <Provider store={store}>
-    <div className="row">
-      <div className="col-md-2">
+    <div className="row no-margin no-padding">
+      <div className="col-md-2 no-padding">
         <Status/>
         <Filters/>
         <Views/>
       </div>
-      <div className="col-md-10">
+      <div className="col-md-10 no-padding">
         <Results/>
       </div>
     </div>

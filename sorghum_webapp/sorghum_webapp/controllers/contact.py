@@ -21,7 +21,7 @@ contact_page = flask.Blueprint("contact_page", __name__)
 @contact_page.route('/contact')
 def contact():
 	''' Contact page. '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('About')
 
 	with api.Session():
 

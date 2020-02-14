@@ -29,7 +29,7 @@ WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
 @publications_page.route('/publications')
 def publications():
 	''' List of research papers '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('News')
 
 	with api.Session():
 		paper_request = ScientificPaperRequest(api=api)

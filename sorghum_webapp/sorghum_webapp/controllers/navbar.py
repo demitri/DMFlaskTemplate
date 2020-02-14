@@ -65,5 +65,5 @@ def genomes():
 
     return menu
 
-def navbar_template():
-    return {'navbar': [news(), community(), genomes(), resources(), about()]}
+def navbar_template(activemenu='NA'):
+    return {'navbar': [news(), community(), genomes(), resources(), about()],'activemenu':activemenu}

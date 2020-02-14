@@ -22,7 +22,11 @@
                     <ul class="navbar-nav ml-auto">
                         {% for menu in navbar %}
                         {% if menu.style == 'simple' %}
+                        {% if menu.label == activemenu %}
+                        <li class="nav-item dropdown active">
+                        {% else %}
                         <li class="nav-item dropdown">
+                        {% endif %}
                             <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                                 {{menu.label}}
                             </a>
@@ -33,7 +37,11 @@
                             </ul>
                         </li>
                         {% else %}
+                            {% if menu.label == activemenu %}
+                        <li class="nav-item dropdown dropdown-full-width active">
+                            {% else %}
                         <li class="nav-item dropdown dropdown-full-width">
+                            {% endif %}
                             <a class="nav-link  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                                 {{menu.label}}
                             </a>

@@ -21,7 +21,7 @@ faq_page = flask.Blueprint("faq_page", __name__)
 @faq_page.route('/faq')
 def faq():
 	''' FAQ page. '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('About')
 
 	with api.Session():
 

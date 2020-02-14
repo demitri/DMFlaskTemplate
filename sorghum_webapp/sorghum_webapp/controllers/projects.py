@@ -22,7 +22,7 @@ projects_list = flask.Blueprint("projects_list", __name__)
 @projects_list.route('/projects')
 def projects():
 	''' Projects page. '''
-	templateDict = navbar_template()
+	templateDict = navbar_template('Resources')
 
 	with api.Session():
 		project_request = ProjectRequest(api=api)
