@@ -66,5 +66,5 @@ def people():
 	templateDict['leader'] = leader[0]
 	templateDict['team'] = team
 	templateDict['contributors'] = contributors
-	print(leader)
+	print(leader[0].s)
 	return render_template("people.html", **templateDict)

@@ -288,3 +288,7 @@ img {
 .title-space-md {
   padding-top: 7em;
   padding-bottom: 3em; }
+
+.avatar-width {
+	width: 96px
+}
