@@ -29,6 +29,7 @@ def register_blueprints(app=None):
 	from .controllers.admin_template import assan_admin_template
 	from .controllers.notebook import notebook_page
 	from .controllers.post import post_page
+	from .controllers.post import population_page
 	from .controllers.posts import post_grid
 	from .controllers.mission_statement import mission_statement_page
 	from .controllers.resource_links import resource_links_page
@@ -38,6 +39,7 @@ def register_blueprints(app=None):
 	from .controllers.search import search_page
 	from .controllers.search_api import search_api
 	from .controllers.publications import publications_page
+	from .controllers.paper import paper_page
 	from .controllers.jobs import jobs_page
 	from .controllers.mailing_list import mailing_list_page
 	from .controllers.events import events_page
@@ -61,6 +63,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(assan_admin_template)
 	app.register_blueprint(post_page)
 	app.register_blueprint(post_grid)
+	app.register_blueprint(population_page)
 	app.register_blueprint(mission_statement_page)
 	app.register_blueprint(resource_links_page)
 	app.register_blueprint(contact_page)
@@ -68,6 +71,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(faq_page)
 	app.register_blueprint(search_page)
 	app.register_blueprint(publications_page)
+	app.register_blueprint(paper_page)
 	app.register_blueprint(jobs_page)
 	app.register_blueprint(mailing_list_page)
 	app.register_blueprint(events_page)

@@ -41,27 +41,40 @@ def genomes():
     add_link(ref, 'BTx623 - PI 564163', '#')
     add_link(ref, 'Rio - PI 651496', '#')
 
-    sap = make_menu('SAP')
-    add_link(sap, 'RTx430 - PI 655996 ', '#')
-    add_link(sap, 'RTx436 - PI 561071 ', '#')
-    add_link(sap, 'BTx2783 - PI 656001 ', '#')
+    # sap = make_menu('SAP')
+    # add_link(sap, 'RTx430 - PI 655996 ', '#')
+    # add_link(sap, 'RTx436 - PI 561071 ', '#')
+    # add_link(sap, 'BTx2783 - PI 656001 ', '#')
+    #
+    # bap = make_menu('BAP')
+    # add_link(bap, 'Chinese Amber - PI 22913 ', '#')
+    # add_link(bap, 'Grassl - PI 154844 ', '#')
+    # add_link(bap, 'PI 229841 ', '#')
+    # add_link(bap, 'PI 297155 ', '#')
+    # add_link(bap, 'PI 506069 ', '#')
+    # add_link(bap, 'PI 510757 ', '#')
+    # add_link(bap, 'PI 655972 ', '#')
+    #
+    # other = make_menu('Other')
+    # add_link(other, 'Leoti - PI 641825 ', '#')
+    # add_link(other, 'PI 329311 ', '#')
+    # add_link(other, 'PI 300119 - S. Verticiliflorum ', '#')
 
-    bap = make_menu('BAP')
-    add_link(bap, 'Chinese Amber - PI 22913 ', '#')
-    add_link(bap, 'Grassl - PI 154844 ', '#')
-    add_link(bap, 'PI 229841 ', '#')
-    add_link(bap, 'PI 297155 ', '#')
-    add_link(bap, 'PI 506069 ', '#')
-    add_link(bap, 'PI 510757 ', '#')
-    add_link(bap, 'PI 655972 ', '#')
+    association = make_menu('Association Panels')
+    add_link(association, 'SAP', '/population/sorghum-association-panel')
+    add_link(association, 'BAP', '#')
 
-    other = make_menu('Other')
-    add_link(other, 'Leoti - PI 641825 ', '#')
-    add_link(other, 'PI 329311 ', '#')
-    add_link(other, 'PI 300119 - S. Verticiliflorum ', '#')
+    TIL = make_menu('TILLING Populations')
+    add_link(TIL, 'Xin EMS Population', '/population/xin-ems')
+    add_link(TIL, 'Weil EMS Population', '#')
+
+    NAM = make_menu('NAM populations')
+    add_link(NAM, 'Klein NAM population', '#')
+    add_link(NAM, 'Kresovich NAM population', '#')
 
     menu = make_menu('Genomes','mega')
-    menu['categories'] = [ref,sap,bap,other]
+    # menu['categories'] = [ref,sap,bap,other]
+    menu['categories'] = [ref, association, TIL, NAM]
 
     return menu
 

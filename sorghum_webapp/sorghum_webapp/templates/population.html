@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block page_title %}{{ population.title }}{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<!-- place page content here -->
+
+{# Page is constructed in sections (rows). #}
+
+
+{# Section: Image slider #}
+
+<div class="page-titles-img title-space-md bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}'
+     style='background-image: url("{{sorghum_grains_image.s.source_url}}")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1 class='text-uppercase'>{{population.s.title}}</h1>
+
+            </div>
+        </div>
+    </div>
+</div><!--page title end-->
+
+<div class="container pb50">
+    <div class="row justify-content-md-center">
+        <div class="col-md-9 mb40">
+            <article>
+
+              {% if population.s.featured_media %}
+              <img src='{{ population.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
+              {% endif %}
+
+              <div class="population-content">
+
+                  <h3>{{ population.s.title | safe}}</h3>
+  
+                  {{ population.s.content | safe }}
+                  <hr class="mb40">
+
+              </div>
+            </article><!-- population article-->
+        </div>
+    </div>
+</div>
+{% endblock %}
