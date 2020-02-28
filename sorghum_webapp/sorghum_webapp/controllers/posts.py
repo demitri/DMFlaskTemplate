@@ -17,6 +17,7 @@ from .footer import populate_footer_template
 logger = logging.getLogger("wordpress_orm")
 
 post_grid = flask.Blueprint("post_grid", __name__)
+genomes_grid = flask.Blueprint("genomes_grid", __name__)
 
 WAY_MORE_THAN_WE_WILL_EVER_HAVE = 100
 spacer = " & "
@@ -81,5 +82,29 @@ def posts():
     templateDict['next_page'] = min([current_page + 1, ceil(post_tally / n_per_page)])
     templateDict['n_per_page'] = n_per_page
     logger.debug(" ============= controller finished ============= ")
+
+    return render_template("posts.html", **templateDict)
+
+@post_grid.route('/genomes')
+def genomes():
+    ''' List of genomes '''
+
+    # templateDict = navbar_template(active_menu)
+    templateDict = {}
+
+    with api.Session():
+
+        genomes_request = api.PostRequest()
+        genomes_request.categories = ['genome']
+        genomes = genomes_request.get()
+
+        posts_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
+
+        templateDict["banner_media"] = posts_banner_media
+
+
+        populate_footer_template(template_dictionary=templateDict, wp_api=api, photos_to_credit=[posts_banner_media])
+
+    templateDict['posts'] = genomes
 
     return render_template("posts.html", **templateDict)

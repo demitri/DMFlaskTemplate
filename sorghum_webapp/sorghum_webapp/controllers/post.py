@@ -19,6 +19,7 @@ WP_BASE_URL = app.config["WP_BASE_URL"]
 post_page = flask.Blueprint("post_page", __name__)
 post_category_page = flask.Blueprint("post_category_page", __name__)
 population_page = flask.Blueprint("population_page", __name__)
+genome_page = flask.Blueprint("genome_page", __name__)
 
 @post_page.route('/post/<slug>')
 def post(slug):
@@ -73,17 +74,36 @@ def post_category(category_slug):
 	'''
 	templateDict = {}
 
-
-
-
-
-
 	return render_template("post_category.html", **templateDict)
 
 @population_page.route('/population/<slug>')
 def population(slug):
 	'''
 	This page displays a post describing a population.
+	'''
+	templateDict = navbar_template()
+
+	with api.Session():
+
+		try:
+			post = api.post(slug=slug)
+		except exc.NoEntityFound:
+			# TODO return top level posts page
+			raise Exception("Return top level posts page, maybe with an alert of 'post not found'.")
+
+		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
+
+		templateDict["population"] = post
+		templateDict["sorghum_grains_image"] = sorghum_grains_image
+		print(post.categories)
+
+
+	return render_template("population.html", **templateDict)
+
+@genome_page.route('/genome/<slug>')
+def genome(slug):
+	'''
+	This page displays a post describing a genome.
 	'''
 	templateDict = navbar_template()
 

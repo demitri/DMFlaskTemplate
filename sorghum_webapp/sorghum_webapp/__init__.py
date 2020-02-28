@@ -28,9 +28,8 @@ def register_blueprints(app=None):
 	from .controllers.assan_blank import assan_blank_page
 	from .controllers.admin_template import assan_admin_template
 	from .controllers.notebook import notebook_page
-	from .controllers.post import post_page
-	from .controllers.post import population_page
-	from .controllers.posts import post_grid
+	from .controllers.post import post_page, population_page, genome_page
+	from .controllers.posts import post_grid, genomes_grid
 	from .controllers.mission_statement import mission_statement_page
 	from .controllers.resource_links import resource_links_page
 	from .controllers.contact import contact_page
@@ -63,7 +62,9 @@ def register_blueprints(app=None):
 	app.register_blueprint(assan_admin_template)
 	app.register_blueprint(post_page)
 	app.register_blueprint(post_grid)
+	app.register_blueprint(genomes_grid)
 	app.register_blueprint(population_page)
+	app.register_blueprint(genome_page)
 	app.register_blueprint(mission_statement_page)
 	app.register_blueprint(resource_links_page)
 	app.register_blueprint(contact_page)

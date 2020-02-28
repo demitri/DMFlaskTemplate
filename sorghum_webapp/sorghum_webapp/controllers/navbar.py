@@ -36,10 +36,10 @@ def about():
     add_link(menu, 'Contact Us', '/contact')
     return menu
 
-def genomes():
+def germplasms():
     ref = make_menu('Reference')
-    add_link(ref, 'BTx623 - PI 564163', '#')
-    add_link(ref, 'Rio - PI 651496', '#')
+    add_link(ref, 'BTx623 - PI 564163', '/genome/btx623')
+    add_link(ref, 'Rio - PI 651496', '/genome/rio')
 
     # sap = make_menu('SAP')
     # add_link(sap, 'RTx430 - PI 655996 ', '#')
@@ -72,11 +72,11 @@ def genomes():
     add_link(NAM, 'Klein NAM population', '#')
     add_link(NAM, 'Kresovich NAM population', '#')
 
-    menu = make_menu('Genomes','mega')
+    menu = make_menu('Germplasms','mega')
     # menu['categories'] = [ref,sap,bap,other]
     menu['categories'] = [ref, association, TIL, NAM]
 
     return menu
 
 def navbar_template(activemenu='NA'):
-    return {'navbar': [news(), community(), genomes(), resources(), about()],'activemenu':activemenu}
+    return {'navbar': [news(), community(), germplasms(), resources(), about()],'activemenu':activemenu}
