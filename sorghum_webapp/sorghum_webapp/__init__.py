@@ -29,7 +29,7 @@ def register_blueprints(app=None):
 	from .controllers.admin_template import assan_admin_template
 	from .controllers.notebook import notebook_page
 	from .controllers.post import post_page, population_page, genome_page
-	from .controllers.posts import post_grid, genomes_grid
+	from .controllers.posts import post_grid, germplasm_grid, population_grid
 	from .controllers.mission_statement import mission_statement_page
 	from .controllers.resource_links import resource_links_page
 	from .controllers.contact import contact_page
@@ -50,9 +50,8 @@ def register_blueprints(app=None):
 	from .controllers.project import project_page
 	from .controllers.clear_wp_cache import clear_wp_cache_page
 
-	from .controllers.VEP import VEP_entry_page
-	from .controllers.VEP import VEP_source_page
-	from .controllers.VEP import VEP_page
+	# from .controllers.VEP import VEP_entry_page, VEP_source_page, VEP_page
+
 	from .controllers.gramoogle import gramoogle_page
 	#from .controllers.controller1 import xxx
 
@@ -62,7 +61,8 @@ def register_blueprints(app=None):
 	app.register_blueprint(assan_admin_template)
 	app.register_blueprint(post_page)
 	app.register_blueprint(post_grid)
-	app.register_blueprint(genomes_grid)
+	app.register_blueprint(germplasm_grid)
+	app.register_blueprint(population_grid)
 	app.register_blueprint(population_page)
 	app.register_blueprint(genome_page)
 	app.register_blueprint(mission_statement_page)
@@ -85,9 +85,9 @@ def register_blueprints(app=None):
 	app.register_blueprint(search_api)
 	app.register_blueprint(clear_wp_cache_page)
 
-	app.register_blueprint(VEP_entry_page)
-	app.register_blueprint(VEP_source_page)
-	app.register_blueprint(VEP_page)
+	# app.register_blueprint(VEP_entry_page)
+	# app.register_blueprint(VEP_source_page)
+	# app.register_blueprint(VEP_page)
 	app.register_blueprint(gramoogle_page)
 	#app.register_blueprint(xxx)
 

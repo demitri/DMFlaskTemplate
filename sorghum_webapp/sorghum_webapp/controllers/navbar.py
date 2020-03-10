@@ -38,8 +38,8 @@ def about():
 
 def germplasms():
     ref = make_menu('Reference')
-    add_link(ref, 'BTx623 - PI 564163', '/genome/btx623')
-    add_link(ref, 'Rio - PI 651496', '/genome/rio')
+    add_link(ref, 'BTx623 - PI 564163', '/accession/btx623')
+    add_link(ref, 'Rio - PI 651496', '/accession/rio')
 
     # sap = make_menu('SAP')
     # add_link(sap, 'RTx430 - PI 655996 ', '#')
@@ -61,20 +61,21 @@ def germplasms():
     # add_link(other, 'PI 300119 - S. Verticiliflorum ', '#')
 
     association = make_menu('Association Panels')
-    add_link(association, 'SAP', '/population/sorghum-association-panel')
-    add_link(association, 'BAP', '#')
+    add_link(association, 'SAP', '/population/sap')
+    add_link(association, 'BAP', '/population/bap')
 
     TIL = make_menu('TILLING Populations')
-    add_link(TIL, 'Xin EMS Population', '/population/xin-ems')
-    add_link(TIL, 'Weil EMS Population', '#')
+    add_link(TIL, 'Xin EMS', '/population/xin-ems')
+    add_link(TIL, 'Weil EMS', '/population/weil-ems')
 
-    NAM = make_menu('NAM populations')
-    add_link(NAM, 'Klein NAM population', '#')
-    add_link(NAM, 'Kresovich NAM population', '#')
+    Other = make_menu('Other populations')
+    add_link(Other, 'Klein NAM', '/population/klein-nam')
+    add_link(Other, 'Kresovich NAM', '/population/kresovich-nam')
+    add_link(Other, 'Mace NAM', '/population/mace-nam')
 
     menu = make_menu('Germplasms','mega')
     # menu['categories'] = [ref,sap,bap,other]
-    menu['categories'] = [ref, association, TIL, NAM]
+    menu['categories'] = [ref, association, TIL, Other]
 
     return menu
 

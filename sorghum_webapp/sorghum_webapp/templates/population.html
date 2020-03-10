@@ -16,7 +16,6 @@
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
                 <h1 class='text-uppercase'>{{population.s.title}}</h1>
-
             </div>
         </div>
     </div>
@@ -26,19 +25,57 @@
     <div class="row justify-content-md-center">
         <div class="col-md-9 mb40">
             <article>
-
               {% if population.s.featured_media %}
-              <img src='{{ population.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
+                <img src='{{ population.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
               {% endif %}
 
               <div class="population-content">
-
                   <h3>{{ population.s.title | safe}}</h3>
-  
-                  {{ population.s.content | safe }}
+                    {{ population.s.content | safe }}
                   <hr class="mb40">
-
               </div>
+
+              <div class="mb10">
+                <p><b>Related posts</b></p>
+                {% for post in related_posts %}
+                  <div class="mb10">
+                    <a href="/post/{{post.s.slug}}">{{post.s.title}}</a>
+
+                  </div>
+                {% endfor %}
+              </div>
+
+            <div class="mb10">
+              <p><b>Related publications</b></p>
+              {% for pub in related_publications %}
+                <div class="mb10">
+                  <a href="/paper/{{pub.s.slug}}">{{pub.s.title}}</a>
+
+                </div>
+              {% endfor %}
+            </div>
+
+            {% if population.s.type == "population" %}
+            <div class="mb10">
+              <p><b>Related germplasms</b></p>
+              {% for germ in related_germplasms %}
+                <div class="mb10">
+                  <a href="/accession/{{germ.s.slug[2:]}}">{{germ.s.title}}</a>
+
+                </div>
+              {% endfor %}
+            </div>
+            {% elif population.s.type == "germplasm" %}
+            <div class="mb10">
+              <p><b>Related populations</b></p>
+              {% for pop in related_populations %}
+                <div class="mb10">
+                  <a href="/population/{{pop.s.slug[2:]}}">{{pop.s.title}}</a>
+
+                </div>
+              {% endfor %}
+            </div>
+            {% endif %}
             </article><!-- population article-->
         </div>
     </div>
