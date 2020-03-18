@@ -31,50 +31,107 @@
 
               <div class="population-content">
                   <h3>{{ population.s.title | safe}}</h3>
-                    {{ population.s.content | safe }}
+                    <p>{{ population.s.content | safe }}</p>
                   <hr class="mb40">
               </div>
 
-              <div class="mb10">
-                <p><b>Related posts</b></p>
-                {% for post in related_posts %}
-                  <div class="mb10">
-                    <a href="/post/{{post.s.slug}}">{{post.s.title}}</a>
+              {% if population.s.type == "population" and citation %}
+              <h4>Original citation</h4>
+                <div id="" class="row">
+                  <div id="{{citation.s.paper_title}}" class="col-lg-12 col-md-6 mb10 " data-groups = "{{citation.s.kwl}}">
+                    <strong class="mb0">{{ citation.s.title | safe}}</strong>
+                    <br>
+                    <h6>First published on {{(citation.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
 
+                    <p>{{ citation.s.paper_authors | safe }}</p>
+                    <a href="/paper/{{citation.s.slug}}"><h6 class="button">More details</h6></a>
+                  </div>
+                </div><hr>
+              {% endif %}
+
+              {% if related_posts %}
+                <div class="mb10">
+                  <h4>Related posts</h4>
+                  {% for post in related_posts %}
+                  <!-- <div class="row" id="blog-masonry" style="position: relative;">
+                    <article class="post-masonry mb20" style="position: absolute; left: 0px; ">
+                      <div class="card">
+                        <div class="mx10">
+                          <a href="{{post.s.resource_url}}">
+                              <h3 class="masonry-title mb0">{{post.s.title | safe}}</h3>
+                          </a>
+                              <p class="card-text">{{post.s.excerpt | safe}}</p>
+                        </div>
+                      </div>
+                    </article>
+                  </div> -->
+
+                    <div class="card mb10">
+                      <div class="card-body">
+                        <strong><a href="/post/{{post.s.slug}}">{{post.s.title}}</a></strong>
+                        <p class="card-text">{{post.s.excerpt | safe}}</p>
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div><hr>
+              {% endif %}
+
+            {% if related_publications %}
+              <div class="mb10">
+                <h4>Related publications</h4>
+                {% for paper in related_publications %}
+                <div id="" class="row">
+                  <div id="{{paper.s.paper_title}}" class="col-lg-12 col-md-6 mb10 " data-groups = "{{paper.s.kwl}}">
+                    <strong class="mb0">{{ paper.s.title | safe}}</strong>
+                    <br>
+                    <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
+                    <p><em>{{ paper.s.paper_authors | safe }}</em></p>
+                    <!-- <div class="card mb10">
+                        <div class="card-header accordion-header" role="tab" id="heading{{paper.s.id}}">
+                            <h5 class="mb-0">
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{paper.s.id}}" aria-expanded="false" aria-controls="collapse{{paper.s.id}}">
+                                    Abstract
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapse{{paper.s.id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{paper.s.id}}">
+                            <div class="card-body">
+                                {{ paper.s.abstract | safe }}
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <p>{{ paper.s.abstract | safe }}</p> -->
+                    <a href="/paper/{{paper.s.slug}}"><h6 class="button">More details</h6></a>
+                  </div>
+                </div>
+                {% endfor %}
+              </div><hr>
+            {% endif %}
+
+            {% if population.s.type == "population" and related_germplasms %}
+                <div class="mb10">
+                  <h4>Related germplasms</h4>
+                  {% for germ in related_germplasms %}
+                    <div class="mb10 card">
+                      <div class="card-body">
+                        <h5 href="/accession/{{germ.s.slug}}">{{germ.s.title}}</h5>
+                        {{ germ.s.content | safe }}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div><hr>
+            {% elif population.s.type == "germplasm" and related_populations %}
+              <div class="mb10">
+                <h4>Related populations</h4>
+                {% for pop in related_populations %}
+                  <div class="mb10 card">
+                    <div class="card-body">
+                      <h5 href="/population/{{pop.s.slug[2:]}}">{{pop.s.title}}</h5>
+                      {{ pop.s.content | safe }}
+                    </div>
                   </div>
                 {% endfor %}
-              </div>
-
-            <div class="mb10">
-              <p><b>Related publications</b></p>
-              {% for pub in related_publications %}
-                <div class="mb10">
-                  <a href="/paper/{{pub.s.slug}}">{{pub.s.title}}</a>
-
-                </div>
-              {% endfor %}
-            </div>
-
-            {% if population.s.type == "population" %}
-            <div class="mb10">
-              <p><b>Related germplasms</b></p>
-              {% for germ in related_germplasms %}
-                <div class="mb10">
-                  <a href="/accession/{{germ.s.slug[2:]}}">{{germ.s.title}}</a>
-
-                </div>
-              {% endfor %}
-            </div>
-            {% elif population.s.type == "germplasm" %}
-            <div class="mb10">
-              <p><b>Related populations</b></p>
-              {% for pop in related_populations %}
-                <div class="mb10">
-                  <a href="/population/{{pop.s.slug[2:]}}">{{pop.s.title}}</a>
-
-                </div>
-              {% endfor %}
-            </div>
+              </div><hr>
             {% endif %}
             </article><!-- population article-->
         </div>

@@ -91,7 +91,7 @@ def population(slug):
 
 		try:
 			population_request = PopulationRequest(api=api)
-			population_request.slug = ["p-" + slug]
+			population_request.slug = [slug]
 			population = population_request.get()
 		except exc.NoEntityFound:
 			# TODO return top level posts page
@@ -107,7 +107,15 @@ def population(slug):
 
 		spr = ScientificPaperRequest(api=api)
 		spr.tags = [tag_id]
+		spr.tags_exclude = [227]	# 227 is the tag ID for "original citation"
 		tagged_publications = spr.get()
+
+
+
+		cpr = ScientificPaperRequest(api=api)
+		cpr.include = [population[0].s.original_citation]	# 227 is the tag ID for "original citation"
+		citation = cpr.get()
+		print(citation[0])
 
 		gr = GermplasmRequest(api=api)
 		gr.tags = [tag_id]
@@ -117,6 +125,7 @@ def population(slug):
 
 		templateDict["population"] = population[0]
 		templateDict["related_posts"] = tagged_posts
+		templateDict["citation"] = citation[0]
 		templateDict["related_publications"] = tagged_publications
 		templateDict["related_germplasms"] = tagged_germplasms
 		templateDict["sorghum_grains_image"] = sorghum_grains_image

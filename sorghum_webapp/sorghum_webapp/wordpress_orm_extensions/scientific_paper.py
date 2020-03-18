@@ -112,8 +112,11 @@ class ScientificPaperRequest(WPRequest):
 
 		self._status = list()
 		self._category_ids = list()
+		self._include = list()
+		self._excludes = list()
 		self._slugs = list()
 		self._tags = list()
+		self._tags_exclude = list()
 
 		self._data = None
 
@@ -142,11 +145,22 @@ class ScientificPaperRequest(WPRequest):
 		if self.after:
 			self.parameters["after"] = self._after.isoformat()
 
+		# exclude : Ensure result set excludes specific IDs.
+		if len(self.exclude) > 0:
+			self.parameters["exclude"] = ",".join(self.exclude)
+
+		# include : Limit result set to specific IDs.
+		if self.include:
+			self.parameters["include"] = self.include
+
 		if self.per_page:
 			self.parameters["per_page"] = self.per_page
 
 		if self.tags:
 			self.parameters["tags"] = self.tags
+
+		if self.tags_exclude:
+			self.parameters["tags_exclude"] = self.tags_exclude
 
 		# -------------------
 
@@ -333,6 +347,56 @@ class ScientificPaperRequest(WPRequest):
 				raise ValueError("The 'per_page' parameter must be an integer, was given '{0}'".format(value))
 
 	@property
+	def exclude(self):
+		return self._excludes
+
+	@exclude.setter
+	def exclude(self, values):
+		'''
+		List of WordPress IDs to exclude from a search.
+		'''
+		if values is None:
+			self.parameters.pop("exclude", None)
+			self._excludes = list()
+			return
+		elif not isinstance(values, list):
+			raise ValueError("'excludes' must be provided as a list (or append to the existing list).")
+
+		for exclude_id in values:
+			if isinstance(exclude_id, int):
+				self._excludes.append(str(exclude_id))
+			elif isinstance(exclude_id, str):
+				try:
+					self._include.append(str(int(exclude_id)))
+				except ValueError:
+					raise ValueError("The WordPress ID (an integer, '{0}' given) must be provided to limit result to specific users.".format(exclude_id))
+
+	@property
+	def include(self):
+		return self._include
+
+	@include.setter
+	def include(self, values):
+		'''
+		Limit result set to specified WordPress user IDs, provided as a list.
+		'''
+		if values is None:
+			self.parameters.pop("include", None)
+			self._include = list()
+			return
+		elif not isinstance(values, list):
+			raise ValueError("include must be provided as a list (or append to the existing list).")
+
+		for include_id in values:
+			if isinstance(include_id, int):
+				self._include.append(str(include_id))
+			elif isinstance(include_id, str):
+				try:
+					self._include.append(str(int(include_id)))
+				except ValueError:
+					raise ValueError("The WordPress ID (an integer, '{0}' given) must be provided to limit result to specific users.".format(include_id))
+
+	@property
 	def tags(self):
 		'''
 		Return only items that have these tags.
@@ -357,6 +421,36 @@ class ScientificPaperRequest(WPRequest):
 			elif isinstance(tag_id, str):
 				try:
 					self.tags.append(str(int(tag_id)))
+				except ValueError:
+					raise ValueError("The given tag was in the form of a string but could not be converted to an integer ('{0}').".format(tag_id))
+			else:
+				raise ValueError("Unexpected type for property list 'tags'; expected str or int, got '{0}'".format(type(s)))
+
+	@property
+	def tags_exclude(self):
+		'''
+		Return only items that do not have these tags.
+		'''
+		return self._tags_exclude
+
+	@tags_exclude.setter
+	def tags_exclude(self, values):
+		'''
+		List of tag IDs attached to items to be excluded from query.
+		'''
+		if values is None:
+			self.parameters.pop("tags_exclude", None)
+			self._tags_exclude = list()
+			return
+		elif not isinstance(values, list):
+			raise ValueError("Tags must be provided as a list of IDs (or append to the existing list).")
+
+		for tag_id in values:
+			if isinstance(tag_id, int):
+				self._tags_exclude.append(tag_id)
+			elif isinstance(tag_id, str):
+				try:
+					self._tags_exclude.append(str(int(tag_id)))
 				except ValueError:
 					raise ValueError("The given tag was in the form of a string but could not be converted to an integer ('{0}').".format(tag_id))
 			else:

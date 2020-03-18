@@ -61,17 +61,20 @@ def germplasms():
     # add_link(other, 'PI 300119 - S. Verticiliflorum ', '#')
 
     association = make_menu('Association Panels')
+    add_link(association, 'World Core Collection', '/population/world-core')
+    add_link(association, 'Mini Core Collection', '/population/mini-core')
     add_link(association, 'SAP', '/population/sap')
     add_link(association, 'BAP', '/population/bap')
+    add_link(association, 'Nigerian Diversity Panel', '/population/nigeria-div')
 
     TIL = make_menu('TILLING Populations')
     add_link(TIL, 'Xin EMS', '/population/xin-ems')
     add_link(TIL, 'Weil EMS', '/population/weil-ems')
 
-    Other = make_menu('Other populations')
-    add_link(Other, 'Klein NAM', '/population/klein-nam')
+    Other = make_menu('NAM populations')
+    add_link(Other, 'Klein BC-NAM', '/population/klein-nam')
     add_link(Other, 'Kresovich NAM', '/population/kresovich-nam')
-    add_link(Other, 'Mace NAM', '/population/mace-nam')
+    add_link(Other, 'Mace BC-NAM', '/population/mace-nam')
 
     menu = make_menu('Germplasms','mega')
     # menu['categories'] = [ref,sap,bap,other]

@@ -35,7 +35,7 @@ class Population(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "author",
-				"template"]
+				"template", "original_citation"]
 
 	@property
 	def post_fields(self):
@@ -94,6 +94,7 @@ class PopulationRequest(WPRequest):
 		self._category_ids = list()
 		self._slugs = list()
 		self._tags = list()
+		self._tags_exclude = list()
 
 	@property
 	def parameter_names(self):
@@ -108,6 +109,9 @@ class PopulationRequest(WPRequest):
 
 		if self.tags:
 			self.parameters["tags"] = self.tags
+
+		if self.tags_exclude:
+			self.parameters["tags_exclude"] = self.tags_exclude
 
 		if self.before:
 			self.parameters["before"] = self._before.isoformat()
@@ -361,6 +365,36 @@ class PopulationRequest(WPRequest):
 			elif isinstance(tag_id, str):
 				try:
 					self.tags.append(str(int(tag_id)))
+				except ValueError:
+					raise ValueError("The given tag was in the form of a string but could not be converted to an integer ('{0}').".format(tag_id))
+			else:
+				raise ValueError("Unexpected type for property list 'tags'; expected str or int, got '{0}'".format(type(s)))
+
+	@property
+	def tags_exclude(self):
+		'''
+		Return only items that do not have these tags.
+		'''
+		return self._tags_exclude
+
+	@tags_exclude.setter
+	def tags_exclude(self, values):
+		'''
+		List of tag IDs attached to items to be excluded from query.
+		'''
+		if values is None:
+			self.parameters.pop("tags_exclude", None)
+			self._tags_exclude = list()
+			return
+		elif not isinstance(values, list):
+			raise ValueError("Tags must be provided as a list of IDs (or append to the existing list).")
+
+		for tag_id in values:
+			if isinstance(tag_id, int):
+				self._tags_exclude.append(tag_id)
+			elif isinstance(tag_id, str):
+				try:
+					self._tags_exclude.append(str(int(tag_id)))
 				except ValueError:
 					raise ValueError("The given tag was in the form of a string but could not be converted to an integer ('{0}').".format(tag_id))
 			else:
