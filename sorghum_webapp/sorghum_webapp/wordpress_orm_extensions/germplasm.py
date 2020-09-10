@@ -35,7 +35,7 @@ class Germplasm(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "author",
-				"template"]
+				"template", "grin_link"]
 
 	@property
 	def post_fields(self):
@@ -79,7 +79,7 @@ class Germplasm(WPEntity):
 
 class GermplasmRequest(WPRequest):
 	'''
-	A class that encapsulates requests for WordPress germplasms.
+	A class that encapsulates requests for WordPress germplasm.
 	'''
 	def __init__(self, api=None):
 		super().__init__(api=api)

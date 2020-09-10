@@ -26,14 +26,14 @@
       {% endif %}
       <p><em>{{ paper.s.paper_authors | safe }}</em></p>
       <div class="card mb10">
-          <div class="card-header accordion-header" role="tab" id="heading{{paper.s.id}}">
+          <div class="card-header" role="tab" id="heading{{paper.s.id}}">
               <h5 class="mb-0">
-                  <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{paper.s.id}}" aria-expanded="false" aria-controls="collapse{{paper.s.id}}">
+                  <a href={{paper.s.id}}>
                       ABSTRACT
                   </a>
               </h5>
           </div>
-          <div id="collapse{{paper.s.id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{paper.s.id}}">
+          <div id="{{paper.s.id}}" role="tabpanel" aria-labelledby="heading{{paper.s.id}}">
               <div class="card-body">
                   {{ paper.s.abstract | safe }}
               </div>

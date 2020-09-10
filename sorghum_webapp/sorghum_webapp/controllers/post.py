@@ -5,6 +5,8 @@
 import flask
 from flask import request, render_template
 
+import pandas as pd
+
 import wordpress_orm as wp
 from wordpress_orm import wp_session, exc
 from wordpress_orm.entities import Tag
@@ -107,27 +109,33 @@ def population(slug):
 
 		spr = ScientificPaperRequest(api=api)
 		spr.tags = [tag_id]
-		spr.tags_exclude = [227]	# 227 is the tag ID for "original citation"
+		# spr.tags_exclude = [227]	# 227 is the tag ID for "original citation"
 		tagged_publications = spr.get()
 
-
-
-		cpr = ScientificPaperRequest(api=api)
-		cpr.include = [population[0].s.original_citation]	# 227 is the tag ID for "original citation"
-		citation = cpr.get()
-		print(citation[0])
+		# cpr = ScientificPaperRequest(api=api)
+		# cpr.include = [population[0].s.original_citation]	# 227 is the tag ID for "original citation"
+		# citation = cpr.get()
+		# print(citation[0])
 
 		gr = GermplasmRequest(api=api)
 		gr.tags = [tag_id]
 		tagged_germplasms = gr.get()
 
+		if population[0].s.pop_germplasm:
+			makeup = pd.read_csv(population[0].s.pop_germplasm['guid'])
+			makeup_table = makeup.to_html(classes="table table-bordered")
+			templateDict["germplasm_list"] = makeup_table
+
+		# print(makeup_table)
+
 		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
 
 		templateDict["population"] = population[0]
 		templateDict["related_posts"] = tagged_posts
-		templateDict["citation"] = citation[0]
+		# templateDict["citation"] = citation[0]
 		templateDict["related_publications"] = tagged_publications
 		templateDict["related_germplasms"] = tagged_germplasms
+
 		templateDict["sorghum_grains_image"] = sorghum_grains_image
 
 	return render_template("population.html", **templateDict)
@@ -167,10 +175,12 @@ def genome(slug):
 
 		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
 
-		templateDict["population"] = germplasm[0]
+		templateDict["germplasm"] = germplasm[0]
 		templateDict["related_posts"] = tagged_posts
 		templateDict["related_publications"] = tagged_publications
 		templateDict["related_populations"] = tagged_populations
 		templateDict["sorghum_grains_image"] = sorghum_grains_image
 
-	return render_template("population.html", **templateDict)
+		print(germplasm[0].s.grin_link)
+
+	return render_template("germplasm.html", **templateDict)

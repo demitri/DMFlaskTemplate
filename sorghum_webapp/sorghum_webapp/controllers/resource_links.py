@@ -30,8 +30,6 @@ def resource_links():
 		rl_pr.per_page = 100
 		resources = rl_pr.get()
 
-		
-
 		resources_banner_media = api.media(slug="k-state-sorghum-field-1920x1000")
 		resources_default_image = api.media(slug="sorghum-grains_1920x1000")
 		templateDict["banner_media"] = resources_banner_media
@@ -41,7 +39,16 @@ def resource_links():
 								 wp_api=api,
 								 photos_to_credit=[resources_banner_media])
 
+	type_dataset = [link for link in resources if link.s.resource_category and link.s.resource_category[0] == "Dataset"]
+	type_database = [link for link in resources if link.s.resource_category and link.s.resource_category[0] == "Database"]
+	type_funding = [link for link in resources if link.s.resource_category and link.s.resource_category[0] == "Funding"]
+	type_producer = [link for link in resources if link.s.resource_category and link.s.resource_category[0] == "Producer/farmer"]
+
 	templateDict['resources_list'] = resources
+	templateDict['dataset_links'] = type_dataset
+	templateDict['database_links'] = type_database
+	templateDict['funding_links'] = type_funding
+	templateDict['producer_links'] = type_producer
 
 	wp_logger.debug(" ============= controller finished ============= ")
-	return render_template("resource_links.html", **templateDict)
+	return render_template("resource_links_type.html", **templateDict)

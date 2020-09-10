@@ -35,7 +35,7 @@ class Population(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "author",
-				"template", "original_citation"]
+				"template", "data", "pop_germplasm"]
 
 	@property
 	def post_fields(self):
