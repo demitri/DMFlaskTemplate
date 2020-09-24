@@ -1,0 +1,23 @@
+{
+@context: null,
+metadata: {
+datafiles: [ ],
+status: [ ],
+pagination: {
+pageSize: 0,
+totalCount: 0,
+totalPages: 0,
+currentPage: 0
+}
+},
+result: {
+calls: [],
+contactEmail: "contact@sorghumbase.org",
+documentationURL: "https://brapi.org/specification",
+location: "Cold Spring Harbor, NY, USA",
+organizationName: "Sorghumbase Community",
+organizationURL: "https://sorghumbase.org",
+serverDescription: "Sorghumbase BrAPI Server",
+serverName: "Sorghumbase BrAPI Server"
+}
+}

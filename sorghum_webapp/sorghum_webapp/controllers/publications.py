@@ -61,7 +61,7 @@ def publications():
 					papersWithInfo.append(paper)
 
 		all_keywords = set()
-
+		all_years = []
 		# toggle = True
 		# for paper in papersWithInfo:
 		# 	if toggle:
@@ -81,6 +81,10 @@ def publications():
 
 		papersByDate = sorted(papersWithInfo, reverse=True, key=lambda k: k.s.publication_date)
 
+		for paper in papersByDate:
+			if paper.s.publication_date[:4] not in all_years:
+				all_years.append(paper.s.publication_date[:4])
+
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media
 
@@ -88,7 +92,9 @@ def publications():
 
 	templateDict['papers'] = papersByDate
 	templateDict['keywords'] = all_keywords
+	templateDict['years'] = all_years
 
 	app_logger.debug(" ============= controller finished ============= ")
 
-	return render_template("publications.html", **templateDict)
+	# return render_template("publications.html", **templateDict)
+	return render_template("research_filter.html", **templateDict)

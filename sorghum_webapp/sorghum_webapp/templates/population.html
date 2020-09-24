@@ -16,31 +16,167 @@
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
                 <h1 class='text-uppercase'>{{population.s.title}}</h1>
-
             </div>
         </div>
     </div>
 </div><!--page title end-->
 
 <div class="container pb50">
-    <div class="row justify-content-md-center">
-        <div class="col-md-9 mb40">
-            <article>
+  <div class="row justify-content-md-center">
+    <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+      <!--/col-->
+      <div class="theiaStickySidebar"
+      style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+        <div class="pt50 title">Population</div>
+        <div class="mb40">
 
-              {% if population.s.featured_media %}
-              <img src='{{ population.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
-              {% endif %}
+        <a data-scroll="" href="#description" class="nav-link active">Description</a>
 
-              <div class="population-content">
+        <a data-scroll="" href="#posts" class="nav-link active">Related posts</a>
 
-                  <h3>{{ population.s.title | safe}}</h3>
-  
-                  {{ population.s.content | safe }}
-                  <hr class="mb40">
+        <a data-scroll="" href="#workflows" class="nav-link active">Workflows</a>
 
-              </div>
-            </article><!-- population article-->
+        <a data-scroll="" href="#data" class="nav-link active">Data</a>
+
+        <a data-scroll="" href="#publications" class="nav-link active">Related publications</a>
+
+        <a data-scroll="" href="#germplasm" class="nav-link active">Reference germplasm</a>
+
+        <a data-scroll="" href="#germplasm_table" class="nav-link active">Population makeup</a>
+
         </div>
+      </div>
     </div>
+    <div class="col-md-9 mb40">
+        <article>
+          {% if population.s.featured_media %}
+            <img src='{{ population.featured_media.s.source_url }}' alt='' class='img-fluid mb30'>
+          {% endif %}
+
+          <div id="description" class="population-content">
+              <h3>{{ population.s.title | safe}}</h3>
+                <p>{{ population.s.content | safe }}</p>
+              <hr class="mb40">
+          </div>
+
+          {% if population.s.type == "germplasm" and population.s.grin_link %}
+            <div id="" class="row">
+              <div id="grin_link" class="col-lg-12 col-md-6 mb10">
+                <a href="{{population.s.grin_link}}" class="btn btn-primary mb5">Germplasm info at GRIN</a>
+              </div>
+            </div><hr>
+          {% endif %}
+
+          <!-- {% if population.s.type == "population" and citation %}
+          <h4>Original citation</h4>
+            <div id="citation" class="row">
+              <div id="{{citation.s.paper_title}}" class="col-lg-12 col-md-6 mb10 " data-groups = "{{citation.s.kwl}}">
+                <strong class="mb0">{{ citation.s.title | safe}}</strong>
+                <br>
+                <h6>First published on {{(citation.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
+                <p><em>{{ citation.s.paper_authors | safe }}</em></p>
+                <a href="/paper/{{citation.s.slug}}" class="btn">More details</a>
+              </div>
+            </div><hr>
+          {% endif %} -->
+
+          {% if related_posts %}
+            <div id="posts" class="mb10">
+              <h4>Related posts</h4>
+              {% for post in related_posts %}
+              <!-- <div class="row" id="blog-masonry" style="position: relative;">
+                <article class="post-masonry mb20" style="position: absolute; left: 0px; ">
+                  <div class="card">
+                    <div class="mx10">
+                      <a href="{{post.s.resource_url}}">
+                          <h3 class="masonry-title mb0">{{post.s.title | safe}}</h3>
+                      </a>
+                          <p class="card-text">{{post.s.excerpt | safe}}</p>
+                    </div>
+                  </div>
+                </article>
+              </div> -->
+
+                <div class="card mb10">
+                  <div class="card-body">
+                    <strong><a href="/post/{{post.s.slug}}">{{post.s.title}}</a></strong>
+                    <p class="card-text">{{post.s.excerpt | safe}}</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div><hr>
+          {% endif %}
+
+          <div id="workflows" class="mb10">
+            <h4>Workflows</h4>
+
+            <p>Workflows go here</p>
+          </div><hr>
+
+        {% if population.s.data %}
+          <div id='data' class="mb10">
+            <h4>Data</h4>
+            <p>{{ population.s.data | safe }}</p>
+          <hr class="mb40">
+          <h4>ENSEMBL</h4>
+          <p>ENSEMBL browser tracks</p>
+          <hr class="mb40">
+          </div>
+        {% endif %}
+
+        {% if related_publications %}
+          <div id="publications" class="mb10">
+            <h4>Related publications</h4>
+            {% for paper in related_publications %}
+            <div id="" class="row">
+              <div id="{{paper.s.paper_title}}" class="col-lg-12 col-md-6 mb10 " data-groups = "{{paper.s.kwl}}">
+                <strong class="mb0">{{ paper.s.title | safe}}</strong>
+                <br>
+                <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
+                <p><em>{{ paper.s.paper_authors | safe }}</em></p>
+                <!-- <div class="card mb10">
+                    <div class="card-header accordion-header" role="tab" id="heading{{paper.s.id}}">
+                        <h5 class="mb-0">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{paper.s.id}}" aria-expanded="false" aria-controls="collapse{{paper.s.id}}">
+                                Abstract
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapse{{paper.s.id}}" class="collapse" role="tabpanel" aria-labelledby="heading{{paper.s.id}}">
+                        <div class="card-body">
+                            {{ paper.s.abstract | safe }}
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <p>{{ paper.s.abstract | safe }}</p> -->
+                <a href="/paper/{{paper.s.slug}}"><h6 class="btn btn-outline-secondary">More details</h6></a>
+              </div>
+            </div>
+            {% endfor %}
+          </div><hr>
+        {% endif %}
+
+        {% if related_germplasms %}
+            <div id="germplasm" class="mb10">
+              <h4>Related germplasms</h4>
+              {% for germ in related_germplasms %}
+                <div class="mb10 card">
+                  <div class="card-body">
+                    <a href="/accession/{{germ.s.slug[2:]}}"><h4>{{germ.s.title}}</h4></a>
+                    {{ germ.s.content | safe }}
+                  </div>
+                </div>
+              {% endfor %}
+            </div><hr>
+        {% endif %}
+        </article><!-- population article-->
+        {% if germplasm_list %}
+        <div id="germplasm_table" class="mb10">
+          <h4>Population makeup</h4>
+          {{germplasm_list | safe}}
+        </div>
+        {% endif %}
+    </div>
+  </div>
 </div>
 {% endblock %}

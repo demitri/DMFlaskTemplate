@@ -1,28 +1,26 @@
 
 '''
-
 Custom WordPress object defined using the plugin WordPress Pods.
 
 Ref: https://wordpress.org/plugins/pods/
 '''
-
 import json
 import logging
 import requests
 
 from wordpress_orm import WPEntity, WPRequest, WPORMCacheObjectNotFoundError
-
+from wordpress_orm.entities import Media
 
 logger = logging.getLogger("wordpress_orm")
 
-class ScientificPaper(WPEntity):
+class Germplasm(WPEntity):
 
 	def __init__(self, id=None, api=None):
 		super().__init__(api=api)
 
 		# related objects that need to be cached
-		self._author = None
-		self._category = None
+		#self._author = None
+		#self._category = None
 
 	def __repr__(self):
 		if len(self.s.title) < 11:
@@ -37,51 +35,32 @@ class ScientificPaper(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "author",
-				"template", "tags", "abstract","source_url", "paper_authors",
-				"publication_date", "pubmed_id", "keywords"]
+				"template", "grin_link"]
 
 	@property
 	def post_fields(self):
-		return ["title", "author", "abstract", "source_url", "paper_authors",
-				"publication_date", "pubmed_id", "keywords"]
-
-	def update(self):
 		'''
-		Updates a 'Scientific Paper' object.
+		This method returns a list of properties for creating (POSTing) a new entity to WordPress, e.g. ["date", "slug", ...]
 		'''
+		return list()
 
-		self._data = self.s.__dict__
+	@property
+	def categories(self):
+		'''
+		Returns a list of categories (as Category objects) associated with this post.
+		'''
+		if self._categories is None:
+			self._categories = list()
+			for category_id in self.s.categories:
+				try:
+					self._categories.append(self.api.category(id=category_id))
+				except exc.NoEntityFound:
+					logger.debug("Expected to find category ID={0} from post (ID={1}), but no category found.".format(category_id, self.s.id))
+		return self._categories
 
-		url = self.api.base_url + "scientific_paper" + "/{}".format(self.s.id) + "?context=edit"
-
-		try:
-			super().post(url=url, data=self._data, parameters=self._data)
-			# logger.debug("URL='{}'".format(self.request.url))
-		except requests.exceptions.HTTPError:
-			logger.debug("Post response code: {}".format(self.response.status_code))
-			if self.response.status_code == 400: # bad request
-				logger.debug("URL={}".format(self.response.url))
-				raise exc.BadRequest("400: Bad request. Error: \n{0}".format(json.dumps(self.response.json(), indent=4)))
-			elif self.response.status_code == 404: # not found
-				return None
-
-	# @property
-	# def categories(self):
-	# 	'''
-	# 	Returns a list of categories (as Category objects) associated with this post.
-	# 	'''
-	# 	if self._categories is None:
-	# 		self._categories = list()
-	# 		for category_id in self.s.categories:
-	# 			try:
-	# 				self._categories.append(self.api.category(id=category_id))
-	# 			except exc.NoEntityFound:
-	# 				logger.debug("Expected to find category ID={0} from post (ID={1}), but no category found.".format(category_id, self.s.id))
-	# 	return self._categories
-	#
-	# @property
-	# def category_names(self):
-	# 	return [x.s.name for x in self.categories]
+	@property
+	def category_names(self):
+		return [x.s.name for x in self.categories]
 
 	@property
 	def author(self):
@@ -98,63 +77,34 @@ class ScientificPaper(WPEntity):
 				raise exc.UserNotFound("User ID '{0}' not found.".format(self.author))
 		return self._author
 
-
-class ScientificPaperRequest(WPRequest):
+class GermplasmRequest(WPRequest):
 	'''
-	A class that encapsulates requests for WordPress scientific papers.
+	A class that encapsulates requests for WordPress germplasm.
 	'''
 	def __init__(self, api=None):
 		super().__init__(api=api)
 		self.id = None # WordPress ID
 		self._before = None
 		self._after = None
-		self._per_page = None
+		self._page = None
+		self._per_page= None
 
 		self._status = list()
 		self._category_ids = list()
-		self._include = list()
-		self._excludes = list()
 		self._slugs = list()
 		self._tags = list()
 		self._tags_exclude = list()
 
-		self._data = None
-
 	@property
 	def parameter_names(self):
-		return ["slug", "before", "after", "status", "categories", "title"]
+		return ["slug", "before", "after", "status", "categories"]
 
-	def get(self):
+	def populate_request_parameters(self):
 		'''
-		Returns a list of 'Scientific Paper' objects that match the parameters set in this object.
+		Populates 'self.parameters' to prepare for executing a request.
 		'''
-		self.url = self.api.base_url + "scientific_paper"
-
-		if self.id:
-			self.url += "/{}".format(self.id)
-
-		# -------------------
-		# populate parameters
-		# -------------------
 		if self.slug:
 			self.parameters["slug"] = self.slug
-
-		if self.before:
-			self.parameters["before"] = self._before.isoformat()
-
-		if self.after:
-			self.parameters["after"] = self._after.isoformat()
-
-		# exclude : Ensure result set excludes specific IDs.
-		if len(self.exclude) > 0:
-			self.parameters["exclude"] = ",".join(self.exclude)
-
-		# include : Limit result set to specific IDs.
-		if self.include:
-			self.parameters["include"] = self.include
-
-		if self.per_page:
-			self.parameters["per_page"] = self.per_page
 
 		if self.tags:
 			self.parameters["tags"] = self.tags
@@ -162,10 +112,31 @@ class ScientificPaperRequest(WPRequest):
 		if self.tags_exclude:
 			self.parameters["tags_exclude"] = self.tags_exclude
 
-		# -------------------
+		if self.before:
+			self.parameters["before"] = self._before.isoformat()
+
+		if self.after:
+			self.parameters["after"] = self._after.isoformat()
+
+		if self.page:
+			self.parameters["page"] = self.page
+
+		if self.per_page:
+			self.parameters["per_page"] = self.per_page
+
+	def get(self, class_object=Germplasm, count=False, embed=True):
+		'''
+		Returns a list of 'Germplasm' objects that match the parameters set in this object.
+		'''
+		self.url = self.api.base_url + "germplasm"
+
+		#if self.id:
+		#	self.url += "/{}".format(self.id)
+
+		self.populate_request_parameters()
 
 		try:
-			self.get_response()
+			self.get_response(wpid=self.id)
 			logger.debug("URL='{}'".format(self.request.url))
 		except requests.exceptions.HTTPError:
 			logger.debug("Post response code: {}".format(self.response.status_code))
@@ -175,45 +146,48 @@ class ScientificPaperRequest(WPRequest):
 			elif self.response.status_code == 404: # not found
 				return None
 
-		papers_data = self.response.json()
+		links_data = self.response.json()
 
-		if isinstance(papers_data, dict):
+		if isinstance(links_data, dict):
 			# only one object was returned; make it a list
-			papers_data = [papers_data]
+			links_data = [links_data]
 
-		papers = list()
-		for d in papers_data:
+		links = list()
+		for d in links_data:
 
-			# Before we continue, do we have this ScientificPaper in the cache already?
+			# Before we continue, do we have this Germplasm in the cache already?
 			try:
-				paper = self.api.wordpress_object_cache.get(class_name=ScientificPaper.__name__, key=d["id"])
-				papers.append(paper)
-				continue
+				link = self.api.wordpress_object_cache.get(class_name=class_object.__name__, key=d["id"])
 			except WPORMCacheObjectNotFoundError:
 				# nope, carry on
-				pass
 
-			paper = ScientificPaper(api=self.api)
-			paper.json = json.dumps(d)
+				link = class_object.__new__(class_object)
+				link.__init__(api=self.api)
+				link.json = json.dumps(d)
 
-			paper.update_schema_from_dictionary(d)
+				link.update_schema_from_dictionary(d)
 
-			if "_embedded" in d:
-				logger.debug("TODO: implement _embedded content for ScientificPaper object")
+				# additional processing of related data (not schema fields) goes here
 
-			# add to cache
-			self.api.wordpress_object_cache.set(value=paper, keys=(paper.s.id, paper.s.slug))
+				# unset values are returned as "false", change to "None" in schema
+				for field in link.schema_fields:
+					if getattr(link.s,  field) is False:
+						setattr(link.s, field, None)
 
-			papers.append(paper)
+				if "_embedded" in d:
+					logger.debug("TODO: implement _embedded content for Germplasm object")
 
-		return papers
+				# add to cache
+				self.api.wordpress_object_cache.set(value=link, keys=(link.s.id, link.s.slug))
+			finally:
+				links.append(link)
 
-	@property
-	def data(self):
-		'''
-		The list of post slugs to retrieve.
-		'''
-		return self._data
+		return links
+
+	#def postprocess_response(self, data=None):
+		# do extra stuff
+	#	pass
+
 
 	@property
 	def slugs(self):
@@ -267,7 +241,7 @@ class ScientificPaperRequest(WPRequest):
 		'''
 		return self._after
 
-	@before.setter
+	@after.setter
 	def before(self, value):
 		'''
 		Set the WordPress parameter to return posts before this date.
@@ -326,6 +300,25 @@ class ScientificPaperRequest(WPRequest):
 			# Categories are stored as string ID values.
 			#
 			self._category_ids.append(str(cat_id))
+	@property
+	def page(self):
+		'''
+		Current page of the collection.
+		'''
+		return self._page
+
+	@page.setter
+	def page(self, value):
+		#
+		# only accept integers or strings that can become integers
+		#
+		if isinstance(value, int):
+			self._page = value
+		elif isinstance(value, str):
+			try:
+				self._page = int(value)
+			except ValueError:
+				raise ValueError("The 'page' parameter must be an integer, was given '{0}'".format(value))
 
 	@property
 	def per_page(self):
@@ -345,56 +338,6 @@ class ScientificPaperRequest(WPRequest):
 				self._per_page = int(value)
 			except ValueError:
 				raise ValueError("The 'per_page' parameter must be an integer, was given '{0}'".format(value))
-
-	@property
-	def exclude(self):
-		return self._excludes
-
-	@exclude.setter
-	def exclude(self, values):
-		'''
-		List of WordPress IDs to exclude from a search.
-		'''
-		if values is None:
-			self.parameters.pop("exclude", None)
-			self._excludes = list()
-			return
-		elif not isinstance(values, list):
-			raise ValueError("'excludes' must be provided as a list (or append to the existing list).")
-
-		for exclude_id in values:
-			if isinstance(exclude_id, int):
-				self._excludes.append(str(exclude_id))
-			elif isinstance(exclude_id, str):
-				try:
-					self._include.append(str(int(exclude_id)))
-				except ValueError:
-					raise ValueError("The WordPress ID (an integer, '{0}' given) must be provided to limit result to specific users.".format(exclude_id))
-
-	@property
-	def include(self):
-		return self._include
-
-	@include.setter
-	def include(self, values):
-		'''
-		Limit result set to specified WordPress user IDs, provided as a list.
-		'''
-		if values is None:
-			self.parameters.pop("include", None)
-			self._include = list()
-			return
-		elif not isinstance(values, list):
-			raise ValueError("include must be provided as a list (or append to the existing list).")
-
-		for include_id in values:
-			if isinstance(include_id, int):
-				self._include.append(str(include_id))
-			elif isinstance(include_id, str):
-				try:
-					self._include.append(str(int(include_id)))
-				except ValueError:
-					raise ValueError("The WordPress ID (an integer, '{0}' given) must be provided to limit result to specific users.".format(include_id))
 
 	@property
 	def tags(self):

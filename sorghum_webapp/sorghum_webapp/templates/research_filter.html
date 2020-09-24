@@ -15,24 +15,24 @@
 </div><!--page title end-->
 <div class="container pt90">
   <div class="row">
-    <div class="col-lg-12 col-md-6">
-      <div class="filters-group-wrap">
+    <div class="col-lg-10 col-md-6">
+      <!-- <div class="filters-group-wrap"> -->
         <div class="filters-group ">
-          <p>Filter on keyword:</p>
-          <div class="filter-options">
-            {% for kw in keywords %}
-              <button class="btn btn-xs btn-outline-primary" data-group='{{kw}}'>{{kw}}</button>
+          <p>Filter on year of publication:</p>
+          <div class="btn-group filter-options">
+            {% for year in years %}
+              <button class="btn btn-xs btn-outline-primary" data-group='{{year}}'>{{year}}</button>
             {% endfor %}
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
 <div class="container pt90 ">
   <div id="grid" class="row my-shuffle-container">
   {% for paper in papers %}
-    <div id="{{paper.s.paper_title}}" class="col-lg-12 col-md-6 mb50 shuffle-item" data-groups= '{{paper.s.keywords}}'>
+    <div id="{{paper.s.paper_title}}" class="col-lg-12 col-md-6 mb50 shuffle-item" data-groups= '{{paper.s.publication_date[:4]}}'>
       <h4 class="mb0 text-uppercase">{{ paper.s.title | safe}}</h4>
       <br>
       <h6>First published on {{(paper.s.publication_date|str2datetime).strftime('%-d %B %Y')}}</h6>
@@ -62,6 +62,4 @@
   </div>
 </div>
 
-<script type="text/javascript" src="{{request.script_root}}/static/js/shuffle.js"></script>
-<script type="text/javascript" src="{{request.script_root}}/static/js/research_page.js"></script>
 {% endblock %}

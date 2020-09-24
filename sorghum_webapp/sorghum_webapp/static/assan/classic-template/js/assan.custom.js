@@ -416,6 +416,7 @@ $(document).keyup(function(e) {
     var $container = $('#blog-masonry');
     $container.imagesLoaded(function () {
         $container.masonry({
+            // columnWidth: 200,
             itemSelector: '.post-masonry'
         });
     });

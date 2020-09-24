@@ -10,73 +10,114 @@ def add_link(menu, label, link):
 def news():
     menu = make_menu('News')
     add_link(menu, 'News', '/posts?categories=news')
-    add_link(menu, 'Events', '/events')
+    add_link(menu, 'Meetings & Events', '/events')
+    add_link(menu, 'Job Postings', '/jobs')
     add_link(menu, 'Publications', '/publications')
+    add_link(menu, 'Release Notes', '/#')
     return menu
 
-def community():
-    menu = make_menu('Community')
+def engage():
+    menu = make_menu('Engage')
     add_link(menu, 'Research Notes', '/posts?categories=researchnote')
-    add_link(menu, 'People', '/people')
+    add_link(menu, 'Office Hours', '/#')
     add_link(menu, 'Mailing List', '/mailing_list')
     return menu
 
-def resources():
-    menu = make_menu('Resources')
-    add_link(menu, 'Links', '/resource_links')
-    add_link(menu, 'Tools', '/posts?categories=tools')
-    add_link(menu, 'Tutorials', '/posts?categories=tutorials')
-    add_link(menu, 'Projects', '/projects')
+def germplasm():
+    ref = make_menu('Reference')
+    add_link(ref, 'BTx623 - PI 564163', '/accession/btx623')
+    add_link(ref, 'Rio - PI 651496', '/accession/rio')
+    add_link(ref, 'RTx430 - PI 655996', '/accession/rtx430')
+    add_link(ref, 'RTx436 - PI 561071', '/accession/rtx436')
+    add_link(ref, 'Tx2783 - PI 656001', '/accession/tx2783')
+
+    reseq = make_menu('Resequencing')
+
+
+    association = make_menu('Association Panels')
+    add_link(association, 'World Core Collection', '/population/world-core')
+    add_link(association, 'Mini Core Collection', '/population/mini-core')
+    add_link(association, 'Sorghum Association Panel', '/population/sap')
+    add_link(association, 'Bioenergy Association Panel', '/population/bap')
+    add_link(association, 'SCP + Exotic parents', '/population/scp-exotic')
+    add_link(association, 'Expanded SCP Lines', '/population/expanded-scp')
+    add_link(association, 'Nigerian Diversity Panel', '/population/nigeria-div')
+
+    other = make_menu('Other Populations')
+    add_link(other, 'Xin EMS', '/population/xin-ems')
+    add_link(other, 'Weil EMS', '/population/weil-ems')
+    add_link(other, 'Klein BC-NAM', '/population/klein-nam')
+    add_link(other, 'Kresovich NAM', '/population/kresovich-nam')
+    add_link(other, 'Mace BC-NAM', '/population/mace-nam')
+
+    menu = make_menu('Germplasm','mega')
+    menu['categories'] = [ref, reseq, association, other]
+
     return menu
+
+# def learn():
+#     menu = make_menu('Learn')
+#     add_link(menu, 'Tutorials (workflows)', '/#')
+#     add_link(menu, 'Webinars', '/#')
+#     add_link(menu, 'FAQ', '/#')
+#
+#     return menu
+
+def community_resources():
+    projects = make_menu('Projects')
+    add_link(projects, 'EMS', '#')
+    add_link(projects, 'Sequencing projects - SAP', '#')
+
+    databases = make_menu('Databases')
+    add_link(databases, 'NCBI GEO', '#')
+    add_link(databases, 'SorghumFDB', '#')
+    add_link(databases, 'Grassius', '#')
+    add_link(databases, 'GrainGenes', '#')
+    add_link(databases, 'GRIN Global', '#')
+    add_link(databases, 'Crop-PAL2', '#')
+    add_link(databases, 'OZ Sorghum', '#')
+    add_link(databases, 'Morokoshi Sorghum Transcription DB', '#')
+
+    tools = make_menu('Tools')
+    add_link(tools, 'Ensembl Browser', '#')
+    add_link(tools, 'Gene Search', '#')
+    add_link(tools, 'BLAST', '#')
+    add_link(tools, 'SciApps', '#')
+    add_link(tools, 'AgriGO', '#')
+
+    platforms = make_menu('Platforms/Portals')
+    add_link(platforms, 'Gramene', '#')
+    add_link(platforms, 'CyVerse', '#')
+    add_link(platforms, 'AgBioData', '#')
+    add_link(platforms, 'JGI Phytozome', '#')
+    add_link(platforms, 'MaizeGDB', '#')
+
+    menu = make_menu('Community Resources','mega')
+    menu['categories'] = [projects, databases, tools, platforms]
+    return menu
+
+# def resources():
+#     menu = make_menu('Community Resources')
+#     add_link(menu, 'Links', '/resource_links')
+#     add_link(menu, 'Tools', '/posts?categories=tools')
+#     add_link(menu, 'Tutorials', '/posts?categories=tutorials')
+#     add_link(menu, 'Projects', '/projects')
+#     return menu
 
 def about():
     menu = make_menu('About')
     add_link(menu, 'Mission Statement', '/mission-statement')
+    add_link(menu, 'Team', '/people')
     add_link(menu, 'FAQ', '/faq')
     add_link(menu, 'Contact Us', '/contact')
     return menu
 
-def germplasms():
-    ref = make_menu('Reference')
-    add_link(ref, 'BTx623 - PI 564163', '/genome/btx623')
-    add_link(ref, 'Rio - PI 651496', '/genome/rio')
-
-    # sap = make_menu('SAP')
-    # add_link(sap, 'RTx430 - PI 655996 ', '#')
-    # add_link(sap, 'RTx436 - PI 561071 ', '#')
-    # add_link(sap, 'BTx2783 - PI 656001 ', '#')
-    #
-    # bap = make_menu('BAP')
-    # add_link(bap, 'Chinese Amber - PI 22913 ', '#')
-    # add_link(bap, 'Grassl - PI 154844 ', '#')
-    # add_link(bap, 'PI 229841 ', '#')
-    # add_link(bap, 'PI 297155 ', '#')
-    # add_link(bap, 'PI 506069 ', '#')
-    # add_link(bap, 'PI 510757 ', '#')
-    # add_link(bap, 'PI 655972 ', '#')
-    #
-    # other = make_menu('Other')
-    # add_link(other, 'Leoti - PI 641825 ', '#')
-    # add_link(other, 'PI 329311 ', '#')
-    # add_link(other, 'PI 300119 - S. Verticiliflorum ', '#')
-
-    association = make_menu('Association Panels')
-    add_link(association, 'SAP', '/population/sorghum-association-panel')
-    add_link(association, 'BAP', '#')
-
-    TIL = make_menu('TILLING Populations')
-    add_link(TIL, 'Xin EMS Population', '/population/xin-ems')
-    add_link(TIL, 'Weil EMS Population', '#')
-
-    NAM = make_menu('NAM populations')
-    add_link(NAM, 'Klein NAM population', '#')
-    add_link(NAM, 'Kresovich NAM population', '#')
-
-    menu = make_menu('Germplasms','mega')
-    # menu['categories'] = [ref,sap,bap,other]
-    menu['categories'] = [ref, association, TIL, NAM]
-
+def support():
+    menu = make_menu('Support')
+    add_link(menu, 'New to SorghumBase', '#')
+    add_link(menu, 'Troubleshooting', '#')
+    add_link(menu, 'Help Board', '#')
     return menu
 
 def navbar_template(activemenu='NA'):
-    return {'navbar': [news(), community(), germplasms(), resources(), about()],'activemenu':activemenu}
+    return {'navbar': [news(), engage(), germplasm(), community_resources(), about()],'activemenu':activemenu}

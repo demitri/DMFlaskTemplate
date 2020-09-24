@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block title %}Page Title{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-md bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{banner_media.s.source_url}}")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1 class='text-uppercase'>Resources</h1>
+
+             </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-faded">
+  <div class="container pt90 mb30">
+    <div class="row">
+      <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
+           style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+          <!--/col-->
+          <div class="theiaStickySidebar"
+               style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+
+              <div class="pt50 title">Resource types</div>
+
+              <div class="mb40">
+                    <a href="#datasets" class="nav-link">Datasets</a>
+                    <a href="#databases" class="nav-link">Databases</a>
+                    <a href="#funding" class="nav-link">Funding</a>
+                    <a href="#producers" class="nav-link">Producer/Farmer</a>
+
+              </div>
+          </div>
+      </div>
+
+      <div class="col-lg-10 col-med-5">
+        {% if dataset_links[0] %}
+        <h4>Datasets</h4>
+          <div class="row" id="datasets">
+
+          {% for resource in dataset_links %}
+          <article class="col-md-5 mb10">
+            <div class="card">
+              <div class="mx10">
+                <a href="{{resource.s.resource_url}}">
+                  {% if resource.resource_image is not none %}
+                  <img src="{{resource.resource_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% else %}
+                  <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% endif %}
+                    <h3 class="masonry-title mb0">{{resource.s.title | safe}}</h3>
+                </a>
+                    <p class="card-text">{{resource.s.content | safe}}</p>
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if database_links[0] %}
+        <h4>Databases</h4>
+          <div class="row" id="databases">
+
+          {% for resource in database_links %}
+          <article class="col-md-5 mb10">
+            <div class="card">
+              <div class="mx10">
+                <a href="{{resource.s.resource_url}}">
+                  {% if resource.resource_image is not none %}
+                  <img src="{{resource.resource_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% else %}
+                  <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% endif %}
+                    <h3 class="masonry-title mb0">{{resource.s.title | safe}}</h3>
+                </a>
+                    <p class="card-text">{{resource.s.content | safe}}</p>
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if funding_links[0] %}
+        <h4>Funding</h4>
+          <div class="row" id="funding">
+
+          {% for resource in funding_links %}
+          <article class="col-md-5 mb10">
+            <div class="card">
+              <div class="mx10">
+                <a href="{{resource.s.resource_url}}">
+                  {% if resource.resource_image is not none %}
+                  <img src="{{resource.resource_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% else %}
+                  <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% endif %}
+                    <h3 class="masonry-title mb0">{{resource.s.title | safe}}</h3>
+                </a>
+                    <p class="card-text">{{resource.s.content | safe}}</p>
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if producer_links[0] %}
+        <h4>Producers</h4>
+          <div class="row" id="producers">
+
+          {% for resource in producer_links %}
+          <article class="col-md-5 mb10">
+            <div class="card">
+              <div class="mx10">
+                <a href="{{resource.s.resource_url}}">
+                  {% if resource.resource_image is not none %}
+                  <img src="{{resource.resource_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% else %}
+                  <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                  {% endif %}
+                    <h3 class="masonry-title mb0">{{resource.s.title | safe}}</h3>
+                </a>
+                    <p class="card-text">{{resource.s.content | safe}}</p>
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

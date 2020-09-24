@@ -5,14 +5,20 @@
 import flask
 from flask import request, render_template
 
+import pandas as pd
+
 import wordpress_orm as wp
 from wordpress_orm import wp_session, exc
+from wordpress_orm.entities import Tag
 
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
 from .navbar import navbar_template
 from .footer import populate_footer_template
+from ..wordpress_orm_extensions.germplasm import GermplasmRequest
+from ..wordpress_orm_extensions.population import PopulationRequest
+from ..wordpress_orm_extensions.scientific_paper import ScientificPaperRequest
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 
@@ -86,40 +92,95 @@ def population(slug):
 	with api.Session():
 
 		try:
-			post = api.post(slug=slug)
+			population_request = PopulationRequest(api=api)
+			population_request.slug = [slug]
+			population = population_request.get()
 		except exc.NoEntityFound:
 			# TODO return top level posts page
-			raise Exception("Return top level posts page, maybe with an alert of 'post not found'.")
+			raise Exception("Population not found.")
+
+		new_tag = Tag(api=api)
+		new_tag.s.name = slug
+		tag_id = str(new_tag.post)
+
+		pr = api.PostRequest()
+		pr.tags = [tag_id]
+		tagged_posts = pr.get()
+
+		spr = ScientificPaperRequest(api=api)
+		spr.tags = [tag_id]
+		# spr.tags_exclude = [227]	# 227 is the tag ID for "original citation"
+		tagged_publications = spr.get()
+
+		# cpr = ScientificPaperRequest(api=api)
+		# cpr.include = [population[0].s.original_citation]	# 227 is the tag ID for "original citation"
+		# citation = cpr.get()
+		# print(citation[0])
+
+		gr = GermplasmRequest(api=api)
+		gr.tags = [tag_id]
+		tagged_germplasms = gr.get()
+
+		if population[0].s.pop_germplasm:
+			makeup = pd.read_csv(population[0].s.pop_germplasm['guid'])
+			makeup_table = makeup.to_html(classes="table table-bordered")
+			templateDict["germplasm_list"] = makeup_table
+
+		# print(makeup_table)
 
 		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
 
-		templateDict["population"] = post
-		templateDict["sorghum_grains_image"] = sorghum_grains_image
-		print(post.categories)
+		templateDict["population"] = population[0]
+		templateDict["related_posts"] = tagged_posts
+		# templateDict["citation"] = citation[0]
+		templateDict["related_publications"] = tagged_publications
+		templateDict["related_germplasms"] = tagged_germplasms
 
+		templateDict["sorghum_grains_image"] = sorghum_grains_image
 
 	return render_template("population.html", **templateDict)
 
-@genome_page.route('/genome/<slug>')
+@genome_page.route('/accession/<slug>')
 def genome(slug):
 	'''
-	This page displays a post describing a genome.
+	This page displays a post describing a germplasm.
 	'''
 	templateDict = navbar_template()
 
 	with api.Session():
 
 		try:
-			post = api.post(slug=slug)
+			germplasm_request = GermplasmRequest(api=api)
+			germplasm_request.slug = ["g-" + slug]
+			germplasm = germplasm_request.get()
 		except exc.NoEntityFound:
 			# TODO return top level posts page
-			raise Exception("Return top level posts page, maybe with an alert of 'post not found'.")
+			raise Exception("Germplasm not found.")
+
+		new_tag = Tag(api=api)
+		new_tag.s.name = slug
+		tag_id = str(new_tag.post)
+
+		pr = api.PostRequest()
+		pr.tags = [tag_id]
+		tagged_posts = pr.get()
+
+		spr = ScientificPaperRequest(api=api)
+		spr.tags = [tag_id]
+		tagged_publications = spr.get()
+
+		popr = PopulationRequest(api=api)
+		popr.tags = [tag_id]
+		tagged_populations = popr.get()
 
 		sorghum_grains_image = api.media(slug="sorghum-grains_1920x1000")
 
-		templateDict["population"] = post
+		templateDict["germplasm"] = germplasm[0]
+		templateDict["related_posts"] = tagged_posts
+		templateDict["related_publications"] = tagged_publications
+		templateDict["related_populations"] = tagged_populations
 		templateDict["sorghum_grains_image"] = sorghum_grains_image
-		print(post.categories)
 
+		print(germplasm[0].s.grin_link)
 
-	return render_template("population.html", **templateDict)
+	return render_template("germplasm.html", **templateDict)

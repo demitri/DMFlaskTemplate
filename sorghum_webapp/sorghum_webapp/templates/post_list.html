@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block page_title %}Sorghum Portal{% endblock %}
+{% block additional_header %}{% endblock %}
+{% block content %}
+
+<div class="page-titles-img title-space-md parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}'
+    style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+  <div class="container">
+    <div class="row">
+      <div class=" col-md-12">
+        <h1 class="text-uppercase">{{post_type}}</h1>
+      </div>
+    </div>
+  </div>
+</div><!--page title end-->
+<div class="container pt60 pb50">
+  <div class="row">
+    <div class="col-lg-3 col md-1 mb40 sticky-sidebar d-none d-sm-block" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+      <div class="theiaStickySidebar" style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+        <div class="pt50 title">{{post_type}}</div>
+        <div class="mb40">
+          {% for post in posts %}
+            <a data-scroll="" href="#{{post.s.title}}" class="nav-link active">{{post.s.title}}</a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div id='postList' class="">
+        {% for post in posts %}
+          <article id='{{post.s.title}}' class="article-post mb70">
+            <div class="post-content">
+              <a href="#"><h2 class="post-title">{{post.s.title}}</h2></a>
+              <ul class="post-meta list-inline">
+                <li class="list-inline-item">
+                  <i class="fa fa-tags"></i> <a href="#">Sorghum</a>
+                </li>
+              </ul>
+              {% if post_type == "Posts" %}
+                <a href="/post/{{post.slug}}" class="btn btn-outline-secondary">Read More</a>
+              {% elif post_type == "Populations" %}
+                <a href="/population/{{post.s.slug[2:]}}" class="btn btn-outline-secondary">Read More</a>
+              {% elif post_type == "Germplasms" %}
+                <a href="/accession/{{post.s.slug[2:]}}" class="btn btn-outline-secondary">Read More</a>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
