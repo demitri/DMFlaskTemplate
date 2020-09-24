@@ -3,27 +3,26 @@ import { bundles as sorghumBundles } from 'sorghum-search'
 import { bundles as grameneBundles } from 'gramene-search'
 import UIbundle from './searchUI'
 import cache from "../utils/cache"
+const initialState = require('../../config.json');
 
-const URLs = {
-  name: 'URLs',
+
+const config = {
+  name: 'config',
   getReducer: () => {
-    const initialState = {
-      ensemblSite: '//ensembl.gramene.org',
-      grameneData: '//data.gramene.org'
-    };
     return (state = initialState, {type, payload}) => {
       return state;
     }
   },
-  selectEnsemblURL: state => state.URLs.ensemblSite,
-  selectGrameneAPI: state => state.URLs.grameneData
+  selectEnsemblURL: state => state.config.ensemblSite,
+  selectGrameneAPI: state => state.config.grameneData,
+  selectTargetTaxonId: state => state.config.targetTaxonId
 };
 
 const bundle = composeBundles(
   ...sorghumBundles,
   ...grameneBundles,
   UIbundle,
-  URLs,
+  config,
   createCacheBundle(cache.set)
 );
 
