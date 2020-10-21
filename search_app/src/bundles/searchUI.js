@@ -189,17 +189,17 @@ const UIbundle = {
   selectSorghumSuggestionsStatus: state => {
     let matches=0;
     let loading=0;
-    if (state.sorghumPostsSuggestions.data) matches += state.sorghumPostsSuggestions.data.numFound;
+    if (state.sorghumPostsSuggestions && state.sorghumPostsSuggestions.data) matches += state.sorghumPostsSuggestions.data.numFound;
     else loading++;
-    if (state.sorghumProjectsSuggestions.data) matches += state.sorghumProjectsSuggestions.data.numFound;
+    if (state.sorghumProjectsSuggestions && state.sorghumProjectsSuggestions.data) matches += state.sorghumProjectsSuggestions.data.numFound;
     else loading++;
-    if (state.sorghumLinksSuggestions.data) matches += state.sorghumLinksSuggestions.data.numFound;
+    if (state.sorghumLinksSuggestions && state.sorghumLinksSuggestions.data) matches += state.sorghumLinksSuggestions.data.numFound;
     else loading++;
-    if (state.sorghumPeopleSuggestions.data) matches += state.sorghumPeopleSuggestions.data.numFound;
+    if (state.sorghumPeopleSuggestions && state.sorghumPeopleSuggestions.data) matches += state.sorghumPeopleSuggestions.data.numFound;
     else loading++;
-    if (state.sorghumEventsSuggestions.data) matches += state.sorghumEventsSuggestions.data.numFound;
+    if (state.sorghumEventsSuggestions && state.sorghumEventsSuggestions.data) matches += state.sorghumEventsSuggestions.data.numFound;
     else loading++;
-    if (state.sorghumPapersSuggestions.data) matches += state.sorghumPapersSuggestions.data.numFound;
+    if (state.sorghumPapersSuggestions && state.sorghumPapersSuggestions.data) matches += state.sorghumPapersSuggestions.data.numFound;
     else loading++;
     return loading ? 'loading' : `${matches} match${matches !== 1 ? 'es' : ''}`;
   }
