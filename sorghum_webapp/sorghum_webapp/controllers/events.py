@@ -44,7 +44,7 @@ def events():
 				futureEvents.append(e)
 
 		sortedFutureEvents = sorted(futureEvents, reverse=past, key=lambda k: k.s.start_date)
-		sortedPastEvents = sorted(pastEvents, reverse=past, key=lambda k: k.s.start_date)
+		sortedPastEvents = sorted(pastEvents, reverse=True, key=lambda k: k.s.start_date)
 
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media
