@@ -1,15 +1,15 @@
 import { composeBundles, createCacheBundle } from 'redux-bundler'
-import { bundles as sorghumBundles } from 'sorghum-search'
-import { bundles as grameneBundles } from 'gramene-search'
+import sorghumBundles from '../../sorghum-search/bundles'
+import grameneBundles from '../../gramene-search/bundles'
 import UIbundle from './searchUI'
 import cache from "../utils/cache"
-const initialState = require('../../config.json');
+import initialState from '../../config.json';
 
 
 const config = {
   name: 'config',
   getReducer: () => {
-    return (state = initialState, {type, payload}) => {
+    return (state = initialState) => {
       return state;
     }
   },

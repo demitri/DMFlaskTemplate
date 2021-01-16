@@ -192,5 +192,8 @@ Demo.prototype._handleSearchKeyup = function (evt) {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  window.demo = new Demo(document.getElementById('grid'));
+  var el_grid = document.getElementById('grid');
+  if (el_grid) {
+    window.demo = new Demo(el_grid);
+  }
 });

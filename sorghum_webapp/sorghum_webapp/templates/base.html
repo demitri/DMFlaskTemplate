@@ -51,6 +51,14 @@
             gtag('config', 'UA-1624628-14');
         </script>
 
+        <script>
+          window.gramene = {};
+          gramene.defaultServer = 'https://data.sorghumbase.org/sorghum2/swagger';
+        </script>
+        <script async src="{{request.script_root}}/static/gramene-dalliance/dalliance-all.js"></script>
+        <script async src="https://plantreactome.gramene.org/DiagramJs/diagram/diagram.nocache.js"></script>
+
+
         {% block additional_header %}{% endblock %}
     </head>
 

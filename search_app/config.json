@@ -1,5 +1,5 @@
 {
-  "ensemblSite" :  "//ensembl-dev.gramene.org",
-  "grameneData":  "//devdata.gramene.org/sorghum1",
+  "ensemblSite" :  "//banon:88",
+  "grameneData":  "https://data.sorghumbase.org/sorghum2",
   "targetTaxonId": 4558
 }

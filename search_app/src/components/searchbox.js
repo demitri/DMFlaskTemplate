@@ -18,11 +18,13 @@ const SearchBox = connect(
     SearchBoxCmp
 );
 
-export default (store) => {
+const Sbox = (store) => {
     return (
         <Provider store={store}>
             <SearchBox/>
         </Provider>
     )
-}
+};
+
+export default Sbox;
 

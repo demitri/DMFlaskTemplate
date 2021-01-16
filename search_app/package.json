@@ -1,45 +1,40 @@
 {
   "name": "sorghumbase-meta-search",
   "version": "1.0.0",
-  "description": "meta search interface for sorghumbase",
-  "main": "index.js",
-  "scripts": {
-    "start": "parcel ./src/index.html",
-    "build": "parcel build -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js",
-    "watch": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js",
-    "build-searchbar": "parcel build -d ../sorghum_webapp/sorghum_webapp/static/js/ -o searchbar.js src/searchbar.js",
-    "watch-searchbar": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o searchbar.js src/searchbar.js"
-  },
+  "description": "search",
   "author": "Andrew Olson",
   "license": "MIT",
-  "dependencies": {
-    "bootstrap": "^4.4.1",
-    "desandro-matches-selector": "^2.0.2",
-    "ev-emitter": "^1.1.1",
-    "fizzy-ui-utils": "^2.0.7",
-    "get-size": "^2.0.3",
-    "gramene-search": "^1.1.8",
-    "internal-nav-helper": "1.0.2",
-    "jquery": "^3.4.1",
-    "money-clip": "2.0.0",
-    "outlayer": "^2.1.1",
-    "querystringify": "^2.0.0",
-    "react": "16.12.0",
-    "react-bootstrap": "^1.0.0-beta.16",
-    "react-debounce-input": "^3.2.0",
-    "react-dom": "^16.12.0",
-    "redux-bundler": "^21.0.0",
-    "redux-bundler-react": "^1.0.1",
-    "sorghum-search": "^1.1.5"
+  "scripts": {
+    "build": "parcel build ./src/index.js",
+    "prepare": "npm run build",
+    "watch": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js"
   },
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "parcel-bundler": "^1.10.1"
+  "dependencies": {
+    "gramene-dbxrefs": "^3.0.4",
+    "gramene-genetree-vis": "ajo2995/gramene-genetree-vis#nam",
+    "gramene-trees-client": "^2.5.6",
+    "lodash": "^4.17.15",
+    "money-clip": "^3.0.2",
+    "querystringify": "^2.2.0",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-debounce-input": "^3.2.3",
+    "react-dom": "16.14.0",
+    "react-ga": "^2.7.0",
+    "react-icons": "^4.1.0",
+    "react-tree-menu": "github:ajo2995/react-tree-menu",
+    "redux-bundler": "21.0.0",
+    "redux-bundler-react": "1.0.1"
   },
   "prettier": {
     "singleQuote": true,
     "semi": false
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "node-sass": "^4.9.3",
+    "parcel-bundler": "^1.12.4"
   }
 }

@@ -2,8 +2,8 @@ import React from 'react'
 import { Provider, connect } from 'redux-bundler-react'
 import { DebounceInput } from 'react-debounce-input'
 import { Nav, Tab, Row, Col } from 'react-bootstrap'
-import { suggestions as SorghumSummary } from 'sorghum-search'
-import { suggestions as GrameneSummary } from 'gramene-search'
+import SorghumSummary from '../../sorghum-search/suggestions'
+import GrameneSummary from '../../gramene-search/components/suggestions'
 
 const handleKey = (e, props) => {
   if (e.key === "Escape") {
@@ -53,7 +53,7 @@ const ResultsCmp = props => {
 
     let genesStatus = props.grameneSuggestionsStatus === 'loading' ? spinner : props.grameneSuggestionsStatus;
     let siteStatus = props.sorghumSuggestionsStatus === 'loading' ? spinner :
-      <button onClick={e=>props.doAcceptSorghumSuggestion(`q=${props.suggestionsQuery}`)}>
+      <button onClick={()=>props.doAcceptSorghumSuggestion(`q=${props.suggestionsQuery}`)}>
         {props.sorghumSuggestionsStatus}
       </button>;
     return (
@@ -112,7 +112,7 @@ const Results = connect(
   ResultsCmp
 );
 
-export default (store) => {
+const Searcher = (store) => {
     return (
         <Provider store={store}>
           <div>
@@ -121,5 +121,6 @@ export default (store) => {
           </div>
         </Provider>
     )
-}
+};
 
+export default Searcher;

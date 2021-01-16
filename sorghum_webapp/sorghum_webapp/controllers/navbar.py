@@ -23,6 +23,15 @@ def engage():
     add_link(menu, 'Mailing List', '/mailing_list')
     return menu
 
+def genomes():
+    ref = make_menu('Genomes')
+    add_link(ref, 'BTx623 - PI 564163', '/accession/btx623')
+    add_link(ref, 'Rio - PI 651496', '/accession/rio')
+    add_link(ref, 'RTx430 - PI 655996', '/accession/rtx430')
+    add_link(ref, 'RTx436 - PI 561071', '/accession/rtx436')
+    add_link(ref, 'Tx2783 - PI 656001', '/accession/tx2783')
+    return ref
+
 def germplasm():
     ref = make_menu('Reference')
     add_link(ref, 'BTx623 - PI 564163', '/accession/btx623')
@@ -62,6 +71,13 @@ def germplasm():
 #     add_link(menu, 'FAQ', '/#')
 #
 #     return menu
+
+def tools():
+   menu = make_menu('Tools')
+   add_link(menu, 'Gene Search','/genes/')
+   add_link(menu, 'Genome Browser','http://banon.cshl.edu:88')
+   add_link(menu, 'BLAST','#')
+   return menu
 
 def community_resources():
     projects = make_menu('Projects')
@@ -120,4 +136,5 @@ def support():
     return menu
 
 def navbar_template(activemenu='NA'):
-    return {'navbar': [news(), engage(), germplasm(), community_resources(), about()],'activemenu':activemenu}
+    return {'navbar': [news(), engage(), genomes(), tools(), community_resources(), about()],'activemenu':activemenu}
+#     return {'navbar': [news(), engage(), germplasm(), community_resources(), about()],'activemenu':activemenu}

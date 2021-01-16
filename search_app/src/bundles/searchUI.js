@@ -115,7 +115,7 @@ const UIbundle = {
 
     possiblyFetch(cat, delta);
   },
-  doChangeSuggestionsQuery: query => ({dispatch, getState}) => {
+  doChangeSuggestionsQuery: query => ({dispatch}) => {
     dispatch({
       type: 'BATCH_ACTIONS', actions: [
         ...clearSuggestions,
@@ -123,7 +123,7 @@ const UIbundle = {
       ]
     });
   },
-  doClearSuggestions: () => ({dispatch, getState}) => {
+  doClearSuggestions: () => ({dispatch}) => {
     document.getElementById('sorghumbase-searchbar-parent').classList.remove('search-visible');
     dispatch({
       type: 'BATCH_ACTIONS', actions: clearSuggestions
@@ -194,8 +194,6 @@ const UIbundle = {
     if (state.sorghumProjectsSuggestions && state.sorghumProjectsSuggestions.data) matches += state.sorghumProjectsSuggestions.data.numFound;
     else loading++;
     if (state.sorghumLinksSuggestions && state.sorghumLinksSuggestions.data) matches += state.sorghumLinksSuggestions.data.numFound;
-    else loading++;
-    if (state.sorghumPeopleSuggestions && state.sorghumPeopleSuggestions.data) matches += state.sorghumPeopleSuggestions.data.numFound;
     else loading++;
     if (state.sorghumEventsSuggestions && state.sorghumEventsSuggestions.data) matches += state.sorghumEventsSuggestions.data.numFound;
     else loading++;
