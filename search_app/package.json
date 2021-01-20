@@ -10,8 +10,11 @@
     "watch": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js"
   },
   "dependencies": {
+    "gramene-bins-client": "^2.2.14",
     "gramene-dbxrefs": "^3.0.4",
     "gramene-genetree-vis": "ajo2995/gramene-genetree-vis#nam",
+    "gramene-search-vis": "warelab/gramene-search-vis#upgrade-react",
+    "gramene-taxonomy-with-genomes": "^3.0.10",
     "gramene-trees-client": "^2.5.6",
     "lodash": "^4.17.15",
     "money-clip": "^3.0.2",
