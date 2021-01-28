@@ -1230,8 +1230,8 @@ Assan Header Style
       color: rgba(255, 255, 255, 0.7); }
       .navbar.navbar-transparent .navbar-right-elements .list-inline > li > a:hover {
         color: white; }
-    .navbar.navbar-transparent.nav-sticky.nav-stick-top .active .nav-link, .navbar.navbar-transparent.nav-sticky.nav-stick-top .nav-item.show .nav-link {
-      color: #FBBB19 !important; }
+    /*.navbar.navbar-transparent.nav-sticky.nav-stick-top .active .nav-link, .navbar.navbar-transparent.nav-sticky.nav-stick-top .nav-item.show .nav-link {*/
+      /*color: #FBBB19 !important; }*/
   /**header sticky**/
   .navbar.navbar-transparent.nav-sticky .navbar-brand .logo {
     position: absolute;

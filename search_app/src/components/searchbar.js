@@ -1,7 +1,7 @@
 import React from 'react'
 import { Provider, connect } from 'redux-bundler-react'
 import { DebounceInput } from 'react-debounce-input'
-import { Nav, Tab, Row, Col } from 'react-bootstrap'
+import { Nav, Tab, Row, Col, Button } from 'react-bootstrap'
 import SorghumSummary from '../../sorghum-search/suggestions'
 import GrameneSummary from '../../gramene-search/components/suggestions'
 
@@ -52,10 +52,7 @@ const ResultsCmp = props => {
     const spinner = <img src="/static/images/dna_spinner.svg"/>;
 
     let genesStatus = props.grameneSuggestionsStatus === 'loading' ? spinner : props.grameneSuggestionsStatus;
-    let siteStatus = props.sorghumSuggestionsStatus === 'loading' ? spinner :
-      <button onClick={()=>props.doAcceptSorghumSuggestion(`q=${props.suggestionsQuery}`)}>
-        {props.sorghumSuggestionsStatus}
-      </button>;
+    let siteStatus = props.sorghumSuggestionsStatus === 'loading' ? spinner : props.sorghumSuggestionsStatus;
     return (
       <div className="search-suggestions">
         <Tab.Container id="controlled-search-tabs" activeKey={props.suggestionsTab} onSelect={k => props.doChangeSuggestionsTab(k)}>
@@ -87,7 +84,7 @@ const ResultsCmp = props => {
                   <GrameneSummary/>
                 </Tab.Pane>
                 <Tab.Pane eventKey="sorghumbase">
-                  {/*<SorghumSummary/>*/}
+                  <SorghumSummary/>
                 </Tab.Pane>
                 <Tab.Pane eventKey="germplasm">
                   <p>placeholder</p>

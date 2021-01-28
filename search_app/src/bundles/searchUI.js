@@ -32,6 +32,7 @@ const UIbundle = {
     const initialState = {
       suggestions_query: '',
       suggestions_tab: 'sorghumbase',
+      CMSTab: 'Posts',
       sorghumbase: true,
       Posts: true,
       Projects: true,
@@ -85,13 +86,19 @@ const UIbundle = {
           suggestions_query: ''
         });
       }
+      if (type === 'CMS_TAB_CHANGED') {
+        return Object.assign({}, state, {CMSTab:payload})
+      }
       return state
     }
   },
   doToggleCategory: cat => ({dispatch}) => {
     dispatch({type: 'CATEGORY_TOGGLED', payload: cat})
   },
-  persistActions: ['CATEGORY_TOGGLED', 'CATEGORY_QUANTITY_CHANGED', 'SUGGESTIONS_TAB_CHANGED', 'SUGGESTIONS_CLEARED'],
+  doChangeSorghumTab: tab => ({dispatch}) => {
+    dispatch({type: 'CMS_TAB_CHANGED', payload: tab})
+  },
+  persistActions: ['CATEGORY_TOGGLED', 'CATEGORY_QUANTITY_CHANGED', 'SUGGESTIONS_TAB_CHANGED', 'SUGGESTIONS_CLEARED', 'CMS_TAB_CHANGED'],
   doChangeQuantity: (cat, delta) => ({dispatch, getState}) => {
     const state = getState();
     console.log('doChangeQuantity', state);
@@ -185,6 +192,7 @@ const UIbundle = {
   selectRows: state => state.searchUI.rows,
   selectSuggestionsQuery: state => state.searchUI.suggestions_query,
   selectSuggestionsTab: state => state.searchUI.suggestions_tab,
+  selectSorghumTab: state => state.searchUI.CMSTab,
   selectPath: state => state.pathname,
   selectSorghumSuggestionsStatus: state => {
     let matches=0;
