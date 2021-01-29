@@ -13,6 +13,7 @@
     </div>
   </div>
 </div><!--page title end-->
+{% if years|length > 1 %}
 <div class="container pt90">
   <div class="row">
     <div class="col-lg-10 col-md-6">
@@ -29,6 +30,7 @@
     </div>
   </div>
 </div>
+{% endif %}
 <div class="container pt90 ">
   <div id="grid" class="row my-shuffle-container">
   {% for paper in papers %}

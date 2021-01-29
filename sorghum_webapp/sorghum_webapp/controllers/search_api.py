@@ -13,7 +13,7 @@ from . import valueFromRequest
 
 WP_BASE_URL = app.config["WP_BASE_URL"]
 
-WP_CATS = ['posts', 'pages', 'users', 'resource-link', 'job', 'event', 'scientific_paper', 'project']
+WP_CATS = ['posts', 'pages', 'users', 'resource-link', 'job', 'event', 'scientific_paper', 'project', 'tags']
 
 search_api = flask.Blueprint("search_api", __name__)
 
@@ -25,6 +25,24 @@ def searchapi(cat):
     rows = valueFromRequest(key="rows", request=request)
     if cat in WP_CATS:
         with requests.Session() as session:
+            results_dict = {}
+            if cat == 'tags':
+                url = WP_BASE_URL + cat + '?per_page=100'
+                page = 0
+                done = 0
+                while done == 0:
+                    page = page+1
+                    purl = url + '&page=' + str(page)
+                    print(purl)
+                    response = session.get(url=purl)
+                    tags = response.json()
+                    for tag in tags:
+                        results_dict[str(tag['id'])] = tag['name']
+                    if len(tags) == 0:
+                        done = 1
+                results = jsonify(results_dict)
+                results.headers.add('Access-Control-Allow-Origin','*')
+                return results
             url = WP_BASE_URL + cat + '?_embed=true'
             if q:
                 url = url + '&search=' + q
@@ -36,7 +54,6 @@ def searchapi(cat):
                 session.auth = (os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
                 url = WP_BASE_URL + cat + '?context=edit&roles=team_member&per_page=50&search=' + q
             response = session.get(url=url)
-            results_dict = {}
             if cat == 'resource-link':
                 links = response.json()
                 mediaIDs = []
