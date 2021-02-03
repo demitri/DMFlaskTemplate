@@ -74,7 +74,7 @@ def germplasm():
 
 def tools():
    menu = make_menu('Tools')
-   add_link(menu, 'Gene Search','/genes/')
+   add_link(menu, 'Gene Search','/genes')
    add_link(menu, 'Genome Browser','http://banon.cshl.edu:88')
    add_link(menu, 'BLAST','#')
    return menu

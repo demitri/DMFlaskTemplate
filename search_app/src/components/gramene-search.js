@@ -8,7 +8,7 @@ const GrameneSearch = (store) => (
       <div className="col-md-2 no-padding">
         <Status/>
         <Filters/>
-        <Views/>
+        {/*<Views/>*/}
       </div>
       <div className="col-md-10 no-padding">
         <Results/>
