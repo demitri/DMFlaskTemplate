@@ -166,6 +166,9 @@ const UIbundle = {
   doAcceptSuggestion: suggestion => ({dispatch, getState}) => {
     const url = new URL(getState().url.url);
     if (url.pathname !== '/genes' && url.pathname !== '/genes.html') {
+      if (!suggestion.name) {
+        suggestion.name = suggestion.display_name;
+      }
       url.pathname = '/genes';
       url.search = `suggestion=${JSON.stringify(suggestion)}`;
       window.location = url;
