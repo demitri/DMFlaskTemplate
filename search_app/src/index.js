@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 import getStore from './bundles'
 import cache from './utils/cache'
@@ -7,6 +7,7 @@ import Results from './components/results'
 import SearchBox from './components/searchbox'
 import SearchBar from './components/searchbar'
 import GeneSearchUI from './components/gramene-search'
+import Feedback from './components/Feedback'
 
 cache.getAll().then(initialData => {
   if (initialData) {
@@ -29,4 +30,7 @@ cache.getAll().then(initialData => {
 
   element = document.getElementById('gene-search-ui');
   element && render(GeneSearchUI(store), element) && console.log('rendered gene-search-ui');
+
+  element = document.getElementById('sorghumbase-feedback');
+  element && render(Feedback(), element) && console.log('rendered sorghumbase-feedback');
 })

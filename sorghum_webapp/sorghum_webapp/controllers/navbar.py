@@ -126,6 +126,7 @@ def about():
     add_link(menu, 'Team', '/people')
     add_link(menu, 'FAQ', '/faq')
     add_link(menu, 'Contact Us', '/contact')
+    add_link(menu, 'Feedback','/feedback')
     return menu
 
 def support():

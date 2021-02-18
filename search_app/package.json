@@ -10,12 +10,15 @@
     "watch": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "formik": "^2.2.6",
     "gramene-bins-client": "^2.2.14",
     "gramene-dbxrefs": "^3.0.4",
     "gramene-genetree-vis": "ajo2995/gramene-genetree-vis#nam",
-    "gramene-search-vis": "warelab/gramene-search-vis#upgrade-react",
+    "gramene-search-vis": "github:warelab/gramene-search-vis#upgrade-react",
     "gramene-taxonomy-with-genomes": "^3.0.10",
     "gramene-trees-client": "^2.5.6",
+    "is-email": "^1.0.0",
     "lodash": "^4.17.15",
     "money-clip": "^3.0.2",
     "querystringify": "^2.2.0",
@@ -25,9 +28,11 @@
     "react-dom": "16.14.0",
     "react-ga": "^2.7.0",
     "react-icons": "^4.1.0",
+    "react-recaptcha": "^2.3.10",
     "react-tree-menu": "github:ajo2995/react-tree-menu",
     "redux-bundler": "21.0.0",
-    "redux-bundler-react": "1.0.1"
+    "redux-bundler-react": "1.0.1",
+    "yup": "^0.32.8"
   },
   "prettier": {
     "singleQuote": true,

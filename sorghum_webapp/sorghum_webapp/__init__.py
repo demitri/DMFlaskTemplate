@@ -31,6 +31,7 @@ def register_blueprints(app=None):
 	from .controllers.post import post_page, population_page, genome_page
 	from .controllers.posts import post_grid, germplasm_grid, population_grid
 	from .controllers.mission_statement import mission_statement_page
+	from .controllers.feedback import feedback_page
 	from .controllers.resource_links import resource_links_page
 	from .controllers.contact import contact_page
 	from .controllers.people import people_page
@@ -66,6 +67,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(population_page)
 	app.register_blueprint(genome_page)
 	app.register_blueprint(mission_statement_page)
+	app.register_blueprint(feedback_page)
 	app.register_blueprint(resource_links_page)
 	app.register_blueprint(contact_page)
 	app.register_blueprint(people_page)
@@ -300,12 +302,16 @@ def create_app(debug=False, log_level=None):#, conf=dict()):
 	from requests.auth import HTTPBasicAuth
 
 	# does the configuration file request basic authentication?
-	if all([key in app.config for key in ['SB_WP_USERNAME', 'SB_WP_PASSWORD']]):
+	if all([key in app.config for key in ['SB_WP_USERNAME', 'SB_WP_PASSWORD', 'MANTIS_USERNAME', 'MANTIS_PASSWORD']]):
 		# check username, password defined in local environment
 		if 'SB_WP_USERNAME' not in os.environ:
 			raise Exception("'SB_WP_USERNAME' (WordPress username for basic authentication) set in configuration, but not defined in local environment.")
 		if 'SB_WP_PASSWORD' not in os.environ:
 			raise Exception("'SB_WP_PASSWORD' (WordPress password for basic authentication) set in configuration, but not defined in local environment.")
+		if 'MANTIS_USERNAME' not in os.environ:
+			raise Exception("'MANTIS_USERNAME' set in configuration, but not defined in local environment.")
+		if 'MANTIS_PASSWORD' not in os.environ:
+			raise Exception("'MANTIS_PASSWORD' set in configuration, but not defined in local environment.")
 		wordpress_api.authenticator = HTTPBasicAuth(os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
 	else:
 		print(red_text("Basic authentication failed."))
