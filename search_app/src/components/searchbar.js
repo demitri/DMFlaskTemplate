@@ -10,9 +10,9 @@ const handleKey = (e, props) => {
     props.doClearSuggestions();
   }
   if (e.key === "Enter") {
-    if (props.suggestionsTab === "sorghumbase") {
-      props.doAcceptSorghumSuggestion(`q=${props.suggestionsQuery}`)
-    }
+    // if (props.suggestionsTab === "sorghumbase") {
+    //   props.doAcceptSorghumSuggestion(`q=${props.suggestionsQuery}`)
+    // }
   }
   if (e.key === "Tab") {
     if (props.suggestionsTab === "gramene" && props.grameneSuggestionsReady) {

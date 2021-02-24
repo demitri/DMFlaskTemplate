@@ -6,6 +6,7 @@ import axios from 'axios'
 
 const schema = Yup.object().shape({
   name: Yup.string().min(2, 'Too short').max(50, 'Too long').required('Required'),
+  category: Yup.string(),
   subject: Yup.string().min(2, 'Too short').max(50, 'Too long').required('Required'),
   content: Yup.string().min(2, 'Too short').max(50000, 'Too long').required('Required'),
   email: Yup.string().email('Invalid email').required('Required')
@@ -29,6 +30,7 @@ const Feedback = () => (
       onSubmit={postFeedback}
       initialValues={{
         referrer: document.referrer,
+        category: '',
         subject: '',
         content: '',
         name: '',
