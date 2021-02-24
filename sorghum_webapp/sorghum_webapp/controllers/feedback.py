@@ -24,13 +24,14 @@ def feedbackPage():
         email = j["email"]
         subject = j["subject"]
         content = j["content"]
+        category = j["category"]
         referrer = j["referrer"]
         message = f"URL   : {referrer}\nName  : {name}\nEmail : {email}\n\n{content}"
         print("message",message)
         client = Client(app.config["MANTIS_URL"])
         issue = client.service.mc_issue_add(username=os.environ["MANTIS_USERNAME"], password=os.environ["MANTIS_PASSWORD"], issue={
             'project': {'id': 38},
-            'category': 'Uncategorized',
+            'category': category,
             'summary': f"Site Feedback: {subject}",
             'description': message
         })

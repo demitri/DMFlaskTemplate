@@ -4,9 +4,10 @@ import * as Yup from 'yup'
 import { Form, Col, Button } from 'react-bootstrap'
 import axios from 'axios'
 
+const categories = ['Bug','Enhancement','Help Needed','Uncategorized'];
 const schema = Yup.object().shape({
   name: Yup.string().min(2, 'Too short').max(50, 'Too long').required('Required'),
-  category: Yup.string(),
+  category: Yup.string().oneOf(categories).required('Required'),
   subject: Yup.string().min(2, 'Too short').max(50, 'Too long').required('Required'),
   content: Yup.string().min(2, 'Too short').max(50000, 'Too long').required('Required'),
   email: Yup.string().email('Invalid email').required('Required')
@@ -71,6 +72,24 @@ const Feedback = () => (
                 isValid={touched.email && !errors.email}
               />
               <Form.Control.Feedback type="invalid" style={{display:'block'}}>{errors.email}</Form.Control.Feedback>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} md="4" controlId="validationFormik02a">
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                as="select"
+                name="category"
+                value={values.category}
+                onChange={handleChange}
+                isValid={touched.category && !errors.category}
+              >
+                <option>Select a Category</option>
+                {categories.map((cat,idx) => (
+                  <option key={idx}>{cat}</option>
+                ))}
+              </Form.Control>
+              <Form.Control.Feedback type="invalid" style={{display:'block'}}>{errors.category}</Form.Control.Feedback>
             </Form.Group>
           </Form.Row>
           <Form.Row>
