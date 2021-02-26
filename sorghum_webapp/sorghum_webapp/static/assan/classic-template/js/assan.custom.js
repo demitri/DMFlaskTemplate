@@ -20,11 +20,18 @@ $(function () {
     /****************
      search inline
      */
-$(document).keyup(function(e) {
-  if (e.key === '/' && ! $('.search-inline').hasClass('search-visible')) {
-    $('.search-inline').addClass('search-visible');
-    $('#sorghumbase-search-input').focus();
-  }
+$(document).keydown(function(e) {
+    var _focused = $(document.activeElement);
+    var _inputting = _focused.get(0).tagName.toLowerCase()==="textarea" || _focused.get(0).tagName.toLowerCase()==="input";
+    if (!_inputting && e.keyCode===191 && ! $('.search-inline').hasClass('search-visible')) {
+        e.preventDefault();
+        $('.search-inline').addClass('search-visible');
+        $('#sorghumbase-search-input').focus();
+    }
+  // if (e.key === '/' && ! $('.search-inline').hasClass('search-visible')) {
+  //   $('.search-inline').addClass('search-visible');
+  //   $('#sorghumbase-search-input').focus();
+  // }
 });
     $('.search-open').on('click', function () {
         {

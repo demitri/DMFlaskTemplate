@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Genes{% endblock %}
+{% block additional_header %}
+<script async src="{{request.script_root}}/static/gramene-dalliance/dalliance-all.js"></script>
+<script async src="https://plantreactome.gramene.org/DiagramJs/diagram/diagram.nocache.js"></script>
+{% endblock %}
 {% block content %}
 
         <!-- place BODY content here -->
