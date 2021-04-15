@@ -11,9 +11,9 @@ def news():
     menu = make_menu('News')
     add_link(menu, 'News', '/posts?categories=news')
     add_link(menu, 'Meetings & Events', '/events')
-    add_link(menu, 'Job Postings', '/jobs')
+#     add_link(menu, 'Job Postings', '/jobs')
     add_link(menu, 'Publications', '/publications')
-    add_link(menu, 'Release Notes', '/#')
+    add_link(menu, 'Release Notes', '/relnotes')
     return menu
 
 def engage():
@@ -25,20 +25,20 @@ def engage():
 
 def genomes():
     ref = make_menu('Genomes')
-    add_link(ref, 'BTx623 - PI 564163', '/accession/btx623')
-    add_link(ref, 'Rio - PI 651496', '/accession/rio')
-    add_link(ref, 'RTx430 - PI 655996', '/accession/rtx430')
-    add_link(ref, 'RTx436 - PI 561071', '/accession/rtx436')
-    add_link(ref, 'Tx2783 - PI 656001', '/accession/tx2783')
+    add_link(ref, 'PI 564163 - BTx623', '/accession/btx623')
+    add_link(ref, 'PI 651496 - Rio', '/accession/rio')
+    add_link(ref, 'PI 655996 - RTx430', '/accession/rtx430')
+    add_link(ref, 'PI 561071 - RTx436', '/accession/rtx436')
+    add_link(ref, 'PI 656001 - Tx2783', '/accession/tx2783')
     return ref
 
 def germplasm():
     ref = make_menu('Reference')
-    add_link(ref, 'BTx623 - PI 564163', '/accession/btx623')
-    add_link(ref, 'Rio - PI 651496', '/accession/rio')
-    add_link(ref, 'RTx430 - PI 655996', '/accession/rtx430')
-    add_link(ref, 'RTx436 - PI 561071', '/accession/rtx436')
-    add_link(ref, 'Tx2783 - PI 656001', '/accession/tx2783')
+    add_link(ref, 'PI 564163 - BTx623', '/accession/btx623')
+    add_link(ref, 'PI 651496 - Rio', '/accession/rio')
+    add_link(ref, 'PI 655996 - RTx430', '/accession/rtx430')
+    add_link(ref, 'PI 561071 - RTx436', '/accession/rtx436')
+    add_link(ref, 'PI 656001 - Tx2783', '/accession/tx2783')
 
     reseq = make_menu('Resequencing')
 
@@ -52,7 +52,7 @@ def germplasm():
     add_link(association, 'Expanded SCP Lines', '/population/expanded-scp')
     add_link(association, 'Nigerian Diversity Panel', '/population/nigeria-div')
 
-    other = make_menu('Other Populations')
+    other = make_menu('EMS/NAM Populations')
     add_link(other, 'Xin EMS', '/population/xin-ems')
     add_link(other, 'Weil EMS', '/population/weil-ems')
     add_link(other, 'Klein BC-NAM', '/population/klein-nam')
@@ -60,7 +60,7 @@ def germplasm():
     add_link(other, 'Mace BC-NAM', '/population/mace-nam')
 
     menu = make_menu('Germplasm','mega')
-    menu['categories'] = [ref, reseq, association, other]
+    menu['categories'] = [ref, association, other, reseq]
 
     return menu
 
@@ -138,4 +138,4 @@ def support():
 
 def navbar_template(activemenu='NA'):
     return {'navbar': [news(), engage(), genomes(), tools(), community_resources(), about()],'activemenu':activemenu}
-#     return {'navbar': [news(), engage(), germplasm(), community_resources(), about()],'activemenu':activemenu}
+#     return {'navbar': [news(), engage(), germplasm(), tools(), community_resources(), about()],'activemenu':activemenu}

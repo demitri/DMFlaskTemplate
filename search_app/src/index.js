@@ -8,6 +8,16 @@ import SearchBox from './components/searchbox'
 import SearchBar from './components/searchbar'
 import GeneSearchUI from './components/gramene-search'
 import Feedback from './components/Feedback'
+import MDView from "gramene-mdview";
+
+const Notes = props => (
+  <MDView
+    org='warelab'
+    repo='release-notes'
+    path='sorghum'
+    heading='Releases'
+  />
+)
 
 cache.getAll().then(initialData => {
   if (initialData) {
@@ -32,5 +42,8 @@ cache.getAll().then(initialData => {
   element && render(GeneSearchUI(store), element) && console.log('rendered gene-search-ui');
 
   element = document.getElementById('sorghumbase-feedback');
-  element && render(Feedback(), element) && console.log('rendered sorghumbase-feedback');
+  element && render(Feedback(), element) && console.log('rendered sorghumbase-feedback')
+
+  element = document.getElementById('sorghumbase-relnotes');
+  element && render(Notes(), element) && console.log('rendered sorghumbase-relnotes')
 })

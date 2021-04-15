@@ -32,6 +32,7 @@ def register_blueprints(app=None):
 	from .controllers.posts import post_grid, germplasm_grid, population_grid
 	from .controllers.mission_statement import mission_statement_page
 	from .controllers.feedback import feedback_page
+	from .controllers.relnotes import relnotes_page
 	from .controllers.resource_links import resource_links_page
 	from .controllers.contact import contact_page
 	from .controllers.people import people_page
@@ -68,6 +69,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(genome_page)
 	app.register_blueprint(mission_statement_page)
 	app.register_blueprint(feedback_page)
+	app.register_blueprint(relnotes_page)
 	app.register_blueprint(resource_links_page)
 	app.register_blueprint(contact_page)
 	app.register_blueprint(people_page)

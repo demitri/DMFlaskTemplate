@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import { Form, Col, Button } from 'react-bootstrap'
 import axios from 'axios'
 
-const categories = ['Bug','Enhancement','Help Needed','Uncategorized'];
+const categories = ['Bug','Enhancement','Help Needed','Data','Uncategorized'];
 const schema = Yup.object().shape({
   name: Yup.string().min(2, 'Too short').max(50, 'Too long').required('Required'),
   category: Yup.string().oneOf(categories).required('Required'),
