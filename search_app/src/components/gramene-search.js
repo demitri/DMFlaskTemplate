@@ -6,9 +6,11 @@ const GrameneSearch = (store) => (
   <Provider store={store}>
     <div className="row no-margin no-padding">
       <div className="col-md-2 no-padding">
-        <Status/>
-        <Filters/>
-        {/*<Views/>*/}
+        <div className="gramene-sidebar">
+          <Status/>
+          <Filters/>
+          {/*<Views/>*/}
+        </div>
       </div>
       <div className="col-md-10 no-padding">
         <Results/>

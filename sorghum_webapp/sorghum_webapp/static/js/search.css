@@ -1,5 +1,12 @@
+.gramene-sidebar {
+    background-color: dimgray;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+}
 .gramene-filter-container {
     background-color: #cfb5e6;
+    padding-left: 4px;
 }
 .gramene-filter {
     padding-left: 4px;
@@ -47,6 +54,7 @@
 
 .gramene-view-container {
     background-color: lightblue;
+    padding-left: 10px;
 }
 .gramene-view {
     padding-left: 5px;
@@ -246,21 +254,21 @@
 .gene-search-pic-sugg {
     width: 100%;
     height: 200px;
-    background: url("/suggestions.bbb75c0b.png");
+    background: url("/static/images/suggestions.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 .gene-search-pic-results {
     width: 100%;
     height: 200px;
-    background: url("/results.c8962b72.png");
+    background: url("/static/images/results.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 .gene-search-pic-genetree {
     width: 100%;
     height: 200px;
-    background: url("/genetree.24c939dd.png");
+    background: url("/static/images/genetree.png");
     background-size: contain;
     background-repeat: no-repeat;
 }

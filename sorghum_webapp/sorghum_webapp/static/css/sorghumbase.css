@@ -251,7 +251,7 @@ img {
 
 #padding-behind-navbar {
   background:red;
-  height: 0px;
+  height: 0;
 }
 
 @media (min-width: 992px) {
@@ -260,11 +260,11 @@ img {
 	}
 
 	.search-suggestions {
-		top: 69px;
+		top: 85px;
 	}
 
 	#padding-behind-navbar {
-		height: 69px;
+		height: 85px;
 	}
 }
 @media (max-width: 992px) {

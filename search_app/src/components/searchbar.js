@@ -69,11 +69,11 @@ const ResultsCmp = props => {
                     <div className="suggestions-tab">Website {siteStatus}</div>
                   </Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="germplasm" disabled>
-                    <div className="suggestions-tab">Germplasm</div>
-                  </Nav.Link>
-                </Nav.Item>
+                {/*<Nav.Item>*/}
+                {/*  <Nav.Link eventKey="germplasm" disabled>*/}
+                {/*    <div className="suggestions-tab">Germplasm</div>*/}
+                {/*  </Nav.Link>*/}
+                {/*</Nav.Item>*/}
               </Nav>
             </Col>
           </Row>
@@ -86,9 +86,9 @@ const ResultsCmp = props => {
                 <Tab.Pane eventKey="sorghumbase">
                   <SorghumSummary/>
                 </Tab.Pane>
-                <Tab.Pane eventKey="germplasm">
-                  <p>placeholder</p>
-                </Tab.Pane>
+                {/*<Tab.Pane eventKey="germplasm">*/}
+                {/*  <p>placeholder</p>*/}
+                {/*</Tab.Pane>*/}
               </Tab.Content>
             </Col>
           </Row>
