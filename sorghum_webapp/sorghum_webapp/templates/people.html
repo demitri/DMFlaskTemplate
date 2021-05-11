@@ -22,9 +22,11 @@
         <div class="pt50 title">People</div>
         <div class="mb40">
 
-        <a data-scroll="" href="#team" class="nav-link active">Team Members</a>
+          <a data-scroll="" href="#team" class="nav-link active">Team Members</a>
 
-        <a data-scroll="" href="#contributors" class="nav-link active">Contributors</a>
+<!--        <a data-scroll="" href="#contributors" class="nav-link active">Contributors</a>-->
+          <a data-scroll="" href="#sac" class="nav-link active">Scientific Advisory Committee</a>
+          <a data-scroll="" href="#escapees" class="nav-link active">Former Team Members</a>
 
         </div>
       </div>
@@ -58,7 +60,7 @@
             <div class="team-default-content text-center pt30 pb20">
               <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
               <span>{{user.job_title | safe}}</span><br>
-              <span class="font-weight-bold">{{user.organization | safe}}</span>
+<!--              <span class="font-weight-bold">{{user.organization | safe}}</span>-->
             </div>
             <!-- <div class="text-center">
               <p>{{ user.s.description | safe }}</p>
@@ -69,10 +71,10 @@
       </div>
 
       <div class="title-heading1 mb60" id = "contributors">
-        <h3 class="mb10">Contributors</h3>
+        <h3 class="mb10">Scientific Advistory Committee</h3>
       </div>
       <div class="row pb60">
-        {% for user in contributors %}
+        {% for user in sac %}
         <div class="col-lg-4 col-md-6  mb30">
           <div class="team-card-default">
             <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
@@ -87,8 +89,53 @@
           </div> -->
           </div>
         </div>
-      {% endfor %}
+        {% endfor %}
       </div>
+
+<!--      <div class="title-heading1 mb60" id = "contributors">-->
+<!--        <h3 class="mb10">Contributors</h3>-->
+<!--      </div>-->
+<!--      <div class="row pb60">-->
+<!--        {% for user in contributors %}-->
+<!--        <div class="col-lg-4 col-md-6  mb30">-->
+<!--          <div class="team-card-default">-->
+<!--            &lt;!&ndash; #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> &ndash;&gt;-->
+<!--            <img src="{{ user.s.avatar_urls['96'] }}" alt="" class="img-fluid rounded-circle centered">-->
+<!--            <div class="team-default-content text-center pt30 pb20">-->
+<!--              <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>-->
+<!--              <span>{{user.job_title | safe}}</span><br>-->
+<!--              <span class="font-weight-bold">{{user.organization | safe}}</span>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; <div class="text-center">-->
+<!--            <p>{{ user.s.description | safe }}</p>-->
+<!--          </div> &ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      {% endfor %}-->
+<!--      </div>-->
+
+      <div class="title-heading1 mb60" id = "escapees">
+        <h3 class="mb10">Former Team Members</h3>
+      </div>
+      <div class="row pb60">
+        {% for user in escapees %}
+        <div class="col-lg-4 col-md-6  mb30">
+          <div class="team-card-default">
+            <!-- #<img src="{{ user.s.author_gravatar_url }}" alt="" class="img-fluid rounded-circle"> -->
+            <img src="{{ user.s.avatar_urls['96'] }}" alt="" class="img-fluid rounded-circle centered">
+            <div class="team-default-content text-center pt30 pb20">
+              <h4 class="mb0 text-uppercase">{{ user.s.name | safe}}</h4>
+<!--              <span>{{user.job_title | safe}}</span><br>-->
+<!--              <span class="font-weight-bold">{{user.organization | safe}}</span>-->
+            </div>
+            <!-- <div class="text-center">
+            <p>{{ user.s.description | safe }}</p>
+          </div> -->
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
     </div>
   </div>
 </div>

@@ -67,12 +67,18 @@ def index():
 		templateDict["small_banner"] = small_banner
 		big_banner_1 = api.media(slug="sorghum_sky_darker")
 		templateDict["big_banner_1"] = big_banner_1
-		big_banner_2 = api.media(slug="sorghum_close_darker")
-		templateDict["big_banner_2"] = big_banner_2
+		banners = []
+		genes_banner = {"id" : "genes", "group": "Data"}
+		genes_banner["media"] = api.media(slug="gene_search_banner3")
+		genes_banner["link_url"] = "/genes"
+		genes_banner["link_text"] = "Explore Genes"
+		genes_banner["title"] = "Pan-genome resources"
+		banners.append(genes_banner)
+		templateDict["banners"] = banners
 		big_banner_3 = api.media(slug="sorghum_sky")
 		templateDict["big_banner_3"] = big_banner_3
 
-		photos_to_credit = [big_banner_1, big_banner_2, big_banner_3, small_banner]
+		photos_to_credit = [big_banner_1, big_banner_3, small_banner]
 
 		user_request = api.UserRequest()
 		user_request.context = "edit"

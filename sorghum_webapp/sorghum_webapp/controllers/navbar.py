@@ -12,15 +12,17 @@ def news():
     add_link(menu, 'News', '/posts?categories=news')
     add_link(menu, 'Meetings & Events', '/events')
 #     add_link(menu, 'Job Postings', '/jobs')
-    add_link(menu, 'Publications', '/publications')
+#     add_link(menu, 'Publications', '/publications')
     add_link(menu, 'Release Notes', '/relnotes')
     return menu
 
 def engage():
     menu = make_menu('Engage')
-    add_link(menu, 'Research Notes', '/posts?categories=researchnote')
-    add_link(menu, 'Office Hours', '/#')
+#     add_link(menu, 'Research Notes', '/posts?categories=researchnote')
+    add_link(menu, 'Tutorials', '/tutorials')
+#     add_link(menu, 'Office Hours', '/office_hours')
     add_link(menu, 'Mailing List', '/mailing_list')
+    add_link(menu, 'Contact Us', '/contact')
     return menu
 
 def genomes():
@@ -85,31 +87,30 @@ def community_resources():
     add_link(projects, 'Sequencing projects - SAP', '#')
 
     databases = make_menu('Databases')
-    add_link(databases, 'NCBI GEO', '#')
-    add_link(databases, 'SorghumFDB', '#')
-    add_link(databases, 'Grassius', '#')
-    add_link(databases, 'GrainGenes', '#')
-    add_link(databases, 'GRIN Global', '#')
-    add_link(databases, 'Crop-PAL2', '#')
-    add_link(databases, 'OZ Sorghum', '#')
-    add_link(databases, 'Morokoshi Sorghum Transcription DB', '#')
+    add_link(databases, 'NCBI GEO', 'https://www.ncbi.nlm.nih.gov/gds')
+    add_link(databases, 'SorghumFDB', 'http://structuralbiology.cau.edu.cn/sorghum/index.html')
+    add_link(databases, 'Grassius', 'http://grassius.org/grasstfdb.php')
+    add_link(databases, 'GrainGenes', 'https://wheat.pw.usda.gov/GG3/')
+    add_link(databases, 'GRIN Global', 'https://npgsweb.ars-grin.gov/gringlobal/search.aspx')
+    add_link(databases, 'Crop-PAL2', 'http://crop-pal.org/')
+    add_link(databases, 'OZ Sorghum', 'https://aussorgm.org.au/')
+    add_link(databases, 'Morokoshi Sorghum Transcriptome', 'http://sorghum.riken.jp/morokoshi/Home.html')
 
-    tools = make_menu('Tools')
-    add_link(tools, 'Ensembl Browser', '#')
-    add_link(tools, 'Gene Search', '#')
-    add_link(tools, 'BLAST', '#')
-    add_link(tools, 'SciApps', '#')
-    add_link(tools, 'AgriGO', '#')
+#     tools = make_menu('Tools')
 
-    platforms = make_menu('Platforms/Portals')
-    add_link(platforms, 'Gramene', '#')
-    add_link(platforms, 'CyVerse', '#')
-    add_link(platforms, 'AgBioData', '#')
-    add_link(platforms, 'JGI Phytozome', '#')
-    add_link(platforms, 'MaizeGDB', '#')
+    platforms = make_menu('continued')
+    add_link(platforms, 'Gramene', 'http://www.gramene.org')
+    add_link(platforms, 'CyVerse', 'http://datacommons.cyverse.org/')
+    add_link(platforms, 'SciApps', 'https://www.sciapps.org/')
+    add_link(platforms, 'AgriGO', 'http://bioinfo.cau.edu.cn/agriGO/')
+    add_link(platforms, 'AgBioData', 'https://www.agbiodata.org/')
+    add_link(platforms, 'JGI Phytozome', 'https://phytozome.jgi.doe.gov/pz/portal.html#!info?alias=Org_Sbicolor')
+    add_link(platforms, 'MaizeGDB', 'https://www.maizegdb.org/')
 
+    research = make_menu('Research')
+    add_link(research, 'Publications', '/publications')
     menu = make_menu('Community Resources','mega')
-    menu['categories'] = [projects, databases, tools, platforms]
+    menu['categories'] = [projects, databases, platforms, research]
     return menu
 
 # def resources():
@@ -122,11 +123,11 @@ def community_resources():
 
 def about():
     menu = make_menu('About')
-    add_link(menu, 'Mission Statement', '/mission-statement')
+#     add_link(menu, 'Mission Statement', '/mission-statement')
     add_link(menu, 'Team', '/people')
     add_link(menu, 'FAQ', '/faq')
     add_link(menu, 'Contact Us', '/contact')
-    add_link(menu, 'Feedback','/feedback')
+#     add_link(menu, 'Feedback', '/feedback')
     return menu
 
 def support():
