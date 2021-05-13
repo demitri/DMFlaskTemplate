@@ -29,8 +29,8 @@ def genomes():
     ref = make_menu('Genomes')
     add_link(ref, 'PI 564163 - BTx623', '/accession/btx623')
     add_link(ref, 'PI 651496 - Rio', '/accession/rio')
-    add_link(ref, 'PI 655996 - RTx430', '/accession/rtx430')
-    add_link(ref, 'PI 561071 - RTx436', '/accession/rtx436')
+    add_link(ref, 'PI 655996 - Tx430', '/accession/rtx430')
+    add_link(ref, 'PI 561071 - Tx436', '/accession/rtx436')
     add_link(ref, 'PI 656001 - Tx2783', '/accession/tx2783')
     return ref
 
@@ -38,8 +38,8 @@ def germplasm():
     ref = make_menu('Reference')
     add_link(ref, 'PI 564163 - BTx623', '/accession/btx623')
     add_link(ref, 'PI 651496 - Rio', '/accession/rio')
-    add_link(ref, 'PI 655996 - RTx430', '/accession/rtx430')
-    add_link(ref, 'PI 561071 - RTx436', '/accession/rtx436')
+    add_link(ref, 'PI 655996 - Tx430', '/accession/rtx430')
+    add_link(ref, 'PI 561071 - Tx436', '/accession/rtx436')
     add_link(ref, 'PI 656001 - Tx2783', '/accession/tx2783')
 
     reseq = make_menu('Resequencing')

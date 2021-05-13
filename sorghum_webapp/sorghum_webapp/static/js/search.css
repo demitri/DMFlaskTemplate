@@ -254,21 +254,21 @@
 .gene-search-pic-sugg {
     width: 100%;
     height: 200px;
-    background: url("/static/images/suggestions.png");
+    background: url("/suggestions.bbb75c0b.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 .gene-search-pic-results {
     width: 100%;
     height: 200px;
-    background: url("/static/images/results.png");
+    background: url("/results.c8962b72.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
 .gene-search-pic-genetree {
     width: 100%;
     height: 200px;
-    background: url("/static/images/genetree.png");
+    background: url("/genetree.24c939dd.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
