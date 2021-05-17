@@ -19,7 +19,7 @@ def news():
 def engage():
     menu = make_menu('Engage')
 #     add_link(menu, 'Research Notes', '/posts?categories=researchnote')
-    add_link(menu, 'Tutorials', '/tutorials')
+    add_link(menu, 'Training Materials', '/tutorials')
 #     add_link(menu, 'Office Hours', '/office_hours')
     add_link(menu, 'Mailing List', '/mailing_list')
     add_link(menu, 'Contact Us', '/contact')
@@ -109,6 +109,7 @@ def community_resources():
 
     research = make_menu('Research')
     add_link(research, 'Publications', '/publications')
+    return research
     menu = make_menu('Community Resources','mega')
     menu['categories'] = [projects, databases, platforms, research]
     return menu
@@ -125,8 +126,8 @@ def about():
     menu = make_menu('About')
 #     add_link(menu, 'Mission Statement', '/mission-statement')
     add_link(menu, 'Team', '/people')
-    add_link(menu, 'FAQ', '/faq')
     add_link(menu, 'Contact Us', '/contact')
+    add_link(menu, 'FAQ', '/faq')
 #     add_link(menu, 'Feedback', '/feedback')
     return menu
 
