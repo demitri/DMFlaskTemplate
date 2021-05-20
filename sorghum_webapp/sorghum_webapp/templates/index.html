@@ -63,7 +63,8 @@
           </li>
             <!-- SLIDE  -->
             {% for banner in banners %}
-                <li data-index="rs-3045" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                {% if banner.format == "left" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                     <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
                     <div class="tp-caption  mainSlide-caption  tp-resizeme"
                          id="slide-{{banner.id}}-layer-1"
@@ -107,6 +108,164 @@
                         >{{banner.link_text}}</div>
                     </a>
                 </li>
+                {% endif %}
+                {% if banner.format == "right" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <div class="tp-caption  mainSlide-caption  tp-resizeme"
+                         id="slide-{{banner.id}}-layer-1"
+                         data-x="['right','right','right','right']" data-hoffset="['650','15','15','15']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['-102','-102','-92','-68']"
+                         data-fontsize="['24','24','24','16']" data-lineheight="['34','34','34','26']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 6; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.group}}</div>
+                    <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
+                         id="slide-{{banner.id}}-layer-2"
+                         data-x="['right','right','right','right']" data-hoffset="['650','15','15','15']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"
+                         data-fontsize="['55','55','40','30']" data-lineheight="['65','65','55','35']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 7; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.title}}</div>
+                    <a href="{{banner.link_url}}">
+                        <div class="tp-caption mainSlide-caption btn btn-lg btn-light"
+                             id="slide-{{banner.id}}-layer-3"
+                             data-x="['right','right','right','right']" data-hoffset="['680','15','15','15']"
+                             data-y="['middle','middle','middle','middle']" data-voffset="['112','112','112','96']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="button"
+                             data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+                             data-responsive_offset="on"
+                             data-responsive="off"
+                             data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                             data-textAlign="['left','left','left','left']"
+                             data-paddingtop="[50,50,50,50]"
+                             data-paddingright="[35,35,35,35]"
+                             data-paddingbottom="[12,12,12,12]"
+                             data-paddingleft="[35,35,35,35]"
+                             style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"
+                        >{{banner.link_text}}</div>
+                    </a>
+                </li>
+                {% endif %}
+                {% if banner.format == "wide" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="contain" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <div class="tp-caption  mainSlide-caption  tp-resizeme"
+                         id="slide-{{banner.id}}-layer-1"
+                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['-152','-152','-92','-68']"
+                         data-fontsize="['24','24','24','16']" data-lineheight="['34','34','34','26']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 6; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.group}}</div>
+                    <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
+                         id="slide-{{banner.id}}-layer-2"
+                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                         data-y="['top','top','top','top']" data-voffset="['0','0','0','1']"
+                         data-fontsize="['55','55','40','30']" data-lineheight="['65','65','55','35']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['center','center','center','center']" data-paddingtop="[40,40,40,40]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 7; text-align: center; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.title}}</div>
+                    <a href="{{banner.link_url}}">
+                        <div class="tp-caption mainSlide-caption btn btn-lg btn-light"
+                             id="slide-{{banner.id}}-layer-3"
+                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                             data-y="['middle','middle','middle','middle']" data-voffset="['152','152','112','96']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="button"
+                             data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+                             data-responsive_offset="on"
+                             data-responsive="off"
+                             data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                             data-textAlign="['left','left','left','left']"
+                             data-paddingtop="[50,50,50,50]"
+                             data-paddingright="[35,35,35,35]"
+                             data-paddingbottom="[12,12,12,12]"
+                             data-paddingleft="[35,35,35,35]"
+                             style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"
+                        >{{banner.link_text}}</div>
+                    </a>
+                </li>
+                {% endif %}
+                {% if banner.format == "video" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+<!--                    <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>-->
+                    <video autoplay muted loop style="object-fit: cover; background-size: cover; width: 100%; height: 100%; visibility: inherit; opacity: 1; position: absolute; left: 0px; top: 0px; display: block;" class="resizelistener" preload="auto">
+                        <source src="{{banner.video.s.source_url}}" type="video/mp4">
+                    </video>
+                    <div class="tp-caption  mainSlide-caption  tp-resizeme"
+                         id="slide-{{banner.id}}-layer-1"
+                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                         data-y="['top','top','top','top']" data-voffset="['10','10','10','10']"
+                         data-fontsize="['24','24','24','16']" data-lineheight="['34','34','34','26']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":100,"speed":800,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="color: #0b2e13; z-index: 6; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.group}}</div>
+<!--                    <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"-->
+<!--                         id="slide-{{banner.id}}-layer-2"-->
+<!--                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"-->
+<!--                         data-y="['top','top','top','top']" data-voffset="['0','0','0','1']"-->
+<!--                         data-fontsize="['55','55','40','30']" data-lineheight="['65','65','55','35']"-->
+<!--                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"-->
+<!--                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'-->
+<!--                         data-textalign="['center','center','center','center']" data-paddingtop="[40,40,40,40]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"-->
+<!--                         style="z-index: 7; text-align: center; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"-->
+<!--                    >{{banner.title}}</div>-->
+<!--                    <a href="{{banner.link_url}}">-->
+<!--                        <div class="tp-caption mainSlide-caption btn btn-lg btn-light"-->
+<!--                             id="slide-{{banner.id}}-layer-3"-->
+<!--                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"-->
+<!--                             data-y="['middle','middle','middle','middle']" data-voffset="['152','152','112','96']"-->
+<!--                             data-width="none"-->
+<!--                             data-height="none"-->
+<!--                             data-whitespace="nowrap"-->
+<!--                             data-type="button"-->
+<!--                             data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'-->
+<!--                             data-responsive_offset="on"-->
+<!--                             data-responsive="off"-->
+<!--                             data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'-->
+<!--                             data-textAlign="['left','left','left','left']"-->
+<!--                             data-paddingtop="[50,50,50,50]"-->
+<!--                             data-paddingright="[35,35,35,35]"-->
+<!--                             data-paddingbottom="[12,12,12,12]"-->
+<!--                             data-paddingleft="[35,35,35,35]"-->
+<!--                             style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"-->
+<!--                        >{{banner.link_text}}</div>-->
+<!--                    </a>-->
+                </li>
+<!--                <li data-index="rs-3047-{{banner.id}}" data-transition="parallaxtoright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="" class="tp-revslider-slidesli rs-pause-timer-always active-revslide" style="width: 100%; height: 100%; overflow: hidden; z-index: 20; visibility: inherit; opacity: 1; background-color: rgba(255, 255, 255, 0);">-->
+<!--                    &lt;!&ndash; MAIN IMAGE &ndash;&gt;-->
+<!--                    <div class="slotholder" style="position: absolute; top: 0px; left: 0px; z-index: 0; width: 100%; height: 100%; backface-visibility: hidden; transform: translate3d(0px, 0px, 0px); visibility: inherit; opacity: 1;">-->
+<!--                        <div class="rs-background-video-layer defaultvid HasListener videoisplaying" data-forcerewind="on" data-volume="mute" data-videowidth="100%" data-videoheight="100%" data-videomp4="{{banner.video.s.source_url}}" data-videopreload="auto" data-videoloop="none" data-forcecover="1" data-aspectratio="16:9" data-autoplay="true" data-autoplayonlyfirsttime="false" data-nextslideatend="true" style="z-index: 30; backface-visibility: hidden; left: 0px; top: 0px; position: absolute; transform: translate3d(0px, 0px, 0px); visibility: inherit; opacity: 1;">-->
+<!--                            <div class="html5vid fullcoveredvideo" style="position:relative;top:0px;left:0px;width:100%;height:100%; overflow:hidden;">-->
+<!--                                <video style="object-fit: cover; background-size: cover; width: 100%; height: 145.125%; visibility: inherit; opacity: 1; position: absolute; left: 0px; top: -22.5625%; display: block;" class="resizelistener" preload="auto">-->
+<!--                                    <source src="{{banner.video.s.source_url}}" type="video/mp4">-->
+<!--                                </video>-->
+<!--                            </div>-->
+<!--&lt;!&ndash;                            <div class="tp-video-play-button"><i class="revicon-right-dir"></i><span class="tp-revstop">&nbsp;</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="rs-fullvideo-cover"></div>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="tp-bgimg defaultimg"-->
+<!--                             style="background-repeat: no-repeat; background-image: url('{{banner.media.s.source_url}}'); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit; z-index: 20;"></div>-->
+<!--                    </div>-->
+<!--                </li>-->
+                {% endif %}
             {% endfor %}
 
             <!-- SLIDE  -->

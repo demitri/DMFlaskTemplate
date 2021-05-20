@@ -73,7 +73,46 @@ def index():
 		genes_banner["link_url"] = "/genes"
 		genes_banner["link_text"] = "Explore Genes"
 		genes_banner["title"] = "Pan-genome resources"
-		banners.append(genes_banner)
+		genes_banner["format"] = "left"
+# 		banners.append(genes_banner)
+		ta_banner = {"id" : "type-ahead", "group": "Type-ahead search: Select filters to search or refine a search"}
+		ta_banner["media"] = api.media(slug="type-ahead")
+		ta_banner["video"] = api.media(slug="type-ahead-video")
+		ta_banner["link_url"] = "/genes"
+		ta_banner["link_text"] = "Try it!"
+		ta_banner["title"] = "type-ahead search"
+		ta_banner["format"] = "video"
+		banners.append(ta_banner)
+		pg_banner = {"id" : "pan-genome-dist", "group": "Visualize genomic positions of genes containing the NB-ARC InterPro domain. This domain is often found in disease resistance genes."}
+		pg_banner["media"] = api.media(slug="pan-genome-dist")
+		pg_banner["link_url"] = "/genes?filters={%22status%22:%22init%22,%22operation%22:%22AND%22,%22negate%22:false,%22marked%22:false,%22leftIdx%22:0,%22rightIdx%22:3,%22children%22:[{%22fq_field%22:%22domains__ancestors%22,%22fq_value%22:%222182%22,%22name%22:%22NB-ARC%22,%22category%22:%22InterPro%20Domain%22,%22leftIdx%22:1,%22rightIdx%22:2,%22negate%22:false,%22showMenu%22:false,%22marked%22:true}],%22showMarked%22:true,%22showMenu%22:false,%22moveCopyMode%22:%22%22,%22searchOffset%22:0,%22rows%22:20}&genomes="
+		pg_banner["link_text"] = "Explore"
+		pg_banner["title"] = "pan-genome distribution"
+		pg_banner["format"] = "wide"
+		banners.append(pg_banner)
+		gn_banner = {"id" : "neighbors", "group": "Inspect regions surrounding orthologs for copy number variation"}
+		gn_banner["media"] = api.media(slug="yellow-seed1-neighborhood")
+		gn_banner["link_url"] = "/genes"
+		gn_banner["link_text"] = "Try it!"
+		gn_banner["title"] = "gene neighborhood"
+		gn_banner["format"] = "wide"
+		banners.append(gn_banner)
+		fo_banner = {"id" : "family-overview", "group": "Compare differences in functional annotation within gene families"}
+		fo_banner["media"] = api.media(slug="yellow-seed1-overview")
+		fo_banner["link_url"] = "/genes"
+		fo_banner["link_text"] = "Try it!"
+		fo_banner["title"] = "family overview"
+		fo_banner["format"] = "wide"
+		banners.append(fo_banner)
+		msa_banner = {"id" : "msa", "group": "Find segregating alleles in coding regions"}
+		msa_banner["media"] = api.media(slug="yellow-seed1-msa")
+		msa_banner["link_url"] = "/genes"
+		msa_banner["link_text"] = "Try it!"
+		msa_banner["title"] = "multiple sequence alignment"
+		msa_banner["format"] = "wide"
+		banners.append(msa_banner)
+
+
 		templateDict["banners"] = banners
 		big_banner_3 = api.media(slug="sorghum_sky")
 		templateDict["big_banner_3"] = big_banner_3
