@@ -15,7 +15,8 @@ const config = {
   },
   selectEnsemblURL: state => state.config.ensemblSite,
   selectGrameneAPI: state => state.config.grameneData,
-  selectTargetTaxonId: state => state.config.targetTaxonId
+  selectTargetTaxonId: state => state.config.targetTaxonId,
+  selectCuration: state => state.config.curation
 };
 
 const bundle = composeBundles(
