@@ -14,7 +14,7 @@ from flask import send_from_directory
 from flask import render_template, request
 import wordpress_orm as wp
 from wordpress_orm import wp_session, exc
-from random import randint
+from random import randint, shuffle
 
 from . import valueFromRequest
 from .. import app
@@ -56,7 +56,7 @@ def index():
 	with api.Session():
 
 		post_request = api.PostRequest()
-		post_request.categories = ["researchnote"]	# search by slug
+		post_request.categories = ["researchnote","news"]	# search by slug
 		post_request.orderby = "date"
 		post_request.order = "desc"
 		post_request.per_page = 3			# only get three newest
@@ -67,12 +67,57 @@ def index():
 		templateDict["small_banner"] = small_banner
 		big_banner_1 = api.media(slug="sorghum_sky_darker")
 		templateDict["big_banner_1"] = big_banner_1
-		big_banner_2 = api.media(slug="sorghum_close_darker")
-		templateDict["big_banner_2"] = big_banner_2
+		banners = []
+		genes_banner = {"id" : "genes", "group": "Data"}
+		genes_banner["media"] = api.media(slug="gene_search_banner3")
+		genes_banner["link_url"] = "/genes"
+		genes_banner["link_text"] = "Explore Genes"
+		genes_banner["title"] = "Pan-genome resources"
+		genes_banner["format"] = "left"
+# 		banners.append(genes_banner)
+		ta_banner = {"id" : "type-ahead", "group": "Type-ahead search: Select filters to search or refine a search"}
+		ta_banner["media"] = api.media(slug="type-ahead")
+		ta_banner["video"] = api.media(slug="type-ahead-video")
+		ta_banner["link_url"] = "/genes"
+		ta_banner["link_text"] = "Try it!"
+		ta_banner["title"] = "type-ahead search"
+		ta_banner["format"] = "video"
+		banners.append(ta_banner)
+		pg_banner = {"id" : "pan-genome-dist", "group": "Visualize genomic positions of genes containing the NB-ARC InterPro domain. This domain is often found in disease resistance genes."}
+		pg_banner["media"] = api.media(slug="pan-genome-dist")
+		pg_banner["link_url"] = "/genes?filters={%22status%22:%22init%22,%22operation%22:%22AND%22,%22negate%22:false,%22marked%22:false,%22leftIdx%22:0,%22rightIdx%22:3,%22children%22:[{%22fq_field%22:%22domains__ancestors%22,%22fq_value%22:%222182%22,%22name%22:%22NB-ARC%22,%22category%22:%22InterPro%20Domain%22,%22leftIdx%22:1,%22rightIdx%22:2,%22negate%22:false,%22showMenu%22:false,%22marked%22:true}],%22showMarked%22:true,%22showMenu%22:false,%22moveCopyMode%22:%22%22,%22searchOffset%22:0,%22rows%22:20}&genomes="
+		pg_banner["link_text"] = "Explore"
+		pg_banner["title"] = "pan-genome distribution"
+		pg_banner["format"] = "wide"
+		banners.append(pg_banner)
+		gn_banner = {"id" : "neighbors", "group": "This MYB transcription factor, similar to Yellow seed1 (maize), has two to three local copies in sorghum."}
+		gn_banner["media"] = api.media(slug="yellow-seed1-neighborhood")
+		gn_banner["link_url"] = "/genes?filters={%22status%22:%22init%22,%22rows%22:20,%22operation%22:%22AND%22,%22negate%22:false,%22leftIdx%22:0,%22rightIdx%22:3,%22children%22:[{%22fq_field%22:%22gene_tree%22,%22fq_value%22:%22SORGHUM1GT_226935%22,%22name%22:%22Homologs%20of%20SORBI_3001G397900%22,%22category%22:%22Gene%20Tree%22,%22leftIdx%22:1,%22rightIdx%22:2,%22negate%22:false,%22marked%22:false}],%22searchOffset%22:0}&genomes=#tools_section"
+		gn_banner["link_text"] = "Search for homologs"
+		gn_banner["title"] = "MYB transcription factor"
+		gn_banner["format"] = "wide"
+		banners.append(gn_banner)
+		fo_banner = {"id" : "family-overview", "group": "Compare differences in functional annotation within gene families"}
+		fo_banner["media"] = api.media(slug="yellow-seed1-overview")
+		fo_banner["link_url"] = "/genes"
+		fo_banner["link_text"] = "Try it!"
+		fo_banner["title"] = "family overview"
+		fo_banner["format"] = "wide"
+		banners.append(fo_banner)
+		msa_banner = {"id" : "msa", "group": "Find segregating alleles in coding regions"}
+		msa_banner["media"] = api.media(slug="yellow-seed1-msa")
+		msa_banner["link_url"] = "/genes"
+		msa_banner["link_text"] = "Try it!"
+		msa_banner["title"] = "multiple sequence alignment"
+		msa_banner["format"] = "wide"
+		banners.append(msa_banner)
+		shuffle(banners)
+
+		templateDict["banners"] = banners
 		big_banner_3 = api.media(slug="sorghum_sky")
 		templateDict["big_banner_3"] = big_banner_3
 
-		photos_to_credit = [big_banner_1, big_banner_2, big_banner_3, small_banner]
+		photos_to_credit = [big_banner_1, big_banner_3, small_banner]
 
 		user_request = api.UserRequest()
 		user_request.context = "edit"

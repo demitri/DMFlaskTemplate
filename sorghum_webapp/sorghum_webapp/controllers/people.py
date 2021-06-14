@@ -36,11 +36,23 @@ def people():
 		leader = [u for u in team if ("Ware" in u.s.name)]
 		team = [u for u in team if not ("Ware" in u.s.name)]
 
+		esc_request = wpapi.UserRequest()
+		esc_request.context = "edit"
+		esc_request.per_page = 50
+		esc_request.roles = ['former_team_member']
+		escapees = esc_request.get(class_object=SBUser)
+
 		cont_request = wpapi.UserRequest()
 		cont_request.context = "edit"
 		cont_request.per_page = 50
 		cont_request.roles = ['contributor']
 		contributors = cont_request.get(class_object=SBUser)
+
+		sac_request = wpapi.UserRequest()
+		sac_request.context = "edit"
+		sac_request.per_page = 50
+		sac_request.roles = ['sac']
+		sac = sac_request.get(class_object=SBUser)
 
 		people_banner_media = wpapi.media(slug="sorghum_combine")
 		templateDict["banner_media"] = people_banner_media
@@ -50,5 +62,7 @@ def people():
 	templateDict['leader'] = leader[0]
 	templateDict['team'] = team
 	templateDict['contributors'] = contributors
+	templateDict['sac'] = sac
+	templateDict['escapees'] = escapees
 
 	return render_template("people.html", **templateDict)

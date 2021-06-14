@@ -48,6 +48,7 @@ def register_blueprints(app=None):
 	from .controllers.about import about_page
 	from .controllers.community import community_page
 	from .controllers.resources import resources_page
+	from .controllers.tutorials import tutorials_page
 	from .controllers.projects import projects_list
 	from .controllers.project import project_page
 	from .controllers.clear_wp_cache import clear_wp_cache_page
@@ -84,6 +85,7 @@ def register_blueprints(app=None):
 	app.register_blueprint(about_page)
 	app.register_blueprint(community_page)
 	app.register_blueprint(resources_page)
+	app.register_blueprint(tutorials_page)
 	app.register_blueprint(projects_list)
 	app.register_blueprint(project_page)
 	app.register_blueprint(search_api)
