@@ -9,6 +9,7 @@ import SearchBar from './components/searchbar'
 import GeneSearchUI from './components/gramene-search'
 import Feedback from './components/Feedback'
 import MDView from "gramene-mdview";
+import "../css/style.css"
 
 const Notes = props => (
   <MDView

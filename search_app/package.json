@@ -15,7 +15,7 @@
     "gramene-bins-client": "^2.2.14",
     "gramene-dbxrefs": "^3.0.4",
     "gramene-genetree-vis": "^4.1.0",
-    "gramene-mdview": "^1.1.6",
+    "gramene-mdview": "^1.1.7",
     "gramene-search-vis": "github:warelab/gramene-search-vis#upgrade-react",
     "gramene-taxonomy-with-genomes": "^3.0.10",
     "gramene-trees-client": "^2.5.6",
