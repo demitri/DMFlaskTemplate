@@ -42,8 +42,8 @@ def people():
         team = team_request.get(class_object=SBUser)
         chooseFace(wpapi,team)
 
-        leader = [u for u in team if ("Ware" in u.s.name)]
-        team = [u for u in team if not ("Ware" in u.s.name)]
+#         leader = [u for u in team if ("Ware" in u.s.name)]
+#         team = [u for u in team if not ("Ware" in u.s.name)]
 
         esc_request = wpapi.UserRequest()
         esc_request.context = "edit"
@@ -70,7 +70,7 @@ def people():
 
         populate_footer_template(template_dictionary=templateDict, wp_api=wpapi, photos_to_credit=[people_banner_media])
 
-    templateDict['leader'] = leader[0]
+#     templateDict['leader'] = leader[0]
     templateDict['team'] = team
     templateDict['contributors'] = contributors
     templateDict['sac'] = sac
