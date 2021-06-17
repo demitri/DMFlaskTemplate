@@ -1,5 +1,11 @@
 {
-  "ensemblSite" :  "https://ensembl.sorghumbase.org",
-  "grameneData":  "https://data.sorghumbase.org/sorghum2",
-  "targetTaxonId": 4558
+  "id": 'sorghum',
+  "name": 'Sorghumbase',
+  "url": '//dev.sorghumbase.org',
+  "ensemblURL": 'https://ensembl.sorghumbase.org',
+  "ensemblSite": 'https://ensembl.sorghumbase.org',
+  "ensemblRest": 'https://data.sorghumbase.org/ensembl2',
+  "grameneData": 'https://data.sorghumbase.org/sorghum2',
+  "targetTaxonId": 4588,
+  "alertText": 'Click the search icon in the menu bar or type / to search'
 }

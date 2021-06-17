@@ -18,6 +18,14 @@ const Notes = props => (
     heading='Releases'
   />
 )
+const Guides = props => (
+    <MDView
+        org='warelab'
+        repo='release-notes'
+        path='sorghum-guides'
+        heading='Guides'
+    />
+)
 
 cache.getAll().then(initialData => {
   if (initialData) {
@@ -46,4 +54,7 @@ cache.getAll().then(initialData => {
 
   element = document.getElementById('sorghumbase-relnotes');
   element && render(Notes(), element) && console.log('rendered sorghumbase-relnotes')
+
+  element = document.getElementById('sorghumbase-guides');
+  element && render(Guides(), element) && console.log('rendered sorghumbase-guides')
 })

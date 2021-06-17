@@ -13,10 +13,15 @@ const config = {
       return state;
     }
   },
-  selectEnsemblURL: state => state.config.ensemblSite,
   selectGrameneAPI: state => state.config.grameneData,
   selectTargetTaxonId: state => state.config.targetTaxonId,
-  selectCuration: state => state.config.curation
+  selectCuration: state => state.config.curation,
+  selectConfiguration: state => state.config
+  // selectEnsemblURL: state => state.config.ensemblSite,
+  // selectGrameneAPI: state => state.config.grameneData,
+  // selectTargetTaxonId: state => state.config.targetTaxonId,
+  // selectCuration: state => state.config.curation,
+  // selectAlertMessage: state => state.config.alertText
 };
 
 const bundle = composeBundles(
