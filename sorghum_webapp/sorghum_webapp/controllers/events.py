@@ -38,6 +38,8 @@ def events():
 		futureEvents = []
 
 		for e in events:
+			if not e.s.short_name:
+				e.s.short_name = e.s.title
 			if (datetime.strptime(e.s.start_date, '%Y-%m-%d') < today): # Is the event in the past?
 				pastEvents.append(e)
 			else:

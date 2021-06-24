@@ -30,7 +30,7 @@
 
                 <div class="mb40">
                   {% for event in eventsDisplayed %}
-                      <a href="#{{event.s.title}}" class="nav-link">{{event.s.title | safe}}</a>
+                      <a href="#{{event.s.title}}" class="nav-link">{{event.s.short_name | safe}}</a>
                   {% endfor %}
                 </div>
 
@@ -43,9 +43,9 @@
                 <div class="mb40">
                   {% for event in eventsNotDisplayed %}
                       {% if past %}
-                      <a href="/events#{{event.s.title}}" class="nav-link">{{event.s.title | safe}}</a>
+                      <a href="/events#{{event.s.title}}" class="nav-link">{{event.s.short_name | safe}}</a>
                       {% else %}
-                      <a href="/events?past=true#{{event.s.title}}" class="nav-link">{{event.s.title | safe}}</a>
+                      <a href="/events?past=true#{{event.s.title}}" class="nav-link">{{event.s.short_name | safe}}</a>
                       {% endif %}
                   {% endfor %}
                 </div>
@@ -70,6 +70,7 @@
                                 {% if (event.s.end_date != "0000-00-00") %}
                                 - {{(event.s.end_date|str2datetime).strftime('%-d %B %Y')}}
                                 {% endif %}</h3>
+                            <h4>{{event.s.location | safe}}</h4>
                             <ul class="post-meta list-inline">
                                 <li class="list-inline-item">
                                     <i class="fa fa-bank"></i> <a href="#">{{event.s.organizer | safe}}</a>
