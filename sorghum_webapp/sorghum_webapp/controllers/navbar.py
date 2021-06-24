@@ -27,11 +27,16 @@ def engage():
 
 def genomes():
     ref = make_menu('Genomes')
-    add_link(ref, 'PI 564163 - BTx623', '/accession/btx623')
-    add_link(ref, 'PI 651496 - Rio', '/accession/rio')
-    add_link(ref, 'PI 655996 - Tx430', '/accession/rtx430')
-    add_link(ref, 'PI 561071 - Tx436', '/accession/rtx436')
-    add_link(ref, 'PI 656001 - Tx2783', '/accession/tx2783')
+    add_link(ref, 'PI 564163 - BTx623', 'https://ensembl.sorghumbase.org/Sorghum_bicolor/Info/Annotation')
+    add_link(ref, 'PI 651496 - Rio', 'https://ensembl.sorghumbase.org/Sorghum_rio/Info/Annotation')
+    add_link(ref, 'PI 655996 - Tx430', 'https://ensembl.sorghumbase.org/Sorghum_tx430nano/Info/Annotation')
+    add_link(ref, 'PI 561071 - Tx436', 'https://ensembl.sorghumbase.org/Sorghum_tx436pac/Info/Annotation')
+    add_link(ref, 'PI 656001 - Tx2783', 'https://ensembl.sorghumbase.org/Sorghum_tx2783pac/Info/Annotation')
+#     add_link(ref, 'PI 564163 - BTx623', '/accession/btx623')
+#     add_link(ref, 'PI 651496 - Rio', '/accession/rio')
+#     add_link(ref, 'PI 655996 - Tx430', '/accession/rtx430')
+#     add_link(ref, 'PI 561071 - Tx436', '/accession/rtx436')
+#     add_link(ref, 'PI 656001 - Tx2783', '/accession/tx2783')
     return ref
 
 def germplasm():
