@@ -5,7 +5,7 @@
   "author": "Andrew Olson",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js",
+    "build": "parcel build -d ../sorghum_webapp/sorghum_webapp/static/search --public-url /static/search/ src/index.js",
     "prepare": "npm run build",
     "watch": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js"
   },
