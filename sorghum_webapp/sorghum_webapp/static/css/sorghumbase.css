@@ -124,9 +124,25 @@ img {
 	width: 96px;
 }
 
+.logo-other {
+	width: 300px;
+}
+
 .logo-sb {
-	height: 100px;
-	width: auto;
+	height: 69px;
+	width: 300px;
+	background-size: 300px;
+	background-repeat: no-repeat;
+	background-image: url("/static/images/Sorghumbase_logo_long_rgb.svg");
+}
+
+@media (max-width: 991px) {
+  .logo-sb {
+	  height: 100%;
+	  width: 75px;
+	  background-size: 75px;
+	  background-image: url("/static/images/Sorghumbase_logo_rgb.svg");
+  }
 }
 
 .resource-link-image {
@@ -205,4 +221,74 @@ img {
   font-size  : .75rem;
   line-height  : .5;
   border-radius : .2rem;
+}
+
+.search-suggestions {
+  background: white;
+  position: absolute;
+  top: 49px;
+  left: 0;
+  width: 100%;
+  max-height: 500px;
+  overflow-y: scroll;
+  border-bottom: solid;
+}
+.search-suggestions .nav-link.disabled {
+  color: #6c757d;
+  pointer-events: none;
+  cursor: default;
+}
+
+.suggestion-button {
+	padding: 5px 10px 5px !important;
+}
+.suggestion-button:focus {
+	font-weight: bold;
+}
+.badge {
+	padding: 0.25em 0.1em 0.25em 1em;
+}
+
+#padding-behind-navbar {
+  background:red;
+  height: 0;
+}
+
+@media (min-width: 992px) {
+	.navbar-right-elements {
+		top: calc(50% - 0.75em);
+	}
+
+	.search-suggestions {
+		top: 85px;
+	}
+
+	#padding-behind-navbar {
+		height: 85px;
+	}
+}
+@media (max-width: 992px) {
+  .title-space-lg {
+	  padding-top: 2em;
+	  padding-bottom: 1em;
+  }
+}
+
+.suggestions-tab {
+	min-width:150px;
+}
+
+#gramoogleFrame {
+  position: absolute;
+  top: 117px;
+  height:1000px;
+  width:1000px;
+}
+
+.title-space-md {
+  padding-top: 7em;
+  padding-bottom: 3em; }
+
+.avatar-width {
+	width: 96px
 }

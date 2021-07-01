@@ -14,167 +14,307 @@
     <!-- START REVOLUTION SLIDER 5.4.1 auto mode -->
     <div id="rev_slider_1078_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.4.1">
         <ul>
+          <!-- SLIDE  -->
+          <li data-index="rs-3046" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+              <!-- MAIN IMAGE -->
+              <img src="{{big_banner_1.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+              <!-- LAYERS -->
+
+              <!-- LAYER NR. 1 -->
+              <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
+                   id="slide-1706-layer-4"
+                   data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                   data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"
+                   data-fontsize="['55','55','40','30']"
+                   data-lineheight="['65','65','50','35']"
+                   data-width="['900','800','621','420']"
+                   data-height="none"
+                   data-whitespace="normal"
+
+                   data-type="text"
+                   data-responsive_offset="on"
+                   data-frames='[{"delay":500,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                   data-textAlign="['center','center','center','center']"
+                   data-paddingtop="[0,0,0,0]"
+                   data-paddingright="[0,0,0,0]"
+                   data-paddingbottom="[10,10,10,10]"
+                   data-paddingleft="[0,0,0,0]"
+
+                   style="z-index: 6; text-align:center; white-space: normal;">Welcome to Sorghumbase</div>
+              <!-- LAYER NR. 3 -->
+              <div class="tp-caption mainSlide-caption   tp-resizeme"
+                   id="slide-1706-layer-5"
+                   data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                   data-y="['middle','middle','middle','middle']" data-voffset="['80','80','80','50']"
+                   data-fontsize="['24','24','24','16']"
+                   data-lineheight="['34','34','34','26']"
+                   data-width="['800','700','621','420']"
+                   data-height="none"
+                   data-whitespace="normal"
+                   data-type="text"
+                   data-responsive_offset="on"
+                   data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                   data-textAlign="['center','center','center','center']"
+                   data-paddingtop="[0,0,0,0]"
+                   data-paddingright="[0,0,0,0]"
+                   data-paddingbottom="[10,10,10,10]"
+                   data-paddingleft="[0,0,0,0]"
+                   style="z-index: 6; text-align:left; max-width:1170px; white-space: normal;">Check out our new features</div>
+          </li>
             <!-- SLIDE  -->
-            <li data-index="rs-3045" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                <!-- MAIN IMAGE -->
-                <img src="{{big_banner_1.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-                <!-- LAYERS -->
-                <!-- LAYER NR. 1 -->
-                <div class="tp-caption mainSlide-Subtitle   tp-resizeme"
-                     id="slide-1706-layer-1"
-                     data-x="['left','left','left','left']" data-hoffset="['30','15','15','15']"
-                     data-y="['middle','middle','middle','middle']" data-voffset="['-102','-102','-92','-68']"
-                     data-width="none"
-                     data-height="none"
-                     data-whitespace="nowrap"
-                     data-fontsize="['20','20','20','20']"
-                     data-lineheight="['25','25','25','25']"
-                     data-type="text"
-                     data-responsive_offset="on"
-                     data-frames='[{"delay":800,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['left','left','left','left']"
-                     data-paddingtop="[0,0,0,0]"
-                     data-paddingright="[0,0,0,0]"
-                     data-paddingbottom="[0,0,0,0]"
-                     data-paddingleft="[0,0,0,0]"
+            {% for banner in banners %}
+                {% if banner.format == "left" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <div class="tp-caption  mainSlide-caption  tp-resizeme"
+                         id="slide-{{banner.id}}-layer-1"
+                         data-x="['left','left','left','left']" data-hoffset="['650','15','15','15']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['-102','-102','-92','-68']"
+                         data-fontsize="['24','24','24','16']" data-lineheight="['34','34','34','26']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 6; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.group}}</div>
+                    <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
+                         id="slide-{{banner.id}}-layer-2"
+                         data-x="['left','left','left','left']" data-hoffset="['650','15','15','15']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"
+                         data-fontsize="['55','55','40','30']" data-lineheight="['65','65','55','35']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 7; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.title}}</div>
+                    <a href="{{banner.link_url}}">
+                        <div class="tp-caption mainSlide-caption btn btn-lg btn-light"
+                             id="slide-{{banner.id}}-layer-3"
+                             data-x="['left','left','left','left']" data-hoffset="['680','15','15','15']"
+                             data-y="['middle','middle','middle','middle']" data-voffset="['112','112','112','96']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="button"
+                             data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+                             data-responsive_offset="on"
+                             data-responsive="off"
+                             data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                             data-textAlign="['left','left','left','left']"
+                             data-paddingtop="[50,50,50,50]"
+                             data-paddingright="[35,35,35,35]"
+                             data-paddingbottom="[12,12,12,12]"
+                             data-paddingleft="[35,35,35,35]"
+                             style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"
+                        >{{banner.link_text}}</div>
+                    </a>
+                </li>
+                {% endif %}
+                {% if banner.format == "right" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <div class="tp-caption  mainSlide-caption  tp-resizeme"
+                         id="slide-{{banner.id}}-layer-1"
+                         data-x="['right','right','right','right']" data-hoffset="['650','15','15','15']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['-102','-102','-92','-68']"
+                         data-fontsize="['24','24','24','16']" data-lineheight="['34','34','34','26']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 6; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.group}}</div>
+                    <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
+                         id="slide-{{banner.id}}-layer-2"
+                         data-x="['right','right','right','right']" data-hoffset="['650','15','15','15']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"
+                         data-fontsize="['55','55','40','30']" data-lineheight="['65','65','55','35']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 7; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.title}}</div>
+                    <a href="{{banner.link_url}}">
+                        <div class="tp-caption mainSlide-caption btn btn-lg btn-light"
+                             id="slide-{{banner.id}}-layer-3"
+                             data-x="['right','right','right','right']" data-hoffset="['680','15','15','15']"
+                             data-y="['middle','middle','middle','middle']" data-voffset="['112','112','112','96']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="button"
+                             data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+                             data-responsive_offset="on"
+                             data-responsive="off"
+                             data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                             data-textAlign="['left','left','left','left']"
+                             data-paddingtop="[50,50,50,50]"
+                             data-paddingright="[35,35,35,35]"
+                             data-paddingbottom="[12,12,12,12]"
+                             data-paddingleft="[35,35,35,35]"
+                             style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"
+                        >{{banner.link_text}}</div>
+                    </a>
+                </li>
+                {% endif %}
+                {% if banner.format == "wide" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                    <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    <div class="tp-caption  mainSlide-caption  tp-resizeme"
+                         id="slide-{{banner.id}}-layer-1"
+                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                         data-y="['middle','middle','middle','middle']" data-voffset="['-152','-152','-92','-68']"
+                         data-fontsize="['24','24','24','16']" data-lineheight="['34','34','34','26']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 6; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.group | safe}}</div>
+                    <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
+                         id="slide-{{banner.id}}-layer-2"
+                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                         data-y="['top','top','top','top']" data-voffset="['0','0','0','1']"
+                         data-fontsize="['55','55','40','30']" data-lineheight="['65','65','55','35']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['center','center','center','center']" data-paddingtop="[40,40,40,40]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="z-index: 7; text-align: center; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.title}}</div>
+                    <a href="{{banner.link_url}}">
+                        <div class="tp-caption mainSlide-caption btn btn-lg btn-light"
+                             id="slide-{{banner.id}}-layer-3"
+                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                             data-y="['middle','middle','middle','middle']" data-voffset="['152','152','112','96']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-type="button"
+                             data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
+                             data-responsive_offset="on"
+                             data-responsive="off"
+                             data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                             data-textAlign="['left','left','left','left']"
+                             data-paddingtop="[50,50,50,50]"
+                             data-paddingright="[35,35,35,35]"
+                             data-paddingbottom="[12,12,12,12]"
+                             data-paddingleft="[35,35,35,35]"
+                             style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"
+                        >{{banner.link_text}}</div>
+                    </a>
+                </li>
+                {% endif %}
+                {% if banner.format == "video" %}
+                <li data-index="rs-3045-{{banner.id}}" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+<!--                    <img src="{{banner.media.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>-->
+                    <video autoplay muted loop style="object-fit: cover; background-size: cover; width: 100%; height: 100%; visibility: inherit; opacity: 1; position: absolute; left: 0px; top: 0px; display: block;" class="resizelistener" preload="auto">
+                        <source src="{{banner.video.s.source_url}}" type="video/mp4">
+                    </video>
+                    <div class="tp-caption  mainSlide-caption  tp-resizeme"
+                         id="slide-{{banner.id}}-layer-1"
+                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
+                         data-y="['top','top','top','top']" data-voffset="['10','10','10','10']"
+                         data-fontsize="['24','24','24','16']" data-lineheight="['34','34','34','26']"
+                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"
+                         data-frames='[{"delay":100,"speed":800,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                         data-textalign="['left','left','left','left']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"
+                         style="color: #0b2e13; z-index: 6; text-align: left; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"
+                    >{{banner.group}}</div>
+<!--                    <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"-->
+<!--                         id="slide-{{banner.id}}-layer-2"-->
+<!--                         data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"-->
+<!--                         data-y="['top','top','top','top']" data-voffset="['0','0','0','1']"-->
+<!--                         data-fontsize="['55','55','40','30']" data-lineheight="['65','65','55','35']"-->
+<!--                         data-width="['800','700','621','420']" data-height="none" data-whitespace="normal" data-type="text" data-responsive_offset="on"-->
+<!--                         data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'-->
+<!--                         data-textalign="['center','center','center','center']" data-paddingtop="[40,40,40,40]" data-paddingright="[0,0,0,0]" data-paddingbottom="[10,10,10,10]" data-paddingleft="[0,0,0,0]"-->
+<!--                         style="z-index: 7; text-align: center; max-width: 800px; white-space: normal; visibility: inherit; transition: none 0s ease 0s; line-height: 65px; border-width: 0px; margin: 0px; padding: 0px 0px 10px; letter-spacing: 0px; font-weight: 400; font-size: 55px; min-height: 0px; min-width: 800px; max-height: none; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform-origin: 50% 50% 0px;"-->
+<!--                    >{{banner.title}}</div>-->
+<!--                    <a href="{{banner.link_url}}">-->
+<!--                        <div class="tp-caption mainSlide-caption btn btn-lg btn-light"-->
+<!--                             id="slide-{{banner.id}}-layer-3"-->
+<!--                             data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"-->
+<!--                             data-y="['middle','middle','middle','middle']" data-voffset="['152','152','112','96']"-->
+<!--                             data-width="none"-->
+<!--                             data-height="none"-->
+<!--                             data-whitespace="nowrap"-->
+<!--                             data-type="button"-->
+<!--                             data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'-->
+<!--                             data-responsive_offset="on"-->
+<!--                             data-responsive="off"-->
+<!--                             data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'-->
+<!--                             data-textAlign="['left','left','left','left']"-->
+<!--                             data-paddingtop="[50,50,50,50]"-->
+<!--                             data-paddingright="[35,35,35,35]"-->
+<!--                             data-paddingbottom="[12,12,12,12]"-->
+<!--                             data-paddingleft="[35,35,35,35]"-->
+<!--                             style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;"-->
+<!--                        >{{banner.link_text}}</div>-->
+<!--                    </a>-->
+                </li>
+<!--                <li data-index="rs-3047-{{banner.id}}" data-transition="parallaxtoright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0" data-saveperformance="off" data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="" class="tp-revslider-slidesli rs-pause-timer-always active-revslide" style="width: 100%; height: 100%; overflow: hidden; z-index: 20; visibility: inherit; opacity: 1; background-color: rgba(255, 255, 255, 0);">-->
+<!--                    &lt;!&ndash; MAIN IMAGE &ndash;&gt;-->
+<!--                    <div class="slotholder" style="position: absolute; top: 0px; left: 0px; z-index: 0; width: 100%; height: 100%; backface-visibility: hidden; transform: translate3d(0px, 0px, 0px); visibility: inherit; opacity: 1;">-->
+<!--                        <div class="rs-background-video-layer defaultvid HasListener videoisplaying" data-forcerewind="on" data-volume="mute" data-videowidth="100%" data-videoheight="100%" data-videomp4="{{banner.video.s.source_url}}" data-videopreload="auto" data-videoloop="none" data-forcecover="1" data-aspectratio="16:9" data-autoplay="true" data-autoplayonlyfirsttime="false" data-nextslideatend="true" style="z-index: 30; backface-visibility: hidden; left: 0px; top: 0px; position: absolute; transform: translate3d(0px, 0px, 0px); visibility: inherit; opacity: 1;">-->
+<!--                            <div class="html5vid fullcoveredvideo" style="position:relative;top:0px;left:0px;width:100%;height:100%; overflow:hidden;">-->
+<!--                                <video style="object-fit: cover; background-size: cover; width: 100%; height: 145.125%; visibility: inherit; opacity: 1; position: absolute; left: 0px; top: -22.5625%; display: block;" class="resizelistener" preload="auto">-->
+<!--                                    <source src="{{banner.video.s.source_url}}" type="video/mp4">-->
+<!--                                </video>-->
+<!--                            </div>-->
+<!--&lt;!&ndash;                            <div class="tp-video-play-button"><i class="revicon-right-dir"></i><span class="tp-revstop">&nbsp;</span></div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="rs-fullvideo-cover"></div>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="tp-bgimg defaultimg"-->
+<!--                             style="background-repeat: no-repeat; background-image: url('{{banner.media.s.source_url}}'); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit; z-index: 20;"></div>-->
+<!--                    </div>-->
+<!--                </li>-->
+                {% endif %}
+            {% endfor %}
 
-                     style="z-index: 7; white-space: nowrap;text-transform:left;">Resources for the sorghum community</div>
-                <!-- LAYER NR. 1 -->
-                <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
-                     id="slide-1706-layer-2"
-                     data-x="['left','left','left','left']" data-hoffset="['30','15','15','15']"
-                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"
-                     data-fontsize="['55','55','40','30']"
-                     data-lineheight="['65','65','55','35']"
-                     data-width="['800','700','621','420']"
-                     data-height="none"
-                     data-whitespace="normal"
-
-                     data-type="text"
-                     data-responsive_offset="on"
-                     data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['left','left','left','left']"
-                     data-paddingtop="[0,0,0,0]"
-                     data-paddingright="[0,0,0,0]"
-                     data-paddingbottom="[10,10,10,10]"
-                     data-paddingleft="[0,0,0,0]"
-                     style="z-index: 6; text-align:left; max-width:1170px; white-space: normal;">Sorghumbase</div>
-                <!-- LAYER NR. 3 -->
-                <!-- <div class="tp-caption mainSlide-Button btn btn-lg btn-white-outline "
-                     id="slide-1706-layer-3"
-                     data-x="['left','left','left','left']" data-hoffset="['30','15','15','15']"
-                     data-y="['middle','middle','middle','middle']" data-voffset="['112','112','112','96']"
-                     data-width="none"
-                     data-height="none"
-                     data-whitespace="nowrap"
-
-                     data-type="button"
-                     data-actions='[{"event":"click","action":"scrollbelow","offset":"px","delay":""}]'
-                     data-responsive_offset="on"
-                     data-responsive="off"
-                     data-frames='[{"delay":2000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['left','left','left','left']"
-                     data-paddingtop="[12,12,12,12]"
-                     data-paddingright="[35,35,35,35]"
-                     data-paddingbottom="[12,12,12,12]"
-                     data-paddingleft="[35,35,35,35]"
-
-                     style="z-index: 8; white-space: nowrap;outline:none;box-shadow:none;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;cursor:pointer;">READ MORE </div>
-            </li> -->
             <!-- SLIDE  -->
-            <li data-index="rs-3046" data-transition="parallaxtoleft" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                <!-- MAIN IMAGE -->
-                <img src="{{big_banner_2.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-                <!-- LAYERS -->
+<!--            <li data-index="rs-3047" data-transition="parallaxtoright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">-->
+<!--                &lt;!&ndash; MAIN IMAGE &ndash;&gt;-->
+<!--                <img src="{{big_banner_3.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina>-->
+<!--                &lt;!&ndash; LAYERS &ndash;&gt;-->
+<!--                &lt;!&ndash; LAYER NR. 1 &ndash;&gt;-->
+<!--                <a href="/population/xin-ems">-->
+<!--                <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"-->
+<!--                     id="slide-1706-layer-8"-->
+<!--                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"-->
+<!--                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"-->
+<!--                     data-fontsize="['55','55','40','30']"-->
+<!--                     data-lineheight="['65','65','50','35']"-->
+<!--                     data-width="['900','800','621','420']"-->
+<!--                     data-height="none"-->
+<!--                     data-whitespace="normal"-->
 
-                <!-- LAYER NR. 1 -->
-                <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
-                     id="slide-1706-layer-4"
-                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"
-                     data-fontsize="['55','55','40','30']"
-                     data-lineheight="['65','65','50','35']"
-                     data-width="['900','800','621','420']"
-                     data-height="none"
-                     data-whitespace="normal"
+<!--                     data-type="text"-->
+<!--                     data-responsive_offset="on"-->
+<!--                     data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'-->
+<!--                     data-textAlign="['center','center','center','center']"-->
+<!--                     data-paddingtop="[0,0,0,0]"-->
+<!--                     data-paddingright="[0,0,0,0]"-->
+<!--                     data-paddingbottom="[10,10,10,10]"-->
+<!--                     data-paddingleft="[0,0,0,0]"-->
 
-                     data-type="text"
-                     data-responsive_offset="on"
-                     data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['center','center','center','center']"
-                     data-paddingtop="[0,0,0,0]"
-                     data-paddingright="[0,0,0,0]"
-                     data-paddingbottom="[10,10,10,10]"
-                     data-paddingleft="[0,0,0,0]"
-
-                     style="z-index: 6; text-align:center; white-space: normal;">Research, tools and resources</div>
-                <!-- LAYER NR. 3 -->
-                <div class="tp-caption mainSlide-caption   tp-resizeme"
-                     id="slide-1706-layer-5"
-                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                     data-y="['middle','middle','middle','middle']" data-voffset="['80','80','80','50']"
-                     data-fontsize="['24','24','24','16']"
-                     data-lineheight="['34','34','34','26']"
-                     data-width="['800','700','621','420']"
-                     data-height="none"
-                     data-whitespace="normal"
-                     data-type="text"
-                     data-responsive_offset="on"
-                     data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['center','center','center','center']"
-                     data-paddingtop="[0,0,0,0]"
-                     data-paddingright="[0,0,0,0]"
-                     data-paddingbottom="[10,10,10,10]"
-                     data-paddingleft="[0,0,0,0]"
-                     style="z-index: 6; text-align:left; max-width:1170px; white-space: normal;">That work <em>for</em> the sorghum Community</div>
-            </li>
-            <!-- SLIDE  -->
-            <li data-index="rs-3047" data-transition="parallaxtoright" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
-                <!-- MAIN IMAGE -->
-                <img src="{{big_banner_3.s.source_url}}"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgparallax="10" class="rev-slidebg" data-no-retina>
-                <!-- LAYERS -->
-                <!-- LAYER NR. 1 -->
-                <div class="tp-caption mainSlide-Title-Centered   tp-resizeme"
-                     id="slide-1706-layer-8"
-                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                     data-y="['middle','middle','middle','middle']" data-voffset="['0','0','0','1']"
-                     data-fontsize="['55','55','40','30']"
-                     data-lineheight="['65','65','50','35']"
-                     data-width="['900','800','621','420']"
-                     data-height="none"
-                     data-whitespace="normal"
-
-                     data-type="text"
-                     data-responsive_offset="on"
-                     data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['center','center','center','center']"
-                     data-paddingtop="[0,0,0,0]"
-                     data-paddingright="[0,0,0,0]"
-                     data-paddingbottom="[10,10,10,10]"
-                     data-paddingleft="[0,0,0,0]"
-
-                     style="z-index: 6; text-align:center; white-space: normal;">Sorghumbase</div>
-                <!-- LAYER NR. 3 -->
-                <div class="tp-caption mainSlide-caption   tp-resizeme"
-                     id="slide-1706-layer-9"
-                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"
-                     data-y="['middle','middle','middle','middle']" data-voffset="['80','80','80','50']"
-                     data-fontsize="['24','24','24','16']"
-                     data-lineheight="['34','34','34','26']"
-                     data-width="['800','700','621','420']"
-                     data-height="none"
-                     data-whitespace="normal"
-                     data-type="text"
-                     data-responsive_offset="on"
-                     data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
-                     data-textAlign="['center','center','center','center']"
-                     data-paddingtop="[0,0,0,0]"
-                     data-paddingright="[0,0,0,0]"
-                     data-paddingbottom="[10,10,10,10]"
-                     data-paddingleft="[0,0,0,0]"
-                     style="z-index: 6; text-align:left; max-width:1170px; white-space: normal;">Building sorghum's future</div>
-            </li>
-            #}
+<!--                     style="z-index: 6; text-align:center; white-space: normal;">Xin EMS population</div></a>-->
+<!--                &lt;!&ndash; LAYER NR. 3 &ndash;&gt;-->
+<!--                <div class="tp-caption mainSlide-caption   tp-resizeme"-->
+<!--                     id="slide-1706-layer-9"-->
+<!--                     data-x="['center','center','center','center']" data-hoffset="['0','0','0','0']"-->
+<!--                     data-y="['middle','middle','middle','middle']" data-voffset="['80','80','80','50']"-->
+<!--                     data-fontsize="['24','24','24','16']"-->
+<!--                     data-lineheight="['34','34','34','26']"-->
+<!--                     data-width="['800','700','621','420']"-->
+<!--                     data-height="none"-->
+<!--                     data-whitespace="normal"-->
+<!--                     data-type="text"-->
+<!--                     data-responsive_offset="on"-->
+<!--                     data-frames='[{"delay":1400,"speed":1500,"frame":"0","from":"y:50px;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'-->
+<!--                     data-textAlign="['center','center','center','center']"-->
+<!--                     data-paddingtop="[0,0,0,0]"-->
+<!--                     data-paddingright="[0,0,0,0]"-->
+<!--                     data-paddingbottom="[10,10,10,10]"-->
+<!--                     data-paddingleft="[0,0,0,0]"-->
+<!--                     style="z-index: 6; text-align:left; max-width:1170px; white-space: normal;">An EMS population developed at USDA-ARS</div>-->
+<!--            </li>-->
         </ul>
         <div class="tp-bannertimer" style="height: 7px; background-color: rgba(255, 255, 255, 0.25);"></div>	</div>
 </div><!-- END REVOLUTION SLIDER -->
@@ -182,10 +322,12 @@
 {# Bullet points section #}
 
 <div class="pt90 pb50 container">
-    <div class="title-heading1 mb40">
-        <h3>For All Your Sorghum Needs</h3>
-    </div>
+<!--    <div class="title-heading1 mb40">-->
+<!--        <h3>For All Your Sorghum Needs</h3>-->
+<!--    </div>-->
+
     <div class="row">
+      <div class="col-lg-2 mb40"></div>
         <div class="col-lg-4 mb40">
           <a href="/posts?categories=news">
             <div class="media icon-simple">
@@ -194,25 +336,25 @@
                 </div>
                 <div class="media-body">
                     <h4 class="mt-0 mb10">News</h4>
-                    Relevant developments in research and industry, hand curated by the Sorghumbase team.
+                    Relevant developments in Sorghum research.
                 </div>
             </div>
             </a>
         </div><!--/col-->
         <div class="col-lg-4 mb40">
-          <a href="/posts?categories=blog">
+          <a href="#tools_section">
             <div class="media icon-simple">
                 <div class="d-flex mr-3">
-                    <i class="icon-megaphone fa-3x text-primary"></i>
+                    <i class="icon-toolbox fa-3x text-primary"></i>
                 </div>
                 <div class="media-body">
-                    <h4 class="mt-0 mb10">Blog</h4>
-                    Contributions from members of the sorghum community offering insights into their work and its impact.
+                    <h4 class="mt-0 mb10">Tools</h4>
+                    Tools for exploring sorghum genomes and gene annotations.
                 </div>
             </div>
             </a>
         </div><!--/col-->
-        <div class="col-lg-4 mb40">
+        <!-- <div class="col-lg-4 mb40">
           <a href="/faq">
             <div class="media icon-simple">
                 <div class="d-flex mr-3">
@@ -226,21 +368,22 @@
             </a>
         </div><!--/col-->
     </div>
-    <div class="row">
-        <div class="col-lg-4 mb40">
-          <a href="/posts?categories=projects">
-            <div class="media icon-simple">
-                <div class="d-flex mr-3">
-                    <i class="icon-beaker fa-3x text-primary"></i>
-                </div>
-                <div class="media-body">
-                    <h4 class="mt-0 mb10">Projects</h4>
-                    Ongoing projects that push the development of the sorghum community forward.
-                </div>
-            </div>
-          </a>
-        </div><!--/col-->
-        <div class="col-lg-4 mb40">
+<!--    <div class="row">-->
+<!--      <div class="col-lg-2 mb40"></div>-->
+<!--        <div class="col-lg-4 mb40">-->
+<!--          <a href="/posts?categories=projects">-->
+<!--            <div class="media icon-simple">-->
+<!--                <div class="d-flex mr-3">-->
+<!--                    <i class="icon-beaker fa-3x text-primary"></i>-->
+<!--                </div>-->
+<!--                <div class="media-body">-->
+<!--                    <h4 class="mt-0 mb10">Projects</h4>-->
+<!--                    Ongoing projects that push the development of the sorghum community forward.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--          </a>-->
+<!--        </div>&lt;!&ndash;/col&ndash;&gt;-->
+        <!-- <div class="col-lg-4 mb40">
           <a href="/posts?categories=tutorials">
             <div class="media icon-simple">
                 <div class="d-flex mr-3">
@@ -253,20 +396,20 @@
             </div>
           </a>
         </div><!--/col-->
-        <div class="col-lg-4 mb40">
-          <a href="/posts?categories=tools">
-            <div class="media icon-simple">
-                <div class="d-flex mr-3">
-                    <i class="icon-toolbox fa-3x text-primary"></i>
-                </div>
-                <div class="media-body">
-                    <h4 class="mt-0 mb10">Tools</h4>
-                    Tools developed in academia and industry to support the sorghum community.
-                </div>
-            </div>
-          </a>
-        </div><!--/col-->
-    </div>
+<!--        <div class="col-lg-4 mb40">-->
+<!--          <a href="/posts?categories=tools">-->
+<!--            <div class="media icon-simple">-->
+<!--                <div class="d-flex mr-3">-->
+<!--                    <i class="icon-toolbox fa-3x text-primary"></i>-->
+<!--                </div>-->
+<!--                <div class="media-body">-->
+<!--                    <h4 class="mt-0 mb10">Tools</h4>-->
+<!--                    Tools developed in academia and industry to support the sorghum community.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--          </a>-->
+<!--        </div>&lt;!&ndash;/col&ndash;&gt;-->
+<!--    </div>-->
 </div><!--Features-->
 
 {# Parallax section #}
@@ -355,29 +498,158 @@
 
 
 {# section #}
+<a name="tools_section"></a>
 <div class="container pt90">
   <div class="title-heading1 mb40">
       <h3>Tools</h3>
   </div>
     <div class="row justify-content-md-center pb60">
-      {% for tool, icon in zip(tools, toolicons) %}
         <div class="col-lg-4 mb30">
-          <a href="/post/{{tool.s.slug}}">
             <div class="icon-box icon-box-center">
-                <i class="icon-hover-1 bg-primary {{icon}} icon-hover-default"></i>
-                <h4>{{tool.s.title | safe}}</h4>
-                <p>
-                    {{tool.s.excerpt | safe}}
-                </p>
+                <a href="/genes">
+                    <i class="icon-hover-1 bg-primary icon-magnifying-glass icon-hover-default"></i>
+                    <h4>Gene Search</h4>
+                </a>
+                <p>Search for genes by id, name, pathway, domain, or ontology term</p>
             </div>
-            </a>
-        </div><!--/col-->
-      {% endfor %}
+        </div>
+        <div class="col-lg-4 mb30">
+            <div class="icon-box icon-box-center">
+                <a href="https://ensembl.sorghumbase.org">
+                    <i class="icon-hover-1 bg-primary icon-browser icon-hover-default"></i>
+                    <h4>Genome Browser</h4>
+                </a>
+                <p>Genome browser powered by EnsEMBL</p>
+            </div>
+        </div>
+        <div class="col-lg-4 mb30">
+            <div class="icon-box icon-box-center">
+                <a href="https://ensembl.sorghumbase.org/Tools/Blast">
+                    <i class="icon-hover-1 bg-primary icon-search icon-hover-default"></i>
+                    <h4>BLAST</h4>
+                </a>
+                <p>Search by sequence</p>
+            </div>
+        </div>
+
+<!--        .icon-mobile,-->
+<!--        .icon-laptop,-->
+<!--        .icon-desktop,-->
+<!--        .icon-tablet,-->
+<!--        .icon-phone,-->
+<!--        .icon-document,-->
+<!--        .icon-documents,-->
+<!--        .icon-search,-->
+<!--        .icon-clipboard,-->
+<!--        .icon-newspaper,-->
+<!--        .icon-notebook,-->
+<!--        .icon-book-open,-->
+<!--        .icon-browser,-->
+<!--        .icon-calendar,-->
+<!--        .icon-presentation,-->
+<!--        .icon-picture,-->
+<!--        .icon-pictures,-->
+<!--        .icon-video,-->
+<!--        .icon-camera,-->
+<!--        .icon-printer,-->
+<!--        .icon-toolbox,-->
+<!--        .icon-briefcase,-->
+<!--        .icon-wallet,-->
+<!--        .icon-gift,-->
+<!--        .icon-bargraph,-->
+<!--        .icon-grid,-->
+<!--        .icon-expand,-->
+<!--        .icon-focus,-->
+<!--        .icon-edit,-->
+<!--        .icon-adjustments,-->
+<!--        .icon-ribbon,-->
+<!--        .icon-hourglass,-->
+<!--        .icon-lock,-->
+<!--        .icon-megaphone,-->
+<!--        .icon-shield,-->
+<!--        .icon-trophy,-->
+<!--        .icon-flag,-->
+<!--        .icon-map,-->
+<!--        .icon-puzzle,-->
+<!--        .icon-basket,-->
+<!--        .icon-envelope,-->
+<!--        .icon-streetsign,-->
+<!--        .icon-telescope,-->
+<!--        .icon-gears,-->
+<!--        .icon-key,-->
+<!--        .icon-paperclip,-->
+<!--        .icon-attachment,-->
+<!--        .icon-pricetags,-->
+<!--        .icon-lightbulb,-->
+<!--        .icon-layers,-->
+<!--        .icon-pencil,-->
+<!--        .icon-tools,-->
+<!--        .icon-tools-2,-->
+<!--        .icon-scissors,-->
+<!--        .icon-paintbrush,-->
+<!--        .icon-magnifying-glass,-->
+<!--        .icon-circle-compass,-->
+<!--        .icon-linegraph,-->
+<!--        .icon-mic,-->
+<!--        .icon-strategy,-->
+<!--        .icon-beaker,-->
+<!--        .icon-caution,-->
+<!--        .icon-recycle,-->
+<!--        .icon-anchor,-->
+<!--        .icon-profile-male,-->
+<!--        .icon-profile-female,-->
+<!--        .icon-bike,-->
+<!--        .icon-wine,-->
+<!--        .icon-hotairballoon,-->
+<!--        .icon-globe,-->
+<!--        .icon-genius,-->
+<!--        .icon-map-pin,-->
+<!--        .icon-dial,-->
+<!--        .icon-chat,-->
+<!--        .icon-heart,-->
+<!--        .icon-cloud,-->
+<!--        .icon-upload,-->
+<!--        .icon-download,-->
+<!--        .icon-target,-->
+<!--        .icon-hazardous,-->
+<!--        .icon-piechart,-->
+<!--        .icon-speedometer,-->
+<!--        .icon-global,-->
+<!--        .icon-compass,-->
+<!--        .icon-lifesaver,-->
+<!--        .icon-clock,-->
+<!--        .icon-aperture,-->
+<!--        .icon-quote,-->
+<!--        .icon-scope,-->
+<!--        .icon-alarmclock,-->
+<!--        .icon-refresh,-->
+<!--        .icon-happy,-->
+<!--        .icon-sad,-->
+<!--        .icon-facebook,-->
+<!--        .icon-twitter,-->
+<!--        .icon-googleplus,-->
+<!--        .icon-rss,-->
+<!--        .icon-tumblr,-->
+<!--        .icon-linkedin,-->
+
+        <!--      {% for tool, icon in zip(tools, toolicons) %}-->
+<!--        <div class="col-lg-4 mb30">-->
+<!--          <a href="/post/{{tool.s.slug}}">-->
+<!--            <div class="icon-box icon-box-center">-->
+<!--                <i class="icon-hover-1 bg-primary {{icon}} icon-hover-default"></i>-->
+<!--                <h4>{{tool.s.title | safe}}</h4>-->
+<!--                <p>-->
+<!--                    {{tool.s.excerpt | safe}}-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            </a>-->
+<!--        </div>&lt;!&ndash;/col&ndash;&gt;-->
+<!--      {% endfor %}-->
     </div>
 
 </div><!--/intro-->
 
-{# section #}
+<!-- {# section #}
 
 <div class="bg-faded">
     <div class="container pt90">
@@ -395,11 +667,11 @@
                           <span class="font-weight-bold">{{user.organization | safe}}</span>
                   </div>
               </div>
-            </div><!--/.col-->
+            </div>
         {% endfor %}
         </div>
     </div>
-</div>
+</div> -->
 
 {% endblock %}
 

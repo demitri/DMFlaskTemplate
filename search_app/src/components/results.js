@@ -1,13 +1,15 @@
 import React from 'react'
 import { Provider } from 'redux-bundler-react'
-import { resultList as SorghumList } from 'sorghum-search'
+import SorghumList from '../../sorghum-search/resultList'
 // import { resultList as GrameneList } from 'gramene-search'
 
-export default (store) => (
+const suggestions = (store) => (
   <Provider store={store}>
     <div>
       <SorghumList />
       {/*<GrameneList />*/}
     </div>
   </Provider>
-)
+);
+
+export default suggestions;

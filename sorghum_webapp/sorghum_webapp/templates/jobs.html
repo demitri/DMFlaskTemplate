@@ -3,7 +3,7 @@
 {% block additional_header %}{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+<div class="page-titles-img title-space-md parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
   <div class="container">
     <div class="row">
       <div class=" col-md-12">
@@ -13,7 +13,7 @@
     </div>
   </div>
 </div><!--page title end-->
-<div class="container pt90">
+<div class="container pt60 pb50">
     <div class="row">
       <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
       style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
@@ -22,31 +22,39 @@
       style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
       <div class="pt50 title">Jobs in sorghum</div>
       <div class="mb40">
-        {% for job in jobs %}
-        <a data-scroll="" href="#{{job.s.job_title}}" class="nav-link active">{{job.s.title | safe}}</a>
-        {% endfor %}
+        {% if jobs[0] %}
+          {% for job in jobs %}
+          <a data-scroll="" href="#{{job.s.job_title}}" class="nav-link active">{{job.s.title | safe}}</a>
+          {% endfor %}
+        {% endif %}
       </div>
     </div>
   </div>
         <div class="col-lg-10">
-          {% for job in jobs %}
-            <div class="career-card clearfix">
-                <div class="clearfix pb20">
-                    <h2 class="mb0">{{job.s.title | safe}}</h2>
-                    <span class="label label-default">{{job.s.company | safe}}</span>
-                </div>
-                <br>
-                <p>
-                  {{job.s.content | safe }}
-                </p>
-                <br>
-                <h6>Job Requirements</h6>
-                <p>
-                  {{job.s.job_requirements | safe}}
-                </p>
-                <a href="{{job.s.job_url}}" class="btn float-right btn-sm btn-primary">Learn More</a>
-            </div><!--/career-->
-          {% endfor %}
+          {% if not jobs[0] %}
+            <div class="pb20">
+              <h5>No current job openings have been posted. Please check back later.</h5>
+            </div>
+          {% else %}
+            {% for job in jobs %}
+              <div class="career-card clearfix">
+                  <div class="clearfix pb20">
+                      <h2 class="mb0">{{job.s.title | safe}}</h2>
+                      <span class="label label-default">{{job.s.company | safe}}</span>
+                  </div>
+                  <br>
+                  <p>
+                    {{job.s.content | safe }}
+                  </p>
+                  <br>
+                  <h6>Job Requirements</h6>
+                  <p>
+                    {{job.s.job_requirements | safe}}
+                  </p>
+                  <a href="{{job.s.job_url}}" class="btn float-right btn-sm btn-primary">Learn More</a>
+              </div><!--/career-->
+            {% endfor %}
+          {% endif %}
         </div>
     </div>
 </div>

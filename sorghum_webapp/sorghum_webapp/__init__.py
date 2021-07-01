@@ -28,16 +28,20 @@ def register_blueprints(app=None):
 	from .controllers.assan_blank import assan_blank_page
 	from .controllers.admin_template import assan_admin_template
 	from .controllers.notebook import notebook_page
-	from .controllers.post import post_page
-	from .controllers.posts import post_grid
+	from .controllers.post import post_page, population_page, genome_page
+	from .controllers.posts import post_grid, germplasm_grid, population_grid
 	from .controllers.mission_statement import mission_statement_page
+	from .controllers.feedback import feedback_page
+	from .controllers.relnotes import relnotes_page
+	from .controllers.guides import guides_page
 	from .controllers.resource_links import resource_links_page
 	from .controllers.contact import contact_page
 	from .controllers.people import people_page
 	from .controllers.faq import faq_page
 	from .controllers.search import search_page
 	from .controllers.search_api import search_api
-	from .controllers.research import research_page
+	from .controllers.publications import publications_page
+	from .controllers.paper import paper_page
 	from .controllers.jobs import jobs_page
 	from .controllers.mailing_list import mailing_list_page
 	from .controllers.events import events_page
@@ -45,13 +49,14 @@ def register_blueprints(app=None):
 	from .controllers.about import about_page
 	from .controllers.community import community_page
 	from .controllers.resources import resources_page
+	from .controllers.tutorials import tutorials_page
 	from .controllers.projects import projects_list
 	from .controllers.project import project_page
 	from .controllers.clear_wp_cache import clear_wp_cache_page
 
-	from .controllers.VEP import VEP_entry_page
-	from .controllers.VEP import VEP_source_page
-	from .controllers.VEP import VEP_page
+	# from .controllers.VEP import VEP_entry_page, VEP_source_page, VEP_page
+
+	from .controllers.gramoogle import gramoogle_page
 	#from .controllers.controller1 import xxx
 
 	app.register_blueprint(index_page)
@@ -60,13 +65,21 @@ def register_blueprints(app=None):
 	app.register_blueprint(assan_admin_template)
 	app.register_blueprint(post_page)
 	app.register_blueprint(post_grid)
+	app.register_blueprint(germplasm_grid)
+	app.register_blueprint(population_grid)
+	app.register_blueprint(population_page)
+	app.register_blueprint(genome_page)
 	app.register_blueprint(mission_statement_page)
+	app.register_blueprint(feedback_page)
+	app.register_blueprint(relnotes_page)
+	app.register_blueprint(guides_page)
 	app.register_blueprint(resource_links_page)
 	app.register_blueprint(contact_page)
 	app.register_blueprint(people_page)
 	app.register_blueprint(faq_page)
 	app.register_blueprint(search_page)
-	app.register_blueprint(research_page)
+	app.register_blueprint(publications_page)
+	app.register_blueprint(paper_page)
 	app.register_blueprint(jobs_page)
 	app.register_blueprint(mailing_list_page)
 	app.register_blueprint(events_page)
@@ -74,14 +87,16 @@ def register_blueprints(app=None):
 	app.register_blueprint(about_page)
 	app.register_blueprint(community_page)
 	app.register_blueprint(resources_page)
+	app.register_blueprint(tutorials_page)
 	app.register_blueprint(projects_list)
 	app.register_blueprint(project_page)
 	app.register_blueprint(search_api)
 	app.register_blueprint(clear_wp_cache_page)
 
-	app.register_blueprint(VEP_entry_page)
-	app.register_blueprint(VEP_source_page)
-	app.register_blueprint(VEP_page)
+	# app.register_blueprint(VEP_entry_page)
+	# app.register_blueprint(VEP_source_page)
+	# app.register_blueprint(VEP_page)
+	app.register_blueprint(gramoogle_page)
 	#app.register_blueprint(xxx)
 
 	if (app.debug):
@@ -293,12 +308,16 @@ def create_app(debug=False, log_level=None):#, conf=dict()):
 	from requests.auth import HTTPBasicAuth
 
 	# does the configuration file request basic authentication?
-	if all([key in app.config for key in ['SB_WP_USERNAME', 'SB_WP_PASSWORD']]):
+	if all([key in app.config for key in ['SB_WP_USERNAME', 'SB_WP_PASSWORD', 'MANTIS_USERNAME', 'MANTIS_PASSWORD']]):
 		# check username, password defined in local environment
 		if 'SB_WP_USERNAME' not in os.environ:
 			raise Exception("'SB_WP_USERNAME' (WordPress username for basic authentication) set in configuration, but not defined in local environment.")
 		if 'SB_WP_PASSWORD' not in os.environ:
 			raise Exception("'SB_WP_PASSWORD' (WordPress password for basic authentication) set in configuration, but not defined in local environment.")
+		if 'MANTIS_USERNAME' not in os.environ:
+			raise Exception("'MANTIS_USERNAME' set in configuration, but not defined in local environment.")
+		if 'MANTIS_PASSWORD' not in os.environ:
+			raise Exception("'MANTIS_PASSWORD' set in configuration, but not defined in local environment.")
 		wordpress_api.authenticator = HTTPBasicAuth(os.environ['SB_WP_USERNAME'], os.environ['SB_WP_PASSWORD'])
 	else:
 		print(red_text("Basic authentication failed."))

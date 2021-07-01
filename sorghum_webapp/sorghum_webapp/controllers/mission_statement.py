@@ -11,6 +11,7 @@ from wordpress_orm import wp_session
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -20,7 +21,7 @@ mission_statement_page = flask.Blueprint("mission_statment_page", __name__)
 @mission_statement_page.route('/mission-statement')
 def mission():
 	''' Mission Statement page. '''
-	templateDict = {}
+	templateDict = navbar_template('About')
 
 	with api.Session():
 

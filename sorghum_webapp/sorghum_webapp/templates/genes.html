@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Genes{% endblock %}
+{% block additional_header %}
+<script async src="{{request.script_root}}/static/gramene-dalliance/dalliance-all.js"></script>
+<script async src="https://plantreactome.gramene.org/DiagramJs/diagram/diagram.nocache.js"></script>
+{% endblock %}
+{% block content %}
+
+        <!-- place BODY content here -->
+<div class="page-titles-img title-space-search bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}'
+     style='background-image: url("http://content.sorghumbase.org/wordpress/wp-content/uploads/2018/05/k-state-sorghum-field-1920x1000.jpg")'>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 ml-auto mr-auto">
+                <h1 class='text-uppercase'>genes search</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="gene-search-ui">the gene search ui goes here</div>
+
+{% endblock %}
+​

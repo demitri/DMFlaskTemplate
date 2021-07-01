@@ -13,6 +13,7 @@ from wordpress_orm import wp_session
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -23,7 +24,7 @@ spacer = " & "
 @events_page.route('/events')
 def events():
 	''' Events page. '''
-	templateDict = {}
+	templateDict = navbar_template('News')
 	past = valueFromRequest(key="past", request=request) or False
 	if type(past) is str:
 		past = True
@@ -37,13 +38,15 @@ def events():
 		futureEvents = []
 
 		for e in events:
+			if not e.s.short_name:
+				e.s.short_name = e.s.title
 			if (datetime.strptime(e.s.start_date, '%Y-%m-%d') < today): # Is the event in the past?
 				pastEvents.append(e)
 			else:
 				futureEvents.append(e)
 
 		sortedFutureEvents = sorted(futureEvents, reverse=past, key=lambda k: k.s.start_date)
-		sortedPastEvents = sorted(pastEvents, reverse=past, key=lambda k: k.s.start_date)
+		sortedPastEvents = sorted(pastEvents, reverse=True, key=lambda k: k.s.start_date)
 
 		news_banner_media = api.media(slug="sorghum_panicle")
 		templateDict["banner_media"] = news_banner_media

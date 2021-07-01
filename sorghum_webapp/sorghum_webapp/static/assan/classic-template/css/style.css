@@ -1230,8 +1230,8 @@ Assan Header Style
       color: rgba(255, 255, 255, 0.7); }
       .navbar.navbar-transparent .navbar-right-elements .list-inline > li > a:hover {
         color: white; }
-    .navbar.navbar-transparent.nav-sticky.nav-stick-top .active .nav-link, .navbar.navbar-transparent.nav-sticky.nav-stick-top .nav-item.show .nav-link {
-      color: #FBBB19 !important; }
+    /*.navbar.navbar-transparent.nav-sticky.nav-stick-top .active .nav-link, .navbar.navbar-transparent.nav-sticky.nav-stick-top .nav-item.show .nav-link {*/
+      /*color: #FBBB19 !important; }*/
   /**header sticky**/
   .navbar.navbar-transparent.nav-sticky .navbar-brand .logo {
     position: absolute;
@@ -1434,7 +1434,7 @@ Dropdown menu styles
     margin-top: 0px;
     background-color: #212121; }
   .dropdown-menu .dropdown-item, .mega-inner-nav li a {
-    color: rgba(255, 255, 255, 0.6); }
+    /*color: rgba(255, 255, 255, 0.6); }*/
   .dropdown-menu.dropdown-mega-fw {
     position: absolute;
     width: 100%;
@@ -2442,9 +2442,13 @@ Page title styles
   padding-top: 14em;
   padding-bottom: 7em; }
 
-.title-space-search {
-  padding-top: 9em;
+.title-space-md {
+  padding-top: 7em;
   padding-bottom: 3em; }
+
+.title-space-search {
+  padding-top: 1em;
+  padding-bottom: 1em; }
 
 .page-title-sm-gray {
   padding: 30px 0;

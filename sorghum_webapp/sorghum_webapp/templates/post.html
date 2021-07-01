@@ -10,7 +10,7 @@
 
 {# Section: Image slider #}
 
-<div class="page-titles-img title-space-lg bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}'
+<div class="page-titles-img title-space-md bg-parallax parallax-overlay mb70" data-jarallax='{"speed": 0.2}'
      style='background-image: url("{{sorghum_grains_image.s.source_url}}")'>
     <div class="container">
         <div class="row">
@@ -76,7 +76,13 @@
 
                     <hr class="mb40">
 
-                    <h4 class="mb40 text-uppercase font500">About the Author</h4>
+                    <!-- <p>Tags:
+                      {% for tag in post.s.tags %}
+                        <a href="/search/{{tag}}">{{tag}} </a>
+                      {% endfor %}
+                    </p> -->
+
+                    <h4 class="mb40 text-uppercase font500">Author</h4>
                     <div class="media mb40">
                         <div class="image-cropper" style="height:200px; width:200px;">
                             <!-- #<img src="{{ author_gravatar_url }}" srcset="{{ author_gravatar_url }} 2x"/> -->
@@ -85,7 +91,11 @@
                         </div>
                         <!--i class="d-flex mr-3 fa fa-user-circle fa-5x text-primary"></i-->
                         <div class="media-body">
+                          <a href="/search?={{post.author.s.name}}">
                             <h5 class="mt-0 font700">{{ post.author.s.name | safe}}</h5>
+                          </a>
+                            <p>{{post.author.s.job_title}}, {{post.author.s.organization}}</p>
+                            <a href="{{post.author.s.url}}">{{post.author.s.url}}</a>
                             {{ post.author.s.description | safe}}
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 {% block additional_header %}{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
+<div class="page-titles-img title-space-md parallax-overlay bg-parallax" data-jarallax='{"speed": 0.4}' style='background-image: url("{{banner_media.s.source_url}}");background-position:top center;'>
   <div class="container">
     <div class="row">
       <div class=" col-md-12">
@@ -15,19 +15,18 @@
 </div><!--page title end-->
 <div class="container pt90">
     <div class="row">
-      <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
-      style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+      <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
       <!--/col-->
-      <div class="theiaStickySidebar"
-      style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
-      <div class="pt50 title">Projects in sorghum</div>
-      <div class="mb40">
-        {% for project in projects %}
-        <a data-scroll="" href="#{{project.s.title}}" class="nav-link active">{{project.s.title | safe}}</a>
-        {% endfor %}
+        <div class="theiaStickySidebar"
+          style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+          <div class="pt50 title">Projects in sorghum</div>
+          <div class="mb40">
+            {% for project in projects %}
+            <a data-scroll="" href="#{{project.s.title}}" class="nav-link active">{{project.s.title | safe}}</a>
+            {% endfor %}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
         <div class="col-lg-10">
           {% for project in projects %}
             <div class="career-card clearfix">

@@ -12,6 +12,7 @@ from wordpress_orm import wp_session
 from .. import app
 from .. import wordpress_api as api
 from . import valueFromRequest
+from .navbar import navbar_template
 from .footer import populate_footer_template
 
 logger = logging.getLogger("wordpress_orm")
@@ -21,7 +22,7 @@ community_page = flask.Blueprint("community_page", __name__)
 @community_page.route('/community')
 def community():
 	''' Community page. '''
-	templateDict = {}
+	templateDict = navbar_template()
 
 	with api.Session():
 		post_request = api.PostRequest()

@@ -37,7 +37,7 @@ class Event(WPEntity):
 	def schema_fields(self):
 		return ["id", "date", "date_gmt", "guid", "modified", "modified_gmt",
 				"slug", "status", "type", "link", "title", "content", "template",
-				"start_date", "end_date", "event_url", "organizer", "featured_image"]
+				"start_date", "end_date", "event_url", "organizer", "featured_image", "location", "short_name"]
 
 	@property
 	def post_fields(self):

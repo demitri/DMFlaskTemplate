@@ -2,7 +2,7 @@
 {% block title %}Page Title{% endblock %}
 {% block content %}
 
-<div class="page-titles-img title-space-lg bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{banner_media.s.source_url}}")'>
+<div class="page-titles-img title-space-md bg-parallax parallax-overlay" data-jarallax='{"speed": 0.2}' style='background-image: url("{{banner_media.s.source_url}}")'>
     <div class="container">
         <div class="row">
             <div class=" col-md-8 ml-auto mr-auto">
@@ -15,9 +15,81 @@
 
 <div class="bg-faded">
   <div class="container pt90 mb30">
-      <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
+    <!-- <div class="col-lg-2 col md-1 mb40 sticky-sidebar d-none d-sm-block"
+         style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+        <!--/col
+        <div class="theiaStickySidebar"
+             style="padding-top: 100px; padding-bottom: 1px; position: static; transform: none; left: 0px; top: 0px;">
+
+            <div class="pt50 title">Resource types</div>
+
+            <div class="mb40">
+                  <a href="#" class="nav-link">Dataset</a>
+                  <a href="#" class="nav-link">Database</a>
+                  <a href="#" class="nav-link">Funding</a>
+                  <a href="#" class="nav-link">Producer/Farmer</a>
+
+            </div>
+        </div>
+    </div> -->
+
+          <!-- {% if dataset_links[0] %}
+            <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
+              <h4>Datasets</h4>
+            {% for resource in dataset_links %}
+            <article class="col-md-5 post-masonry mb20" style="position: relative; left: 150px; top: 30px;">
+              <div class="card">
+                <div class="mx10">
+                  <a href="{{resource.s.resource_url}}">
+                    {% if resource.resource_image is not none %}
+                    <img src="{{resource.resource_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                    {% else %}
+                    <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                    {% endif %}
+                      <h3 class="masonry-title mb0">{{resource.s.title | safe}}</h3>
+                  </a>
+                      <p class="card-text">{{resource.s.content | safe}}</p>
+                </div>
+              </div>
+            </article>
+            {% endfor %}
+            </div>
+          {% endif %}
+
+          {% if database_links[0] %}
+            <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
+              <h4>Databases</h4>
+            {% for resource in database_links %}
+            <article class="col-md-5 post-masonry mb20" style="position: relative; left: 150px; top: 30px;">
+              <div class="card">
+                <div class="mx10">
+                  <a href="{{resource.s.resource_url}}">
+                    {% if resource.resource_image is not none %}
+                    <img src="{{resource.resource_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                    {% else %}
+                    <img src="{{default_image.s.source_url}}" alt="{{resource.s.title | safe}}" class="resource-link-image img-fluid mt20 mb20 centered">
+                    {% endif %}
+                      <h3 class="masonry-title mb0">{{resource.s.title | safe}}</h3>
+                  </a>
+                      <p class="card-text">{{resource.s.content | safe}}</p>
+                </div>
+              </div>
+            </article>
+            {% endfor %}
+            </div>
+          {% endif %}
+
+          {% if funding_links[0] %}
+
+          {% endif %}
+
+          {% if producer_links[0] %}
+
+          {% endif %} -->
+
+        <div class="row" id="blog-masonry" style="position: relative; height: 1179.5px;">
           {% for resource in resources_list %}
-          <article class="col-md-4 post-masonry mb20" style="position: absolute; left: 0px; top: 0px;">
+          <article class="col-md-5 post-masonry mb20" style="position: absolute; left: 0px; top: 0px;">
             <div class="card">
               <div class="mx10">
                 <a href="{{resource.s.resource_url}}">
@@ -33,7 +105,9 @@
             </div>
           </article>
           {% endfor %}
-      </div>
+        </div>
+    <!-- </div> -->
+
   </div>
 </div>
 {% endblock %}
