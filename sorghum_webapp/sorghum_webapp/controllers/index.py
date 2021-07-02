@@ -84,13 +84,13 @@ def index():
 		ta_banner["format"] = "video"
 		banners.append(ta_banner)
 		pg_banner = {"id" : "pan-genome-dist", "group": "Visualize genomic positions of genes containing the NB-ARC InterPro domain. This domain is often found in disease resistance genes."}
-		pg_banner["media"] = api.media(slug="pan-genome-dist")
+		pg_banner["media"] = api.media(slug="pan_genome_dist")
 		pg_banner["link_url"] = "/genes?filters={%22status%22:%22init%22,%22operation%22:%22AND%22,%22negate%22:false,%22marked%22:false,%22leftIdx%22:0,%22rightIdx%22:3,%22children%22:[{%22fq_field%22:%22domains__ancestors%22,%22fq_value%22:%222182%22,%22name%22:%22NB-ARC%22,%22category%22:%22InterPro%20Domain%22,%22leftIdx%22:1,%22rightIdx%22:2,%22negate%22:false,%22showMenu%22:false,%22marked%22:true}],%22showMarked%22:true,%22showMenu%22:false,%22moveCopyMode%22:%22%22,%22searchOffset%22:0,%22rows%22:20}&genomes="
 		pg_banner["link_text"] = "Explore"
 		pg_banner["title"] = "pan-genome distribution"
 		pg_banner["format"] = "wide"
 		banners.append(pg_banner)
-		gn_banner = {"id" : "neighbors", "group": "This MYB transcription factor, similar to Yellow seed1 (maize), has two to three local copies in sorghum."}
+		gn_banner = {"id" : "neighbors", "group": "Yellow seed1, has two to three local copies in sorghum."}
 		gn_banner["media"] = api.media(slug="yellow-seed1-neighborhood")
 		gn_banner["link_url"] = "/genes?filters={%22status%22:%22init%22,%22rows%22:20,%22operation%22:%22AND%22,%22negate%22:false,%22leftIdx%22:0,%22rightIdx%22:3,%22children%22:[{%22fq_field%22:%22gene_tree%22,%22fq_value%22:%22SORGHUM1GT_226935%22,%22name%22:%22Homologs%20of%20SORBI_3001G397900%22,%22category%22:%22Gene%20Tree%22,%22leftIdx%22:1,%22rightIdx%22:2,%22negate%22:false,%22marked%22:false}],%22searchOffset%22:0}&genomes=#tools_section"
 		gn_banner["link_text"] = "Search for homologs"
