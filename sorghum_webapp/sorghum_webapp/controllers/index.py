@@ -111,7 +111,7 @@ def index():
 		msa_banner["title"] = "multiple sequence alignment"
 		msa_banner["format"] = "wide"
 		banners.append(msa_banner)
-		shuffle(banners)
+# 		shuffle(banners)
 
 		templateDict["banners"] = banners
 		big_banner_3 = api.media(slug="sorghum_sky")
