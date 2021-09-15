@@ -5,45 +5,44 @@
   "author": "Andrew Olson",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build -d ../sorghum_webapp/sorghum_webapp/static/search --public-url /static/search/ src/index.js",
+    "build": "parcel build --no-scope-hoist --dist-dir ../sorghum_webapp/sorghum_webapp/static/search --public-url /static/search/ src/index.js",
     "prepare": "npm run build",
-    "watch": "parcel watch -d ../sorghum_webapp/sorghum_webapp/static/js/ -o search.js src/index.js"
+    "watch": "parcel watch --dist-dir ../sorghum_webapp/sorghum_webapp/static/search --public-url /static/search src/index.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "formik": "^2.2.6",
-    "gramene-bins-client": "^2.2.14",
-    "gramene-dbxrefs": "^3.0.4",
-    "gramene-genetree-vis": "^4.1.0",
-    "gramene-mdview": "^1.1.7",
-    "gramene-search-vis": "github:warelab/gramene-search-vis#upgrade-react",
-    "gramene-taxonomy-with-genomes": "^3.0.10",
-    "gramene-trees-client": "^2.5.6",
+    "formik": "^3.0.0-next.8",
+    "gramene-mdview": "^1.1.8",
+    "gramene-search": "^1.2.3",
     "is-email": "^1.0.0",
     "lodash": "^4.17.15",
     "money-clip": "^3.0.2",
     "querystringify": "^2.2.0",
-    "react": "^16.14.0",
-    "react-bootstrap": "^1.4.3",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.3",
     "react-debounce-input": "^3.2.3",
-    "react-dom": "16.14.0",
-    "react-ga": "^2.7.0",
+    "react-dom": "17.0.2",
+    "react-ga": "^3.3.0",
     "react-icons": "^4.1.0",
     "react-recaptcha": "^2.3.10",
-    "react-tree-menu": "github:ajo2995/react-tree-menu",
     "redux-bundler": "21.0.0",
     "redux-bundler-react": "1.0.1",
-    "yup": "^0.32.8"
+    "sorghum-search": "^1.1.7",
+    "yup": "^0.32.9"
   },
   "prettier": {
     "singleQuote": true,
     "semi": false
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "node-sass": "^4.9.3",
-    "parcel-bundler": "^1.12.4"
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/preset-react": "latest",
+    "@parcel/transformer-image": "^2.0.0-rc.0",
+    "@parcel/transformer-less": "^2.0.0-rc.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "parcel": "^2.0.0-rc.0"
   }
 }

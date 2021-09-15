@@ -1,6 +1,6 @@
 import { composeBundles, createCacheBundle } from 'redux-bundler'
-import sorghumBundles from '../../sorghum-search/bundles'
-import grameneBundles from '../../gramene-search/bundles'
+import {bundles as sorghumBundles} from 'sorghum-search'
+import {bundles as grameneBundles} from 'gramene-search'
 import UIbundle from './searchUI'
 import cache from "../utils/cache"
 import initialState from '../../config.json';

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Provider } from 'redux-bundler-react'
-import { Status, Filters, Results, Views } from '../../gramene-search/components/geneSearchUI'
+import { Status, Filters, Results, Views } from 'gramene-search'
 
-const GrameneSearch = (store) => (
+const GrameneSearchLayout = (store) => (
   <Provider store={store}>
     <div className="row no-margin no-padding">
       <div className="col-md-2 no-padding">
@@ -19,4 +19,4 @@ const GrameneSearch = (store) => (
   </Provider>
 );
 
-export default GrameneSearch;
+export default GrameneSearchLayout;

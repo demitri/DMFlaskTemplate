@@ -2,8 +2,8 @@ import React from 'react'
 import { Provider, connect } from 'redux-bundler-react'
 import { DebounceInput } from 'react-debounce-input'
 import { Nav, Tab, Row, Col, Button } from 'react-bootstrap'
-import SorghumSummary from '../../sorghum-search/suggestions'
-import GrameneSummary from '../../gramene-search/components/suggestions'
+import {suggestions as SorghumSummary} from 'sorghum-search'
+import {suggestions as GrameneSummary} from 'gramene-search'
 
 const handleKey = (e, props) => {
   if (e.key === "Escape") {
