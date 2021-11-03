@@ -32,7 +32,11 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 {% for item in menu.links %}
+                                {% if item.link == 'none' %}
+                                <li><div class="sb-menu-separator">{{item.label}}</div></li>
+                                {% else %}
                                 <li><a href="{{item.link}}" class="dropdown-item">{{item.label}}</a></li>
+                                {% endif %}
                                 {% endfor %}
                             </ul>
                         </li>
@@ -68,9 +72,12 @@
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="navbar-right-elements">
+                <div class="sb-navbar-right-elements">
                     <ul class="list-inline">
-                        <li><a href="javascript:void(0)" class="search-open" style="color:#333"><i class="ti-search"></i></a></li>
+                        <li><a href="javascript:void(0)" class="search-open" style="color:#333">
+                            <i class="ti-search" style="white-space: nowrap;">
+                            <input placeholder="Search Sorghumbase"/>
+                        </i></a></li>
                     </ul>
                 </div><!--right nav icons-->
             </div>

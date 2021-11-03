@@ -1,6 +1,16 @@
 import React from 'react'
-import { Provider } from 'redux-bundler-react'
+import { Provider, connect } from 'redux-bundler-react'
 import { Status, Filters, Results, Views } from 'gramene-search'
+import HelpDemo from './HelpDemo'
+
+const ResultsOrHelpCmp = props => {
+  return props.grameneFilters.rightIdx > 1 ? <Results/> : <HelpDemo/>;
+}
+
+const ResultsOrHelp = connect(
+    'selectGrameneFilters',
+    ResultsOrHelpCmp
+)
 
 const GrameneSearchLayout = (store) => (
   <Provider store={store}>
@@ -13,7 +23,7 @@ const GrameneSearchLayout = (store) => (
         </div>
       </div>
       <div className="col-md-10 no-padding">
-        <Results/>
+        <ResultsOrHelp/>
       </div>
     </div>
   </Provider>

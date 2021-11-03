@@ -31,7 +31,7 @@ const SearchBarCmp = props =>
         // onKeyUp={e => handleKey(e.key,props)}
         className="form-control"
         value={props.suggestionsQuery || ''}
-        placeholder="Search Sorghumbase"
+        placeholder="Search for genes, species, pathways, domains, ontology terms..."
         id="sorghumbase-search-input"
         autoComplete="off"
         spellCheck="false"

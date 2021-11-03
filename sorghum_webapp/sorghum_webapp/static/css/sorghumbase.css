@@ -292,3 +292,14 @@ img {
 .avatar-width {
 	width: 96px
 }
+
+.sb-menu-separator {
+	text-align: center;
+	font-size: smaller;
+	background-color: gainsboro;
+}
+.sb-navbar-right-elements {
+	top: 2em;
+	float: none !important;
+	position: sticky;
+}
