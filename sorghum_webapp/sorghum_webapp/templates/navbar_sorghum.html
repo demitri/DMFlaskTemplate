@@ -35,7 +35,20 @@
                                 {% if item.link == 'none' %}
                                 <li><div class="sb-menu-separator">{{item.label}}</div></li>
                                 {% else %}
+                                {% if item.links %}
+                                <li class="dropdown-submenu dropdown">
+                                    <a class="dropdown-item" href="#">{{item.label}}</a>
+                                    <ul class="dropdown-menu">
+                                        {% for sub_item in item.links %}
+                                        <li>
+                                            <a href="{{sub_item.link}}" class="dropdown-item">{{sub_item.label}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                {% else %}
                                 <li><a href="{{item.link}}" class="dropdown-item">{{item.label}}</a></li>
+                                {% endif %}
                                 {% endif %}
                                 {% endfor %}
                             </ul>

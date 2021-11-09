@@ -4,8 +4,11 @@ app_logger = logging.getLogger("sorghumbase")
 def make_menu(label, style='simple'):
     return { 'label':label, 'style':style, 'links':[] }
 
-def add_link(menu, label, link):
-    menu['links'].append({'label':label, 'link':link})
+def add_link(menu, label, link, links=[]):
+    if links:
+        menu['links'].append({'label':label, 'links':links})
+    else:
+        menu['links'].append({'label':label, 'link':link})
 
 def news():
     menu = make_menu('News')
@@ -27,33 +30,40 @@ def engage():
     return menu
 
 def genomes():
+    ensemblURL = 'https://ensembl-dev.sorghumbase.org'
     ref = make_menu('Genomes')
-    add_link(ref, 'Species table','https://ensembl-dev.sorghumbase.org/species.html')
-    add_link(ref, '--Browser Links--','none')
-    add_link(ref, 'PI 564163 - BTx623', 'https://ensembl-dev.sorghumbase.org/Sorghum_bicolor')
-    add_link(ref, 'PI 651496 - Rio', 'https://ensembl-dev.sorghumbase.org/Sorghum_rio')
-    add_link(ref, 'PI 655996 - Tx430', 'https://ensembl-dev.sorghumbase.org/Sorghum_tx430nano')
-    add_link(ref, 'PI 561071 - Tx436', 'https://ensembl-dev.sorghumbase.org/Sorghum_tx436pac')
-    add_link(ref, 'PI 656001 - Tx2783', 'https://ensembl-dev.sorghumbase.org/Sorghum_tx2783pac')
-    add_link(ref, 'IS12661', 'https://ensembl-dev.sorghumbase.org/Sorghum_is12661')
-    add_link(ref, 'IS3614-3', 'https://ensembl-dev.sorghumbase.org/Sorghum_is36143')
-    add_link(ref, 'IS38525', 'https://ensembl-dev.sorghumbase.org/Sorghum_is38525')
-    add_link(ref, 'IS929', 'https://ensembl-dev.sorghumbase.org/Sorghum_is929')
-    add_link(ref, 'Ji2731', 'https://ensembl-dev.sorghumbase.org/Sorghum_ji2731')
-    add_link(ref, 'R931945-2-2', 'https://ensembl-dev.sorghumbase.org/Sorghum_r93194522')
-    add_link(ref, 'IS19953', 'https://ensembl-dev.sorghumbase.org/Sorghum_is19953')
-    add_link(ref, 'PI525695', 'https://ensembl-dev.sorghumbase.org/Sorghum_pi525695')
-    add_link(ref, 'PI532566', 'https://ensembl-dev.sorghumbase.org/Sorghum_pi532566')
-    add_link(ref, 'AusTRCF317961', 'https://ensembl-dev.sorghumbase.org/Sorghum_austrcf317961')
-    add_link(ref, '353', 'https://ensembl-dev.sorghumbase.org/Sorghum_is12661')
-    add_link(ref, 'PI36008', 'https://ensembl-dev.sorghumbase.org/Sorghum_pi536008')
-    add_link(ref, 'S369-1', 'https://ensembl-dev.sorghumbase.org/Sorghum_s3691')
-#     add_link(ref, '', '')
-#     add_link(ref, 'PI 564163 - BTx623', '/accession/btx623')
-#     add_link(ref, 'PI 651496 - Rio', '/accession/rio')
-#     add_link(ref, 'PI 655996 - Tx430', '/accession/rtx430')
-#     add_link(ref, 'PI 561071 - Tx436', '/accession/rtx436')
-#     add_link(ref, 'PI 656001 - Tx2783', '/accession/tx2783')
+
+    add_link(ref, 'Species table','/'.join([ensemblURL,'species.html']))
+    add_link(ref, '--Genomes--','none')
+
+    pages = [
+        {'prod_name':'Sorghum_bicolor','label':'BTx623'},
+        {'prod_name':'Sorghum_rio','label':'BTx623'},
+        {'prod_name':'Sorghum_tx430nano','label':'Tx430'},
+        {'prod_name':'Sorghum_tx436pac','label':'Tx436'},
+        {'prod_name':'Sorghum_tx2783pac','label':'Tx2783'},
+        {'prod_name':'Sorghum_is12661','label':'IS12661'},
+        {'prod_name':'Sorghum_is36143','label':'IS36143'},
+        {'prod_name':'Sorghum_is38525','label':'IS38525'},
+        {'prod_name':'Sorghum_is929','label':'IS929'},
+        {'prod_name':'Sorghum_ji2731','label':'Ji2731'},
+        {'prod_name':'Sorghum_r93194522','label':'R931945-2-2'},
+        {'prod_name':'Sorghum_is19953','label':'IS19953'},
+        {'prod_name':'Sorghum_pi525695','label':'PI 525695'},
+        {'prod_name':'Sorghum_pi532566','label':'PI 532566'},
+        {'prod_name':'Sorghum_pi536008','label':'PI 536008'},
+        {'prod_name':'Sorghum_austrcf317961','label':'AusTRCF317961'},
+        {'prod_name':'Sorghum_353','label':'353'},
+        {'prod_name':'Sorghum_s3691','label':'S369-1'}
+    ]
+
+    for page in pages:
+        linkPair = [
+            {'label':'browser','link':'/'.join([ensemblURL,page["prod_name"]])},
+            {'label':'genome info','link':'/'.join([ensemblURL,page["prod_name"],'Info/Annotation'])}
+        ]
+        add_link(ref, page["label"], 'na', linkPair)
+
     return ref
 
 def germplasm():
