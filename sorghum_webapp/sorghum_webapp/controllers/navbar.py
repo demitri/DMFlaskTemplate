@@ -34,11 +34,12 @@ def genomes():
     ref = make_menu('Genomes')
 
     add_link(ref, 'Species table','/'.join([ensemblURL,'species.html']))
+    add_link(ref, 'FTP site','http://ftp.sorghumbase.org')
     add_link(ref, '--Genomes--','none')
 
     pages = [
         {'prod_name':'Sorghum_bicolor','label':'BTx623'},
-        {'prod_name':'Sorghum_rio','label':'BTx623'},
+        {'prod_name':'Sorghum_rio','label':'Rio'},
         {'prod_name':'Sorghum_tx430nano','label':'Tx430'},
         {'prod_name':'Sorghum_tx436pac','label':'Tx436'},
         {'prod_name':'Sorghum_tx2783pac','label':'Tx2783'},
